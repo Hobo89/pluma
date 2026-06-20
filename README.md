@@ -1,54 +1,55 @@
 # Pluma
 
-Static site boilerplate for [GitHub Pages](https://pages.github.com/).
+React + Tailwind site for [pluma.life](https://pluma.life), deployed via GitHub Pages.
 
-## Local preview
+## Stack
 
-Open `index.html` in a browser, or run a simple server:
+- **React 19** + **TypeScript**
+- **Tailwind CSS v4**
+- **Vite**
+- **GitHub Actions** → GitHub Pages
+
+## Local development
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
-Then visit [http://localhost:8000](http://localhost:8000).
+Open [http://localhost:5173](http://localhost:5173).
 
-## Deploy to GitHub Pages
+## Build
 
-1. Create a new repo on GitHub (e.g. `pluma`).
-2. Push this folder:
+```bash
+npm run build
+npm run preview
+```
 
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial Pluma boilerplate"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/pluma.git
-   git push -u origin main
-   ```
+## Deploy
 
-3. On GitHub: **Settings → Pages**
-4. Under **Build and deployment**, set **Source** to **Deploy from a branch**
-5. Choose branch **main** and folder **/ (root)**
-6. Save. Your site will be live at `https://YOUR_USERNAME.github.io/pluma/`
+Pushing to `main` triggers the GitHub Actions workflow, which builds and deploys to GitHub Pages.
+
+**One-time setup:** In repo **Settings → Pages**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
+
+Live site: **https://pluma.life**
 
 ## Project structure
 
 ```
 pluma/
-├── index.html      # Main page
-├── css/style.css   # Styles
-├── js/main.js      # Scripts
-├── .nojekyll       # Tells GitHub Pages not to use Jekyll
-└── README.md
+├── public/           # Static assets (CNAME, favicon)
+├── src/
+│   ├── components/   # React components
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css     # Tailwind + theme tokens
+├── .github/workflows/deploy.yml
+└── vite.config.ts
 ```
 
-## Custom domain — pluma.life
+## Custom domain
 
-The repo includes a `CNAME` file for **pluma.life**. Configure DNS in Hostinger:
-
-### Hostinger DNS records
-
-In **hPanel → Domains → pluma.life → DNS / DNS Zone**, add:
+DNS for `pluma.life` is configured at Hostinger. The `public/CNAME` file is included in every build.
 
 | Type  | Name | Value               |
 |-------|------|---------------------|
@@ -58,13 +59,6 @@ In **hPanel → Domains → pluma.life → DNS / DNS Zone**, add:
 | A     | @    | 185.199.111.153     |
 | CNAME | www  | hobo89.github.io    |
 
-Remove any conflicting A or CNAME records for `@` or `www` first.
+## Contact form
 
-### GitHub
-
-1. Open [repo Pages settings](https://github.com/Hobo89/pluma/settings/pages)
-2. Under **Custom domain**, enter `pluma.life` and save
-3. Wait for DNS to propagate (up to 24 hours, often much faster)
-4. Enable **Enforce HTTPS** once the certificate is issued
-
-Site URL: **https://pluma.life**
+For a static deploy, use [Web3Forms](https://web3forms.com) or [Formspree](https://formspree.io) in `src/components/Contact.tsx`.

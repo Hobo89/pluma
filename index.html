@@ -1,66 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Pluma — coming soon." />
     <title>Pluma</title>
-    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="logo" href="/">Pluma</a>
-      <nav aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <p class="eyebrow">Welcome</p>
-        <h1>Pluma</h1>
-        <p class="lead">
-          A clean starting point for your site. Edit <code>index.html</code> and
-          push to GitHub to publish.
-        </p>
-        <div class="actions">
-          <a class="button primary" href="#about">Learn more</a>
-          <a
-            class="button secondary"
-            href="https://github.com/Hobo89/pluma"
-            target="_blank"
-            rel="noopener noreferrer"
-            >View on GitHub</a
-          >
-        </div>
-      </section>
-
-      <section id="about" class="section">
-        <h2>About</h2>
-        <p>
-          This is a static boilerplate ready for
-          <a
-            href="https://pages.github.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub Pages</a
-          >. No build step required.
-        </p>
-      </section>
-
-      <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p>
-          Replace this with your email or social links when you are ready.
-        </p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>&copy; <span id="year"></span> Pluma</p>
-    </footer>
-
-    <script src="js/main.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
