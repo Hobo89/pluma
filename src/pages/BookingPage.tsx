@@ -1,8 +1,9 @@
 import { CalEmbed } from "../components/CalEmbed";
+import { PageContainer } from "../components/PageContainer";
 
 export function BookingPage() {
   return (
-    <section className="py-10 md:py-14">
+    <PageContainer>
       <p className="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
         Book a session
       </p>
@@ -16,6 +17,6 @@ export function BookingPage() {
       <div className="overflow-hidden rounded-xl border border-border bg-surface">
         <CalEmbed />
       </div>
-    </section>
+    </PageContainer>
   );
 }

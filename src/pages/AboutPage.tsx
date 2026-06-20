@@ -1,5 +1,10 @@
 import { About } from "../components/About";
+import { PageContainer } from "../components/PageContainer";
 
 export function AboutPage() {
-  return <About />;
+  return (
+    <PageContainer>
+      <About />
+    </PageContainer>
+  );
 }

@@ -1,19 +1,24 @@
 import { useEffect } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { calConfigured, calLink } from "../config/cal";
+import { useTheme } from "../context/ThemeContext";
 
 export function CalEmbed() {
+  const { isDark } = useTheme();
+  const theme = isDark ? "dark" : "light";
+  const brandColor = isDark ? "#4a8f76" : "#2d5a4a";
+
   useEffect(() => {
     if (!calConfigured) return;
 
     (async () => {
       const cal = await getCalApi();
       cal("ui", {
-        theme: "light",
-        styles: { branding: { brandColor: "#2d5a4a" } },
+        theme,
+        styles: { branding: { brandColor } },
       });
     })();
-  }, []);
+  }, [theme, brandColor]);
 
   if (!calConfigured) {
     return (
@@ -34,9 +39,10 @@ export function CalEmbed() {
 
   return (
     <Cal
+      key={theme}
       calLink={calLink}
       style={{ width: "100%", height: "100%", minHeight: "650px", overflow: "scroll" }}
-      config={{ layout: "month_view" }}
+      config={{ layout: "month_view", theme }}
     />
   );
 }

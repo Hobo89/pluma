@@ -13,6 +13,19 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --color-bg: #121413;
+  --color-surface: #1c1f1e;
+  --color-text: #f2f0ec;
+  --color-muted: #a8a39a;
+  --color-accent: #4a8f76;
+  --color-accent-hover: #5aa88c;
+  --color-border: #2e3330;
 }
 
 body {
@@ -20,4 +33,5 @@ body {
   font-family: var(--font-sans);
   color: var(--color-text);
   background: var(--color-bg);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }

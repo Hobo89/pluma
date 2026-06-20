@@ -1,6 +1,6 @@
 export function Contact() {
   return (
-    <section className="py-10 md:py-16">
+    <section>
       <h2 className="mb-3 text-2xl font-semibold">Contact</h2>
       <p className="max-w-2xl text-muted">
         Add a contact form here — Web3Forms or Formspree work great with static
