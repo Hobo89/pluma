@@ -42,6 +42,29 @@ pluma/
 └── README.md
 ```
 
-## Custom domain (optional)
+## Custom domain — pluma.life
 
-Add a `CNAME` file with your domain, then configure DNS in your registrar.
+The repo includes a `CNAME` file for **pluma.life**. Configure DNS in Hostinger:
+
+### Hostinger DNS records
+
+In **hPanel → Domains → pluma.life → DNS / DNS Zone**, add:
+
+| Type  | Name | Value               |
+|-------|------|---------------------|
+| A     | @    | 185.199.108.153     |
+| A     | @    | 185.199.109.153     |
+| A     | @    | 185.199.110.153     |
+| A     | @    | 185.199.111.153     |
+| CNAME | www  | hobo89.github.io    |
+
+Remove any conflicting A or CNAME records for `@` or `www` first.
+
+### GitHub
+
+1. Open [repo Pages settings](https://github.com/Hobo89/pluma/settings/pages)
+2. Under **Custom domain**, enter `pluma.life` and save
+3. Wait for DNS to propagate (up to 24 hours, often much faster)
+4. Enable **Enforce HTTPS** once the certificate is issued
+
+Site URL: **https://pluma.life**
