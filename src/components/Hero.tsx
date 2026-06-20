@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// Pre-encoded forward → reverse → loop (seamless ping-pong)
 const VIDEO_SRC = "/videos/hero.mp4";
 
 export function Hero() {
