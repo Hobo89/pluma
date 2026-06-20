@@ -5,6 +5,7 @@ React + Tailwind site for [pluma.life](https://pluma.life), deployed via GitHub 
 ## Stack
 
 - **React 19** + **TypeScript**
+- **React Router** — client-side routing
 - **Tailwind CSS v4**
 - **Vite**
 - **GitHub Actions** → GitHub Pages
@@ -27,9 +28,9 @@ npm run preview
 
 ## Deploy
 
-Pushing to `main` triggers the GitHub Actions workflow, which builds and deploys to GitHub Pages.
+Pushing to `main` builds the site and publishes the `dist/` folder to the `gh-pages` branch.
 
-**One-time setup:** In repo **Settings → Pages**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
+**One-time setup:** In repo **Settings → Pages**, set **Source** to **Deploy from a branch**, branch **gh-pages**, folder **/ (root)**. The `gh-pages` branch only contains the built site — not your source code.
 
 Live site: **https://pluma.life**
 
@@ -39,8 +40,9 @@ Live site: **https://pluma.life**
 pluma/
 ├── public/           # Static assets (CNAME, favicon)
 ├── src/
-│   ├── components/   # React components
-│   ├── App.tsx
+│   ├── components/   # Shared UI (Header, Layout, etc.)
+│   ├── pages/        # Route pages (Home, About, Contact)
+│   ├── App.tsx       # Route definitions
 │   ├── main.tsx
 │   └── index.css     # Tailwind + theme tokens
 ├── .github/workflows/deploy.yml

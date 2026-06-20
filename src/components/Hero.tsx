@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function Hero() {
   return (
     <section className="py-16 md:py-20">
@@ -15,16 +17,16 @@ export function Hero() {
         >
           pluma.life
         </a>
-        . Edit <code className="rounded-md border border-border bg-surface px-1.5 py-0.5 text-[0.9em]">src/App.tsx</code>{" "}
+        . Edit <code className="rounded-md border border-border bg-surface px-1.5 py-0.5 text-[0.9em]">src/pages/</code>{" "}
         and push to deploy.
       </p>
       <div className="flex flex-wrap gap-3">
-        <a
-          href="#about"
+        <Link
+          to="/about"
           className="inline-block rounded-xl bg-accent px-5 py-3 font-semibold text-white no-underline transition-colors hover:bg-accent-hover"
         >
           Learn more
-        </a>
+        </Link>
         <a
           href="https://github.com/Hobo89/pluma"
           target="_blank"

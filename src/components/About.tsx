@@ -1,6 +1,6 @@
 export function About() {
   return (
-    <section id="about" className="border-t border-border py-10">
+    <section className="py-10 md:py-16">
       <h2 className="mb-3 text-2xl font-semibold">About</h2>
       <p className="max-w-2xl text-muted">
         Built with React, TypeScript, Tailwind CSS, and Vite. Deployed to{" "}
