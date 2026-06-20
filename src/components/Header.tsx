@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const navLinks = [
   { to: "/about", label: "About" },
+  { to: "/book", label: "Book" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -10,15 +11,26 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? "font-medium text-text" : "text-muted hover:text-text"
   }`;
 
+const bookClass = ({ isActive }: { isActive: boolean }) =>
+  `rounded-lg px-3 py-1.5 text-[0.95rem] font-semibold no-underline transition-colors ${
+    isActive
+      ? "bg-accent-hover text-white"
+      : "bg-accent text-white hover:bg-accent-hover"
+  }`;
+
 export function Header() {
   return (
     <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5">
       <NavLink to="/" className="text-xl font-bold text-text no-underline">
         Pluma
       </NavLink>
-      <nav aria-label="Main" className="flex gap-6">
+      <nav aria-label="Main" className="flex items-center gap-6">
         {navLinks.map((link) => (
-          <NavLink key={link.to} to={link.to} className={linkClass}>
+          <NavLink
+            key={link.to}
+            to={link.to}
+            className={link.to === "/book" ? bookClass : linkClass}
+          >
             {link.label}
           </NavLink>
         ))}

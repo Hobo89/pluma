@@ -61,6 +61,21 @@ DNS for `pluma.life` is configured at Hostinger. The `public/CNAME` file is incl
 | A     | @    | 185.199.111.153     |
 | CNAME | www  | hobo89.github.io    |
 
+## Cal.com booking
+
+1. Copy `.env.example` to `.env`
+2. Set your Cal.com link:
+
+   ```
+   VITE_CALCOM_LINK=your-username/massage
+   ```
+
+   Find this in Cal.com under **Event Types → Embed** (the part after `cal.com/`).
+
+3. For production, add `VITE_CALCOM_LINK` as a GitHub Actions **repository variable** or secret so the build includes it.
+
+The booking page lives at `/book`.
+
 ## Contact form
 
 For a static deploy, use [Web3Forms](https://web3forms.com) or [Formspree](https://formspree.io) in `src/components/Contact.tsx`.
