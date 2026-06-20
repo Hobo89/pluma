@@ -6,8 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Pluma — restorative massage therapy. Book your session online." />
     <title>Pluma</title>
-    <script type="module" crossorigin src="/assets/index-CsMaB9pH.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Cju2wacz.css">
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        var theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : prefersDark
+              ? "dark"
+              : "light";
+        if (theme === "dark") document.documentElement.classList.add("dark");
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-D1lMMdiV.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-wYQIPZmi.css">
   </head>
   <body>
     <div id="root"></div>
