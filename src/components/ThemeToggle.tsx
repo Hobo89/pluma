@@ -1,3 +1,4 @@
+import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 
 type ThemeToggleProps = {
@@ -6,15 +7,16 @@ type ThemeToggleProps = {
 
 export function ThemeToggle({ overlay = false }: ThemeToggleProps) {
   const { isDark, toggleTheme } = useTheme();
+  const { t } = useLanguage();
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? t("theme.toLight") : t("theme.toDark")}
       className={
         overlay
-          ? "rounded-lg border border-white/30 bg-white/10 p-2 text-white/80 backdrop-blur-sm transition-colors hover:bg-white/20 hover:text-white"
+          ? "rounded-lg border border-white/40 bg-black/35 p-2 text-white backdrop-blur-sm transition-colors hover:bg-black/50"
           : "rounded-lg border border-border bg-surface p-2 text-muted transition-colors hover:border-accent hover:text-text"
       }
     >

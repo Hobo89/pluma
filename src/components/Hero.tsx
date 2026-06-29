@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 // Pre-encoded forward → reverse → loop (seamless ping-pong)
 const VIDEO_SRC = "/videos/hero.mp4";
 
 export function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       <video
@@ -17,30 +20,30 @@ export function Hero() {
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+      <div className="hero-scrim absolute inset-0" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto max-w-3xl px-6 py-32 text-center text-white">
-        <p className="mb-3 text-sm font-semibold tracking-[0.2em] text-white/80 uppercase">
-          Massage therapy
+      <div className="hero-front relative z-10 mx-auto w-full max-w-3xl px-6 py-28 text-center sm:py-32">
+        <p className="hero-text font-hero mb-3 text-sm font-normal tracking-[0.2em] uppercase">
+          {t("hero.eyebrow")}
         </p>
-        <h1 className="mb-4 text-5xl leading-tight font-semibold tracking-tight md:text-7xl">
-          Pluma
+        <h1 className="hero-text font-hero mb-4 text-5xl leading-[1.05] font-normal tracking-tight sm:text-6xl md:text-7xl">
+          pluma
         </h1>
-        <p className="mx-auto mb-10 max-w-xl text-lg text-white/85">
-          Restorative massage to help you unwind, recover, and feel your best.
+        <p className="hero-text mx-auto mb-10 max-w-xl text-base leading-relaxed font-normal sm:text-lg">
+          {t("hero.tagline")}
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           <Link
             to="/book"
-            className="inline-block rounded-xl bg-accent px-6 py-3 font-semibold text-white no-underline transition-colors hover:bg-accent-hover"
+            className="inline-block rounded-xl bg-accent px-6 py-3.5 text-base font-normal text-white no-underline shadow-lg shadow-black/30 transition-colors hover:bg-accent-hover"
           >
-            Book a session
+            {t("hero.book")}
           </Link>
           <Link
             to="/about"
-            className="inline-block rounded-xl border border-white/40 bg-white/10 px-6 py-3 font-semibold text-white no-underline backdrop-blur-sm transition-colors hover:bg-white/20"
+            className="inline-block rounded-xl border-2 border-white/80 bg-white px-6 py-3.5 text-base font-normal text-black no-underline shadow-lg shadow-black/30 transition-colors hover:bg-white/90"
           >
-            Learn more
+            {t("hero.learnMore")}
           </Link>
         </div>
       </div>

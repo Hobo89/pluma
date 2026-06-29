@@ -1,35 +1,35 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
-
-const navLinks = [
-  { to: "/about", label: "About" },
-  { to: "/book", label: "Book" },
-  { to: "/contact", label: "Contact" },
-];
 
 export function Header() {
   const { pathname } = useLocation();
+  const { t } = useLanguage();
   const onHome = pathname === "/";
+  const overlay = onHome || pathname === "/about";
+
+  const navLinks = [
+    { to: "/about", label: t("nav.about") },
+    { to: "/book", label: t("nav.book") },
+    { to: "/contact", label: t("nav.contact") },
+  ];
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    onHome
+    overlay
       ? `text-[0.95rem] no-underline transition-colors ${
-          isActive
-            ? "font-medium text-white"
-            : "text-white/75 hover:text-white"
+          isActive ? "font-semibold text-white" : "font-medium text-white/60 hover:text-white/90"
         }`
       : `text-[0.95rem] no-underline transition-colors ${
-          isActive
-            ? "font-medium text-text"
-            : "text-muted hover:text-text"
+          isActive ? "font-semibold text-accent" : "font-medium text-muted hover:text-text"
         }`;
 
   const bookClass = ({ isActive }: { isActive: boolean }) =>
-    onHome
-      ? `rounded-lg px-3 py-1.5 text-[0.95rem] font-semibold no-underline transition-colors ${
+    overlay
+      ? `rounded-lg px-3 py-1.5 text-[0.95rem] font-semibold no-underline shadow-md shadow-black/25 transition-colors ${
           isActive
             ? "bg-white text-accent"
-            : "bg-white/90 text-accent hover:bg-white"
+            : "bg-white/85 text-accent hover:bg-white"
         }`
       : `rounded-lg px-3 py-1.5 text-[0.95rem] font-semibold no-underline transition-colors ${
           isActive
@@ -40,31 +40,33 @@ export function Header() {
   return (
     <header
       className={
-        onHome
-          ? "absolute inset-x-0 top-0 z-50 bg-gradient-to-b from-black/60 to-transparent"
+        overlay
+          ? "hero-nav-shadow absolute inset-x-0 top-0 z-50 bg-gradient-to-b from-black/80 via-black/45 to-transparent"
           : "border-b border-border"
       }
     >
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
         <NavLink
           to="/"
-          className={`text-xl font-bold no-underline ${
-            onHome ? "text-white" : "text-text"
+          className={`font-hero text-xl font-normal no-underline ${
+            overlay ? "text-white" : "text-text"
           }`}
         >
-          Pluma
+          pluma
         </NavLink>
-        <nav aria-label="Main" className="flex items-center gap-4">
+        <nav aria-label={t("nav.main")} className="flex items-center gap-3">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
+              end
               className={link.to === "/book" ? bookClass : linkClass}
             >
               {link.label}
             </NavLink>
           ))}
-          <ThemeToggle overlay={onHome} />
+          <LanguageSwitcher overlay={overlay} />
+          <ThemeToggle overlay={overlay} />
         </nav>
       </div>
     </header>
