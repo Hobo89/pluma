@@ -76,3 +76,97 @@ body {
   color: var(--color-text);
   text-shadow: 0 1px 8px rgb(0 0 0 / 0.12);
 }
+
+.testimonial-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid;
+  border-radius: 9999px;
+  padding: 0.2rem 0.65rem 0.2rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  background: transparent;
+}
+
+.testimonial-badge-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex-shrink: 0;
+}
+
+.testimonial-badge--nestling {
+  border-color: #c17a52;
+  color: #a86442;
+}
+
+.testimonial-badge--fledgling {
+  border-color: #c9a03a;
+  color: #96761f;
+}
+
+.testimonial-badge--wingmate {
+  border-color: #d4846a;
+  color: #b5624d;
+}
+
+html.dark .testimonial-badge--nestling {
+  border-color: #d4956f;
+  color: #e8b896;
+}
+
+html.dark .testimonial-badge--fledgling {
+  border-color: #dbb84a;
+  color: #e8cc7a;
+}
+
+html.dark .testimonial-badge--wingmate {
+  border-color: #e09880;
+  color: #efb09a;
+}
+
+.testimonials-marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+}
+
+.testimonials-marquee {
+  animation: testimonials-scroll 55s linear infinite;
+}
+
+.testimonials-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes testimonials-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+    max-width: 80rem;
+    margin-inline: auto;
+    justify-content: center;
+  }
+
+  .testimonials-marquee-mask {
+    mask-image: none;
+    overflow: visible;
+  }
+}

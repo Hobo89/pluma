@@ -1,4 +1,5 @@
 import { Hero } from "../components/Hero";
+import { Location } from "../components/Location";
 import { StudioVideo } from "../components/StudioVideo";
 import { Testimonials } from "../components/Testimonials";
 
@@ -6,6 +7,7 @@ export function HomePage() {
   return (
     <>
       <Hero />
+      <Location />
       <Testimonials />
       <section className="border-t border-border bg-surface py-20 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
