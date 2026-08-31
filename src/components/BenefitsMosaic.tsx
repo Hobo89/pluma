@@ -16,7 +16,7 @@ export function BenefitsMosaic() {
       aria-labelledby="benefits-heading"
       className="psl-container psl-section--roomy"
     >
-      <div className="psl-section-head psl-section-head--center">
+      <div className="psl-section-head psl-section-head--stack">
         <h2 id="benefits-heading" className="psl-title">
           {t("benefits.title")}
         </h2>

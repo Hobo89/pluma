@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Header } from "./Header";
 import { StudioVideo } from "./StudioVideo";
 
 export function About() {
@@ -25,7 +24,6 @@ export function About() {
           aria-hidden="true"
           loading="eager"
         />
-        <Header />
         <div className="psl-hero__body psl-container">
           <p className="psl-eyebrow" style={{ color: "rgb(255 255 255 / 85%)" }}>
             {t("about.eyebrow")}

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import type { CSSProperties } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Header } from "./Header";
 
 const VIDEO_SRC = "/videos/hero.mp4";
 
@@ -28,8 +27,6 @@ export function Hero() {
       >
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
-
-      <Header />
 
       <div className="psl-hero__body psl-container">
         <p className="psl-eyebrow" style={{ color: "rgb(255 255 255 / 85%)" }}>

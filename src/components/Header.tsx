@@ -2,6 +2,7 @@ import { useEffect, useState, type KeyboardEvent } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
 type HeaderProps = {
@@ -59,7 +60,14 @@ export function Header({ solid = false }: HeaderProps) {
       return;
     }
 
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const scrollTop =
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+      setScrolled(scrollTop > 24);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -80,58 +88,60 @@ export function Header({ solid = false }: HeaderProps) {
   };
 
   return (
-    <header
-      className={`psl-header psl-container${solidNav ? " psl-header--solid" : ""}`}
+    <div
+      className={`psl-header-shell${solidNav ? " psl-header-shell--solid" : ""}`}
     >
-      <NavLink to="/" className="psl-brand" aria-label="pluma home">
-        pluma
-      </NavLink>
+      <header className={`psl-header${solidNav ? " psl-header--solid" : ""}`}>
+        <NavLink to="/" className="psl-brand" aria-label="pluma home">
+          <Logo className="psl-brand__logo" />
+        </NavLink>
 
-      <nav className="psl-nav" aria-label={t("nav.main")}>
-        {navLinks.map((link) => (
-          <NavLink key={link.to} to={link.to} end>
-            {link.label}
-          </NavLink>
-        ))}
-      </nav>
-
-      <div className="psl-header__utils">
-        <LanguageSwitcher />
-        <ThemeToggle />
-      </div>
-
-      <NavLink to="/book" className="psl-button psl-button--dark">
-        {t("nav.book")}
-      </NavLink>
-
-      <details
-        className="psl-mobile-menu"
-        open={menuOpen}
-        onToggle={(event) => setMenuOpen(event.currentTarget.open)}
-        onKeyDown={handleMenuKeyDown}
-      >
-        <summary aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}>
-          <MenuIcon open={menuOpen} />
-        </summary>
-        <nav
-          className="psl-mobile-menu__panel"
-          aria-label={t("nav.main")}
-          onClick={(event) => {
-            if ((event.target as HTMLElement).closest("a")) {
-              setMenuOpen(false);
-            }
-          }}
-        >
+        <nav className="psl-nav" aria-label={t("nav.main")}>
           {navLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end>
               {link.label}
             </NavLink>
           ))}
-          <NavLink to="/book" className="psl-button">
-            {t("nav.book")}
-          </NavLink>
         </nav>
-      </details>
-    </header>
+
+        <div className="psl-header__utils">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
+
+        <NavLink to="/book" className="psl-button psl-button--dark">
+          {t("nav.book")}
+        </NavLink>
+
+        <details
+          className="psl-mobile-menu"
+          open={menuOpen}
+          onToggle={(event) => setMenuOpen(event.currentTarget.open)}
+          onKeyDown={handleMenuKeyDown}
+        >
+          <summary aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}>
+            <MenuIcon open={menuOpen} />
+          </summary>
+          <nav
+            className="psl-mobile-menu__panel"
+            aria-label={t("nav.main")}
+            onClick={(event) => {
+              if ((event.target as HTMLElement).closest("a")) {
+                setMenuOpen(false);
+              }
+            }}
+          >
+            {navLinks.map((link) => (
+              <NavLink key={link.to} to={link.to} end>
+                {link.label}
+              </NavLink>
+            ))}
+            <NavLink to="/book" className="psl-button">
+              {t("nav.book")}
+            </NavLink>
+          </nav>
+        </details>
+      </header>
+    </div>
   );
 }

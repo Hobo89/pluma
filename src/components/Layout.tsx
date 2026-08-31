@@ -14,7 +14,10 @@ export function Layout() {
       <a href="#main" className="psl-skip">
         {t("nav.skipToContent")}
       </a>
-      {!isHome && !isAbout && <Header solid />}
+      <Header solid={!isHome && !isAbout} />
+      {!isHome && !isAbout && (
+        <div className="psl-header-offset" aria-hidden="true" />
+      )}
       <main id="main" tabIndex={-1}>
         <Outlet />
       </main>

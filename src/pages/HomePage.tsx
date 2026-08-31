@@ -22,6 +22,7 @@ export function HomePage() {
         descriptionKey="about.body"
         image="/assets/images/stephen.jpg"
         imageAlt={t("about.stephenPhotoAlt")}
+        imagePosition="64% 32%"
         actionLabelKey="hero.learnMore"
         actionTo="/about"
       />

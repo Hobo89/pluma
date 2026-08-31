@@ -1,5 +1,10 @@
 export const site = {
   businessName: "pluma",
+  logos: {
+    fullColor: "/assets/images/pluma-logo-full-color.png",
+    fullWhite: "/assets/images/pluma-logo-full-white.png",
+    featherOnly: "/assets/images/pluma-logo-feather-only.png",
+  },
   ownerName: "Stephen Michetti",
   nif: "—",
   email: "hello@pluma.life",

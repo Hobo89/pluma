@@ -6,6 +6,7 @@ type FeatureStoryProps = {
   descriptionKey: string;
   image: string;
   imageAlt: string;
+  imagePosition?: string;
   actionLabelKey: string;
   actionTo: string;
   reverse?: boolean;
@@ -17,6 +18,7 @@ export function FeatureStory({
   descriptionKey,
   image,
   imageAlt,
+  imagePosition,
   actionLabelKey,
   actionTo,
   reverse = false,
@@ -41,6 +43,7 @@ export function FeatureStory({
           alt={imageAlt}
           loading="lazy"
           sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
+          style={imagePosition ? { objectPosition: imagePosition } : undefined}
         />
         {badge && <figcaption className="psl-badge">{badge}</figcaption>}
       </figure>

@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { site } from "../config/site";
 import { useLanguage } from "../context/LanguageContext";
+import { Logo } from "./Logo";
 
 const legalLinks = [
   { to: "/aviso-legal", key: "legal.notice" },
@@ -16,6 +17,9 @@ export function Footer() {
     <footer className="psl-footer psl-container psl-container--wide">
       <div className="psl-footer__top">
         <div className="psl-stack">
+          <NavLink to="/" className="psl-footer__brand" aria-label="pluma home">
+            <Logo className="psl-footer__brand-logo" height={36} />
+          </NavLink>
           <h2>{t("footer.contactTitle")}</h2>
           <p className="psl-copy" style={{ color: "rgb(255 255 255 / 75%)" }}>
             {t("footer.tagline")}

@@ -40,4 +40,5 @@
   --psl-radius-pill: 999px;
   --psl-duration: 200ms;
   --psl-ease: cubic-bezier(.2,.7,.2,1);
+  --psl-z-header: 1000;
 }
