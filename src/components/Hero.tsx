@@ -49,9 +49,6 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="psl-hero__foot psl-container">
-        <span>{t("location.walk")}</span>
-      </div>
     </section>
   );
 }

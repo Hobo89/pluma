@@ -25,7 +25,7 @@ export function Treatments() {
       aria-labelledby="treatments-heading"
       className="psl-container psl-section--roomy"
     >
-      <div className="psl-section-head">
+      <div className="psl-section-head psl-section-head--stack">
         <h2 id="treatments-heading" className="psl-title">
           {t("treatments.title")}
         </h2>
