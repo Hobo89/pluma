@@ -36,6 +36,23 @@ html:not(.dark) .psl {
   max-width: none;
 }
 
+.psl-hero__eyebrow {
+  color: rgb(255 255 255 / 85%);
+  font-weight: 600;
+}
+
+.psl-hero__logo {
+  margin: 0;
+  line-height: 0;
+}
+
+.psl-hero__logo-image {
+  display: block;
+  width: min(14rem, 62vw);
+  height: auto;
+  color: var(--psl-white);
+}
+
 /* Testimonial cards — keep Pluma brush-border cards inside Pluma studio layout sections */
 .psl-testimonials-marquee .testimonial-card {
   background: var(--psl-surface);

@@ -3,6 +3,7 @@ export const site = {
   logos: {
     fullColor: "/assets/images/pluma-logo-full-color.png",
     fullWhite: "/assets/images/pluma-logo-full-white.png",
+    fullWhiteSvg: "/assets/images/pluma-logo-full-white.svg",
     featherOnly: "/assets/images/pluma-logo-feather-only.png",
   },
   ownerName: "Stephen Michetti",

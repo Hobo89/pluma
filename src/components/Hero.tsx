@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { CSSProperties } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { Logo } from "./Logo";
 
 const VIDEO_SRC = "/videos/hero.mp4";
 
@@ -29,11 +30,11 @@ export function Hero() {
       </video>
 
       <div className="psl-hero__body psl-hero__body--center psl-container">
-        <p className="psl-eyebrow" style={{ color: "rgb(255 255 255 / 85%)" }}>
+        <p className="psl-eyebrow psl-hero__eyebrow">
           {t("hero.eyebrow")}
         </p>
-        <h1 className="psl-display" style={{ color: "var(--psl-white)" }}>
-          pluma
+        <h1 className="psl-hero__logo">
+          <Logo variant="fullWhite" className="psl-hero__logo-image" />
         </h1>
         <p
           className="psl-copy"
