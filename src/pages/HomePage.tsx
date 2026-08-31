@@ -4,7 +4,6 @@ import { FeatureStory } from "../components/FeatureStory";
 import { BenefitsMosaic } from "../components/BenefitsMosaic";
 import { EditorialQuote } from "../components/EditorialQuote";
 import { PromoRibbon } from "../components/PromoRibbon";
-import { Testimonials } from "../components/Testimonials";
 import { FAQ } from "../components/FAQ";
 import { PortraitStrip } from "../components/PortraitStrip";
 import { BookingCTA } from "../components/BookingCTA";
@@ -38,7 +37,6 @@ export function HomePage() {
       <BenefitsMosaic />
       <EditorialQuote />
       <PromoRibbon />
-      <Testimonials />
       <FAQ />
       <PortraitStrip />
       <BookingCTA />

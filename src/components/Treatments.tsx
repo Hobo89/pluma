@@ -21,6 +21,7 @@ export function Treatments() {
 
   return (
     <section
+      id="treatments"
       aria-labelledby="treatments-heading"
       className="psl-container psl-section--roomy"
     >

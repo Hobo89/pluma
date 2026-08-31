@@ -1,7 +1,39 @@
 /* Pluma studio layout overrides */
 
-.psl {
+html:not(.dark) .psl {
   color-scheme: light;
+}
+
+/* Hero — centered copy */
+.psl-hero {
+  overflow: hidden;
+  border-bottom-left-radius: 50vw;
+  border-bottom-right-radius: 50vw;
+}
+
+.psl-hero::before {
+  background: linear-gradient(
+    rgb(0 0 0 / 42%),
+    rgb(0 0 0 / 28%) 45%,
+    rgb(0 0 0 / 42%)
+  );
+}
+
+.psl-hero__body--center {
+  align-items: center;
+  text-align: center;
+}
+
+.psl-hero__body--center .psl-copy {
+  margin-inline: auto;
+}
+
+.psl-hero__body--center .psl-actions {
+  justify-content: center;
+}
+
+.psl-hero__body--center .psl-display {
+  max-width: none;
 }
 
 /* Testimonial cards — keep Pluma brush-border cards inside Pluma studio layout sections */
@@ -29,6 +61,38 @@
   max-width: 44ch;
 }
 
+/* Benefits mosaic — three benefit tiles + proof */
+.psl-bento--benefits {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.psl-bento--benefits .psl-tile--proof {
+  grid-column: 1 / 4;
+  grid-row: 1;
+}
+
+.psl-bento--benefits .psl-tile--leaf {
+  grid-column: 4 / 7;
+  grid-row: 1;
+}
+
+.psl-bento--benefits .psl-tile--landscape {
+  grid-column: 1 / 4;
+  grid-row: 2;
+}
+
+.psl-bento--benefits .psl-tile--texture {
+  grid-column: 4 / 7;
+  grid-row: 2;
+}
+
+@media (max-width: 767px) {
+  .psl-bento--benefits > * {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
 /* Studio video panel */
 .psl-media-panel {
   overflow: hidden;
@@ -46,17 +110,26 @@
   object-fit: cover;
 }
 
-/* Header shell — fixed floating bar, above all page content */
+/* Header shell — fixed floating bar, ~10% wider than content on each side */
 .psl-header-shell {
   position: fixed;
   z-index: var(--psl-z-header);
   top: 1.5rem;
-  right: 1.5rem;
-  left: 1.5rem;
+  left: 0;
+  right: 0;
+  width: min(
+    calc(67% * var(--psl-header-width-scale)),
+    calc(var(--psl-container-max) * var(--psl-header-width-scale))
+  );
+  margin-inline: auto;
   pointer-events: none;
 }
 
 .psl-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--psl-space-6);
   position: relative;
   pointer-events: auto;
   padding-block: var(--psl-space-3);
@@ -183,8 +256,10 @@
 @media (max-width: 767px) {
   .psl-header-shell {
     top: 1rem;
-    right: 1rem;
-    left: 1rem;
+    width: min(
+      calc((100% - 40px) * var(--psl-header-width-scale)),
+      calc(100% - 16px)
+    );
   }
 
   .psl-header-offset {
@@ -193,6 +268,13 @@
 }
 
 @media (max-width: 991px) {
+  .psl-header-shell {
+    width: min(
+      calc((100% - 64px) * var(--psl-header-width-scale)),
+      calc(100% - 24px)
+    );
+  }
+
   .psl-header__utils {
     margin-left: 0;
   }
@@ -213,17 +295,37 @@
 
 .psl-header__utils .psl-lang button,
 .psl-header__utils .psl-theme button {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0 7px;
   border: none;
   background: transparent;
   color: var(--psl-white);
-  font-size: var(--psl-type-label);
+  font-size: 11px;
+  line-height: 1;
   cursor: pointer;
   transition:
     background 0.4s var(--psl-ease),
     color 0.4s var(--psl-ease);
+}
+
+.psl-header__utils .psl-theme button {
+  width: 32px;
+  padding: 0;
+}
+
+.psl-header__utils .psl-theme button svg {
+  display: block;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.psl-header__utils .psl-theme__icon--moon {
+  transform: translateX(-1px);
 }
 
 .psl-header__utils .psl-lang button[aria-pressed="true"] {
@@ -287,30 +389,123 @@
   background: var(--psl-surface);
 }
 
+/* Pricing page */
+.psl-pricing-section {
+  margin-top: var(--psl-space-12);
+}
+
+.psl-pricing-section .psl-section-head {
+  margin-bottom: var(--psl-space-6);
+}
+
+.psl-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--psl-space-3);
+}
+
+.psl-pricing-card {
+  display: grid;
+  gap: var(--psl-space-3);
+  min-width: 0;
+  padding: var(--psl-space-6);
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface);
+}
+
+.psl-pricing-card__duration {
+  color: var(--psl-heading);
+  font: 400 var(--psl-type-quote) / 1.08 var(--psl-font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.psl-pricing-card__price {
+  color: var(--psl-text);
+  font: 400 var(--psl-type-card) / 1.15 var(--psl-font-body);
+  letter-spacing: 0;
+}
+
+.psl-pricing-card__meta {
+  color: var(--psl-muted);
+  font-size: var(--psl-type-small);
+  line-height: 1.5;
+}
+
+.psl-pricing-vouchers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--psl-space-3);
+}
+
+.psl-pricing-voucher {
+  display: grid;
+  gap: var(--psl-space-4);
+  min-width: 0;
+  padding: var(--psl-space-6);
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface-sage);
+}
+
+.psl-pricing-voucher__title {
+  font: 400 var(--psl-type-card) / 1.15 var(--psl-font-display);
+  color: var(--psl-heading);
+  letter-spacing: -0.02em;
+}
+
+.psl-pricing-voucher__rates {
+  display: grid;
+  gap: var(--psl-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psl-pricing-voucher__rates li {
+  display: grid;
+  gap: var(--psl-space-1);
+  padding-top: var(--psl-space-4);
+  border-top: 1px solid var(--psl-line);
+}
+
+.psl-pricing-voucher__rates li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.psl-pricing-voucher__duration {
+  color: var(--psl-heading);
+  font-size: var(--psl-type-small);
+}
+
+.psl-pricing-voucher__total {
+  color: var(--psl-text);
+  font-size: var(--psl-type-small);
+}
+
+.psl-pricing-voucher__total-label {
+  color: var(--psl-muted);
+}
+
+.psl-pricing-voucher__per-session {
+  color: var(--psl-muted);
+  font-size: var(--psl-type-small);
+}
+
+@media (max-width: 991px) {
+  .psl-pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .psl-pricing-grid,
+  .psl-pricing-vouchers {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Interactive quote collage */
-.psl-quote--animated .psl-quote__body {
-  transition:
-    opacity 0.32s var(--psl-ease),
-    transform 0.32s var(--psl-ease);
-}
-
-.psl-quote--animated .psl-quote__body--hidden {
-  opacity: 0;
-}
-
-.psl-quote--forward .psl-quote__body--hidden {
-  transform: translateY(12px);
-}
-
-.psl-quote--back .psl-quote__body--hidden {
-  transform: translateY(-12px);
-}
-
-.psl-quote--animated .psl-quote__body--visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .psl-quote__meta {
   display: inline-flex;
   align-items: center;
@@ -380,10 +575,6 @@
   border-radius: var(--psl-radius-media);
   overflow: hidden;
   transform-origin: center center;
-  transition:
-    transform 0.55s var(--psl-ease),
-    opacity 0.45s var(--psl-ease),
-    filter 0.45s var(--psl-ease);
   transform: scale(0.86);
   opacity: 0.68;
   filter: saturate(0.88);
@@ -411,7 +602,6 @@
   aspect-ratio: 1.6;
   object-fit: cover;
   border-radius: var(--psl-radius-media);
-  transition: aspect-ratio 0.55s var(--psl-ease);
 }
 
 .psl-collage--interactive .psl-collage__item--spotlight img {
@@ -439,12 +629,6 @@
   .psl-header__utils .psl-theme,
   .psl-header__utils .psl-lang button,
   .psl-header__utils .psl-theme button {
-    transition: none !important;
-  }
-
-  .psl-quote--animated .psl-quote__body,
-  .psl-collage--interactive .psl-collage__item,
-  .psl-collage--interactive .psl-collage__item img {
     transition: none !important;
   }
 }

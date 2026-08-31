@@ -43,6 +43,7 @@ export function Footer() {
 
         <nav className="psl-footer__links" aria-label={t("footer.legalTitle")}>
           <Link to="/about">{t("nav.about")}</Link>
+          <Link to="/pricing">{t("nav.pricing")}</Link>
           <Link to="/book">{t("nav.book")}</Link>
           {legalLinks.map(({ to, key }) => (
             <Link key={to} to={to}>

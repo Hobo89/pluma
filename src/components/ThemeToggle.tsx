@@ -16,9 +16,10 @@ export function ThemeToggle(_props: ThemeToggleProps = {}) {
       >
         {isDark ? (
           <svg
+            className="psl-theme__icon"
             xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
+            width="14"
+            height="14"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -39,9 +40,10 @@ export function ThemeToggle(_props: ThemeToggleProps = {}) {
           </svg>
         ) : (
           <svg
+            className="psl-theme__icon psl-theme__icon--moon"
             xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
+            width="14"
+            height="14"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

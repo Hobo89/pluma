@@ -28,7 +28,7 @@ export function Hero() {
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
 
-      <div className="psl-hero__body psl-container">
+      <div className="psl-hero__body psl-hero__body--center psl-container">
         <p className="psl-eyebrow" style={{ color: "rgb(255 255 255 / 85%)" }}>
           {t("hero.eyebrow")}
         </p>
@@ -42,9 +42,6 @@ export function Hero() {
           {t("hero.tagline")}
         </p>
         <div className="psl-actions">
-          <Link to="/book" className="psl-button">
-            {t("hero.book")}
-          </Link>
           <Link to="/about" className="psl-button psl-button--ghost">
             {t("hero.learnMore")}
           </Link>

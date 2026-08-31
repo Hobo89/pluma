@@ -47,7 +47,8 @@ export function Header({ solid = false }: HeaderProps) {
 
   const navLinks = [
     { to: "/about", label: t("nav.about") },
-    { to: "/book", label: t("nav.book") },
+    { to: "/pricing", label: t("nav.pricing") },
+    { to: "/member-card", label: t("nav.memberCard") },
   ];
 
   useEffect(() => {
@@ -109,7 +110,7 @@ export function Header({ solid = false }: HeaderProps) {
           <ThemeToggle />
         </div>
 
-        <NavLink to="/book" className="psl-button psl-button--dark">
+        <NavLink to="/book" className="psl-button">
           {t("nav.book")}
         </NavLink>
 

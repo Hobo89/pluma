@@ -8,6 +8,8 @@ export const translations = {
     },
     nav: {
       about: "About",
+      pricing: "Pricing",
+      memberCard: "Member Card",
       book: "Book",
       main: "Main",
       openMenu: "Open menu",
@@ -42,11 +44,45 @@ export const translations = {
         "I'm Stephen, your masseur. I welcome you into my home studio with the same care I bring to every session — warm, professional, and focused entirely on what your body needs.",
       stephenPhotoAlt: "Stephen, masseur at pluma home studio",
     },
+    pricing: {
+      eyebrow: "Sessions",
+      title: "Pricing",
+      description:
+        "Session rates by duration at the home studio. Save with prepaid voucher cards on 60 and 90 minute appointments.",
+      book: "Book a session",
+      durationMinutes: "{minutes} min",
+      singleTitle: "Single sessions",
+      durationScope: {
+        "30": "One zone — focused work on a single area",
+        "60": "Full body relaxation",
+        "90": "Full body deep tissue",
+        "120": "Extended full body and deep tissue",
+      },
+      voucherTitle: "Voucher cards",
+      voucherDescription:
+        "Prepaid voucher cards include a discount on 60 and 90 minute sessions. Ask Stephen about voucher cards at your next visit or by email.",
+      total: "total",
+      perSession: "per session",
+      voucher5: {
+        title: "5-session voucher card",
+        discount: "10% off",
+      },
+      voucher10: {
+        title: "10-session voucher card",
+        discount: "15% off",
+      },
+    },
     booking: {
       eyebrow: "Book a session",
       title: "Schedule your visit",
       description:
         "Choose a time that works for you. You'll receive a confirmation email with directions to the home studio and everything you need before your appointment.",
+    },
+    memberCard: {
+      eyebrow: "Member Card",
+      title: "Member Card",
+      description:
+        "Regular sessions at a reduced rate. Ask Stephen about member card options at your next visit or by email.",
     },
     cal: {
       notConfigured: "Cal.com not configured yet",
@@ -160,15 +196,14 @@ export const translations = {
       },
     },
     benefits: {
-      title: "Why pluma",
+      title: "Benefits",
       description:
-        "A private home studio built around calm, care, and thoughtful touch.",
+        "Thoughtful details that make every session feel considered.",
       proof:
-        "Clients return for the quiet atmosphere, personalized sessions, and the feeling of leaving completely reset.",
-      leaf: { title: "Botanical calm" },
-      landscape: { title: "Central Valencia" },
-      texture: { title: "Hands at work" },
-      portrait: { title: "Real connection" },
+        "100% organic oils and scents, steps from Mercat Central, and sessions shaped around you.",
+      leaf: { title: "100% organic oils and scents" },
+      landscape: { title: "Next to Mercat Central" },
+      texture: { title: "Personalized sessions" },
     },
     quote: {
       title: "Featured testimonial",
@@ -213,6 +248,8 @@ export const translations = {
     },
     nav: {
       about: "Sobre nosotros",
+      pricing: "Precios",
+      memberCard: "Tarjeta de miembro",
       book: "Reservar",
       main: "Principal",
       openMenu: "Abrir menú",
@@ -247,11 +284,45 @@ export const translations = {
         "Soy Stephen, tu masajista. Te recibo en mi estudio en casa con el mismo cuidado que pongo en cada sesión — cálido, profesional y centrado en lo que tu cuerpo necesita.",
       stephenPhotoAlt: "Stephen, masajista en el estudio en casa pluma",
     },
+    pricing: {
+      eyebrow: "Sesiones",
+      title: "Precios",
+      description:
+        "Tarifas por duración en el estudio en casa. Ahorra con tarjetas voucher prepago en citas de 60 y 90 minutos.",
+      book: "Reservar sesión",
+      durationMinutes: "{minutes} min",
+      singleTitle: "Sesiones sueltas",
+      durationScope: {
+        "30": "Una zona — trabajo focalizado en un área",
+        "60": "Cuerpo completo, relajación",
+        "90": "Cuerpo completo, tejido profundo",
+        "120": "Cuerpo completo prolongado y tejido profundo",
+      },
+      voucherTitle: "Tarjetas voucher",
+      voucherDescription:
+        "Las tarjetas voucher prepago incluyen descuento en sesiones de 60 y 90 minutos. Pregunta a Stephen por las tarjetas voucher en tu próxima visita o por correo.",
+      total: "total",
+      perSession: "por sesión",
+      voucher5: {
+        title: "Tarjeta voucher de 5 sesiones",
+        discount: "10% dto.",
+      },
+      voucher10: {
+        title: "Tarjeta voucher de 10 sesiones",
+        discount: "15% dto.",
+      },
+    },
     booking: {
       eyebrow: "Reservar sesión",
       title: "Agenda tu visita",
       description:
         "Elige el horario que te convenga. Recibirás un correo de confirmación con indicaciones al estudio en casa y todo lo que necesitas antes de tu cita.",
+    },
+    memberCard: {
+      eyebrow: "Tarjeta de miembro",
+      title: "Tarjeta de miembro",
+      description:
+        "Sesiones habituales a tarifa reducida. Pregunta a Stephen por las opciones de tarjeta de miembro en tu próxima visita o por correo.",
     },
     cal: {
       notConfigured: "Cal.com aún no está configurado",
@@ -365,15 +436,14 @@ export const translations = {
       },
     },
     benefits: {
-      title: "Por qué pluma",
+      title: "Beneficios",
       description:
-        "Un estudio privado en casa construido en torno a la calma, el cuidado y un toque atento.",
+        "Detalles cuidados que hacen que cada sesión se sienta pensada para ti.",
       proof:
-        "Los clientes vuelven por el ambiente tranquilo, las sesiones personalizadas y la sensación de salir completamente renovados.",
-      leaf: { title: "Calma botánica" },
-      landscape: { title: "Valencia centro" },
-      texture: { title: "Manos al trabajo" },
-      portrait: { title: "Conexión real" },
+        "Aceites y aromas 100% orgánicos, junto al Mercat Central y sesiones adaptadas a ti.",
+      leaf: { title: "Aceites y aromas 100% orgánicos" },
+      landscape: { title: "Junto al Mercat Central" },
+      texture: { title: "Sesiones personalizadas" },
     },
     quote: {
       title: "Testimonio destacado",

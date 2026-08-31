@@ -41,4 +41,5 @@
   --psl-duration: 200ms;
   --psl-ease: cubic-bezier(.2,.7,.2,1);
   --psl-z-header: 1000;
+  --psl-header-width-scale: 1.2;
 }
