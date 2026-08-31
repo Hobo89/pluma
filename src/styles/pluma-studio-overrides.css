@@ -7,8 +7,8 @@ html:not(.dark) .psl {
 /* Hero — centered copy */
 .psl-hero {
   overflow: hidden;
-  border-bottom-left-radius: 50vw;
-  border-bottom-right-radius: 50vw;
+  border-bottom-left-radius: 10vw;
+  border-bottom-right-radius: 10vw;
 }
 
 .psl-hero::before {
