@@ -1,0 +1,140 @@
+/* Pluma studio layout overrides */
+
+.psl {
+  color-scheme: light;
+}
+
+/* Testimonial cards — keep Pluma brush-border cards inside Pluma studio layout sections */
+.psl-testimonials-marquee .testimonial-card {
+  background: var(--psl-surface);
+  box-shadow: none;
+}
+
+.psl-testimonials-marquee .testimonial-quote {
+  color: var(--psl-text);
+}
+
+.psl-testimonials-marquee .testimonial-name {
+  color: var(--psl-text);
+}
+
+/* Studio video panel */
+.psl-media-panel {
+  overflow: hidden;
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface-sage);
+}
+
+.psl-media-panel video {
+  display: block;
+  width: 100%;
+  max-width: 28rem;
+  margin-inline: auto;
+  aspect-ratio: 9 / 16;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+/* Header utilities on hero overlay */
+.psl-header__utils {
+  display: flex;
+  align-items: center;
+  gap: var(--psl-space-2);
+  margin-left: auto;
+}
+
+.psl-header--solid {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-block: var(--psl-space-4);
+  background: var(--psl-canvas);
+  border-bottom: 1px solid var(--psl-line);
+  color: var(--psl-text);
+}
+
+.psl-header--solid .psl-brand,
+.psl-header--solid .psl-nav a {
+  color: var(--psl-heading);
+}
+
+.psl-header--solid .psl-nav a:hover {
+  color: var(--psl-muted);
+}
+
+.psl-header:not(.psl-header--solid) .psl-brand,
+.psl-header:not(.psl-header--solid) .psl-nav a {
+  color: var(--psl-white);
+}
+
+.psl-header:not(.psl-header--solid) .psl-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+  .psl-header__utils {
+    margin-left: 0;
+  }
+}
+
+.psl-header__utils .psl-lang,
+.psl-header__utils .psl-theme {
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--psl-radius-small);
+  border: 1px solid rgb(255 255 255 / 40%);
+  background: rgb(0 0 0 / 35%);
+  backdrop-filter: blur(4px);
+}
+
+.psl-header__utils .psl-lang button,
+.psl-header__utils .psl-theme button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: none;
+  background: transparent;
+  color: var(--psl-white);
+  font-size: var(--psl-type-label);
+  cursor: pointer;
+}
+
+.psl-header__utils .psl-lang button[aria-pressed="true"] {
+  background: var(--psl-white);
+  color: var(--psl-heading);
+}
+
+.psl-header--solid .psl-header__utils .psl-lang,
+.psl-header--solid .psl-header__utils .psl-theme {
+  border-color: var(--psl-line);
+  background: var(--psl-surface);
+}
+
+.psl-header--solid .psl-header__utils .psl-lang button,
+.psl-header--solid .psl-header__utils .psl-theme button {
+  color: var(--psl-muted);
+}
+
+.psl-header--solid .psl-header__utils .psl-lang button[aria-pressed="true"] {
+  background: var(--psl-lime);
+  color: var(--psl-heading);
+}
+
+/* Legal / inner pages */
+.psl-page {
+  padding-block: var(--psl-space-16);
+}
+
+.psl-page .psl-eyebrow {
+  color: var(--psl-muted);
+}
+
+.psl-page .psl-copy {
+  max-width: 55ch;
+}
+
+.psl-booking-embed {
+  overflow: hidden;
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface);
+}

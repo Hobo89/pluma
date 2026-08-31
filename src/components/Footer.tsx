@@ -13,86 +13,52 @@ export function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-border bg-surface">
-      <div className="mx-auto grid max-w-5xl gap-10 px-6 py-12 md:grid-cols-3 md:gap-8">
-        <div>
-          <p className="font-hero mb-3 text-lg font-normal text-text">pluma</p>
-          <p className="text-sm leading-relaxed text-muted">{t("footer.tagline")}</p>
-        </div>
-
-        <div>
-          <h2 className="mb-3 text-sm font-semibold tracking-wide text-text uppercase">
-            {t("footer.contactTitle")}
-          </h2>
-          <ul className="space-y-2 text-sm text-muted">
+    <footer className="psl-footer psl-container psl-container--wide">
+      <div className="psl-footer__top">
+        <div className="psl-stack">
+          <h2>{t("footer.contactTitle")}</h2>
+          <p className="psl-copy" style={{ color: "rgb(255 255 255 / 75%)" }}>
+            {t("footer.tagline")}
+          </p>
+          <ul className="psl-stack" style={{ gap: "var(--psl-space-2)" }}>
             <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="text-muted no-underline transition-colors hover:text-accent"
-              >
-                {site.email}
-              </a>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
             </li>
             {site.phone && (
               <li>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="text-muted no-underline transition-colors hover:text-accent"
-                >
-                  {site.phone}
-                </a>
+                <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a>
               </li>
             )}
             <li>
-              <a
-                href={site.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted no-underline transition-colors hover:text-accent"
-              >
+              <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
                 {site.address}
               </a>
             </li>
           </ul>
         </div>
 
-        <div>
-          <h2 className="mb-3 text-sm font-semibold tracking-wide text-text uppercase">
-            {t("footer.legalTitle")}
-          </h2>
-          <dl className="mb-4 space-y-1 text-sm text-muted">
-            <div>
-              <dt className="sr-only">{t("footer.owner")}</dt>
-              <dd>
-                {t("footer.owner")}: {site.ownerName}
-              </dd>
-            </div>
-            <div>
-              <dt className="sr-only">{t("footer.nif")}</dt>
-              <dd>
-                {t("footer.nif")}: {site.nif}
-              </dd>
-            </div>
-          </dl>
-          <ul className="space-y-2 text-sm">
-            {legalLinks.map(({ to, key }) => (
-              <li key={to}>
-                <Link
-                  to={to}
-                  className="text-muted no-underline transition-colors hover:text-accent"
-                >
-                  {t(key)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <nav className="psl-footer__links" aria-label={t("footer.legalTitle")}>
+          <Link to="/about">{t("nav.about")}</Link>
+          <Link to="/book">{t("nav.book")}</Link>
+          {legalLinks.map(({ to, key }) => (
+            <Link key={to} to={to}>
+              {t(key)}
+            </Link>
+          ))}
+        </nav>
       </div>
 
-      <div className="border-t border-border px-6 py-4">
-        <p className="mx-auto max-w-5xl text-center text-xs text-muted">
+      <div className="psl-footer__utility">
+        <span>
           &copy; {year} {site.businessName}. {t("footer.rights")}
-        </p>
+        </span>
+        <span>
+          {t("footer.owner")}: {site.ownerName}
+        </span>
+      </div>
+
+      <div className="psl-footer__wordmark" aria-hidden="true">
+        pluma
       </div>
     </footer>
   );

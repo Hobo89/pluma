@@ -12,6 +12,7 @@ export const translations = {
       main: "Main",
       openMenu: "Open menu",
       closeMenu: "Close menu",
+      skipToContent: "Skip to content",
     },
     language: {
       label: "Language",
@@ -138,6 +139,72 @@ export const translations = {
         "Step inside the space where sessions take place — a private, peaceful room designed for rest and recovery.",
       videoLabel: "Tour of the pluma home studio",
     },
+    treatments: {
+      title: "Treatments",
+      description:
+        "Every session is tailored to you — whether you need deep tissue work, relaxation, or recovery support.",
+      deepTissue: {
+        category: "Therapeutic",
+        name: "Deep tissue",
+        duration: "60–90 min",
+      },
+      relaxation: {
+        category: "Restorative",
+        name: "Relaxation",
+        duration: "60 min",
+      },
+      recovery: {
+        category: "Recovery",
+        name: "Sports recovery",
+        duration: "75 min",
+      },
+    },
+    benefits: {
+      title: "Why pluma",
+      description:
+        "A private home studio built around calm, care, and thoughtful touch.",
+      proof:
+        "Clients return for the quiet atmosphere, personalized sessions, and the feeling of leaving completely reset.",
+      leaf: { title: "Botanical calm" },
+      landscape: { title: "Central Valencia" },
+      texture: { title: "Hands at work" },
+      portrait: { title: "Real connection" },
+    },
+    quote: {
+      title: "Featured testimonial",
+      text: "I left feeling completely renewed. The home studio is so calming and every session feels tailored to exactly what my body needs.",
+      attribution: "Carla M.",
+      collageLabel: "Studio and client moments",
+    },
+    ribbon: {
+      message: "Book your session · Home studio massage · Valencia",
+    },
+    faq: {
+      title: "Frequently asked questions",
+      booking: {
+        question: "How do I book a session?",
+        answer:
+          "Choose a time on the booking page. You'll receive a confirmation email with directions to the home studio and everything you need before your visit.",
+      },
+      location: {
+        question: "Where is the studio?",
+        answer:
+          "pluma is a private home studio in Ciutat Vella, Valencia — about a 5-minute walk from Mercado Central. Full address and directions are sent with your booking confirmation.",
+      },
+      expect: {
+        question: "What should I expect?",
+        answer:
+          "No waiting room, no rush. Stephen welcomes you into a calm private space and tailors each session to what your body needs — deep tissue, relaxation, or recovery support.",
+      },
+      cancel: {
+        question: "What is your cancellation policy?",
+        answer:
+          "If you need to reschedule or cancel, please get in touch as early as possible by email so the appointment can be offered to someone else.",
+      },
+    },
+    gallery: {
+      label: "Client portraits",
+    },
   },
   es: {
     meta: {
@@ -150,6 +217,7 @@ export const translations = {
       main: "Principal",
       openMenu: "Abrir menú",
       closeMenu: "Cerrar menú",
+      skipToContent: "Saltar al contenido",
     },
     language: {
       label: "Idioma",
@@ -275,6 +343,72 @@ export const translations = {
       description:
         "Entra en el espacio donde tienen lugar las sesiones — una habitación privada y pacífica diseñada para el descanso y la recuperación.",
       videoLabel: "Recorrido del estudio en casa pluma",
+    },
+    treatments: {
+      title: "Tratamientos",
+      description:
+        "Cada sesión se adapta a ti — ya sea tejido profundo, relajación o recuperación.",
+      deepTissue: {
+        category: "Terapéutico",
+        name: "Tejido profundo",
+        duration: "60–90 min",
+      },
+      relaxation: {
+        category: "Restaurativo",
+        name: "Relajación",
+        duration: "60 min",
+      },
+      recovery: {
+        category: "Recuperación",
+        name: "Recuperación deportiva",
+        duration: "75 min",
+      },
+    },
+    benefits: {
+      title: "Por qué pluma",
+      description:
+        "Un estudio privado en casa construido en torno a la calma, el cuidado y un toque atento.",
+      proof:
+        "Los clientes vuelven por el ambiente tranquilo, las sesiones personalizadas y la sensación de salir completamente renovados.",
+      leaf: { title: "Calma botánica" },
+      landscape: { title: "Valencia centro" },
+      texture: { title: "Manos al trabajo" },
+      portrait: { title: "Conexión real" },
+    },
+    quote: {
+      title: "Testimonio destacado",
+      text: "Salí sintiéndome completamente renovada. El estudio en casa es tan tranquilo y cada sesión se adapta exactamente a lo que mi cuerpo necesita.",
+      attribution: "Carla M.",
+      collageLabel: "Momentos del estudio y clientes",
+    },
+    ribbon: {
+      message: "Reserva tu sesión · Masaje en estudio en casa · Valencia",
+    },
+    faq: {
+      title: "Preguntas frecuentes",
+      booking: {
+        question: "¿Cómo reservo una sesión?",
+        answer:
+          "Elige un horario en la página de reservas. Recibirás un correo de confirmación con indicaciones al estudio en casa y todo lo que necesitas antes de tu visita.",
+      },
+      location: {
+        question: "¿Dónde está el estudio?",
+        answer:
+          "pluma es un estudio privado en casa en Ciutat Vella, Valencia — a unos 5 minutos a pie del Mercado Central. La dirección completa y las indicaciones se envían con tu confirmación de reserva.",
+      },
+      expect: {
+        question: "¿Qué debo esperar?",
+        answer:
+          "Sin sala de espera, sin prisas. Stephen te recibe en un espacio privado y tranquilo y adapta cada sesión a lo que tu cuerpo necesita — tejido profundo, relajación o recuperación.",
+      },
+      cancel: {
+        question: "¿Cuál es la política de cancelación?",
+        answer:
+          "Si necesitas reprogramar o cancelar, contacta lo antes posible por correo para que la cita pueda ofrecerse a otra persona.",
+      },
+    },
+    gallery: {
+      label: "Retratos de clientes",
     },
   },
 } as const;

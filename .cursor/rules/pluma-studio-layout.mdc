@@ -1,0 +1,10 @@
+---
+description: Apply the Pluma studio layout visual system to this project's UI
+globs:
+alwaysApply: false
+---
+For UI work, read `pluma-studio-layout/DESIGN-SYSTEM.md` and reuse `src/styles/pluma-studio.css` and `pluma-studio-layout/tokens.json`. Preserve all existing project instructions and integrations. This rule governs visual styling; it does not authorize deployment, purchases, or external actions.
+
+Use a white canvas (#FFFFFF), off-white product panels (#F6F6F3), deep green headings (#082707), forest footer (#1F2C22), and pale lime actions (#D7E58E). Reuse prefixed --psl-* variables rather than scattering raw values. Use .psl as the styling boundary and psl-* component classes. Keep styles scoped.
+
+Display typography uses Parkinsans. Body and UI use Instrument Sans. Build the full page sequence: hero → treatments → feature stories → benefits mosaic → quote/collage → ribbon → testimonials → FAQ → portrait strip → booking CTA → footer.

@@ -14,13 +14,16 @@ export function LegalPage({ page }: LegalPageProps) {
 
   return (
     <PageContainer>
-      <p className="mb-2 text-sm font-normal tracking-widest text-accent uppercase">
-        {t("footer.legalTitle")}
-      </p>
-      <h1 className="mb-6 text-3xl font-normal tracking-tight md:text-4xl">
-        {t(`${prefix}.title`)}
-      </h1>
-      <div className="space-y-4 text-sm leading-relaxed text-muted">
+      <p className="psl-eyebrow">{t("footer.legalTitle")}</p>
+      <h1 className="psl-title">{t(`${prefix}.title`)}</h1>
+      <div
+        className="psl-copy"
+        style={{
+          marginTop: "var(--psl-space-6)",
+          display: "grid",
+          gap: "var(--psl-space-4)",
+        }}
+      >
         {paragraphs.map((paragraph, index) => (
           <p key={index}>{paragraph.replace("{email}", site.email)}</p>
         ))}

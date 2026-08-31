@@ -1,4 +1,6 @@
+import type { CSSProperties } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { Header } from "./Header";
 import { StudioVideo } from "./StudioVideo";
 
 export function About() {
@@ -6,35 +8,45 @@ export function About() {
 
   return (
     <>
-      <section className="relative flex min-h-[72vh] items-end overflow-hidden md:min-h-[78vh]">
+      <section
+        className="psl-hero"
+        style={
+          {
+            "--psl-focal": "50% 15%",
+            "--psl-focal-mobile": "50% 20%",
+            minHeight: "clamp(420px, 72vh, 640px)",
+          } as CSSProperties
+        }
+      >
         <img
+          className="psl-hero__image"
           src="/assets/images/stephen.jpg"
           alt=""
           aria-hidden="true"
-          width={1024}
-          height={576}
-          className="absolute inset-0 h-full w-full object-cover object-[center_15%]"
+          loading="eager"
         />
-        <div className="about-hero-fade absolute inset-0" aria-hidden="true" />
-
-        <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pb-12 pt-32 md:pb-16">
-          <p className="mb-2 text-sm font-normal tracking-widest text-accent uppercase">
+        <Header />
+        <div className="psl-hero__body psl-container">
+          <p className="psl-eyebrow" style={{ color: "rgb(255 255 255 / 85%)" }}>
             {t("about.eyebrow")}
           </p>
-          <h1 className="about-hero-text mb-5 text-4xl font-normal tracking-tight md:text-5xl">
+          <h1 className="psl-display" style={{ color: "var(--psl-white)" }}>
             {t("about.title")}
           </h1>
-          <p className="about-hero-text max-w-2xl font-normal leading-relaxed">
+          <p
+            className="psl-copy"
+            style={{ color: "rgb(255 255 255 / 90%)", maxWidth: "42ch" }}
+          >
             {t("about.body")}
           </p>
         </div>
       </section>
 
-      <div className="mx-auto max-w-3xl space-y-14 px-6 py-12 md:space-y-16 md:py-16">
-        <p className="max-w-2xl font-normal leading-relaxed text-muted">
-          {t("about.stephen")}
-        </p>
-        <StudioVideo showHeading={false} />
+      <div className="psl-container psl-page">
+        <p className="psl-copy">{t("about.stephen")}</p>
+        <div style={{ marginTop: "var(--psl-space-12)" }}>
+          <StudioVideo showHeading={false} />
+        </div>
       </div>
     </>
   );

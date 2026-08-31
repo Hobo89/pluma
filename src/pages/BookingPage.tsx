@@ -6,17 +6,13 @@ export function BookingPage() {
   const { t } = useLanguage();
 
   return (
-    <PageContainer>
-      <p className="mb-2 text-sm font-normal tracking-widest text-accent uppercase">
-        {t("booking.eyebrow")}
-      </p>
-      <h1 className="mb-3 text-4xl font-normal tracking-tight md:text-5xl">
-        {t("booking.title")}
-      </h1>
-      <p className="mb-8 max-w-2xl font-normal text-muted">
+    <PageContainer wide>
+      <p className="psl-eyebrow">{t("booking.eyebrow")}</p>
+      <h1 className="psl-title">{t("booking.title")}</h1>
+      <p className="psl-copy" style={{ marginBlock: "var(--psl-space-6)" }}>
         {t("booking.description")}
       </p>
-      <div className="overflow-hidden rounded-xl border border-border bg-surface">
+      <div className="psl-booking-embed">
         <CalEmbed />
       </div>
     </PageContainer>

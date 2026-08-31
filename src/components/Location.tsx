@@ -10,12 +10,10 @@ export function Location() {
       className="border-b border-border bg-surface py-10 md:py-12"
     >
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 px-6 text-center">
-        <p className="text-sm font-normal tracking-widest text-accent uppercase">
-          {t("location.eyebrow")}
-        </p>
+        <p className="type-label text-accent">{t("location.eyebrow")}</p>
         <h2
           id="location-heading"
-          className="text-2xl font-normal tracking-tight md:text-3xl"
+          className="type-section-title text-2xl md:text-3xl"
         >
           {t("location.walk")}
         </h2>
@@ -23,7 +21,7 @@ export function Location() {
           href={site.mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="max-w-xl text-base leading-relaxed text-muted no-underline transition-colors hover:text-accent"
+          className="type-body max-w-xl text-muted no-underline transition-colors hover:text-accent"
         >
           {site.address}
         </a>

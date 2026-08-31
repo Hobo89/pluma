@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Offline specimen of the Pluma studio layout design system: tokens, typography, components and responsive patterns.">
+  <title>Pluma studio layout · Design system</title>
+  <link rel="stylesheet" href="styles/pluma-studio.css">
+  <style>
+    body { margin: 0; }
+    .spec-note { font-size: 13px; color: var(--psl-muted); max-width: 62ch; }
+    .spec-label { display: block; margin-bottom: 24px; font: 12px/1.5 Arial,sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--psl-muted); }
+    .spec-intro { background: var(--psl-surface); padding-block: 32px; }
+    .spec-palette { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+    .spec-swatch { min-height: 136px; border: 1px solid var(--psl-line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: end; }
+    .spec-swatch strong { font-size: 14px; font-weight: 400; }
+    .spec-swatch code { font-size: 12px; }
+    .spec-type { padding-block: 24px; border-bottom: 1px solid var(--psl-line); display: grid; grid-template-columns: 100px 1fr; align-items: baseline; gap: 24px; }
+    .spec-type small { font-size: 12px; color: var(--psl-muted); }
+    .spec-type p { overflow-wrap: anywhere; }
+    .spec-controls { display: grid; gap: 24px; padding: 32px; background: var(--psl-surface); border-radius: 16px; }
+    .spec-ghost { background: var(--psl-forest); padding: 20px; border-radius: 12px; }
+    .spec-hero-art { position: absolute; inset: 0; z-index: -2; overflow: hidden; background: radial-gradient(ellipse at 72% 45%, #cda685 0%, #90654b 35%, #553e30 70%); }
+    .spec-hero-art::after { content: ""; position: absolute; width: 75%; height: 160%; right: -8%; top: -30%; border-radius: 50%; background: linear-gradient(125deg,#e2c2a8,#694c35 65%); transform: rotate(-26deg); filter: blur(25px); }
+    .spec-art { display: grid; place-items: center; padding: 24px; text-align: center; color: #fff; background: linear-gradient(135deg,#354c35,#8c9877); }
+    .spec-art--clay { background: linear-gradient(145deg,#b98253,#614329); }
+    .spec-art--light { background: #d6d1b5; color: var(--psl-heading); }
+    .spec-art span { font: 12px/1.5 Arial,sans-serif; text-transform: uppercase; letter-spacing: .05em; }
+    .spec-bottle { position: relative; width: 22%; height: 58%; min-width: 45px; border-radius: 16px 16px 12px 12px; background: linear-gradient(90deg,#6e310d,#c37934 45%,#874814); box-shadow: inset 6px 0 8px rgb(255 255 255 / 15%); }
+    .spec-bottle::before { content: ""; position: absolute; top: -12%; left: 12%; width: 76%; height: 18%; border-radius: 6px 6px 2px 2px; background: #a88457; }
+    .spec-bottle::after { content: "ASSET"; position: absolute; top: 45%; inset-inline: 0; text-align: center; color: #fff; font: 11px Arial,sans-serif; letter-spacing: .1em; }
+    .spec-bottle--dark { height: 48%; background: linear-gradient(90deg,#421f17,#945344,#542720); }
+    .spec-bottle--dark::before { background: #292a28; }
+    .spec-bottle--green { height: 64%; background: linear-gradient(90deg,#30482c,#648653,#395533); }
+    .spec-bottle--green::before { background: #3d5d36; }
+    .spec-tile-note { display: grid; gap: 8px; }
+    .spec-tile-note small { font-size: 12px; }
+    .spec-map { display: grid; gap: 8px; }
+    .spec-map div { padding: 16px 20px; border: 1px solid var(--psl-line); border-radius: 8px; display: flex; justify-content: space-between; gap: 24px; font-size: 14px; }
+    .spec-map span { color: var(--psl-muted); }
+    .spec-footer-form { max-width: 360px; display: grid; gap: 12px; }
+    .spec-footer-form small { color: #d5ddd4; font-size: 12px; }
+    .psl-hero .spec-label { color: #fff; }
+    .spec-proof { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
+    .spec-proof i { width: 45px; height: 58px; border-radius: 8px; background: #b9c5b4; transform: rotate(-8deg); }
+    .spec-proof i:nth-child(2) { background: #bba591; transform: rotate(6deg); }
+    .spec-proof i:nth-child(3) { background: #87987f; transform: rotate(12deg); }
+    @media(max-width:767px) {
+      .spec-palette { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .spec-swatch { padding: 16px; min-height: 120px; }
+      .spec-type { grid-template-columns: 1fr; gap: 8px; }
+      .spec-controls { padding: 20px; }
+      .spec-map div { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body class="psl">
+  <a class="psl-skip" href="#main">Skip to content</a>
+  <section class="psl-hero" id="top">
+    <div class="spec-hero-art" aria-hidden="true"></div>
+    <header class="psl-header psl-container">
+      <a class="psl-brand" href="#top">STUDIO / 01</a>
+      <nav class="psl-nav" aria-label="Main navigation"><a href="#palette">Palette</a><a href="#type">Type</a><a href="#patterns">Patterns</a></nav>
+      <a class="psl-button psl-button--dark" href="README.md">Open guide →</a>
+      <details class="psl-mobile-menu">
+        <summary aria-label="Navigation menu"><span aria-hidden="true">☰</span></summary>
+        <nav class="psl-mobile-menu__panel" aria-label="Mobile navigation"><a href="#palette">Palette</a><a href="#type">Typography</a><a href="#patterns">Patterns</a><a href="README.md">Open guide</a></nav>
+      </details>
+    </header>
+    <div class="psl-hero__body psl-container">
+      <p class="psl-eyebrow">Pluma studio layout / Design system</p>
+      <h1 class="psl-display">Care, expressed<br>with intention.</h1>
+      <div class="psl-actions"><a class="psl-button" href="#palette">Explore the system</a><a class="psl-button psl-button--ghost" href="#patterns">View patterns</a></div>
+    </div>
+    <div class="psl-hero__foot psl-container"><span>01 — Editorial wellness</span><span>Scroll to explore ↓</span></div>
+  </section>
+  <main id="main" tabindex="-1">
+    <div class="spec-intro"><div class="psl-container"><p class="spec-note">A working component specimen, not a finished website. Colors are sampled from your screenshots. Fonts and dimensions are approximations. Abstract artwork marks photo slots; replace it with licensed photography. This preview uses an offline serif fallback.</p></div></div>
+    <section class="psl-container psl-section--roomy" id="palette">
+      <span class="spec-label">01 / Foundations</span>
+      <div class="psl-section-head"><h2 class="psl-title">A quiet palette,<br>a distinctive accent.</h2><p class="psl-copy">White space leads. Forest anchors. Lime marks the next action.</p></div>
+      <div class="spec-palette">
+        <div class="spec-swatch" style="background:var(--psl-canvas)"><strong>Canvas</strong><code>#FFFFFF</code></div>
+        <div class="spec-swatch" style="background:var(--psl-surface)"><strong>Product surface</strong><code>#F6F6F3</code></div>
+        <div class="spec-swatch" style="background:var(--psl-surface-sage)"><strong>Soft sage</strong><code>#EFF2EF</code></div>
+        <div class="spec-swatch" style="background:var(--psl-heading);color:#fff"><strong>Heading green</strong><code>#082707</code></div>
+        <div class="spec-swatch" style="background:var(--psl-forest);color:#fff"><strong>Forest</strong><code>#1F2C22</code></div>
+        <div class="spec-swatch" style="background:var(--psl-lime)"><strong>Lime</strong><code>#D7E58E</code></div>
+      </div>
+    </section>
+    <section class="psl-container psl-section" id="type">
+      <span class="spec-label">02 / Typography</span>
+      <div class="spec-type"><small>Display</small><p class="psl-display" style="font-family:var(--psl-font-display);color:var(--psl-heading);line-height:1.05">Room to breathe.</p></div>
+      <div class="spec-type"><small>Section</small><h2 class="psl-title">A ritual, thoughtfully considered.</h2></div>
+      <div class="spec-type"><small>Body</small><p class="psl-copy">Short, calm paragraphs balance expressive serif headings. Keep useful detail legible and give each idea enough space.</p></div>
+      <div class="spec-type"><small>Label</small><p class="psl-eyebrow">Treatments / Collections / Stories</p></div>
+      <p class="spec-note" style="margin-top:24px">Suggested display font: Parkinsans Regular (not bundled or verified as the original). Neutral sans: Arial. See the guide for font setup.</p>
+    </section>
+    <section class="psl-container psl-section--roomy">
+      <span class="spec-label">03 / Actions & fields</span>
+      <div class="spec-controls">
+        <div class="psl-actions"><a class="psl-button" href="#patterns">Primary action →</a><a class="psl-button psl-button--dark" href="#faq">Secondary action</a><button class="psl-button" type="button" disabled>Unavailable</button></div>
+        <div class="spec-ghost"><a class="psl-button psl-button--ghost" href="#reference">Ghost on dark</a></div>
+        <div class="psl-field"><label for="spec-email">Email address · visual example</label><input id="spec-email" type="email" autocomplete="off" placeholder="you@example.com" aria-describedby="field-note"><p id="field-note" class="spec-note">This field is not connected to a service and will not submit.</p></div>
+      </div>
+    </section>
+    <section class="psl-container psl-section" id="patterns">
+      <span class="spec-label">04 / Collection cards</span>
+      <div class="psl-section-head"><h2 class="psl-title">Three objects.<br>One considered rhythm.</h2><p class="psl-copy">Use for products or treatments. Metadata belongs below the image.</p></div>
+      <div class="psl-product-grid">
+        <article class="psl-product"><a class="psl-product__link" href="#asset-notes"><div class="psl-product__image"><div class="spec-bottle" aria-hidden="true"></div></div><div class="psl-product__meta"><span class="psl-product__category">Product / treatment</span><h3 class="psl-product__name">Your first offering</h3><span class="psl-product__price">Price</span></div></a></article>
+        <article class="psl-product"><a class="psl-product__link" href="#asset-notes"><div class="psl-product__image"><div class="spec-bottle spec-bottle--dark" aria-hidden="true"></div></div><div class="psl-product__meta"><span class="psl-product__category">Product / treatment</span><h3 class="psl-product__name">Your second offering</h3><span class="psl-product__price">Price</span></div></a></article>
+        <article class="psl-product"><a class="psl-product__link" href="#asset-notes"><div class="psl-product__image"><div class="spec-bottle spec-bottle--green" aria-hidden="true"></div></div><div class="psl-product__meta"><span class="psl-product__category">Product / treatment</span><h3 class="psl-product__name">Your third offering</h3><span class="psl-product__price">Price</span></div></a></article>
+      </div>
+    </section>
+    <section class="psl-container psl-section--roomy" id="asset-notes">
+      <span class="spec-label">05 / Alternating stories</span>
+      <div class="psl-feature">
+        <div class="psl-feature__body"><h2 class="psl-title">Let the imagery<br>carry the feeling.</h2><p class="psl-copy">Choose a close, tactile photograph with natural light and a muted green or warm neutral palette. This panel is a placeholder.</p><a class="psl-button" href="DESIGN-SYSTEM.md">Read art direction →</a></div>
+        <figure class="psl-feature__media spec-art"><span>Near-square photo<br>Human detail / care ritual</span><figcaption class="psl-badge">Image slot · replace before launch</figcaption></figure>
+      </div>
+    </section>
+    <section class="psl-feature psl-feature--reverse psl-container psl-section">
+      <div class="psl-feature__body"><h2 class="psl-title">Natural texture.<br>Generous space.</h2><p class="psl-copy">Alternate the image and text on desktop. On phones, keep a consistent reading order and retain meaningful content.</p><a class="psl-button" href="#layout">See layout rules →</a></div>
+      <figure class="psl-feature__media spec-art spec-art--clay"><span>Near-square photo<br>Macro texture / warm light</span></figure>
+    </section>
+    <section class="psl-container psl-section--roomy">
+      <span class="spec-label">06 / Benefits mosaic</span>
+      <div class="psl-section-head psl-section-head--center"><h2 class="psl-title">Variety, held in balance.</h2><p class="psl-copy">Five unequal tiles create the reference's editorial rhythm.</p></div>
+      <div class="psl-bento">
+        <article class="psl-tile psl-tile--proof"><div><div class="spec-proof" aria-hidden="true"><i></i><i></i><i></i></div><h3>Verified social proof</h3><p class="spec-note">Use only approved reviews.</p></div></article>
+        <article class="psl-tile psl-tile--leaf"><div class="spec-tile-note"><small>Leaf image slot</small><h3>A considered detail</h3></div></article>
+        <article class="psl-tile psl-tile--landscape" style="background:#4f6244"><div class="spec-tile-note"><small>Landscape image slot</small><h3>Your place of care</h3></div></article>
+        <article class="psl-tile psl-tile--texture" style="background:#80512d"><div class="spec-tile-note"><small>Texture image slot</small><h3>Tactile by nature</h3></div></article>
+        <article class="psl-tile psl-tile--portrait" style="background:#766c4f"><div class="spec-tile-note"><small>Tall portrait image slot</small><h3>A human connection</h3></div></article>
+      </div>
+    </section>
+    <section class="psl-container psl-section">
+      <span class="spec-label">07 / Editorial quote & collage</span>
+      <figure class="psl-quote"><span class="psl-quote__mark" aria-hidden="true">“</span><blockquote>Give the page a moment of stillness: a few considered words, surrounded by space.</blockquote><figcaption>Example editorial copy — replace with your own</figcaption></figure>
+      <div class="psl-collage" aria-label="Three image placeholders"><div class="spec-art spec-art--light"><span>Botanical</span></div><div class="spec-art"><span>Portrait</span></div><div class="spec-art spec-art--light"><span>Leaf detail</span></div></div>
+    </section>
+    <div class="psl-section"><div class="psl-ribbon"><p class="psl-sr-only">Optional announcement strip. Example content.</p><div class="psl-ribbon__track" aria-hidden="true"><span>Your announcement ·</span><span>Your announcement ·</span><span>Your announcement ·</span><span>Your announcement ·</span><span>Your announcement ·</span><span>Your announcement ·</span><span>Your announcement ·</span><span>Your announcement ·</span><span>Your announcement ·</span><span>Your announcement ·</span></div></div></div>
+    <section class="psl-container psl-section">
+      <span class="spec-label">08 / Testimonial portraits</span>
+      <div class="psl-section-head psl-section-head--center"><h2 class="psl-title">Make room for real voices.</h2><p class="psl-copy">Two narrow portraits and one wider feature. No fabricated review content.</p></div>
+      <div class="psl-testimonials"><figure class="psl-testimonial"><div class="psl-testimonial__media spec-art"><span>Portrait slot</span></div><figcaption>Approved name</figcaption></figure><figure class="psl-testimonial"><div class="psl-testimonial__media spec-art spec-art--clay"><span>Portrait slot</span></div><figcaption>Approved name</figcaption></figure><figure class="psl-testimonial"><div class="psl-testimonial__media spec-art spec-art--light"><span>Featured portrait / video slot</span></div><figcaption>Approved name</figcaption></figure></div>
+    </section>
+    <section class="psl-container psl-section--roomy" id="faq">
+      <span class="spec-label">09 / Working accordion</span>
+      <div class="psl-faq"><h2 class="psl-title">Frequently asked questions</h2><div>
+        <details open><summary>How do I use this in Cursor?<span class="psl-faq__icon" aria-hidden="true"></span></summary><p>Copy the system files into your project, add the supplied Cursor rule, import the stylesheet, and paste the implementation brief from CURSOR-PROMPT.md.</p></details>
+        <details><summary>Is this the original template code?<span class="psl-faq__icon" aria-hidden="true"></span></summary><p>No. This is a fresh implementation of the visual patterns observed in your screenshots. Exact fonts, breakpoints, and interactions could not be verified.</p></details>
+        <details><summary>Can I use it for Pluma.life?<span class="psl-faq__icon" aria-hidden="true"></span></summary><p>Yes. Use treatment cards instead of products, licensed massage photography, and your real booking details. Keep the spacing, type hierarchy, and palette.</p></details>
+        <details><summary>What needs replacing before launch?<span class="psl-faq__icon" aria-hidden="true"></span></summary><p>Replace demo content and artwork, supply licensed fonts and images, and connect real booking and form services. Validate the result with your own content.</p></details>
+      </div></div>
+    </section>
+    <div class="psl-gallery" role="region" aria-label="Scrollable portrait placeholders" tabindex="0"><div class="spec-art"><span>Portrait 01</span></div><div class="spec-art spec-art--clay"><span>Portrait 02</span></div><div class="spec-art spec-art--light"><span>Portrait 03</span></div><div class="spec-art"><span>Portrait 04</span></div><div class="spec-art spec-art--clay"><span>Portrait 05</span></div><div class="spec-art spec-art--light"><span>Portrait 06</span></div></div>
+    <section class="psl-container psl-section--roomy" id="layout">
+      <span class="spec-label">10 / Responsive structure</span>
+      <div class="psl-section-head"><h2 class="psl-title">The same feeling.<br>A different arrangement.</h2><p class="psl-copy">Resize this preview to see the components adapt.</p></div>
+      <div class="spec-map"><div><strong>Main column</strong><span>67% desktop → 32px / 20px gutters</span></div><div><strong>Collection</strong><span>3 columns → 1 column</span></div><div><strong>Feature stories</strong><span>Alternating halves → copy, then image</span></div><div><strong>Mosaic & FAQ</strong><span>Asymmetric grid → readable stack</span></div><div><strong>CTA & footer</strong><span>73% desktop → full available column</span></div></div>
+    </section>
+    <section class="psl-cta psl-container psl-container--wide">
+      <div class="spec-hero-art" aria-hidden="true"></div>
+      <h2 class="psl-display">Ready to make<br>it your own?</h2><a class="psl-button" href="CURSOR-PROMPT.md">Open the Cursor brief</a>
+    </section>
+  </main>
+  <footer class="psl-footer psl-container psl-container--wide" id="reference">
+    <div class="psl-footer__top"><div class="psl-stack"><h2>A complete visual language,<br>ready for your project.</h2><div class="spec-footer-form"><div class="psl-field"><label for="footer-email">Newsletter field · disabled specimen</label><input type="email" id="footer-email" placeholder="Email address" disabled></div><button class="psl-button" type="button" disabled>Subscribe · demo only</button><small>No newsletter service is connected.</small></div></div><nav class="psl-footer__links" aria-label="Files and references"><a href="README.md">Start here</a><a href="DESIGN-SYSTEM.md">Specification</a><a href="reference/desktop.png">Desktop reference</a><a href="reference/mobile.png">Mobile reference</a></nav></div>
+    <div class="psl-footer__utility"><span>Screenshot-derived / 2026</span><span>Reference images are not production assets</span></div>
+    <div class="psl-footer__wordmark" aria-hidden="true">STUDIO</div>
+  </footer>
+  <script>
+    document.querySelectorAll('.psl-mobile-menu').forEach(menu => {
+      menu.addEventListener('keydown', event => {
+        if (event.key === 'Escape') { menu.open = false; menu.querySelector('summary').focus(); }
+      });
+      menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+    });
+  </script>
+</body>
+</html>
