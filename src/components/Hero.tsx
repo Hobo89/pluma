@@ -15,6 +15,8 @@ export function Hero() {
         {
           "--psl-focal": "50% 40%",
           "--psl-focal-mobile": "60% 45%",
+          "--psl-hero-exposure": -2,
+          "--psl-hero-whites": -2,
         } as CSSProperties
       }
     >

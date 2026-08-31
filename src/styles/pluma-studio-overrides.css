@@ -21,6 +21,11 @@ html:not(.dark) .psl {
   );
 }
 
+.psl-hero > video.psl-hero__image {
+  filter: brightness(calc(1 + var(--psl-hero-exposure, 0) * 0.05))
+    contrast(calc(1 - var(--psl-hero-whites, 0) * 0.015));
+}
+
 .psl-hero__body--center {
   align-items: center;
   text-align: center;
