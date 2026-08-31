@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
-const services = [
+const services: {
+  id: "atStudio" | "onSite" | "events";
+  image: string;
+  imagePosition?: string;
+}[] = [
   {
     id: "atStudio",
     image: "/assets/images/candle-leaf.jpg",
@@ -15,7 +19,7 @@ const services = [
     id: "events",
     image: "/assets/images/stephen-company-event-massage.jpg",
   },
-] as const;
+];
 
 export function Treatments() {
   const { t } = useLanguage();
