@@ -12,7 +12,7 @@ const treatments = [
   },
   {
     id: "recovery",
-    image: "/assets/images/mediterranean-gradient.png",
+    image: "/assets/images/stephen-company-event-massage.jpg",
   },
 ] as const;
 
