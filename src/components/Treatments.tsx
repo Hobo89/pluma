@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
-const treatments = [
+const services = [
   {
-    id: "deepTissue",
-    image: "/assets/images/mediterranean-gradient.jpg",
+    id: "atStudio",
+    image: "/assets/images/candle-leaf.jpg",
+    imagePosition: "50% 45%",
   },
   {
-    id: "relaxation",
+    id: "onSite",
     image: "/assets/images/stephen.jpg",
   },
   {
-    id: "recovery",
+    id: "events",
     image: "/assets/images/stephen-company-event-massage.jpg",
   },
 ] as const;
@@ -33,7 +34,7 @@ export function Treatments() {
       </div>
 
       <div className="psl-product-grid">
-        {treatments.map(({ id, image }) => (
+        {services.map(({ id, image, imagePosition }) => (
           <article key={id} className="psl-product">
             <Link to="/book" className="psl-product__link">
               <div className="psl-product__image">
@@ -42,18 +43,16 @@ export function Treatments() {
                   alt=""
                   loading="lazy"
                   sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 991px) 30vw, 22vw"
+                  style={imagePosition ? { objectPosition: imagePosition } : undefined}
                 />
               </div>
               <div className="psl-product__meta">
-                <span className="psl-product__category">
-                  {t(`treatments.${id}.category`)}
-                </span>
                 <h3 className="psl-product__name">
                   {t(`treatments.${id}.name`)}
                 </h3>
-                <span className="psl-product__price">
-                  {t(`treatments.${id}.duration`)}
-                </span>
+                <p className="psl-product__description">
+                  {t(`treatments.${id}.description`)}
+                </p>
               </div>
             </Link>
           </article>

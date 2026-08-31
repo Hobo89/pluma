@@ -176,23 +176,23 @@ export const translations = {
       videoLabel: "Tour of the pluma home studio",
     },
     treatments: {
-      title: "Treatments",
+      title: "Massage Services",
       description:
-        "Every session is tailored to you — whether you need deep tissue work, relaxation, or recovery support.",
-      deepTissue: {
-        category: "Therapeutic",
-        name: "Deep tissue",
-        duration: "60–90 min",
+        "At the studio, at your location, or for your event across Valencia.",
+      atStudio: {
+        name: "At Studio",
+        description:
+          "Come to Pluma Studio, next to Mercat Central. No wait times.",
       },
-      relaxation: {
-        category: "Restorative",
-        name: "Relaxation",
-        duration: "60 min",
+      onSite: {
+        name: "On-site",
+        description:
+          "At your home office, home, or hotel within Valencia city.",
       },
-      recovery: {
-        category: "Recovery",
-        name: "Sports recovery",
-        duration: "75 min",
+      events: {
+        name: "Events",
+        description:
+          "Group events — company wellness, birthdays, holiday homes, sports events.",
       },
     },
     benefits: {
@@ -204,6 +204,8 @@ export const translations = {
       leaf: { title: "100% organic oils and scents" },
       landscape: { title: "Next to Mercat Central" },
       texture: { title: "Personalized sessions" },
+      languages:
+        "Native in English and French, Fluent in Spanish",
     },
     quote: {
       title: "Featured testimonial",
@@ -416,23 +418,23 @@ export const translations = {
       videoLabel: "Recorrido del estudio en casa pluma",
     },
     treatments: {
-      title: "Tratamientos",
+      title: "Servicios de masaje",
       description:
-        "Cada sesión se adapta a ti — ya sea tejido profundo, relajación o recuperación.",
-      deepTissue: {
-        category: "Terapéutico",
-        name: "Tejido profundo",
-        duration: "60–90 min",
+        "En el estudio, a domicilio o para tu evento en Valencia.",
+      atStudio: {
+        name: "En el estudio",
+        description:
+          "Ven a Pluma Studio, junto al Mercat Central. Sin tiempos de espera.",
       },
-      relaxation: {
-        category: "Restaurativo",
-        name: "Relajación",
-        duration: "60 min",
+      onSite: {
+        name: "A domicilio",
+        description:
+          "En tu oficina, casa u hotel dentro de la ciudad de Valencia.",
       },
-      recovery: {
-        category: "Recuperación",
-        name: "Recuperación deportiva",
-        duration: "75 min",
+      events: {
+        name: "Eventos",
+        description:
+          "Eventos en grupo: empresas, cumpleaños, casas vacacionales, eventos deportivos.",
       },
     },
     benefits: {
@@ -444,6 +446,8 @@ export const translations = {
       leaf: { title: "Aceites y aromas 100% orgánicos" },
       landscape: { title: "Junto al Mercat Central" },
       texture: { title: "Sesiones personalizadas" },
+      languages:
+        "Nativo en inglés y francés, fluido en español",
     },
     quote: {
       title: "Testimonio destacado",

@@ -7,8 +7,8 @@ html:not(.dark) .psl {
 /* Hero — centered copy */
 .psl-hero {
   overflow: hidden;
-  border-bottom-left-radius: 20vw;
-  border-bottom-right-radius: 20vw;
+  border-bottom-left-radius: 30vw;
+  border-bottom-right-radius: 30vw;
   max-height: 70vh;
   min-height: min(clamp(560px, 44vw, 820px), 70vh);
 }
@@ -67,6 +67,14 @@ html:not(.dark) .psl {
   padding: 0;
 }
 
+.psl-product__description {
+  width: 100%;
+  margin: 0;
+  color: var(--psl-muted);
+  font-size: var(--psl-type-small);
+  line-height: 1.45;
+}
+
 /* Testimonial cards — keep Pluma brush-border cards inside Pluma studio layout sections */
 .psl-testimonials-marquee .testimonial-card {
   background: var(--psl-surface);
@@ -92,9 +100,9 @@ html:not(.dark) .psl {
   max-width: 44ch;
 }
 
-/* Benefits mosaic — three benefit tiles + proof */
+/* Benefits mosaic — three benefit tiles + proof + languages */
 .psl-bento--benefits {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(9, minmax(0, 1fr));
 }
 
 .psl-bento--benefits .psl-tile--proof {
@@ -115,6 +123,20 @@ html:not(.dark) .psl {
 .psl-bento--benefits .psl-tile--texture {
   grid-column: 4 / 7;
   grid-row: 2;
+}
+
+.psl-bento--benefits .psl-tile--languages {
+  grid-column: 7 / 10;
+  grid-row: 1 / 3;
+  background: var(--psl-surface-sage);
+  color: var(--psl-heading);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.psl-bento--benefits .psl-tile--languages::before {
+  display: none;
 }
 
 @media (max-width: 767px) {

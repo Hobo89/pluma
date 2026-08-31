@@ -1,8 +1,8 @@
 import { useLanguage } from "../context/LanguageContext";
 
 const tiles: {
-  slot: "proof" | "leaf" | "landscape" | "texture";
-  id: "proof" | "leaf" | "landscape" | "texture";
+  slot: "proof" | "leaf" | "landscape" | "texture" | "languages";
+  id: "proof" | "leaf" | "landscape" | "texture" | "languages";
   image: string | null;
   imagePosition?: string;
 }[] = [
@@ -15,6 +15,7 @@ const tiles: {
   },
   { slot: "landscape", id: "landscape", image: "/assets/images/mediterranean-gradient.jpg" },
   { slot: "texture", id: "texture", image: "/assets/images/stephen.jpg" },
+  { slot: "languages", id: "languages", image: null },
 ];
 
 export function BenefitsMosaic() {
@@ -48,6 +49,12 @@ export function BenefitsMosaic() {
               <div>
                 <p className="psl-copy" style={{ maxWidth: "28ch" }}>
                   {t("benefits.proof")}
+                </p>
+              </div>
+            ) : slot === "languages" ? (
+              <div>
+                <p className="psl-copy" style={{ maxWidth: "22ch" }}>
+                  {t("benefits.languages")}
                 </p>
               </div>
             ) : (
