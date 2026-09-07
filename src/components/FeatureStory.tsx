@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import {
+  FeatureHighlights,
+  studioHighlightIds,
+} from "./FeatureHighlights";
 
 type FeatureStoryProps = {
   titleKey: string;
@@ -11,6 +15,7 @@ type FeatureStoryProps = {
   actionTo: string;
   reverse?: boolean;
   badge?: string;
+  highlights?: "studio";
 };
 
 export function FeatureStory({
@@ -23,6 +28,7 @@ export function FeatureStory({
   actionTo,
   reverse = false,
   badge,
+  highlights,
 }: FeatureStoryProps) {
   const { t } = useLanguage();
 
@@ -33,6 +39,12 @@ export function FeatureStory({
       <div className="psl-feature__body">
         <h2 className="psl-title">{t(titleKey)}</h2>
         <p className="psl-copy">{t(descriptionKey)}</p>
+        {highlights === "studio" && (
+          <FeatureHighlights
+            ids={studioHighlightIds}
+            label={(id) => t(`studio.highlights.${id}`)}
+          />
+        )}
         <Link to={actionTo} className="psl-button">
           {t(actionLabelKey)}
         </Link>

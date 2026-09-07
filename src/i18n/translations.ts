@@ -181,6 +181,12 @@ export const translations = {
       description:
         "Step inside the space where sessions take place — a private, peaceful room designed for rest and recovery.",
       videoLabel: "Tour of the pluma home studio",
+      highlights: {
+        oldTown: "Old town",
+        heatedTable: "Heated massage table",
+        noWait: "No wait time",
+        privateRoom: "Private changing room and bathroom",
+      },
     },
     treatments: {
       title: "Massage Services",
@@ -433,6 +439,12 @@ export const translations = {
       description:
         "Entra en el espacio donde tienen lugar las sesiones — una habitación privada y pacífica diseñada para el descanso y la recuperación.",
       videoLabel: "Recorrido del estudio en casa pluma",
+      highlights: {
+        oldTown: "Casco antiguo",
+        heatedTable: "Camilla de masaje calefactada",
+        noWait: "Sin tiempo de espera",
+        privateRoom: "Vestuario y baño privados",
+      },
     },
     treatments: {
       title: "Servicios de masaje",

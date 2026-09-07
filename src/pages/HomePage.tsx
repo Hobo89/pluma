@@ -36,6 +36,7 @@ export function HomePage() {
         actionLabelKey="hero.book"
         actionTo="/book"
         reverse
+        highlights="studio"
       />
       <BenefitsMosaic />
       <ClientMix />

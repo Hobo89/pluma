@@ -285,6 +285,57 @@ html:not(.dark) .psl {
   background: var(--psl-forest);
 }
 
+.psl-feature-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--psl-space-4) var(--psl-space-6);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psl-feature-list li {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--psl-space-2);
+  min-width: 0;
+  color: var(--psl-text);
+  font-size: var(--psl-type-small);
+  line-height: 1.35;
+}
+
+.psl-feature-list__icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--psl-radius-small);
+  background: var(--psl-surface-sage);
+  color: var(--psl-heading);
+}
+
+.psl-feature-list__icon svg {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.psl-feature-list__text {
+  padding-top: 0.35rem;
+}
+
+@media (max-width: 767px) {
+  .psl-feature-list {
+    gap: var(--psl-space-4);
+  }
+}
+
+.psl-feature__body .psl-feature-list {
+  justify-self: stretch;
+}
+
 /* Studio video panel */
 .psl-media-panel {
   overflow: hidden;
