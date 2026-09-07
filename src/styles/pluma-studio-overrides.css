@@ -62,9 +62,66 @@ html:not(.dark) .psl {
 }
 
 /* Treatment cards — photos fill the image frame */
+.psl-product-grid--pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.psl-product-grid--types {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.psl-product__image--placeholder {
+  background: var(--psl-surface);
+}
+
+@media (max-width: 991px) {
+  .psl-product-grid--types {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .psl-product-grid--pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.psl-product--soon {
+  cursor: default;
+}
+
+.psl-product__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  width: 100%;
+}
+
+.psl-product__soon {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 10px;
+  border-radius: var(--psl-radius-pill);
+  background: var(--psl-lime);
+  color: var(--psl-heading);
+  font-size: var(--psl-type-label);
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .psl-product__image img {
   object-fit: cover;
   padding: 0;
+}
+
+.psl-product__image img[src$=".svg"] {
+  object-fit: cover;
+  background: var(--psl-surface-sage);
 }
 
 .psl-product__description {

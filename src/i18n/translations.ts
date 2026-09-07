@@ -44,6 +44,13 @@ export const translations = {
         "I'm Stephen, your masseur. I welcome you into my home studio with the same care I bring to every session — warm, professional, and focused entirely on what your body needs.",
       stephenPhotoAlt: "Stephen, masseur at pluma home studio",
     },
+    types: {
+      title: "Types",
+      pregnancy: "Pregnancy",
+      relaxingLymphatic: "Relaxing and lymphatic",
+      deepTissue: "Deep tissue",
+      sports: "Sports",
+    },
     pricing: {
       eyebrow: "Sessions",
       title: "Pricing",
@@ -177,8 +184,8 @@ export const translations = {
     },
     treatments: {
       title: "Massage Services",
-      description:
-        "At the studio, at your location, or for your event across Valencia.",
+      description: "At the studio or at your location across Valencia.",
+      comingSoon: "Coming soon",
       atStudio: {
         name: "At Studio",
         description:
@@ -188,11 +195,6 @@ export const translations = {
         name: "On-site",
         description:
           "At your home office, home, or hotel within Valencia city.",
-      },
-      events: {
-        name: "Events",
-        description:
-          "Group events — company wellness, birthdays, holiday homes, sports events.",
       },
     },
     benefits: {
@@ -285,6 +287,13 @@ export const translations = {
       stephen:
         "Soy Stephen, tu masajista. Te recibo en mi estudio en casa con el mismo cuidado que pongo en cada sesión — cálido, profesional y centrado en lo que tu cuerpo necesita.",
       stephenPhotoAlt: "Stephen, masajista en el estudio en casa pluma",
+    },
+    types: {
+      title: "Tipos",
+      pregnancy: "Embarazo",
+      relaxingLymphatic: "Relajante y linfático",
+      deepTissue: "Tejido profundo",
+      sports: "Deportivo",
     },
     pricing: {
       eyebrow: "Sesiones",
@@ -419,8 +428,8 @@ export const translations = {
     },
     treatments: {
       title: "Servicios de masaje",
-      description:
-        "En el estudio, a domicilio o para tu evento en Valencia.",
+      description: "En el estudio o a domicilio en Valencia.",
+      comingSoon: "Próximamente",
       atStudio: {
         name: "En el estudio",
         description:
@@ -430,11 +439,6 @@ export const translations = {
         name: "A domicilio",
         description:
           "En tu oficina, casa u hotel dentro de la ciudad de Valencia.",
-      },
-      events: {
-        name: "Eventos",
-        description:
-          "Eventos en grupo: empresas, cumpleaños, casas vacacionales, eventos deportivos.",
       },
     },
     benefits: {

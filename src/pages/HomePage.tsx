@@ -1,6 +1,7 @@
 import { Hero } from "../components/Hero";
 import { Treatments } from "../components/Treatments";
 import { FeatureStory } from "../components/FeatureStory";
+import { MassageTypes } from "../components/MassageTypes";
 import { BenefitsMosaic } from "../components/BenefitsMosaic";
 import { EditorialQuote } from "../components/EditorialQuote";
 import { PromoRibbon } from "../components/PromoRibbon";
@@ -25,6 +26,7 @@ export function HomePage() {
         actionLabelKey="hero.learnMore"
         actionTo="/about"
       />
+      <MassageTypes />
       <FeatureStory
         titleKey="studio.title"
         descriptionKey="studio.description"
