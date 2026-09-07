@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Simplified map of Valencia">
+  <rect width="400" height="400" fill="#eff2ef"/>
+  <path fill="#d5ddd6" d="M268 0h132v400H252c18-42 28-78 22-128-8-62 14-108 38-168C328 64 312 28 268 0Z"/>
+  <path fill="#c5d0c6" d="M318 0h82v400h-96c22-56 18-118 8-168-12-58 16-102 40-164C366 48 348 18 318 0Z"/>
+  <path fill="#f6f6f3" d="M42 38c46-28 118-34 176-18 38 10 62 36 78 72 18 42 16 86 6 128-6 28-4 54 8 82 16 38 8 72-18 96-32 30-86 28-132 16-48-12-92-8-118-36-22-24-24-68-12-110 10-36 6-78-8-112C10 116 12 72 42 38Z"/>
+  <g fill="#e7ebe4">
+    <rect x="78" y="86" width="52" height="36" rx="8"/>
+    <rect x="138" y="74" width="70" height="42" rx="8"/>
+    <rect x="92" y="136" width="64" height="48" rx="8"/>
+    <rect x="166" y="128" width="58" height="40" rx="8"/>
+    <rect x="70" y="198" width="48" height="44" rx="8"/>
+    <rect x="128" y="214" width="72" height="38" rx="8"/>
+    <rect x="214" y="168" width="46" height="52" rx="8"/>
+    <rect x="188" y="230" width="54" height="36" rx="8"/>
+    <rect x="108" y="268" width="86" height="34" rx="8"/>
+  </g>
+  <g fill="none" stroke="#dde1d9" stroke-width="1.5" stroke-linecap="round">
+    <path d="M64 122h168"/>
+    <path d="M72 178h142"/>
+    <path d="M80 236h128"/>
+    <path d="M128 72v214"/>
+    <path d="M186 80v200"/>
+  </g>
+  <path fill="#d7e58e" d="M48 168c38-8 72 6 104 22 28 14 58 18 86 8 22-8 40-4 54 14 10 14 8 34-6 46-18 16-46 10-70 2-32-10-62-8-92 4-26 10-54 8-76-8-8-6-8-18 0-26 16-14 42-8 62-4 8 2 14-2 12-10-4-14-32-22-48-26-18-4-32-12-26-22Z"/>
+  <path fill="#1f2c22" opacity="0.12" d="M262 292h48v18h-18v28h-16v-28h-14z"/>
+  <g fill="none" stroke="#1f2c22" stroke-opacity="0.18" stroke-width="1.25" stroke-linecap="round">
+    <path d="M286 48c18 36 8 72-2 108"/>
+    <path d="M274 196c16 32 22 58 10 96"/>
+  </g>
+  <g transform="translate(156 148)">
+    <circle r="16" fill="#082707" opacity="0.12"/>
+    <path fill="#082707" d="M0 -14c-6.6 0-12 5.2-12 11.6 0 8.2 12 18.4 12 18.4s12-10.2 12-18.4C12 -8.8 6.6 -14 0 -14Z"/>
+    <circle cy="-3.2" r="4.2" fill="#d7e58e"/>
+  </g>
+  <text x="200" y="372" text-anchor="middle" fill="#082707" font-family="Georgia, serif" font-size="22" letter-spacing="-0.04em">Valencia</text>
+</svg>
