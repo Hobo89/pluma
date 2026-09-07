@@ -117,10 +117,20 @@ export function Header({ solid = false }: HeaderProps) {
         <details
           className="psl-mobile-menu"
           open={menuOpen}
-          onToggle={(event) => setMenuOpen(event.currentTarget.open)}
+          onToggle={(event) => {
+            const next = event.currentTarget.open;
+            if (next !== menuOpen) setMenuOpen(next);
+          }}
           onKeyDown={handleMenuKeyDown}
         >
-          <summary aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}>
+          <summary
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+            onClick={(event) => {
+              event.preventDefault();
+              setMenuOpen((open) => !open);
+            }}
+          >
             <MenuIcon open={menuOpen} />
           </summary>
           <nav

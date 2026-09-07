@@ -203,6 +203,79 @@ html:not(.dark) .psl {
   }
 }
 
+/* Client mix — proportional panels, not a chart */
+.psl-client-mix {
+  display: grid;
+  grid-template-columns:
+    minmax(0, var(--psl-client-female, 70fr))
+    minmax(0, var(--psl-client-male, 30fr));
+  align-items: stretch;
+  gap: var(--psl-space-3);
+  min-height: 280px;
+}
+
+.psl-client-mix__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  min-width: 0;
+  padding: var(--psl-space-8) var(--psl-space-6);
+  overflow: hidden;
+  border-radius: var(--psl-radius-media);
+  container-type: inline-size;
+}
+
+.psl-client-mix__panel--female {
+  background: var(--psl-surface-sage);
+  color: var(--psl-heading);
+}
+
+.psl-client-mix__panel--male {
+  background: var(--psl-forest);
+  color: var(--psl-white);
+}
+
+.psl-client-mix__value {
+  margin: 0;
+  color: inherit;
+  font: 400 clamp(2.5rem, 8cqi, 4.5rem) / 1.02 var(--psl-font-display);
+  letter-spacing: -0.02em;
+}
+
+.psl-client-mix__label {
+  margin: var(--psl-space-2) 0 0;
+  color: inherit;
+  font-size: var(--psl-type-small);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.psl-client-mix__panel--male .psl-client-mix__label {
+  color: rgb(255 255 255 / 78%);
+}
+
+.psl-client-mix__panel--female .psl-client-mix__label {
+  color: var(--psl-muted);
+}
+
+@media (max-width: 767px) {
+  .psl-client-mix {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .psl-client-mix__panel--female,
+  .psl-client-mix__panel--male {
+    width: 100%;
+    min-height: 160px;
+  }
+
+  .psl-client-mix__panel--female {
+    min-height: clamp(180px, 42vw, 240px);
+  }
+}
+
 /* Studio video panel */
 .psl-media-panel {
   overflow: hidden;
@@ -383,6 +456,12 @@ html:not(.dark) .psl {
       calc((100% - 64px) * var(--psl-header-width-scale)),
       calc(100% - 24px)
     );
+    overflow: visible;
+  }
+
+  /* Let the dropdown position against the shell, not the pill bar. */
+  .psl-header {
+    position: static;
   }
 
   .psl-header__utils {
@@ -464,8 +543,33 @@ html:not(.dark) .psl {
   color: var(--psl-heading);
 }
 
+.psl-mobile-menu {
+  flex-shrink: 0;
+}
+
+.psl-mobile-menu:not([open]) .psl-mobile-menu__panel {
+  display: none;
+}
+
 .psl-mobile-menu[open] .psl-mobile-menu__panel {
+  left: 0;
+  right: 0;
+  top: calc(100% + 10px);
+  width: auto;
   z-index: calc(var(--psl-z-header) + 1);
+  color: var(--psl-white);
+}
+
+.psl-mobile-menu__panel a:not(.psl-button) {
+  color: var(--psl-white);
+  font-size: var(--psl-type-label);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.psl-mobile-menu__panel .psl-button {
+  width: 100%;
+  margin-top: var(--psl-space-3);
 }
 
 .psl-footer__brand {

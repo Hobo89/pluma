@@ -209,6 +209,14 @@ export const translations = {
       languages:
         "Native in English and French, Fluent in Spanish",
     },
+    clients: {
+      title: "Who visits",
+      description:
+        "Most sessions are with women. The studio is a quiet, private space for women and men alike.",
+      female: "Women",
+      male: "Men",
+      summary: "{female} percent of clients are women, {male} percent are men.",
+    },
     quote: {
       title: "Featured testimonial",
       text: "I left feeling completely renewed. The home studio is so calming and every session feels tailored to exactly what my body needs.",
@@ -452,6 +460,15 @@ export const translations = {
       texture: { title: "Sesiones personalizadas" },
       languages:
         "Nativo en inglés y francés, fluido en español",
+    },
+    clients: {
+      title: "Quién visita",
+      description:
+        "La mayoría de las sesiones son con mujeres. El estudio es un espacio privado y tranquilo para mujeres y hombres.",
+      female: "Mujeres",
+      male: "Hombres",
+      summary:
+        "El {female} por ciento de los clientes son mujeres y el {male} por ciento son hombres.",
     },
     quote: {
       title: "Testimonio destacado",

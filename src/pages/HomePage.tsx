@@ -3,6 +3,7 @@ import { Treatments } from "../components/Treatments";
 import { FeatureStory } from "../components/FeatureStory";
 import { MassageTypes } from "../components/MassageTypes";
 import { BenefitsMosaic } from "../components/BenefitsMosaic";
+import { ClientMix } from "../components/ClientMix";
 import { EditorialQuote } from "../components/EditorialQuote";
 import { PromoRibbon } from "../components/PromoRibbon";
 import { FAQ } from "../components/FAQ";
@@ -37,6 +38,7 @@ export function HomePage() {
         reverse
       />
       <BenefitsMosaic />
+      <ClientMix />
       <EditorialQuote />
       <PromoRibbon />
       <FAQ />
