@@ -50,7 +50,7 @@ export function Logo({
     >
       <span className="psl-logo__wordmark">{site.businessName}</span>
       <img
-        src={site.logos.featherOnly}
+        src={site.logos.featherOnlySvg}
         alt=""
         className="psl-logo__feather"
         width={width}

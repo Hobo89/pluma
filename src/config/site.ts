@@ -5,6 +5,7 @@ export const site = {
     fullWhite: "/assets/images/pluma-logo-full-white.png",
     fullWhiteSvg: "/assets/images/pluma-logo-full-white.svg",
     featherOnly: "/assets/images/pluma-logo-feather-only.png",
+    featherOnlySvg: "/assets/images/pluma-logo-feather-only.svg",
   },
   ownerName: "Stephen Michetti",
   nif: "—",
