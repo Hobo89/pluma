@@ -16,6 +16,7 @@ type ThemeContextValue = {
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
+const THEME_KEY = "theme";
 
 function getSystemTheme(): Theme {
   return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -23,26 +24,62 @@ function getSystemTheme(): Theme {
     : "light";
 }
 
-function getStoredTheme(): Theme {
-  const stored = localStorage.getItem("theme");
-  if (stored === "light" || stored === "dark") return stored;
-  return getSystemTheme();
+function readStoredTheme(): Theme | null {
+  try {
+    const stored = localStorage.getItem(THEME_KEY);
+    if (stored === "light" || stored === "dark") return stored;
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+function persistTheme(theme: Theme) {
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch {
+    // Ignore quota / private-mode failures; the session theme still applies.
+  }
+}
+
+function getInitialTheme(): Theme {
+  return readStoredTheme() ?? getSystemTheme();
 }
 
 function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle("dark", theme === "dark");
+  document.documentElement.style.colorScheme = theme;
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getStoredTheme);
+  const [theme, setTheme] = useState<Theme>(() => {
+    const initial = getInitialTheme();
+    applyTheme(initial);
+    return initial;
+  });
 
   useEffect(() => {
     applyTheme(theme);
-    localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = () => {
+      if (readStoredTheme()) return;
+      setTheme(getSystemTheme());
+    };
+
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
   const toggleTheme = useCallback(() => {
-    setTheme((current) => (current === "dark" ? "light" : "dark"));
+    setTheme((current) => {
+      const next = current === "dark" ? "light" : "dark";
+      persistTheme(next);
+      applyTheme(next);
+      return next;
+    });
   }, []);
 
   return (

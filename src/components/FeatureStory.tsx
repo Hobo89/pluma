@@ -4,13 +4,16 @@ import {
   FeatureHighlights,
   studioHighlightIds,
 } from "./FeatureHighlights";
+import { PhotoCluster, type PhotoClusterImage } from "./PhotoCluster";
 
 type FeatureStoryProps = {
   titleKey: string;
   descriptionKey: string;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   imagePosition?: string;
+  collage?: readonly PhotoClusterImage[];
+  collageLabelKey?: string;
   actionLabelKey: string;
   actionTo: string;
   reverse?: boolean;
@@ -22,8 +25,10 @@ export function FeatureStory({
   titleKey,
   descriptionKey,
   image,
-  imageAlt,
+  imageAlt = "",
   imagePosition,
+  collage,
+  collageLabelKey,
   actionLabelKey,
   actionTo,
   reverse = false,
@@ -31,6 +36,7 @@ export function FeatureStory({
   highlights,
 }: FeatureStoryProps) {
   const { t } = useLanguage();
+  const hasCollage = Boolean(collage?.length);
 
   return (
     <section
@@ -49,16 +55,29 @@ export function FeatureStory({
           {t(actionLabelKey)}
         </Link>
       </div>
-      <figure className="psl-feature__media">
-        <img
-          src={image}
-          alt={imageAlt}
-          loading="lazy"
-          sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
-          style={imagePosition ? { objectPosition: imagePosition } : undefined}
-        />
-        {badge && <figcaption className="psl-badge">{badge}</figcaption>}
-      </figure>
+      {hasCollage && collage ? (
+        <div className="psl-feature__media psl-feature__media--cluster">
+          <PhotoCluster
+            images={collage}
+            label={collageLabelKey ? t(collageLabelKey) : t(titleKey)}
+          />
+        </div>
+      ) : (
+        <figure className="psl-feature__media">
+          {image && (
+            <img
+              src={image}
+              alt={imageAlt}
+              loading="lazy"
+              sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
+              style={
+                imagePosition ? { objectPosition: imagePosition } : undefined
+              }
+            />
+          )}
+          {badge && <figcaption className="psl-badge">{badge}</figcaption>}
+        </figure>
+      )}
     </section>
   );
 }

@@ -1,7 +1,29 @@
 /* Pluma studio layout overrides */
 
-html:not(.dark) .psl {
-  color-scheme: light;
+.psl {
+  color-scheme: inherit;
+}
+
+html.dark .psl-button:not(.psl-button--dark):not(.psl-button--ghost),
+html.dark .psl-skip,
+html.dark .psl-ribbon,
+html.dark .psl-product__soon {
+  color: var(--psl-ink);
+}
+
+@media (hover: hover) {
+  html.dark .psl-button--dark:not(:disabled):not([aria-disabled="true"]):hover {
+    background: #0c1410;
+  }
+}
+
+html.dark .psl :where(button, a, summary, input, textarea, select, [tabindex]):focus-visible {
+  box-shadow: 0 0 0 4px var(--psl-canvas);
+}
+
+html.dark .psl-field input {
+  background: var(--psl-surface);
+  border-color: var(--psl-line);
 }
 
 /* Hero — centered copy */
@@ -74,6 +96,11 @@ html:not(.dark) .psl {
   background: var(--psl-surface);
 }
 
+.psl-product__image--illustration {
+  background: var(--psl-surface);
+  padding: clamp(var(--psl-space-4), 12%, var(--psl-space-8));
+}
+
 @media (max-width: 991px) {
   .psl-product-grid--types {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -119,6 +146,12 @@ html:not(.dark) .psl {
   padding: 0;
 }
 
+.psl-product__image--illustration img {
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+}
+
 .psl-product__image img[src$=".svg"] {
   object-fit: cover;
   background: var(--psl-surface-sage);
@@ -160,6 +193,11 @@ html:not(.dark) .psl {
 /* Benefits mosaic — three benefit tiles + proof + languages */
 .psl-bento--benefits {
   grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(280px, auto));
+}
+
+.psl-bento--benefits .psl-tile {
+  min-height: 280px;
 }
 
 .psl-bento--benefits .psl-tile--proof {
@@ -196,8 +234,51 @@ html:not(.dark) .psl {
   display: none;
 }
 
+.psl-bento--benefits .psl-tile--leaf::before,
+.psl-bento--benefits .psl-tile--landscape::before,
+.psl-bento--benefits .psl-tile--texture::before {
+  background: linear-gradient(transparent 25%, rgb(0 0 0 / 78%));
+}
+
+.psl-tile__copy {
+  display: grid;
+  gap: var(--psl-space-2);
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.psl-tile__copy .psl-copy {
+  color: inherit;
+  max-width: none;
+  font-size: var(--psl-type-small);
+  opacity: 0.88;
+}
+
+.psl-bento--benefits .psl-tile--proof .psl-tile__copy,
+.psl-bento--benefits .psl-tile--languages .psl-tile__copy {
+  justify-items: center;
+  text-align: center;
+  max-width: 24ch;
+}
+
+.psl-bento--benefits .psl-tile--proof .psl-tile__copy .psl-copy,
+.psl-bento--benefits .psl-tile--languages .psl-tile__copy .psl-copy {
+  color: var(--psl-muted);
+  opacity: 1;
+}
+
 @media (max-width: 767px) {
-  .psl-bento--benefits > * {
+  .psl-bento--benefits {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .psl-bento--benefits .psl-tile--proof,
+  .psl-bento--benefits .psl-tile--leaf,
+  .psl-bento--benefits .psl-tile--landscape,
+  .psl-bento--benefits .psl-tile--texture,
+  .psl-bento--benefits .psl-tile--languages {
     grid-column: 1;
     grid-row: auto;
   }
@@ -316,10 +397,16 @@ html:not(.dark) .psl {
   color: var(--psl-heading);
 }
 
-.psl-feature-list__icon svg {
+.psl-feature-list__icon img {
   display: block;
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
+html.dark .psl-feature-list__icon img {
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
 }
 
 .psl-feature-list__text {
@@ -334,6 +421,68 @@ html:not(.dark) .psl {
 
 .psl-feature__body .psl-feature-list {
   justify-self: stretch;
+}
+
+.psl-feature__media--cluster {
+  overflow: visible;
+  aspect-ratio: auto;
+  background: transparent;
+  border-radius: 0;
+}
+
+.psl-photo-cluster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.94;
+}
+
+.psl-feature__media--cluster .psl-photo-cluster__item {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface-sage);
+}
+
+.psl-feature__media--cluster .psl-photo-cluster__item--top {
+  top: 0;
+  left: 31%;
+  width: 38%;
+  height: 44%;
+  z-index: 2;
+}
+
+.psl-feature__media--cluster .psl-photo-cluster__item--left {
+  top: 20%;
+  left: 0;
+  width: 36%;
+  height: 46%;
+  z-index: 1;
+}
+
+.psl-feature__media--cluster .psl-photo-cluster__item--right {
+  top: 16%;
+  right: 0;
+  width: 34%;
+  height: 52%;
+  z-index: 3;
+}
+
+.psl-feature__media--cluster .psl-photo-cluster__item--bottom {
+  right: auto;
+  bottom: 0;
+  left: 22%;
+  width: 48%;
+  height: 36%;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .psl-photo-cluster {
+    aspect-ratio: 1;
+    max-width: 28rem;
+    margin-inline: auto;
+  }
 }
 
 /* Studio video panel */
@@ -399,7 +548,7 @@ html:not(.dark) .psl {
 .psl-header-shell--solid .psl-header,
 .psl-header--solid {
   border-color: var(--psl-line);
-  background: rgb(255 255 255 / 94%);
+  background: color-mix(in srgb, var(--psl-canvas) 92%, transparent);
   box-shadow: 0 10px 40px rgb(0 0 0 / 12%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -579,7 +728,7 @@ html:not(.dark) .psl {
 
 .psl-header__utils .psl-lang button[aria-pressed="true"] {
   background: var(--psl-white);
-  color: var(--psl-heading);
+  color: var(--psl-ink);
 }
 
 .psl-header-shell--solid .psl-header__utils .psl-lang,
@@ -600,7 +749,7 @@ html:not(.dark) .psl {
 .psl-header-shell--solid .psl-header__utils .psl-lang button[aria-pressed="true"],
 .psl-header--solid .psl-header__utils .psl-lang button[aria-pressed="true"] {
   background: var(--psl-lime);
-  color: var(--psl-heading);
+  color: var(--psl-ink);
 }
 
 .psl-mobile-menu {

@@ -4,6 +4,7 @@
   --psl-surface: #f6f6f3;
   --psl-surface-sage: #eff2ef;
   --psl-heading: #082707;
+  --psl-ink: #082707;
   --psl-forest: #1f2c22;
   --psl-lime: #d7e58e;
   --psl-lime-hover: #c8d875;
@@ -42,4 +43,15 @@
   --psl-ease: cubic-bezier(.2,.7,.2,1);
   --psl-z-header: 1000;
   --psl-header-width-scale: 1.2;
+}
+
+html.dark {
+  color-scheme: dark;
+  --psl-canvas: #121413;
+  --psl-surface: #1c1f1e;
+  --psl-surface-sage: #1a221c;
+  --psl-heading: #eef2ea;
+  --psl-text: #f2f0ec;
+  --psl-muted: #a8a39a;
+  --psl-line: #2e3330;
 }

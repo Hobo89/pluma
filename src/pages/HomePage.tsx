@@ -1,6 +1,7 @@
 import { Hero } from "../components/Hero";
 import { Treatments } from "../components/Treatments";
 import { FeatureStory } from "../components/FeatureStory";
+import { studioPhotoCluster } from "../components/PhotoCluster";
 import { MassageTypes } from "../components/MassageTypes";
 import { BenefitsMosaic } from "../components/BenefitsMosaic";
 import { ClientMix } from "../components/ClientMix";
@@ -31,8 +32,8 @@ export function HomePage() {
       <FeatureStory
         titleKey="studio.title"
         descriptionKey="studio.description"
-        image="/assets/images/mediterranean-gradient.jpg"
-        imageAlt=""
+        collage={studioPhotoCluster}
+        collageLabelKey="studio.collageLabel"
         actionLabelKey="hero.book"
         actionTo="/book"
         reverse

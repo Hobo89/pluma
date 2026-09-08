@@ -47,6 +47,7 @@ export const translations = {
     types: {
       title: "Types",
       pregnancy: "Pregnancy",
+      pregnancyAlt: "Line drawing of a pregnant figure",
       relaxingLymphatic: "Relaxing and lymphatic",
       deepTissue: "Deep tissue",
       sports: "Sports",
@@ -180,12 +181,14 @@ export const translations = {
       title: "A calm home studio",
       description:
         "Step inside the space where sessions take place — a private, peaceful room designed for rest and recovery.",
+      collageLabel: "Scenes from the pluma home studio",
       videoLabel: "Tour of the pluma home studio",
       highlights: {
         oldTown: "Old town",
         heatedTable: "Heated massage table",
         noWait: "No wait time",
         privateRoom: "Private changing room and bathroom",
+        certified: "Certified masseuse",
       },
     },
     treatments: {
@@ -207,13 +210,26 @@ export const translations = {
       title: "Benefits",
       description:
         "Thoughtful details that make every session feel considered.",
-      proof:
-        "100% organic oils and scents, steps from Mercat Central, and sessions shaped around you.",
-      leaf: { title: "100% organic oils and scents" },
-      landscape: { title: "Next to Mercat Central" },
-      texture: { title: "Personalized sessions" },
-      languages:
-        "Native in English and French, Fluent in Spanish",
+      proof: {
+        title: "A considered studio",
+        body: "Organic oils, a quiet room next to Mercat Central, and sessions shaped around you.",
+      },
+      leaf: {
+        title: "100% organic oils and scents",
+        body: "Plant oils and quiet scents, chosen to keep the room calm and kind to skin.",
+      },
+      landscape: {
+        title: "Next to Mercat Central",
+        body: "A private home studio in Ciutat Vella, a short walk from the market.",
+      },
+      texture: {
+        title: "Personalized sessions",
+        body: "Native in English and French, fluent in Spanish, making one or several sessions coherent.",
+      },
+      languages: {
+        title: "Languages",
+        body: "English and French natively, Spanish fluently.",
+      },
     },
     clients: {
       title: "Who visits",
@@ -305,6 +321,7 @@ export const translations = {
     types: {
       title: "Tipos",
       pregnancy: "Embarazo",
+      pregnancyAlt: "Dibujo lineal de una figura embarazada",
       relaxingLymphatic: "Relajante y linfático",
       deepTissue: "Tejido profundo",
       sports: "Deportivo",
@@ -438,12 +455,14 @@ export const translations = {
       title: "Un estudio tranquilo en casa",
       description:
         "Entra en el espacio donde tienen lugar las sesiones — una habitación privada y pacífica diseñada para el descanso y la recuperación.",
+      collageLabel: "Escenas del estudio en casa pluma",
       videoLabel: "Recorrido del estudio en casa pluma",
       highlights: {
         oldTown: "Casco antiguo",
         heatedTable: "Camilla de masaje calefactada",
         noWait: "Sin tiempo de espera",
         privateRoom: "Vestuario y baño privados",
+        certified: "Masajista certificada",
       },
     },
     treatments: {
@@ -465,13 +484,26 @@ export const translations = {
       title: "Beneficios",
       description:
         "Detalles cuidados que hacen que cada sesión se sienta pensada para ti.",
-      proof:
-        "Aceites y aromas 100% orgánicos, junto al Mercat Central y sesiones adaptadas a ti.",
-      leaf: { title: "Aceites y aromas 100% orgánicos" },
-      landscape: { title: "Junto al Mercat Central" },
-      texture: { title: "Sesiones personalizadas" },
-      languages:
-        "Nativo en inglés y francés, fluido en español",
+      proof: {
+        title: "Un estudio cuidado",
+        body: "Aceites orgánicos, una sala tranquila junto al Mercat Central y sesiones pensadas para ti.",
+      },
+      leaf: {
+        title: "Aceites y aromas 100% orgánicos",
+        body: "Aceites vegetales y aromas suaves, elegidos para una sala calmada y amable con la piel.",
+      },
+      landscape: {
+        title: "Junto al Mercat Central",
+        body: "Un estudio privado en Ciutat Vella, a un breve paseo del mercado.",
+      },
+      texture: {
+        title: "Sesiones personalizadas",
+        body: "Nativo en inglés y francés, fluido en español, para que una o varias sesiones resulten coherentes.",
+      },
+      languages: {
+        title: "Idiomas",
+        body: "Inglés y francés nativos, español fluido.",
+      },
     },
     clients: {
       title: "Quién visita",
@@ -542,18 +574,35 @@ export function translate(language: Language, key: string): string {
   return value ?? key;
 }
 
+function languageFromTag(tag: string): Language | null {
+  const base = tag.toLowerCase().replaceAll("_", "-").split("-")[0];
+  if (base === "en" || base === "es") return base;
+  return null;
+}
+
+export function languageFromBrowser(
+  languages: readonly string[] | undefined,
+): Language {
+  for (const tag of languages ?? []) {
+    const match = languageFromTag(tag);
+    if (match) return match;
+  }
+
+  return "en";
+}
+
 export function detectLanguage(): Language {
-  const stored = localStorage.getItem("language");
-  if (stored === "en" || stored === "es") return stored;
+  try {
+    const stored = localStorage.getItem("language");
+    if (stored === "en" || stored === "es") return stored;
+  } catch {
+    // Private mode or blocked storage should still follow the browser.
+  }
 
-  const browserLanguages = [
-    navigator.language,
-    ...(navigator.languages ?? []),
-  ];
+  const ordered =
+    navigator.languages?.length > 0
+      ? navigator.languages
+      : [navigator.language];
 
-  const prefersSpanish = browserLanguages.some((lang) =>
-    lang.toLowerCase().startsWith("es"),
-  );
-
-  return prefersSpanish ? "es" : "en";
+  return languageFromBrowser(ordered);
 }

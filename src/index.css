@@ -3,6 +3,8 @@
 @import "./styles/pluma-studio.css";
 @import "./styles/pluma-studio-overrides.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-bg: var(--psl-canvas);
   --color-surface: var(--psl-surface);
@@ -22,6 +24,13 @@ html {
 
 html.dark {
   color-scheme: dark;
+  --psl-canvas: #121413;
+  --psl-surface: #1c1f1e;
+  --psl-surface-sage: #1a221c;
+  --psl-heading: #eef2ea;
+  --psl-text: #f2f0ec;
+  --psl-muted: #a8a39a;
+  --psl-line: #2e3330;
 }
 
 body {
@@ -30,6 +39,7 @@ body {
   font-weight: 400;
   color: var(--psl-text);
   background: var(--psl-canvas);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Testimonial marquee (Pluma-specific) */

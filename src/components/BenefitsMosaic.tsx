@@ -45,21 +45,10 @@ export function BenefitsMosaic() {
                 style={imagePosition ? { objectPosition: imagePosition } : undefined}
               />
             )}
-            {slot === "proof" ? (
-              <div>
-                <p className="psl-copy" style={{ maxWidth: "28ch" }}>
-                  {t("benefits.proof")}
-                </p>
-              </div>
-            ) : slot === "languages" ? (
-              <div>
-                <p className="psl-copy" style={{ maxWidth: "22ch" }}>
-                  {t("benefits.languages")}
-                </p>
-              </div>
-            ) : (
+            <div className="psl-tile__copy">
               <h3>{t(`benefits.${id}.title`)}</h3>
-            )}
+              <p className="psl-copy">{t(`benefits.${id}.body`)}</p>
+            </div>
           </article>
         ))}
       </div>

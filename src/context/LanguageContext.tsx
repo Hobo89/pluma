@@ -22,11 +22,19 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(detectLanguage);
+  const [language, setLanguageState] = useState<Language>(() => {
+    const initial = detectLanguage();
+    document.documentElement.lang = initial;
+    return initial;
+  });
 
   const setLanguage = useCallback((next: Language) => {
     setLanguageState(next);
-    localStorage.setItem("language", next);
+    try {
+      localStorage.setItem("language", next);
+    } catch {
+      // Ignore quota / private-mode failures; the session language still applies.
+    }
   }, []);
 
   useEffect(() => {

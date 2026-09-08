@@ -12,6 +12,7 @@ export function ThemeToggle(_props: ThemeToggleProps = {}) {
       <button
         type="button"
         onClick={toggleTheme}
+        aria-pressed={isDark}
         aria-label={isDark ? t("theme.toLight") : t("theme.toDark")}
       >
         {isDark ? (
