@@ -1,20 +1,14 @@
 import { Link } from "react-router-dom";
 import { PageContainer } from "../components/PageContainer";
 import { PageMeta } from "../components/PageMeta";
-import { PendingNote } from "../components/PendingNote";
 import { BookingAction } from "../components/BookingAction";
 import {
-  pricingConflicts,
   recommendedDuration,
   sessionRates,
   voucherCards,
 } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { formatPrice } from "../lib/money";
-
-const conflictedDurations = new Set(
-  pricingConflicts.map((conflict) => conflict.minutes),
-);
 
 export function PricingPage() {
   const { t, language } = useLanguage();
@@ -58,11 +52,6 @@ export function PricingPage() {
               <p className="psl-pricing-card__meta">
                 {t(`durations.scope.${rate.minutes}`)}
               </p>
-              {conflictedDurations.has(rate.minutes) ? (
-                <PendingNote label={t("prelaunch.previewLabel")}>
-                  {t("pricing.conflictNote")}
-                </PendingNote>
-              ) : null}
             </article>
           ))}
         </div>
@@ -129,7 +118,7 @@ export function PricingPage() {
 
       <div className="psl-actions" style={{ marginTop: "var(--psl-space-12)" }}>
         <BookingAction
-          label={t("hero.primaryCta")}
+          label={t("hero.book")}
           duration={recommendedDuration}
           placement="pricing"
           className="psl-button psl-button--dark"

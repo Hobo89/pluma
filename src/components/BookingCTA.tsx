@@ -18,7 +18,7 @@ export function BookingCTA() {
         {t("booking.title")}
       </h2>
       <BookingAction
-        label={t("hero.primaryCta")}
+        label={t("hero.book")}
         duration={recommendedDuration}
         placement="footer_cta"
       />

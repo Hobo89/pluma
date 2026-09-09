@@ -25,11 +25,21 @@ function envFlag(name: string): boolean {
   return raw === "true" || raw === "1";
 }
 
+/** Opt-out flag: on unless the env var explicitly disables it. */
+function envFlagOn(name: string): boolean {
+  const raw = import.meta.env[name as keyof ImportMetaEnv];
+  return !(raw === "false" || raw === "0");
+}
+
 export const readiness: Record<ReadinessFlag, boolean> = {
   /** Owner confirmed registration, permitted operation and mandatory disclosures. */
   businessReady: envFlag("VITE_READY_BUSINESS"),
-  /** Owner-verified event mapping, price, payment timing, terms, end-to-end confirmation. */
-  bookingReady: envFlag("VITE_READY_BOOKING"),
+  /**
+   * Booking is live. The Cal.com calendar is the real booking route, so this
+   * defaults to on and can be turned off with `VITE_READY_BOOKING=false` if the
+   * calendar ever needs to be taken down.
+   */
+  bookingReady: envFlagOn("VITE_READY_BOOKING"),
   /** Payment provider configured, terms approved, paid-order issuance and delivery verified. */
   bonoSalesReady: envFlag("VITE_READY_BONO_SALES"),
   /** Apple Wallet pass generation and installation verified on a real device. */
@@ -48,7 +58,7 @@ export const readinessBlockers: Record<ReadinessFlag, string> = {
   businessReady:
     "Autónomo registration, premises activity permission and complete legal disclosures.",
   bookingReady:
-    "Verified Cal.com event mapping per duration, approved price, payment timing, published terms and a tested end-to-end confirmation.",
+    "Live. Remaining follow-ups are the per-duration event mapping and the final approved price.",
   bonoSalesReady:
     "Payment provider selected and live, approved sales terms, verified paid-order issuance and email delivery.",
   appleWalletReady: "Apple Wallet pass issuance tested on a real device.",

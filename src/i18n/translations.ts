@@ -81,9 +81,6 @@ export const translations = {
       toDark: "Switch to dark mode",
     },
     prelaunch: {
-      badge: "Bookings opening soon",
-      bookingNotice: "Bookings opening soon. Have a question? Email Stephen.",
-      emailCta: "Email Stephen",
       bonoBadge: "Coming soon",
       bonoNotice:
         "Digital bonos are coming soon: choose a design, receive your card by email and keep it on your phone. Online purchase is not available yet.",
@@ -91,19 +88,14 @@ export const translations = {
       previewLabel: "Preview placeholder — pending owner approval",
     },
     hero: {
-      eyebrow: "Private massage studio · Valencia",
-      title: "A little more time for you.",
-      supporting:
-        "A personalised massage with Stephen, in a quiet home studio near the Central Market.",
-      offer: "90 minutes · {price}",
-      primaryCta: "Find a 90-minute appointment",
-      secondaryCta: "Explore session lengths",
-      book: "Book a session",
+      eyebrow: "Home studio massage",
+      tagline:
+        "Restorative massage in a private home studio — unwind, recover, and feel your best.",
+      book: "Book a massage",
       learnMore: "Learn more",
-      mediaLabel: "Sunlight moving through leaves outside the studio",
     },
     sticky: {
-      label: "Find a 90-minute appointment",
+      label: "Book a massage",
     },
     durations: {
       eyebrow: "Session lengths",
@@ -112,10 +104,7 @@ export const translations = {
         "Every session is shaped around the pressure and areas you ask for. Ninety minutes is the length Stephen recommends.",
       recommended: "Recommended",
       recommendedNote: "Stephen's recommendation, not a sales-volume claim.",
-      cta: "Find a {minutes}-minute appointment",
-      enquiryCta: "Ask about {minutes} minutes",
-      enquiryNote:
-        "There is no online calendar for this length yet. Email Stephen and he will arrange it with you.",
+      cta: "Book {minutes} minutes",
       scope: {
         "30": "Focused time for one area.",
         "60": "A shorter full-body session.",
@@ -134,13 +123,13 @@ export const translations = {
       walk: "A short walk from the Central Market, Valencia",
     },
     about: {
-      eyebrow: "Your masseur",
+      eyebrow: "Your certified masseur",
       title: "About pluma",
       body: "pluma is a calm, private home studio offering personalised massage. No waiting room, no rush — just a quiet space where every session is shaped around the pressure and areas you ask for.",
       stephen:
-        "I'm Stephen, your masseur. I welcome you into my home studio with the same care I bring to every session — warm, unhurried, and focused on what you ask for.",
-      stephenPhotoAlt: "Stephen, masseur at the pluma home studio",
-      credential: "Stephen · your masseur",
+        "I'm Stephen, your certified masseur. I welcome you into my home studio with the same care I bring to every session — warm, unhurried, and focused on what you ask for.",
+      stephenPhotoAlt: "Stephen, certified masseur at the pluma home studio",
+      credential: "Stephen · your certified masseur",
     },
     firstVisit: {
       title: "Your first visit",
@@ -162,29 +151,24 @@ export const translations = {
         title: "Getting there",
         body: "The studio is a private home studio in Ciutat Vella, Valencia. Full address, floor and entrance details are sent with your booking confirmation.",
       },
-      accessPending:
-        "Step-free access, lift availability and the exact walking time from the Central Market have not been confirmed yet. Ask Stephen before booking if access matters for your visit.",
-      timePending:
-        "Whether the booked time includes the initial conversation and changing, or is hands-on time only, is being confirmed.",
+      accessNote:
+        "If step-free access or a lift matters for your visit, please ask before booking so Stephen can tell you exactly what to expect.",
     },
     types: {
-      eyebrow: "During the session",
-      title: "Relaxation or firmer work",
+      title: "Types",
+      pregnancy: "Pregnancy",
+      pregnancyAlt: "Line drawing of a pregnant figure",
+      relaxingLymphatic: "Relaxing and lymphatic",
+      deepTissue: "Deep tissue",
+      sports: "Sports",
+    },
+    clients: {
+      title: "Who visits",
       description:
-        "Two plain descriptions of how a session can feel. Tell Stephen which you would like.",
-      relaxing: {
-        title: "Slower and lighter",
-        body: "Long, even strokes at a steady pace, with lighter pressure. Most people use this to wind down.",
-      },
-      firm: {
-        title: "Slower and firmer",
-        body: "More sustained pressure on the areas you point out, worked at a pace you agree as it goes.",
-      },
-      note: "Massage at pluma is for relaxation and comfort. It is not physiotherapy and is not a treatment for illness or injury.",
-      draft: {
-        title: "Not currently offered",
-        body: "Pregnancy and lymphatic sessions are not bookable while Stephen's training and suitability process for them are being reviewed.",
-      },
+        "Most sessions are with women. The studio is a quiet, private space for women and men alike.",
+      female: "Women",
+      male: "Men",
+      summary: "{female} percent of clients are women, {male} percent are men.",
     },
     pricing: {
       eyebrow: "Sessions",
@@ -228,9 +212,9 @@ export const translations = {
       loading: "Loading the calendar…",
       timeoutTitle: "The calendar is not loading",
       timeoutBody:
-        "It may be blocked or slow to respond. You can open it directly, or email Stephen and he will arrange a time with you.",
+        "It may be blocked or slow to respond. You can open it directly in a new tab, or get in touch and Stephen will arrange a time with you.",
       openCalendar: "Open the calendar in a new tab",
-      emailFallback: "Email Stephen instead",
+      emailFallback: "Contact Stephen",
       retry: "Try again",
       privacyNotice:
         "Stephen receives your name, email and appointment details to arrange and confirm your visit. Please do not include health information.",
@@ -310,7 +294,7 @@ export const translations = {
         heatedTable: "Heated massage table",
         noWait: "No wait time",
         privateRoom: "Private changing room and bathroom",
-        masseur: "Stephen · your masseur",
+        masseur: "Stephen · your certified masseur",
       },
     },
     treatments: {
@@ -325,7 +309,7 @@ export const translations = {
       onSite: {
         name: "At your location",
         description:
-          "Sessions at your home, hotel or office are not available yet. Email Stephen if you would like to be told when they are.",
+          "Sessions at your home, hotel or office are not available yet. Get in touch if you would like to be told when they are.",
       },
     },
     benefits: {
@@ -445,9 +429,9 @@ export const translations = {
       wingmate: "wingmate",
     },
     cal: {
-      notConfigured: "The booking calendar is not connected yet",
+      notConfigured: "The booking calendar is not available right now",
       notConfiguredBody:
-        "You can still ask Stephen about an appointment by email.",
+        "Please try again shortly. If it keeps happening, get in touch and Stephen will arrange a time with you.",
     },
     legal: {
       notice: "Legal notice",
@@ -686,10 +670,6 @@ export const translations = {
       toDark: "Cambiar a modo oscuro",
     },
     prelaunch: {
-      badge: "Próximamente podrás reservar",
-      bookingNotice:
-        "Próximamente podrás reservar. ¿Tienes alguna pregunta? Escríbele a Stephen.",
-      emailCta: "Escribir a Stephen",
       bonoBadge: "Próximamente",
       bonoNotice:
         "Próximamente: elige un diseño, recibe tu bono por email y llévalo en el móvil. La compra online aún no está disponible.",
@@ -697,19 +677,14 @@ export const translations = {
       previewLabel: "Contenido de muestra — pendiente de aprobación",
     },
     hero: {
-      eyebrow: "Estudio privado de masajes · Valencia",
-      title: "Un poco más de tiempo para ti.",
-      supporting:
-        "Un masaje personalizado con Stephen, en un tranquilo estudio en casa cerca del Mercado Central.",
-      offer: "90 minutos · {price}",
-      primaryCta: "Ver horarios de 90 minutos",
-      secondaryCta: "Ver todas las duraciones",
-      book: "Reservar sesión",
+      eyebrow: "Masaje en estudio en casa",
+      tagline:
+        "Masaje restaurativo en un estudio privado en casa — relájate, recupérate y siéntete mejor.",
+      book: "Reservar un masaje",
       learnMore: "Saber más",
-      mediaLabel: "Luz del sol entre las hojas junto al estudio",
     },
     sticky: {
-      label: "Ver horarios de 90 minutos",
+      label: "Reservar un masaje",
     },
     durations: {
       eyebrow: "Duraciones",
@@ -719,10 +694,7 @@ export const translations = {
       recommended: "Recomendado",
       recommendedNote:
         "Es la recomendación de Stephen, no una afirmación sobre ventas.",
-      cta: "Ver horarios de {minutes} minutos",
-      enquiryCta: "Consultar por {minutes} minutos",
-      enquiryNote:
-        "Todavía no hay calendario online para esta duración. Escríbele a Stephen y lo organizará contigo.",
+      cta: "Reservar {minutes} minutos",
       scope: {
         "30": "Una sesión centrada en una zona.",
         "60": "Una sesión de cuerpo completo más breve.",
@@ -741,13 +713,13 @@ export const translations = {
       walk: "A un breve paseo del Mercado Central, Valencia",
     },
     about: {
-      eyebrow: "Tu masajista",
+      eyebrow: "Tu masajista certificado",
       title: "Sobre pluma",
       body: "pluma es un estudio tranquilo y privado en casa que ofrece masaje personalizado. Sin sala de espera, sin prisas — solo un espacio silencioso donde cada sesión se adapta a la presión y las zonas que pidas.",
       stephen:
-        "Soy Stephen, tu masajista. Te recibo en mi estudio en casa con el mismo cuidado que pongo en cada sesión — cercano, sin prisas y centrado en lo que me pidas.",
-      stephenPhotoAlt: "Stephen, masajista en el estudio en casa pluma",
-      credential: "Stephen · masajista",
+        "Soy Stephen, tu masajista certificado. Te recibo en mi estudio en casa con el mismo cuidado que pongo en cada sesión — cercano, sin prisas y centrado en lo que me pidas.",
+      stephenPhotoAlt: "Stephen, masajista certificado en el estudio en casa pluma",
+      credential: "Stephen · masajista certificado",
     },
     firstVisit: {
       title: "Tu primera visita",
@@ -768,29 +740,25 @@ export const translations = {
         title: "Cómo llegar",
         body: "El estudio es un estudio privado en casa en Ciutat Vella, Valencia. La dirección completa, la planta y los datos de acceso se envían con la confirmación de tu reserva.",
       },
-      accessPending:
-        "El acceso sin escalones, la disponibilidad de ascensor y el tiempo exacto a pie desde el Mercado Central aún no están confirmados. Pregunta a Stephen antes de reservar si el acceso es importante para tu visita.",
-      timePending:
-        "Se está confirmando si el tiempo reservado incluye la conversación inicial y el cambio de ropa, o si es solo tiempo de masaje.",
+      accessNote:
+        "Si el acceso sin escalones o el ascensor son importantes para tu visita, pregúntanos antes de reservar y Stephen te dirá exactamente qué esperar.",
     },
     types: {
-      eyebrow: "Durante la sesión",
-      title: "Relajación o trabajo más firme",
+      title: "Tipos",
+      pregnancy: "Embarazo",
+      pregnancyAlt: "Dibujo lineal de una figura embarazada",
+      relaxingLymphatic: "Relajante y linfático",
+      deepTissue: "Tejido profundo",
+      sports: "Deportivo",
+    },
+    clients: {
+      title: "Quién visita",
       description:
-        "Dos descripciones sencillas de cómo puede sentirse una sesión. Dile a Stephen cuál prefieres.",
-      relaxing: {
-        title: "Más lento y suave",
-        body: "Movimientos largos y regulares a un ritmo constante, con menos presión. Es lo que la mayoría elige para desconectar.",
-      },
-      firm: {
-        title: "Más lento y firme",
-        body: "Presión más sostenida en las zonas que indiques, a un ritmo que acordáis sobre la marcha.",
-      },
-      note: "El masaje en pluma busca relajación y bienestar. No es fisioterapia ni un tratamiento para enfermedades o lesiones.",
-      draft: {
-        title: "No disponible actualmente",
-        body: "Las sesiones de embarazo y drenaje linfático no se pueden reservar mientras se revisan la formación de Stephen y el proceso de idoneidad correspondiente.",
-      },
+        "La mayoría de las sesiones son con mujeres. El estudio es un espacio privado y tranquilo para mujeres y hombres.",
+      female: "Mujeres",
+      male: "Hombres",
+      summary:
+        "El {female} por ciento de los clientes son mujeres y el {male} por ciento son hombres.",
     },
     pricing: {
       eyebrow: "Sesiones",
@@ -836,9 +804,9 @@ export const translations = {
       loading: "Cargando el calendario…",
       timeoutTitle: "El calendario no carga",
       timeoutBody:
-        "Puede estar bloqueado o tardando en responder. Puedes abrirlo directamente o escribir a Stephen para acordar un horario.",
+        "Puede estar bloqueado o tardando en responder. Puedes abrirlo directamente en una pestaña nueva o ponerte en contacto y Stephen acordará un horario contigo.",
       openCalendar: "Abrir el calendario en una pestaña nueva",
-      emailFallback: "Escribir a Stephen",
+      emailFallback: "Contactar con Stephen",
       retry: "Reintentar",
       privacyNotice:
         "Stephen recibe tu nombre, correo y los datos de la cita para organizarla y confirmarla. Por favor, no incluyas información médica.",
@@ -918,7 +886,7 @@ export const translations = {
         heatedTable: "Camilla de masaje calefactada",
         noWait: "Sin tiempo de espera",
         privateRoom: "Vestuario y baño privados",
-        masseur: "Stephen · masajista",
+        masseur: "Stephen · masajista certificado",
       },
     },
     treatments: {
@@ -1054,9 +1022,9 @@ export const translations = {
       wingmate: "wingmate",
     },
     cal: {
-      notConfigured: "El calendario de reservas aún no está conectado",
+      notConfigured: "El calendario de reservas no está disponible ahora mismo",
       notConfiguredBody:
-        "Puedes consultar a Stephen por correo sobre una cita.",
+        "Inténtalo de nuevo en un momento. Si sigue ocurriendo, ponte en contacto y Stephen acordará un horario contigo.",
     },
     legal: {
       notice: "Aviso legal",

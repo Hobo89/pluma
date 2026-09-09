@@ -1,5 +1,4 @@
 import { useLanguage } from "../context/LanguageContext";
-import { PendingNote } from "./PendingNote";
 
 const items = ["personalisation", "changing", "control", "access"] as const;
 
@@ -36,14 +35,9 @@ export function FirstVisit() {
         ))}
       </ul>
 
-      <div className="psl-firstvisit__pending">
-        <PendingNote label={t("prelaunch.previewLabel")}>
-          {t("firstVisit.accessPending")}
-        </PendingNote>
-        <PendingNote label={t("prelaunch.previewLabel")}>
-          {t("firstVisit.timePending")}
-        </PendingNote>
-      </div>
+      <p className="psl-copy psl-copy--small psl-firstvisit__note">
+        {t("firstVisit.accessNote")}
+      </p>
     </section>
   );
 }

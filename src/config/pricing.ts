@@ -33,7 +33,7 @@ export const sessionRates: readonly SessionRate[] = [
   { minutes: 30, cents: 2500, recommended: false, bookingRoute: "calendar" },
   { minutes: 60, cents: 4500, recommended: false, bookingRoute: "calendar" },
   { minutes: 90, cents: 6500, recommended: true, bookingRoute: "calendar" },
-  { minutes: 120, cents: 8500, recommended: false, bookingRoute: "enquiry" },
+  { minutes: 120, cents: 8500, recommended: false, bookingRoute: "calendar" },
 ] as const;
 
 export const recommendedDuration: PricingDuration = 90;

@@ -42,9 +42,6 @@ export function StickyBookingBar() {
     <div className="psl-sticky-book">
       <BookingAction
         label={t("sticky.label")}
-        enquiryLabel={t("durations.enquiryCta", {
-          minutes: recommendedDuration,
-        })}
         duration={recommendedDuration}
         placement="sticky"
         className="psl-button psl-button--dark psl-sticky-book__button"

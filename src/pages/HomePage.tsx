@@ -6,6 +6,7 @@ import { FirstVisit } from "../components/FirstVisit";
 import { MassageTypes } from "../components/MassageTypes";
 import { Treatments } from "../components/Treatments";
 import { BenefitsMosaic } from "../components/BenefitsMosaic";
+import { ClientMix } from "../components/ClientMix";
 import { EditorialQuote } from "../components/EditorialQuote";
 import { PromoRibbon } from "../components/PromoRibbon";
 import { FAQ } from "../components/FAQ";
@@ -50,13 +51,14 @@ export function HomePage() {
         descriptionKey="studio.description"
         collage={studioPhotoCluster}
         collageLabelKey="studio.collageLabel"
-        actionLabelKey="hero.secondaryCta"
-        actionTo="/#durations"
+        actionLabelKey="sticky.label"
+        actionTo="/book"
         reverse
         highlights="studio"
       />
 
       <BenefitsMosaic />
+      <ClientMix />
       <EditorialQuote />
       <PromoRibbon />
       <FirstVisit />

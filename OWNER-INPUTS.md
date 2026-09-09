@@ -33,27 +33,32 @@ The legal notice currently publishes the trading name and email, and states
 plainly that 1.1–1.5 are unconfirmed. It must not be changed to imply
 otherwise before these are answered.
 
-## 2. Qualifications, scope and insurance — blocks related claims and services
+## 2. Qualifications, scope and insurance
+
+**Owner decision, 9 September 2026.** Stephen confirmed he is a certified
+masseur and that he is trained for the pregnancy and lymphatic work the studio
+offers. The site was updated accordingly: it now says "Stephen · your certified
+masseur" / "Stephen · masajista certificado", and pregnancy, relaxing and
+lymphatic, deep tissue and sports are all published as offered services.
+
+What remains is documentary, not a question of whether to publish: file the
+certificate details so the claim can be evidenced if anyone asks.
 
 | # | Input | Status | Value | Evidence | Owner |
 |---|---|---|---|---|---|
-| 2.1 | Exact qualification, issuing body, year and professional scope | open | | | Stephen |
+| 2.1 | Exact qualification, issuing body, year and professional scope | confirmed by owner; document to be filed | Certified masseur | To be filed | Stephen |
 | 2.2 | Professional liability insurance: insurer, cover, dates | open | | | Stephen |
-| 2.3 | Training and suitability process for pregnancy massage | open | | | Stephen |
-| 2.4 | Training and suitability process for lymphatic drainage | open | | | Stephen |
+| 2.3 | Training for pregnancy massage | confirmed by owner; document to be filed | Trained | To be filed | Stephen |
+| 2.4 | Training for lymphatic drainage | confirmed by owner; document to be filed | Trained | To be filed | Stephen |
 
-Until 2.1 is answered the site says "Stephen · your masseur" and shows no
-certification. Pregnancy and lymphatic sessions are described as not currently
-offered and are not selectable; 2.3 and 2.4 must be answered before they
-return, and renaming them is not a substitute.
+## 3. Prices and tax
 
-## 3. Prices and tax — blocks booking and sales
-
-Flag: `VITE_READY_BOOKING` → `readiness.bookingReady`
+Booking is live (`readiness.bookingReady` now defaults on), so these are no
+longer blockers in the code. They are live commercial risks instead.
 
 | # | Input | Status | Value | Evidence | Owner |
 |---|---|---|---|---|---|
-| 3.1 | **Price for 90 minutes.** The website showed €65 and the Cal.com event description showed €55. This conflict is unresolved and is displayed to visitors as such. | open — conflict | | | Stephen |
+| 3.1 | **Price for 90 minutes. URGENT.** The website says €65 and the Cal.com event description says €55. Customers can now book, so a visitor reads €65 on the site and €55 in the calendar in the same journey. Fix one or the other today. | open — live conflict | | | Stephen |
 | 3.2 | Confirm the full catalogue: 30 / 60 / 90 / 120 minutes at €25 / €45 / €65 / €85 | partial — audited baseline only | | | Stephen |
 | 3.3 | Whether 30 minutes stays in the catalogue | open | | | Stephen |
 | 3.4 | VAT treatment and rate. AEAT places masoterapistas outside the medical exemption, so do not assume the service is exempt. | open | | | Gestor |
@@ -61,8 +66,15 @@ Flag: `VITE_READY_BOOKING` → `readiness.bookingReady`
 
 The catalogue lives in `src/config/pricing.ts` in integer cents. Change it
 there and every price, saving and duration label on the site follows. The
-90-minute conflict is recorded in `pricingConflicts` and rendered as a visible
-note; remove that entry once 3.1 is settled.
+90-minute conflict stays recorded in `pricingConflicts` for the record; the
+customer-facing note was removed when booking went live, because an internal
+"pending approval" banner does not belong on a page people are buying from.
+Delete that entry once 3.1 is settled.
+
+**Also urgent: the 120-minute session.** The site sells 120 minutes at €85 and
+its Book button now goes to the calendar, but the Cal.com event only offers
+30m, 1h and 1h 30m. Either add a 120-minute option to the event or remove the
+120-minute card from `sessionRates`.
 
 ## 4. Payment and booking operations — blocks booking
 
@@ -157,6 +169,7 @@ wheelchair access is claimed. Do not add an access claim without 8.2.
 |---|---|---|---|---|---|
 | 9.1 | Provenance of each published review | open | | | Stephen |
 | 9.2 | Written permission for each client portrait | open | | | Stephen |
+| 9.3 | Basis for the 70% / 30% visitor split shown in "Who visits" | open — owner restored the section on 9 September 2026 | 70% women, 30% men | To be filed | Stephen |
 
 **The existing testimonial photographs stay published.** They are part of the
 current design and each one belongs with its own review. An unconfirmed

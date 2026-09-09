@@ -2,18 +2,14 @@ import { Link, useSearchParams } from "react-router-dom";
 import { CalEmbed } from "../components/CalEmbed";
 import { PageContainer } from "../components/PageContainer";
 import { PageMeta } from "../components/PageMeta";
-import { PendingNote } from "../components/PendingNote";
-import { calTargetFor } from "../config/cal";
 import {
   parseDuration,
   rateFor,
   recommendedDuration,
   sessionRates,
 } from "../config/pricing";
-import { readiness } from "../config/readiness";
 import { useLanguage } from "../context/LanguageContext";
 import { formatPrice } from "../lib/money";
-import { mailto } from "../lib/contact";
 
 export function BookingPage() {
   const { t, language } = useLanguage();
@@ -23,8 +19,6 @@ export function BookingPage() {
   // URL rather than in component state.
   const selected = parseDuration(searchParams.get("duration")) ?? recommendedDuration;
   const rate = rateFor(selected);
-  const target = calTargetFor(selected);
-  const durationMatched = target?.durationMatched ?? false;
 
   const bookable = sessionRates.filter(
     (entry) => entry.bookingRoute === "calendar",
@@ -84,25 +78,6 @@ export function BookingPage() {
         <p className="psl-copy psl-copy--small">{t("booking.timezone")}</p>
         <p className="psl-copy psl-copy--small">{t("pricing.taxNote")}</p>
 
-        {/* Only meaningful when a calendar exists but has no event for this
-            length. With no calendar connected at all, CalEmbed says so. */}
-        {target && !durationMatched ? (
-          <PendingNote label={t("prelaunch.previewLabel")}>
-            {t("durations.enquiryNote")}
-          </PendingNote>
-        ) : null}
-
-        {!readiness.bookingReady ? (
-          <>
-            <PendingNote label={t("prelaunch.previewLabel")}>
-              {t("durations.paymentPending")}
-            </PendingNote>
-            <PendingNote label={t("prelaunch.previewLabel")}>
-              {t("durations.cancellationPending")}
-            </PendingNote>
-          </>
-        ) : null}
-
         <div className="psl-booking-privacy">
           <p className="psl-copy psl-copy--small">
             {t("booking.privacyNotice")}
@@ -118,26 +93,9 @@ export function BookingPage() {
         </div>
       </div>
 
-      {readiness.bookingReady ? (
-        <div className="psl-booking-embed">
-          <CalEmbed duration={selected} />
-        </div>
-      ) : (
-        <div className="psl-embed-fallback">
-          <p className="psl-embed-fallback__title">
-            {t("prelaunch.bookingNotice")}
-          </p>
-          <a
-            className="psl-button psl-button--dark"
-            href={mailto(
-              `${t("booking.enquirySubject")} · ${selected} min`,
-              t("booking.enquiryBody"),
-            )}
-          >
-            {t("prelaunch.emailCta")}
-          </a>
-        </div>
-      )}
+      <div className="psl-booking-embed">
+        <CalEmbed duration={selected} />
+      </div>
     </PageContainer>
   );
 }

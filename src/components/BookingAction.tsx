@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import { readiness } from "../config/readiness";
 import type { PricingDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { track, type AnalyticsEvent } from "../lib/analytics";
-import { mailto } from "../lib/contact";
 
 type Placement = Extract<
   AnalyticsEvent,
@@ -12,63 +10,38 @@ type Placement = Extract<
 
 type BookingActionProps = {
   label: string;
-  /** Shown when the control resolves to an email enquiry. */
-  enquiryLabel?: string;
   duration?: PricingDuration;
   placement: Placement;
   className?: string;
-  /** Forces the email route regardless of readiness, e.g. 120 minutes. */
-  enquiryOnly?: boolean;
 };
 
 /**
- * The single place that decides what a booking call to action actually does.
+ * The single place that decides where a booking call to action goes.
  *
- * Until `bookingReady` is set, or for a duration with no calendar event, the
- * control is an email enquiry rather than a button that looks like it will
- * confirm an appointment.
+ * Every one of them leads to the booking page and the Cal.com calendar. The
+ * selected duration travels in the URL so it survives a refresh or a shared
+ * link.
  */
 export function BookingAction({
   label,
-  enquiryLabel,
   duration,
   placement,
   className = "psl-button",
-  enquiryOnly = false,
 }: BookingActionProps) {
-  const { t, language } = useLanguage();
-  const useEmail = enquiryOnly || !readiness.bookingReady;
-
-  const onActivate = () => {
-    track({
-      name: "booking_cta_clicked",
-      placement,
-      language,
-      ...(duration ? { duration } : {}),
-    });
-  };
-
-  if (useEmail) {
-    const subject = duration
-      ? `${t("booking.enquirySubject")} · ${duration} min`
-      : t("booking.enquirySubject");
-
-    return (
-      <a
-        href={mailto(subject, t("booking.enquiryBody"))}
-        className={className}
-        onClick={onActivate}
-      >
-        {enquiryLabel ?? t("prelaunch.emailCta")}
-      </a>
-    );
-  }
+  const { language } = useLanguage();
 
   return (
     <Link
       to={duration ? `/book?duration=${duration}` : "/book"}
       className={className}
-      onClick={onActivate}
+      onClick={() =>
+        track({
+          name: "booking_cta_clicked",
+          placement,
+          language,
+          ...(duration ? { duration } : {}),
+        })
+      }
     >
       {label}
     </Link>

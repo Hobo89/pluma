@@ -1,14 +1,8 @@
 import { Link } from "react-router-dom";
-import { readiness } from "../config/readiness";
-import { pricingConflicts, sessionRates } from "../config/pricing";
+import { sessionRates } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { formatPrice } from "../lib/money";
 import { BookingAction } from "./BookingAction";
-import { PendingNote } from "./PendingNote";
-
-const conflictedDurations = new Set(
-  pricingConflicts.map((conflict) => conflict.minutes),
-);
 
 /**
  * The duration chooser. Ninety minutes carries the recommendation, expressed
@@ -33,7 +27,6 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
 
       <ul className="psl-durations">
         {sessionRates.map((rate) => {
-          const enquiryOnly = rate.bookingRoute === "enquiry";
           const headingId = `duration-${rate.minutes}`;
 
           return (
@@ -72,26 +65,10 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
                 {t(`durations.scope.${rate.minutes}`)}
               </p>
 
-              {conflictedDurations.has(rate.minutes) ? (
-                <PendingNote label={t("prelaunch.previewLabel")}>
-                  {t("pricing.conflictNote")}
-                </PendingNote>
-              ) : null}
-
-              {enquiryOnly ? (
-                <p className="psl-duration__note">
-                  {t("durations.enquiryNote")}
-                </p>
-              ) : null}
-
               <BookingAction
                 label={t("durations.cta", { minutes: rate.minutes })}
-                enquiryLabel={t("durations.enquiryCta", {
-                  minutes: rate.minutes,
-                })}
                 duration={rate.minutes}
                 placement="durations"
-                enquiryOnly={enquiryOnly}
                 className={`psl-button${rate.recommended ? " psl-button--dark" : " psl-button--ghost"} psl-duration__cta`}
               />
             </li>
@@ -103,16 +80,6 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
         <div className="psl-durations__terms">
           <p className="psl-copy psl-copy--small">{t("durations.priceNote")}</p>
           <p className="psl-copy psl-copy--small">{t("pricing.taxNote")}</p>
-          {!readiness.bookingReady ? (
-            <>
-              <PendingNote label={t("prelaunch.previewLabel")}>
-                {t("durations.paymentPending")}
-              </PendingNote>
-              <PendingNote label={t("prelaunch.previewLabel")}>
-                {t("durations.cancellationPending")}
-              </PendingNote>
-            </>
-          ) : null}
           <Link to="/condiciones-reserva" className="psl-textlink">
             {t("durations.termsLink")}
           </Link>

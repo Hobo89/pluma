@@ -9,6 +9,36 @@ recorded in [`OWNER-INPUTS.md`](../OWNER-INPUTS.md).
 
 ---
 
+## 0. Owner review, 9 September 2026
+
+After reviewing the branch, Stephen asked for five changes. All are implemented
+and they override the corresponding caution in the original brief. The rest of
+this report describes the work as first delivered; this section is what
+actually ships.
+
+| Change | What it means |
+|---|---|
+| Cal.com booking restored | `readiness.bookingReady` now defaults **on**. Every call to action is a real "Book" / "Book a massage" link to the calendar. All email-enquiry fallbacks on the booking path were removed. |
+| Original hero and video restored | The hero is back to the wordmark, tagline and "Learn more" over the autoplaying video. The generated poster is kept as the video's `poster` attribute, which changes nothing visually but avoids an empty panel while the file loads. |
+| "Stephen · your certified masseur" | Owner confirms he is certified. The label, the About copy and the studio highlight all say so, in both languages. |
+| Pregnancy and lymphatic restored | Owner confirms he is trained for this work. The "Not currently offered" block was removed and the original four types — Pregnancy, Relaxing and lymphatic, Deep tissue, Sports — are published again. |
+| "Who visits" restored | The 70% / 30% donut is back on the home page. |
+
+Two consequences worth stating plainly, both now tracked in
+[`OWNER-INPUTS.md`](../OWNER-INPUTS.md):
+
+- The **90-minute price conflict is now live**. The site says €65 and the
+  Cal.com event says €55, and customers can reach both in one journey. The
+  internal "pending approval" note was removed from the public pages because it
+  does not belong on a page people are buying from, but the conflict itself is
+  unchanged and needs fixing.
+- The **120-minute session has no calendar event**. Its Book button now goes to
+  the calendar, which only offers 30m, 1h and 1h 30m.
+
+Restoring the video also gives back most of the mobile transfer saving: the
+13.64 MB file loads again on every device. The poster, the responsive images,
+the favicon reduction and the deleted unused assets all remain.
+
 ## 1. Headline
 
 The site is now built booking-first around a recommended 90-minute session,
