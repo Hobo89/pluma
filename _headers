@@ -1,0 +1,21 @@
+# Response headers for hosts that support this file (Netlify, Cloudflare Pages).
+#
+# GitHub Pages, the current host, IGNORES this file and cannot set custom
+# response headers at all. Until the site moves to a host that can, or sits
+# behind a proxy or CDN that can, none of the headers below are actually
+# applied. See docs/IMPLEMENTATION-REPORT.md.
+#
+# The Content-Security-Policy is written against the dependencies the site
+# really has: its own assets, Google Fonts, and the Cal.com booking iframe.
+# It is Report-Only on purpose. Enforce it only after checking the reports
+# with the booking calendar loaded, because a wrong frame-src or connect-src
+# silently breaks booking.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  # Controls who may embed pluma. It does not affect pluma embedding Cal.com.
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' https://app.cal.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://app.cal.com https://cal.com; frame-src https://app.cal.com https://cal.com; form-action 'self'
