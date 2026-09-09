@@ -1,4 +1,11 @@
+import type { ComponentType } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import {
+  MassageIllustrationDeepTissue,
+  MassageIllustrationPregnancy,
+  MassageIllustrationRelaxing,
+  MassageIllustrationSports,
+} from "./illustrations/MassageIllustrations";
 
 const typeIds = [
   "pregnancy",
@@ -7,8 +14,15 @@ const typeIds = [
   "sports",
 ] as const;
 
-const typeImages: Partial<Record<(typeof typeIds)[number], string>> = {
-  pregnancy: "/assets/images/pregnancy-illustration.png",
+/** One traced line illustration per massage type. */
+const typeIllustrations: Record<
+  (typeof typeIds)[number],
+  ComponentType<{ className?: string }>
+> = {
+  pregnancy: MassageIllustrationPregnancy,
+  relaxingLymphatic: MassageIllustrationRelaxing,
+  deepTissue: MassageIllustrationDeepTissue,
+  sports: MassageIllustrationSports,
 };
 
 export function MassageTypes() {
@@ -27,25 +41,13 @@ export function MassageTypes() {
 
       <div className="psl-product-grid psl-product-grid--types">
         {typeIds.map((id) => {
-          const image = typeImages[id];
+          const Illustration = typeIllustrations[id];
 
           return (
             <article key={id} className="psl-product">
-              <div
-                className={
-                  image
-                    ? "psl-product__image psl-product__image--illustration"
-                    : "psl-product__image psl-product__image--placeholder"
-                }
-              >
-                {image ? (
-                  <img
-                    src={image}
-                    alt={t(`types.${id}Alt`)}
-                    loading="lazy"
-                    sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 991px) 45vw, 22vw"
-                  />
-                ) : null}
+              {/* The drawing is decorative; the heading below names the type. */}
+              <div className="psl-product__image psl-product__image--illustration psl-product__image--drawing">
+                <Illustration />
               </div>
               <div className="psl-product__meta">
                 <h3 className="psl-product__name">{t(`types.${id}`)}</h3>

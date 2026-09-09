@@ -93,13 +93,19 @@ html.dark .psl-field input {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.psl-product__image--placeholder {
-  background: var(--psl-surface);
-}
-
 .psl-product__image--illustration {
   background: var(--psl-surface);
   padding: clamp(var(--psl-space-4), 12%, var(--psl-space-8));
+}
+
+/*
+ * Traced line drawings carry their own margin inside the 360×260 viewBox, so
+ * they need less padding than a photograph would. The slot keeps its 1.1
+ * ratio and the drawing is contained and centred inside it; the axes are never
+ * scaled independently.
+ */
+.psl-product__image--drawing {
+  padding: clamp(var(--psl-space-2), 4%, var(--psl-space-4));
 }
 
 @media (max-width: 991px) {
@@ -2015,5 +2021,45 @@ html.dark .psl-feature-list__icon img {
 
   .psl-hero__actions .psl-textlink {
     justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   Massage-type line illustrations
+   ========================================================================== */
+
+/*
+ * The supplied SVGs carry ink #092707 as a presentation attribute, which is
+ * right on the light card but invisible on the dark one. Routing the stroke
+ * through a variable keeps the light appearance byte-identical and gives dark
+ * mode a legible value. The geometry, weight, caps and timing are untouched.
+ */
+.pluma-illustration [data-pluma-line] {
+  stroke: var(--pluma-ink, #092707);
+}
+
+html.dark .pluma-illustration {
+  --pluma-ink: var(--psl-heading);
+}
+
+/* The sand accent reads hotter against a dark surface than a cream one. */
+html.dark .pluma-illustration [data-pluma-accent] {
+  opacity: 0.22;
+}
+
+html.dark
+  .pluma-illustration[data-pluma-state="playing"]
+  [data-pluma-accent] {
+  animation-name: pluma-breathe-dark;
+}
+
+@keyframes pluma-breathe-dark {
+  from { opacity: 0; }
+  to { opacity: .22; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.dark .pluma-illustration[data-pluma-state] [data-pluma-accent] {
+    opacity: 0.22 !important;
   }
 }

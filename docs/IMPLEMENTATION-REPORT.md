@@ -39,6 +39,76 @@ Restoring the video also gives back most of the mobile transfer saving: the
 13.64 MB file loads again on every device. The poster, the responsive images,
 the favicon reduction and the deleted unused assets all remain.
 
+## 0b. Massage-type illustrations, 9 September 2026
+
+The `pluma-illustrations` handoff is integrated. All four massage-type cards —
+Pregnancy, Relaxing and lymphatic, Deep tissue, Sports — now carry the approved
+traced line drawings, which reveal once as they scroll into view.
+
+**Route chosen: React.** The package's `illustrations.mjs`, `animate.mjs` and
+`MassageIllustrations.jsx` were ported to strict TypeScript, which the
+instructions explicitly permit. The geometry, timings, markup and motion
+behaviour are unchanged; only types were added.
+
+Changed files:
+
+| File | Change |
+|---|---|
+| `src/components/illustrations/illustrations.ts` | Geometry and timing data, typed with a literal `IllustrationKind` union |
+| `src/components/illustrations/animate.ts` | The IntersectionObserver lifecycle, typed |
+| `src/components/illustrations/MassageIllustrations.tsx` | Wrapper plus the four named components; `CSSProperties` extended with the four `--pluma-*` properties |
+| `src/styles/pluma-illustrations.css` | Copied verbatim from the package |
+| `src/index.css` | Imports the stylesheet once |
+| `src/components/MassageTypes.tsx` | Renders one illustration per card |
+| `src/styles/pluma-studio-overrides.css` | Drawing-slot padding and the dark-mode ink hook |
+| `public/assets/images/pregnancy-illustration.png` | Deleted after confirming no remaining reference |
+
+`assets/*.svg` were deliberately **not** copied into `public/`: the React route
+uses the geometry module, so shipping the standalone exports too would
+duplicate the same drawings in the bundle. No animation dependency was added;
+the package needs none and none was installed.
+
+### One necessary deviation: dark mode
+
+The supplied SVGs set ink `#092707` as a presentation attribute. That is
+correct on the warm card, but this site has a dark theme the package did not
+know about, and on the dark card surface the linework was invisible — only the
+sand accent showed. The stroke now resolves through `var(--pluma-ink, #092707)`,
+so light mode is byte-identical to the supplied appearance and dark mode uses
+the site's existing heading colour. The accent drops from 0.36 to 0.22 opacity
+in dark mode for the same reason. Geometry, stroke weight, caps, joins and all
+timings are untouched.
+
+### Checks actually performed
+
+Run in real headless Chrome against the production build.
+
+| Check | Result |
+|---|---|
+| Package's own lifecycle suite (`node verification/lifecycle.mjs`) | 5/5 pass |
+| Reveal sequence | All four go armed → playing → static, each at its own rate; final `stroke-dashoffset: 0px`, line opacity 1, accent 0.36 |
+| One-time behaviour | Scrolling away and back leaves the linework complete; no replay |
+| Reduced motion | With `prefers-reduced-motion: reduce`, all paths and accents render immediately and static |
+| Widths 320, 375, 390, 430, 768 | Aspect ratio 1.385 at every width, matching 360:260 exactly; no clipping, no distortion, no horizontal document overflow |
+| Path counts | 3 / 7 / 4 / 4, matching the package notes |
+| Dark mode | Linework legible after the ink hook; verified visually |
+| Build and typecheck | `tsc -b --force` and `vite build` both clean |
+| Bundle impact | CSS +1.8 KB, JS +2.6 KB uncompressed. No new dependency, no raster reference shipped, no duplicated SVG exports |
+| Testimonial photographs | Still present and still paired with their own reviews |
+| Booking actions, links, card copy | Unchanged |
+
+Not verified: Safari (no Safari automation available here), and real-device
+touch scrolling. The no-JS case is worth stating plainly — the site is a
+client-rendered single-page app, so with JavaScript disabled nothing renders at
+all, illustrations included. That is pre-existing and not caused by this
+package; the SVG markup itself is a complete static fallback and would show if
+the app were prerendered.
+
+The handoff documents are in `docs/handoff/illustrations/`. The preview page,
+the verification script and the full-size reference artboard are not in the
+repository; the artboard is kept there as a 156 KB WebP for future fidelity
+checks.
+
 ## 1. Headline
 
 The site is now built booking-first around a recommended 90-minute session,

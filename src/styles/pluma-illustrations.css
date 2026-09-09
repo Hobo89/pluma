@@ -1,0 +1,50 @@
+/* Static-first: no global hidden state, font, background or card layout rules. */
+.pluma-illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 360 / 260;
+  overflow: visible;
+}
+.pluma-illustration [data-pluma-line] {
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+}
+.pluma-illustration [data-pluma-accent] { opacity: .36; }
+.pluma-illustration[data-pluma-state="armed"] [data-pluma-line] {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  opacity: 0; /* Hide rounded-cap dots at the start of an undrawn path. */
+}
+.pluma-illustration[data-pluma-state="playing"] [data-pluma-line] {
+  stroke-dasharray: 1 1;
+  animation: pluma-trace var(--pluma-duration, 900ms)
+    cubic-bezier(.4, 0, .2, 1) var(--pluma-delay, 0ms) both;
+}
+.pluma-illustration[data-pluma-state="armed"] [data-pluma-accent] { opacity: 0; }
+.pluma-illustration[data-pluma-state="playing"] [data-pluma-accent] {
+  animation: pluma-breathe var(--pluma-accent-duration, 600ms)
+    cubic-bezier(.4, 0, .2, 1) var(--pluma-accent-delay, 900ms) both;
+}
+@keyframes pluma-trace {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  1% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+@keyframes pluma-breathe {
+  from { opacity: 0; }
+  to { opacity: .36; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pluma-illustration[data-pluma-state] [data-pluma-line] {
+    animation: none !important;
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+  }
+  .pluma-illustration[data-pluma-state] [data-pluma-accent] {
+    animation: none !important;
+    opacity: .36 !important;
+    transform: none !important;
+  }
+}
