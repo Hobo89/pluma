@@ -48,7 +48,7 @@ export function Header({ solid = false }: HeaderProps) {
   const navLinks = [
     { to: "/about", label: t("nav.about") },
     { to: "/pricing", label: t("nav.pricing") },
-    { to: "/member-card", label: t("nav.memberCard") },
+    { to: "/member-card", label: t("nav.bonos") },
   ];
 
   useEffect(() => {

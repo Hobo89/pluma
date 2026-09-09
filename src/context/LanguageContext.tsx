@@ -9,14 +9,17 @@ import {
 } from "react";
 import {
   detectLanguage,
+  interpolate,
   translate,
   type Language,
 } from "../i18n/translations";
 
+type Interpolations = Record<string, string | number>;
+
 type LanguageContextValue = {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (key: string) => string;
+  t: (key: string, values?: Interpolations) => string;
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -39,17 +42,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = language;
-
-    const description = translate(language, "meta.description");
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", description);
   }, [language]);
 
   const value = useMemo(
     () => ({
       language,
       setLanguage,
-      t: (key: string) => translate(language, key),
+      t: (key: string, values?: Interpolations) => {
+        const text = translate(language, key);
+        return values ? interpolate(text, values) : text;
+      },
     }),
     [language, setLanguage],
   );

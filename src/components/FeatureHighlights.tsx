@@ -3,12 +3,14 @@ type HighlightId =
   | "heatedTable"
   | "noWait"
   | "privateRoom"
-  | "certified";
+  | "masseur";
 
 const highlightIcons: Record<HighlightId, string> = {
   oldTown: "/assets/images/icon-old-town.png",
   noWait: "/assets/images/icon-no-wait-time.png",
-  certified: "/assets/images/icon-certified-masseuse.png",
+  // Reuses the existing icon file. The label no longer claims a certification,
+  // which is unverified; see OWNER-INPUTS.md.
+  masseur: "/assets/images/icon-certified-masseuse.png",
   heatedTable: "/assets/images/icon-heated-massage-table.png",
   privateRoom: "/assets/images/icon-private-room.png",
 };
@@ -22,7 +24,7 @@ export const studioHighlightIds = [
   "heatedTable",
   "noWait",
   "privateRoom",
-  "certified",
+  "masseur",
 ] as const satisfies readonly HighlightId[];
 
 type FeatureHighlightsProps = {

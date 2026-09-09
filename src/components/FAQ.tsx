@@ -1,6 +1,6 @@
 import { useLanguage } from "../context/LanguageContext";
 
-const faqIds = ["booking", "location", "expect", "cancel"] as const;
+const faqIds = ["booking", "length", "location", "expect", "cancel"] as const;
 
 export function FAQ() {
   const { t } = useLanguage();

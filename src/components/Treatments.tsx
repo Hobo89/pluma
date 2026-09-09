@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
 const services: {
@@ -19,6 +18,11 @@ const services: {
   },
 ];
 
+/**
+ * Where sessions happen. Neither card is a booking control: the "not available
+ * yet" card must not carry one, and the studio card would duplicate the
+ * duration chooser directly below it.
+ */
 export function Treatments() {
   const { t } = useLanguage();
 
@@ -36,53 +40,39 @@ export function Treatments() {
       </div>
 
       <div className="psl-product-grid psl-product-grid--pair">
-        {services.map(({ id, image, imagePosition, comingSoon }) => {
-          const body = (
-            <>
-              <div className="psl-product__image">
-                <img
-                  src={image}
-                  alt=""
-                  loading="lazy"
-                  sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 991px) 45vw, 33vw"
-                  style={
-                    imagePosition ? { objectPosition: imagePosition } : undefined
-                  }
-                />
+        {services.map(({ id, image, imagePosition, comingSoon }) => (
+          <article
+            key={id}
+            className={`psl-product${comingSoon ? " psl-product--soon" : ""}`}
+          >
+            <div className="psl-product__image">
+              <img
+                src={image}
+                alt=""
+                loading="lazy"
+                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 991px) 45vw, 33vw"
+                style={
+                  imagePosition ? { objectPosition: imagePosition } : undefined
+                }
+              />
+            </div>
+            <div className="psl-product__meta">
+              <div className="psl-product__heading">
+                <h3 className="psl-product__name">
+                  {t(`treatments.${id}.name`)}
+                </h3>
+                {comingSoon ? (
+                  <span className="psl-product__soon">
+                    {t("treatments.comingSoon")}
+                  </span>
+                ) : null}
               </div>
-              <div className="psl-product__meta">
-                <div className="psl-product__heading">
-                  <h3 className="psl-product__name">
-                    {t(`treatments.${id}.name`)}
-                  </h3>
-                  {comingSoon ? (
-                    <span className="psl-product__soon">
-                      {t("treatments.comingSoon")}
-                    </span>
-                  ) : null}
-                </div>
-                <p className="psl-product__description">
-                  {t(`treatments.${id}.description`)}
-                </p>
-              </div>
-            </>
-          );
-
-          return (
-            <article
-              key={id}
-              className={`psl-product${comingSoon ? " psl-product--soon" : ""}`}
-            >
-              {comingSoon ? (
-                body
-              ) : (
-                <Link to="/book" className="psl-product__link">
-                  {body}
-                </Link>
-              )}
-            </article>
-          );
-        })}
+              <p className="psl-product__description">
+                {t(`treatments.${id}.description`)}
+              </p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

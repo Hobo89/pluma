@@ -1,13 +1,27 @@
 import { Link } from "react-router-dom";
 import { PageContainer } from "../components/PageContainer";
-import { formatEuro, sessionRates, voucherCards } from "../config/pricing";
+import { PageMeta } from "../components/PageMeta";
+import { PendingNote } from "../components/PendingNote";
+import { BookingAction } from "../components/BookingAction";
+import {
+  pricingConflicts,
+  recommendedDuration,
+  sessionRates,
+  voucherCards,
+} from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
+import { formatPrice } from "../lib/money";
+
+const conflictedDurations = new Set(
+  pricingConflicts.map((conflict) => conflict.minutes),
+);
 
 export function PricingPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <PageContainer>
+      <PageMeta page="pricing" />
       <p className="psl-eyebrow">{t("pricing.eyebrow")}</p>
       <h1 className="psl-title">{t("pricing.title")}</h1>
       <p className="psl-copy" style={{ marginBlock: "var(--psl-space-6)" }}>
@@ -26,20 +40,34 @@ export function PricingPage() {
 
         <div className="psl-pricing-grid">
           {sessionRates.map((rate) => (
-            <article key={rate.minutes} className="psl-pricing-card">
+            <article
+              key={rate.minutes}
+              className={`psl-pricing-card${rate.recommended ? " psl-pricing-card--recommended" : ""}`}
+            >
+              {rate.recommended ? (
+                <p className="psl-pricing-card__flag">
+                  {t("durations.recommended")}
+                </p>
+              ) : null}
               <p className="psl-pricing-card__duration">
-                {t("pricing.durationMinutes").replace(
-                  "{minutes}",
-                  String(rate.minutes),
-                )}
+                {t("pricing.durationMinutes", { minutes: rate.minutes })}
               </p>
-              <p className="psl-pricing-card__price">{formatEuro(rate.single)}</p>
+              <p className="psl-pricing-card__price">
+                {formatPrice(rate.cents, language)}
+              </p>
               <p className="psl-pricing-card__meta">
-                {t(`pricing.durationScope.${rate.minutes}`)}
+                {t(`durations.scope.${rate.minutes}`)}
               </p>
+              {conflictedDurations.has(rate.minutes) ? (
+                <PendingNote label={t("prelaunch.previewLabel")}>
+                  {t("pricing.conflictNote")}
+                </PendingNote>
+              ) : null}
             </article>
           ))}
         </div>
+
+        <p className="psl-copy psl-copy--small">{t("pricing.taxNote")}</p>
       </section>
 
       <section
@@ -62,25 +90,30 @@ export function PricingPage() {
               <h3 className="psl-pricing-voucher__title">
                 {t(`pricing.voucher${card.sessions}.title`)}
               </h3>
+              <p className="psl-copy psl-copy--small">
+                {t("pricing.validity", { months: card.validityMonths })}
+              </p>
 
               <ul className="psl-pricing-voucher__rates">
                 {card.rates.map((rate) => (
                   <li key={rate.minutes}>
                     <span className="psl-pricing-voucher__duration">
-                      {t("pricing.durationMinutes").replace(
-                        "{minutes}",
-                        String(rate.minutes),
-                      )}
+                      {t("pricing.durationMinutes", { minutes: rate.minutes })}
                     </span>
                     <span className="psl-pricing-voucher__total">
-                      {formatEuro(rate.total)}{" "}
+                      {formatPrice(rate.totalCents, language)}{" "}
                       <span className="psl-pricing-voucher__total-label">
                         {t("pricing.total")}
                       </span>
                     </span>
                     <span className="psl-pricing-voucher__per-session">
-                      {formatEuro(rate.perSession)}{" "}
+                      {formatPrice(rate.perSessionCents, language)}{" "}
                       {t("pricing.perSession")}
+                    </span>
+                    <span className="psl-pricing-voucher__saving">
+                      {t("pricing.saving", {
+                        amount: formatPrice(rate.savingCents, language),
+                      })}
                     </span>
                   </li>
                 ))}
@@ -88,11 +121,21 @@ export function PricingPage() {
             </article>
           ))}
         </div>
+
+        <Link to="/member-card" className="psl-textlink">
+          {t("pricing.bonoLink")}
+        </Link>
       </section>
 
       <div className="psl-actions" style={{ marginTop: "var(--psl-space-12)" }}>
-        <Link to="/book" className="psl-button psl-button--dark">
-          {t("pricing.book")}
+        <BookingAction
+          label={t("hero.primaryCta")}
+          duration={recommendedDuration}
+          placement="pricing"
+          className="psl-button psl-button--dark"
+        />
+        <Link to="/condiciones-reserva" className="psl-textlink">
+          {t("durations.termsLink")}
         </Link>
       </div>
     </PageContainer>

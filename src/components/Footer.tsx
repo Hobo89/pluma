@@ -7,6 +7,8 @@ const legalLinks = [
   { to: "/aviso-legal", key: "legal.notice" },
   { to: "/privacidad", key: "legal.privacy" },
   { to: "/cookies", key: "legal.cookies" },
+  { to: "/condiciones-reserva", key: "legal.terms" },
+  { to: "/condiciones-bonos", key: "legal.bonoTerms" },
 ] as const;
 
 export function Footer() {
@@ -44,6 +46,7 @@ export function Footer() {
         <nav className="psl-footer__links" aria-label={t("footer.legalTitle")}>
           <Link to="/about">{t("nav.about")}</Link>
           <Link to="/pricing">{t("nav.pricing")}</Link>
+          <Link to="/member-card">{t("nav.bonos")}</Link>
           <Link to="/book">{t("nav.book")}</Link>
           {legalLinks.map(({ to, key }) => (
             <Link key={to} to={to}>

@@ -5,11 +5,66 @@ export const translations = {
     meta: {
       description:
         "pluma — restorative massage in a calm home studio. Book your session with Stephen online.",
+      pages: {
+        home: {
+          title: "Massage in Valencia · Private home studio",
+          description:
+            "A personalised massage with Stephen in a quiet private home studio near the Central Market, Valencia. 90-minute sessions recommended.",
+        },
+        about: {
+          title: "About Stephen · Massage studio in Valencia",
+          description:
+            "Meet Stephen and the private home studio in Ciutat Vella, Valencia, where every massage is shaped around what you ask for.",
+        },
+        pricing: {
+          title: "Prices · Massage sessions in Valencia",
+          description:
+            "Session lengths and prices for massage at the pluma home studio in Valencia, including prepaid digital bonos for 60 and 90 minute sessions.",
+        },
+        book: {
+          title: "Book a massage · pluma Valencia",
+          description:
+            "Choose a session length and find an appointment at the pluma home studio in Valencia. Times shown are Valencia local time.",
+        },
+        bonos: {
+          title: "Digital bonos · pluma Valencia",
+          description:
+            "A digital bono for massage sessions at pluma, delivered by email and kept on your phone. Choose from three designs.",
+        },
+        notice: {
+          title: "Legal notice · pluma",
+          description: "Operator identity and contact details for pluma.life.",
+        },
+        privacy: {
+          title: "Privacy policy · pluma",
+          description:
+            "How pluma processes personal data for bookings, including purposes, legal bases, recipients and retention.",
+        },
+        cookies: {
+          title: "Cookie policy · pluma",
+          description:
+            "Cookies, local storage and third-party requests used by pluma.life.",
+        },
+        terms: {
+          title: "Booking terms · pluma",
+          description:
+            "Terms that apply to booking a massage session at the pluma home studio in Valencia.",
+        },
+        bonoTerms: {
+          title: "Bono terms · pluma",
+          description:
+            "Terms that will apply to prepaid digital bonos for massage sessions at pluma.",
+        },
+        notFound: {
+          title: "Page not found · pluma",
+          description: "This page does not exist on pluma.life.",
+        },
+      },
     },
     nav: {
       about: "About",
-      pricing: "Pricing",
-      memberCard: "Member Card",
+      pricing: "Prices",
+      bonos: "Digital bonos",
       book: "Book",
       main: "Main",
       openMenu: "Open menu",
@@ -25,110 +80,318 @@ export const translations = {
       toLight: "Switch to light mode",
       toDark: "Switch to dark mode",
     },
+    prelaunch: {
+      badge: "Bookings opening soon",
+      bookingNotice: "Bookings opening soon. Have a question? Email Stephen.",
+      emailCta: "Email Stephen",
+      bonoBadge: "Coming soon",
+      bonoNotice:
+        "Digital bonos are coming soon: choose a design, receive your card by email and keep it on your phone. Online purchase is not available yet.",
+      bonoCta: "Ask about bonos",
+      previewLabel: "Preview placeholder — pending owner approval",
+    },
     hero: {
-      eyebrow: "Home studio massage",
-      tagline:
-        "Restorative massage in a private home studio — unwind, recover, and feel your best.",
+      eyebrow: "Private massage studio · Valencia",
+      title: "A little more time for you.",
+      supporting:
+        "A personalised massage with Stephen, in a quiet home studio near the Central Market.",
+      offer: "90 minutes · {price}",
+      primaryCta: "Find a 90-minute appointment",
+      secondaryCta: "Explore session lengths",
       book: "Book a session",
       learnMore: "Learn more",
+      mediaLabel: "Sunlight moving through leaves outside the studio",
+    },
+    sticky: {
+      label: "Find a 90-minute appointment",
+    },
+    durations: {
+      eyebrow: "Session lengths",
+      title: "How long would you like?",
+      description:
+        "Every session is shaped around the pressure and areas you ask for. Ninety minutes is the length Stephen recommends.",
+      recommended: "Recommended",
+      recommendedNote: "Stephen's recommendation, not a sales-volume claim.",
+      cta: "Find a {minutes}-minute appointment",
+      enquiryCta: "Ask about {minutes} minutes",
+      enquiryNote:
+        "There is no online calendar for this length yet. Email Stephen and he will arrange it with you.",
+      scope: {
+        "30": "Focused time for one area.",
+        "60": "A shorter full-body session.",
+        "90": "Time for a full-body session and extra attention where you want it.",
+        "120": "An unhurried, extended session.",
+      },
+      priceNote: "Price shown is the total for the session.",
+      paymentPending:
+        "Payment methods and timing are being confirmed and will be shown here before you book.",
+      cancellationPending:
+        "Cancellation and rescheduling rules are being confirmed and will be shown here before you book.",
+      termsLink: "Booking terms",
     },
     location: {
       eyebrow: "Location",
-      walk: "5 min walk from Central Market, Valencia",
+      walk: "A short walk from the Central Market, Valencia",
     },
     about: {
       eyebrow: "Your masseur",
       title: "About pluma",
-      body: "pluma is a calm, private home studio offering thoughtful, personalized massage therapy. No waiting room, no rush — just a quiet space where every session is tailored to you, whether you need deep tissue work, relaxation, or recovery support.",
+      body: "pluma is a calm, private home studio offering personalised massage. No waiting room, no rush — just a quiet space where every session is shaped around the pressure and areas you ask for.",
       stephen:
-        "I'm Stephen, your masseur. I welcome you into my home studio with the same care I bring to every session — warm, professional, and focused entirely on what your body needs.",
-      stephenPhotoAlt: "Stephen, masseur at pluma home studio",
+        "I'm Stephen, your masseur. I welcome you into my home studio with the same care I bring to every session — warm, unhurried, and focused on what you ask for.",
+      stephenPhotoAlt: "Stephen, masseur at the pluma home studio",
+      credential: "Stephen · your masseur",
+    },
+    firstVisit: {
+      title: "Your first visit",
+      description:
+        "What actually happens, so nothing about the visit is a surprise.",
+      changing: {
+        title: "Private changing and draping",
+        body: "There is a private changing room and bathroom. You stay covered with a towel or sheet throughout, and only the area being worked on is uncovered.",
+      },
+      control: {
+        title: "You can change your mind at any point",
+        body: "Tell Stephen if you want more or less pressure, a different area, or to stop. You do not need a reason.",
+      },
+      personalisation: {
+        title: "Agreed before you start",
+        body: "Before the massage you agree the pressure, the areas to focus on and anything to avoid.",
+      },
+      access: {
+        title: "Getting there",
+        body: "The studio is a private home studio in Ciutat Vella, Valencia. Full address, floor and entrance details are sent with your booking confirmation.",
+      },
+      accessPending:
+        "Step-free access, lift availability and the exact walking time from the Central Market have not been confirmed yet. Ask Stephen before booking if access matters for your visit.",
+      timePending:
+        "Whether the booked time includes the initial conversation and changing, or is hands-on time only, is being confirmed.",
     },
     types: {
-      title: "Types",
-      pregnancy: "Pregnancy",
-      pregnancyAlt: "Line drawing of a pregnant figure",
-      relaxingLymphatic: "Relaxing and lymphatic",
-      deepTissue: "Deep tissue",
-      sports: "Sports",
+      eyebrow: "During the session",
+      title: "Relaxation or firmer work",
+      description:
+        "Two plain descriptions of how a session can feel. Tell Stephen which you would like.",
+      relaxing: {
+        title: "Slower and lighter",
+        body: "Long, even strokes at a steady pace, with lighter pressure. Most people use this to wind down.",
+      },
+      firm: {
+        title: "Slower and firmer",
+        body: "More sustained pressure on the areas you point out, worked at a pace you agree as it goes.",
+      },
+      note: "Massage at pluma is for relaxation and comfort. It is not physiotherapy and is not a treatment for illness or injury.",
+      draft: {
+        title: "Not currently offered",
+        body: "Pregnancy and lymphatic sessions are not bookable while Stephen's training and suitability process for them are being reviewed.",
+      },
     },
     pricing: {
       eyebrow: "Sessions",
-      title: "Pricing",
+      title: "Prices",
       description:
-        "Session rates by duration at the home studio. Save with prepaid voucher cards on 60 and 90 minute appointments.",
+        "Session prices by length at the home studio. Prepaid digital bonos reduce the per-session price on 60 and 90 minute sessions.",
       book: "Book a session",
       durationMinutes: "{minutes} min",
       singleTitle: "Single sessions",
-      durationScope: {
-        "30": "One zone — focused work on a single area",
-        "60": "Full body relaxation",
-        "90": "Full body deep tissue",
-        "120": "Extended full body and deep tissue",
-      },
-      voucherTitle: "Voucher cards",
+      voucherTitle: "Digital bonos",
       voucherDescription:
-        "Prepaid voucher cards include a discount on 60 and 90 minute sessions. Ask Stephen about voucher cards at your next visit or by email.",
+        "A prepaid bono covers several sessions of the same length at a lower price per session.",
       total: "total",
       perSession: "per session",
+      saving: "You save {amount}",
+      validity: "Valid for {months} months",
       voucher5: {
-        title: "5-session voucher card",
+        title: "5-session bono",
         discount: "10% off",
       },
       voucher10: {
-        title: "10-session voucher card",
+        title: "10-session bono",
         discount: "15% off",
       },
+      taxNote:
+        "Prices shown are the total you pay. Tax treatment is being confirmed with an adviser; no charge will be added on top of a displayed price.",
+      conflictNote:
+        "The price for 90 minutes is being confirmed. The figure shown here is from the current website and has not yet been reconciled with the calendar.",
+      bonoLink: "See digital bonos",
     },
     booking: {
       eyebrow: "Book a session",
-      title: "Schedule your visit",
+      title: "Find an appointment",
       description:
-        "Choose a time that works for you. You'll receive a confirmation email with directions to the home studio and everything you need before your appointment.",
+        "Choose a session length, then pick a time. Times shown are Valencia local time.",
+      selected: "Selected",
+      changeDuration: "Change length",
+      timezone: "All times are Valencia local time (Europe/Madrid).",
+      inPerson: "This is an in-person appointment at the home studio in Valencia.",
+      iframeTitle: "Book an in-person massage with Stephen",
+      loading: "Loading the calendar…",
+      timeoutTitle: "The calendar is not loading",
+      timeoutBody:
+        "It may be blocked or slow to respond. You can open it directly, or email Stephen and he will arrange a time with you.",
+      openCalendar: "Open the calendar in a new tab",
+      emailFallback: "Email Stephen instead",
+      retry: "Try again",
+      privacyNotice:
+        "Stephen receives your name, email and appointment details to arrange and confirm your visit. Please do not include health information.",
+      privacyLink: "How pluma handles your data",
+      enquirySubject: "Massage enquiry",
+      enquiryBody:
+        "Hello Stephen,%0D%0A%0D%0AI would like to ask about a massage session.%0D%0A%0D%0AThank you,",
     },
-    memberCard: {
-      eyebrow: "Member Card",
-      title: "Member Card",
+    bonos: {
+      eyebrow: "Digital bonos",
+      title: "Your massages, on your phone.",
+      subtitle: "A digital bono, delivered by email.",
+      subtitleSoon: "Digital bonos are coming soon.",
+      intro:
+        "A bono covers several sessions of the same length, paid for once and used across your visits.",
+      stepsTitle: "How it will work",
+      steps: {
+        buy: {
+          title: "Choose your bono",
+          body: "Select your sessions and card design, then pay online.",
+        },
+        email: {
+          title: "Check your email",
+          body: "Your digital card and instructions arrive by email.",
+        },
+        phone: {
+          title: "Add it to your phone",
+          body: "Save it to your compatible wallet and see your remaining sessions.",
+        },
+      },
+      stepsNote:
+        "This is the planned route. Wallet compatibility and how quickly remaining sessions update are still being verified.",
+      remainingReady:
+        "Your remaining sessions update after each recorded visit.",
+      packagesTitle: "Choose your bono",
+      packagesDescription:
+        "Same designs, same terms. Only the number of sessions and the session length differ.",
+      sessionsLabel: "Sessions",
+      durationLabel: "Session length",
+      sessionsOption: "{count} sessions",
+      summaryTitle: "Your selection",
+      summarySessions: "{count} × {minutes} min",
+      summaryTotal: "Total",
+      summaryPerSession: "Per session",
+      summarySaving: "Saving against single sessions",
+      summaryValidity: "Validity",
+      summaryValidityValue: "{months} months",
+      validityStartPending:
+        "When the validity period starts, and how extensions are handled, are still being decided.",
+      designTitle: "Choose your design",
+      designDescription: "Same bono. Your choice of design.",
+      designLegend: "Card design",
+      designSelected: "Selected",
+      previewTitle: "Digital bono",
+      previewRemaining: "Remaining sessions",
+      previewSample: "Sample count",
+      previewAlt:
+        "Illustration of a digital bono on a phone; sample remaining-session count",
+      previewNote:
+        "Generic illustration of a phone. Not an Apple or Google Wallet screen, and not a real account.",
+      cardAlt: "pluma digital bono, {design} design",
+      returnTitle: "Prefer one session?",
+      returnCta: "Book a massage",
+      termsLink: "Bono terms",
+      walletPending:
+        "Which wallets will be supported, and how the card updates, are still being verified. Nothing here is available to buy yet.",
+    },
+    studio: {
+      eyebrow: "The studio",
+      title: "A calm home studio",
       description:
-        "Regular sessions at a reduced rate. Ask Stephen about member card options at your next visit or by email.",
-    },
-    cal: {
-      notConfigured: "Cal.com not configured yet",
-      instructions: "Add your booking link to",
-      inFile: "in a",
-      file: "file (e.g.",
-    },
-    legal: {
-      notice: "Legal notice",
-      privacy: "Privacy policy",
-      cookies: "Cookie policy",
-    },
-    legalPages: {
-      notice: {
-        title: "Legal notice",
-        body: "In compliance with Law 34/2002 on Information Society Services (LSSI-CE), the following information is provided.\n\nWebsite owner: Stephen Michetti, trading as pluma.\nRegistered address: Pl. de les Escoles Pies, Ciutat Vella, 46001 València, Spain.\nContact email: {email}.\n\nThis website provides information about massage therapy services offered at a private home studio and allows online booking.\n\npluma is not responsible for the content of external links. Use of this website implies acceptance of this legal notice.",
-      },
-      privacy: {
-        title: "Privacy policy",
-        body: "In accordance with Regulation (EU) 2016/679 (GDPR) and Organic Law 3/2018 (LOPDGDD), we inform you about the processing of your personal data.\n\nData controller: Stephen Michetti (pluma). Contact: {email}.\n\nWe process data you provide when booking a session (name, email, and appointment details) solely to manage your appointment and communicate with you about your visit.\n\nLegal basis: performance of a requested service and your consent when booking.\n\nData is not shared with third parties except booking tools required to schedule your appointment.\n\nYou may exercise your rights of access, rectification, erasure, restriction, portability, and objection by contacting {email}.\n\nYou may lodge a complaint with the Spanish Data Protection Agency (AEPD).",
-      },
-      cookies: {
-        title: "Cookie policy",
-        body: "This website uses browser local storage to remember your language and theme preferences. No advertising or third-party tracking cookies are used.\n\nYou can delete these preferences at any time by clearing your browser data for this site.\n\nIf you use the booking widget, that provider may set its own cookies under its privacy policy.",
+        "Step inside the space where sessions take place — a private, quiet room for rest.",
+      collageLabel: "Scenes from the pluma home studio",
+      videoLabel: "Tour of the pluma home studio",
+      highlights: {
+        oldTown: "Old town",
+        heatedTable: "Heated massage table",
+        noWait: "No wait time",
+        privateRoom: "Private changing room and bathroom",
+        masseur: "Stephen · your masseur",
       },
     },
-    footer: {
-      tagline: "Restorative massage in a private home studio.",
-      contactTitle: "Contact",
-      legalTitle: "Legal information",
-      owner: "Owner",
-      nif: "Tax ID (NIF)",
-      rights: "All rights reserved.",
+    treatments: {
+      title: "Where sessions happen",
+      description: "At the private home studio in Ciutat Vella, Valencia.",
+      comingSoon: "Not available yet",
+      atStudio: {
+        name: "At the studio",
+        description:
+          "A private home studio next to the Central Market. No waiting room.",
+      },
+      onSite: {
+        name: "At your location",
+        description:
+          "Sessions at your home, hotel or office are not available yet. Email Stephen if you would like to be told when they are.",
+      },
     },
-    badges: {
-      nestling: "nestling",
-      fledgling: "fledgling",
-      wingmate: "wingmate",
+    benefits: {
+      title: "Details",
+      description: "Small things that shape how the session feels.",
+      proof: {
+        title: "A considered studio",
+        body: "Plant oils, a quiet room next to the Central Market, and sessions shaped around what you ask for.",
+      },
+      leaf: {
+        title: "Organic oils and scents",
+        body: "Plant oils and quiet scents, chosen to keep the room calm and kind to skin.",
+      },
+      landscape: {
+        title: "Next to the Central Market",
+        body: "A private home studio in Ciutat Vella, a short walk from the market.",
+      },
+      texture: {
+        title: "Personalised sessions",
+        body: "Pressure, areas of focus and anything to avoid are agreed with you before the massage starts.",
+      },
+      languages: {
+        title: "Languages",
+        body: "English and French natively, Spanish fluently.",
+      },
+    },
+    quote: {
+      title: "What clients say",
+      collageLabel: "Client portraits",
+      pause: "Pause",
+      play: "Play",
+      previous: "Previous testimonial",
+      next: "Next testimonial",
+      provenanceNote:
+        "Reviews shared with pluma by clients. Photograph permissions are being confirmed.",
+    },
+    ribbon: {
+      message: "Book your session · Home studio massage · Valencia",
+    },
+    faq: {
+      title: "Frequently asked questions",
+      booking: {
+        question: "How do I book a session?",
+        answer:
+          "Choose a length and a time on the booking page. You'll receive a confirmation email with directions to the home studio and everything you need before your visit.",
+      },
+      location: {
+        question: "Where is the studio?",
+        answer:
+          "pluma is a private home studio in Ciutat Vella, Valencia, a short walk from the Central Market. The full address and directions are sent with your booking confirmation.",
+      },
+      expect: {
+        question: "What should I expect?",
+        answer:
+          "No waiting room and no rush. You agree the pressure and the areas to focus on before starting, there is a private changing room, and you stay covered throughout.",
+      },
+      cancel: {
+        question: "What is your cancellation policy?",
+        answer:
+          "The cancellation, rescheduling and lateness rules are being finalised and will be published here and shown before you confirm a booking. In the meantime, please email as early as you can.",
+      },
+      length: {
+        question: "Which session length should I choose?",
+        answer:
+          "Ninety minutes is the length Stephen recommends: it leaves time for a full-body session with extra attention where you want it. Sixty minutes is a shorter full-body session, and thirty minutes covers one area.",
+      },
     },
     testimonials: {
       eyebrow: "Testimonials",
@@ -176,100 +439,168 @@ export const translations = {
           "I keep coming back. The home studio is peaceful, Stephen listens to what you need, and you leave feeling completely reset.",
       },
     },
-    studio: {
-      eyebrow: "The studio",
-      title: "A calm home studio",
-      description:
-        "Step inside the space where sessions take place — a private, peaceful room designed for rest and recovery.",
-      collageLabel: "Scenes from the pluma home studio",
-      videoLabel: "Tour of the pluma home studio",
-      highlights: {
-        oldTown: "Old town",
-        heatedTable: "Heated massage table",
-        noWait: "No wait time",
-        privateRoom: "Private changing room and bathroom",
-        certified: "Certified masseuse",
+    badges: {
+      nestling: "nestling",
+      fledgling: "fledgling",
+      wingmate: "wingmate",
+    },
+    cal: {
+      notConfigured: "The booking calendar is not connected yet",
+      notConfiguredBody:
+        "You can still ask Stephen about an appointment by email.",
+    },
+    legal: {
+      notice: "Legal notice",
+      privacy: "Privacy policy",
+      cookies: "Cookie policy",
+      terms: "Booking terms",
+      bonoTerms: "Bono terms",
+    },
+    legalPages: {
+      pendingBanner:
+        "This page is incomplete. The items marked below are waiting on confirmed business information and must be resolved before bookings or payments open.",
+      pendingItem: "Waiting on confirmed information",
+      notice: {
+        title: "Legal notice",
+        intro:
+          "Information provided under Article 10 of Law 34/2002 on Information Society Services (LSSI-CE).",
+        operatorTitle: "Operator",
+        operatorName: "Trading name: pluma.",
+        operatorPending:
+          "The full legal name, tax identification number (NIF) and the lawful business address for this activity are not yet confirmed and are therefore not published here.",
+        contactTitle: "Contact",
+        contactBody: "Email: {email}.",
+        activityTitle: "Activity",
+        activityBody:
+          "This website describes massage sessions offered at a private home studio in Valencia and, once open, allows appointments to be booked online.",
+        activityPending:
+          "Registration as self-employed, the premises activity classification for the studio, and professional qualification and insurance details are not yet confirmed. Nothing on this site should be read as asserting them.",
+        complaintsTitle: "Complaints",
+        complaintsBody:
+          "Complaints can be sent to {email}. The official Generalitat Valenciana complaint forms are not yet available for this studio.",
+        linksTitle: "External links",
+        linksBody:
+          "pluma is not responsible for the content of external websites linked from this site.",
+      },
+      privacy: {
+        title: "Privacy policy",
+        intro:
+          "This policy explains how pluma processes personal data, under Regulation (EU) 2016/679 (GDPR) and Organic Law 3/2018 (LOPDGDD).",
+        controllerTitle: "Who is responsible",
+        controllerBody:
+          "Stephen Michetti, trading as pluma. Contact: {email}.",
+        controllerPending:
+          "The full legal identity and registered address of the controller are pending confirmation and will be added here.",
+        inventoryTitle: "What is processed",
+        inventoryIntro:
+          "The table below lists each category of data actually collected through this website, why it is processed and who receives it.",
+        inventoryHeaders: {
+          data: "Data",
+          purpose: "Purpose",
+          basis: "Legal basis",
+          recipients: "Recipients",
+          retention: "Retention",
+        },
+        healthTitle: "Health information",
+        healthBody:
+          "Please do not send health information through the booking form or by email. Ordinary booking does not provide a lawful condition for processing health data. If a separate intake process is introduced, it will have its own explanation and safeguards.",
+        marketingTitle: "Marketing",
+        marketingBody:
+          "Booking does not subscribe you to anything. pluma does not currently send marketing messages.",
+        rightsTitle: "Your rights",
+        rightsBody:
+          "You can request access, rectification, erasure, restriction, portability or object to processing by emailing {email}. You can also complain to the Spanish Data Protection Agency (AEPD).",
+        transfersTitle: "Transfers outside the EEA",
+        transfersPending:
+          "The processor contracts and any international transfer mechanisms for the booking provider and hosting are being reviewed. This section will state the actual position once confirmed.",
+      },
+      cookies: {
+        title: "Cookie policy",
+        intro:
+          "This page lists what this website stores in your browser and which third-party requests it makes.",
+        necessaryTitle: "Necessary storage",
+        necessaryBody:
+          "Two values are stored in your browser's local storage: your chosen language and your chosen light or dark theme. They are set only when you make a choice, are read only by this site, and are exempt from consent because they deliver a preference you asked for. You can clear them by clearing site data in your browser.",
+        analyticsTitle: "Analytics and advertising",
+        analyticsBody:
+          "There is no analytics, advertising or tracking on this website, and no consent banner, because there is nothing to consent to. If that changes, non-essential storage will be loaded only after a clear choice, with equally easy accept and reject options.",
+        thirdPartyTitle: "Third-party requests",
+        thirdPartyBody:
+          "Fonts are loaded from Google Fonts, which means your browser contacts fonts.googleapis.com and fonts.gstatic.com. The booking page loads the Cal.com calendar, which sets its own storage under its own policy; that only happens if you open the booking page.",
+        thirdPartyPending:
+          "Self-hosting the fonts, which would remove the Google Fonts request entirely, is a pending improvement.",
+      },
+      terms: {
+        title: "Booking terms",
+        intro:
+          "These terms will apply to booking a massage session at the pluma home studio. They are published in draft while the remaining items are confirmed.",
+        draftBanner:
+          "Draft. Bookings are not open. These terms are not yet in force and several items below are still being decided.",
+        serviceTitle: "What is being booked",
+        serviceBody:
+          "An in-person massage session of the length you select, at a private home studio in Ciutat Vella, Valencia. The session is for relaxation and comfort. It is not physiotherapy, diagnosis or treatment of any illness or injury.",
+        priceTitle: "Price",
+        priceBody:
+          "The price shown when you book is the total for the session. No charge is added at a later step.",
+        pricePending:
+          "Final approved prices and their tax treatment are being confirmed with an adviser.",
+        paymentTitle: "Payment",
+        paymentPending:
+          "Accepted payment methods, when payment is taken and whether a deposit applies are not yet decided.",
+        cancellationTitle: "Cancellation, rescheduling and lateness",
+        cancellationPending:
+          "The notice period, how to reschedule, what happens if you arrive late or do not attend, and any monetary consequence are not yet decided. No deadline or forfeiture rule is in force.",
+        withdrawalTitle: "Right of withdrawal",
+        withdrawalPending:
+          "How the statutory 14-day distance-contract withdrawal right applies to a dated appointment is being reviewed with an adviser. Appointment cancellation and statutory withdrawal are separate things and will be described separately.",
+        complaintsTitle: "Complaints",
+        complaintsBody:
+          "Please email {email}. Official complaint forms are covered in the legal notice.",
+      },
+      bonoTerms: {
+        title: "Bono terms",
+        intro:
+          "These terms will apply to prepaid digital bonos. They are published in draft; bonos are not on sale.",
+        draftBanner:
+          "Draft. Digital bonos cannot be bought yet and these terms are not in force.",
+        whatTitle: "What a bono is",
+        whatBody:
+          "A prepaid credit for a set number of massage sessions of a single length, at the pluma home studio. A bono is not a cash balance and has no cash value.",
+        priceTitle: "Price and sessions",
+        priceBody:
+          "A 5-session bono reduces the per-session price by 10%. A 10-session bono reduces it by 15%. Bonos are available for 60 and 90 minute sessions.",
+        validityTitle: "Validity",
+        validityBody:
+          "A 5-session bono is valid for 3 months and a 10-session bono for 6 months.",
+        validityPending:
+          "When the validity period starts, how the end of a calendar month is handled, and whether extensions are possible are not yet decided.",
+        transferTitle: "Sharing, gifting and mixing lengths",
+        transferPending:
+          "Whether a bono can be shared or given as a gift, and whether sessions of different lengths can be mixed, are not yet decided.",
+        unusedTitle: "Unused sessions and refunds",
+        unusedPending:
+          "How unused sessions are treated at the end of the validity period, and what happens if pluma cannot provide the sessions, are not yet decided. No forfeiture rule is in force.",
+        deliveryTitle: "Delivery",
+        deliveryPending:
+          "The email and pass provider, the wallets that will be supported and how remaining sessions update have not been finalised or tested.",
+        withdrawalTitle: "Right of withdrawal",
+        withdrawalPending:
+          "The statutory withdrawal right for an open-dated prepaid package is being reviewed with an adviser. Receiving a pass by email does not by itself remove that right.",
       },
     },
-    treatments: {
-      title: "Massage Services",
-      description: "At the studio or at your location across Valencia.",
-      comingSoon: "Coming soon",
-      atStudio: {
-        name: "At Studio",
-        description:
-          "Come to Pluma Studio, next to Mercat Central. No wait times.",
-      },
-      onSite: {
-        name: "On-site",
-        description:
-          "At your home office, home, or hotel within Valencia city.",
-      },
+    notFound: {
+      title: "This page does not exist",
+      body: "The address may be mistyped, or the page may have moved.",
+      home: "Go to the home page",
+      book: "Book a session",
     },
-    benefits: {
-      title: "Benefits",
-      description:
-        "Thoughtful details that make every session feel considered.",
-      proof: {
-        title: "A considered studio",
-        body: "Organic oils, a quiet room next to Mercat Central, and sessions shaped around you.",
-      },
-      leaf: {
-        title: "100% organic oils and scents",
-        body: "Plant oils and quiet scents, chosen to keep the room calm and kind to skin.",
-      },
-      landscape: {
-        title: "Next to Mercat Central",
-        body: "A private home studio in Ciutat Vella, a short walk from the market.",
-      },
-      texture: {
-        title: "Personalized sessions",
-        body: "Native in English and French, fluent in Spanish, making one or several sessions coherent.",
-      },
-      languages: {
-        title: "Languages",
-        body: "English and French natively, Spanish fluently.",
-      },
-    },
-    clients: {
-      title: "Who visits",
-      description:
-        "Most sessions are with women. The studio is a quiet, private space for women and men alike.",
-      female: "Women",
-      male: "Men",
-      summary: "{female} percent of clients are women, {male} percent are men.",
-    },
-    quote: {
-      title: "Featured testimonial",
-      text: "I left feeling completely renewed. The home studio is so calming and every session feels tailored to exactly what my body needs.",
-      attribution: "Carla M.",
-      collageLabel: "Studio and client moments",
-    },
-    ribbon: {
-      message: "Book your session · Home studio massage · Valencia",
-    },
-    faq: {
-      title: "Frequently asked questions",
-      booking: {
-        question: "How do I book a session?",
-        answer:
-          "Choose a time on the booking page. You'll receive a confirmation email with directions to the home studio and everything you need before your visit.",
-      },
-      location: {
-        question: "Where is the studio?",
-        answer:
-          "pluma is a private home studio in Ciutat Vella, Valencia — about a 5-minute walk from Mercado Central. Full address and directions are sent with your booking confirmation.",
-      },
-      expect: {
-        question: "What should I expect?",
-        answer:
-          "No waiting room, no rush. Stephen welcomes you into a calm private space and tailors each session to what your body needs — deep tissue, relaxation, or recovery support.",
-      },
-      cancel: {
-        question: "What is your cancellation policy?",
-        answer:
-          "If you need to reschedule or cancel, please get in touch as early as possible by email so the appointment can be offered to someone else.",
-      },
+    footer: {
+      tagline: "Restorative massage in a private home studio.",
+      contactTitle: "Contact",
+      legalTitle: "Legal information",
+      owner: "Owner",
+      nif: "Tax ID (NIF)",
+      rights: "All rights reserved.",
     },
     gallery: {
       label: "Client portraits",
@@ -279,11 +610,66 @@ export const translations = {
     meta: {
       description:
         "pluma — masaje restaurativo en un tranquilo estudio en casa. Reserva tu sesión con Stephen en línea.",
+      pages: {
+        home: {
+          title: "Masaje en Valencia · Estudio privado en casa",
+          description:
+            "Un masaje personalizado con Stephen en un tranquilo estudio privado en casa junto al Mercado Central, Valencia. Se recomiendan las sesiones de 90 minutos.",
+        },
+        about: {
+          title: "Sobre Stephen · Estudio de masaje en Valencia",
+          description:
+            "Conoce a Stephen y el estudio privado en casa en Ciutat Vella, Valencia, donde cada masaje se adapta a lo que pides.",
+        },
+        pricing: {
+          title: "Precios · Sesiones de masaje en Valencia",
+          description:
+            "Duraciones y precios de las sesiones de masaje en el estudio pluma de Valencia, incluidos los bonos digitales de 60 y 90 minutos.",
+        },
+        book: {
+          title: "Reservar un masaje · pluma Valencia",
+          description:
+            "Elige la duración y encuentra una cita en el estudio pluma de Valencia. Los horarios corresponden a la hora local de Valencia.",
+        },
+        bonos: {
+          title: "Bonos digitales · pluma Valencia",
+          description:
+            "Un bono digital para sesiones de masaje en pluma, que recibes por email y llevas en el móvil. Elige entre tres diseños.",
+        },
+        notice: {
+          title: "Aviso legal · pluma",
+          description: "Identidad del titular y datos de contacto de pluma.life.",
+        },
+        privacy: {
+          title: "Política de privacidad · pluma",
+          description:
+            "Cómo trata pluma los datos personales de las reservas: finalidades, bases legales, destinatarios y conservación.",
+        },
+        cookies: {
+          title: "Política de cookies · pluma",
+          description:
+            "Cookies, almacenamiento local y peticiones a terceros que utiliza pluma.life.",
+        },
+        terms: {
+          title: "Condiciones de reserva · pluma",
+          description:
+            "Condiciones aplicables a la reserva de una sesión de masaje en el estudio pluma de Valencia.",
+        },
+        bonoTerms: {
+          title: "Condiciones de los bonos · pluma",
+          description:
+            "Condiciones que se aplicarán a los bonos digitales prepago para sesiones de masaje en pluma.",
+        },
+        notFound: {
+          title: "Página no encontrada · pluma",
+          description: "Esta página no existe en pluma.life.",
+        },
+      },
     },
     nav: {
       about: "Sobre nosotros",
       pricing: "Precios",
-      memberCard: "Tarjeta de miembro",
+      bonos: "Bonos digitales",
       book: "Reservar",
       main: "Principal",
       openMenu: "Abrir menú",
@@ -299,114 +685,326 @@ export const translations = {
       toLight: "Cambiar a modo claro",
       toDark: "Cambiar a modo oscuro",
     },
+    prelaunch: {
+      badge: "Próximamente podrás reservar",
+      bookingNotice:
+        "Próximamente podrás reservar. ¿Tienes alguna pregunta? Escríbele a Stephen.",
+      emailCta: "Escribir a Stephen",
+      bonoBadge: "Próximamente",
+      bonoNotice:
+        "Próximamente: elige un diseño, recibe tu bono por email y llévalo en el móvil. La compra online aún no está disponible.",
+      bonoCta: "Consulta sobre los bonos",
+      previewLabel: "Contenido de muestra — pendiente de aprobación",
+    },
     hero: {
-      eyebrow: "Masaje en estudio en casa",
-      tagline:
-        "Masaje restaurativo en un estudio privado en casa — relájate, recupérate y siéntete mejor.",
+      eyebrow: "Estudio privado de masajes · Valencia",
+      title: "Un poco más de tiempo para ti.",
+      supporting:
+        "Un masaje personalizado con Stephen, en un tranquilo estudio en casa cerca del Mercado Central.",
+      offer: "90 minutos · {price}",
+      primaryCta: "Ver horarios de 90 minutos",
+      secondaryCta: "Ver todas las duraciones",
       book: "Reservar sesión",
       learnMore: "Saber más",
+      mediaLabel: "Luz del sol entre las hojas junto al estudio",
+    },
+    sticky: {
+      label: "Ver horarios de 90 minutos",
+    },
+    durations: {
+      eyebrow: "Duraciones",
+      title: "¿Cuánto tiempo quieres?",
+      description:
+        "Cada sesión se adapta a la presión y las zonas que pidas. Stephen recomienda los 90 minutos.",
+      recommended: "Recomendado",
+      recommendedNote:
+        "Es la recomendación de Stephen, no una afirmación sobre ventas.",
+      cta: "Ver horarios de {minutes} minutos",
+      enquiryCta: "Consultar por {minutes} minutos",
+      enquiryNote:
+        "Todavía no hay calendario online para esta duración. Escríbele a Stephen y lo organizará contigo.",
+      scope: {
+        "30": "Una sesión centrada en una zona.",
+        "60": "Una sesión de cuerpo completo más breve.",
+        "90": "Tiempo para un masaje de cuerpo completo y más atención donde la necesites.",
+        "120": "Una sesión más larga, sin prisas.",
+      },
+      priceNote: "El precio indicado es el total de la sesión.",
+      paymentPending:
+        "Las formas y el momento de pago se están confirmando y se mostrarán aquí antes de reservar.",
+      cancellationPending:
+        "Las condiciones de cancelación y cambio de cita se están confirmando y se mostrarán aquí antes de reservar.",
+      termsLink: "Condiciones de reserva",
     },
     location: {
       eyebrow: "Ubicación",
-      walk: "A 5 min a pie del Mercado Central, Valencia",
+      walk: "A un breve paseo del Mercado Central, Valencia",
     },
     about: {
       eyebrow: "Tu masajista",
       title: "Sobre pluma",
-      body: "pluma es un estudio tranquilo y privado en casa que ofrece masaje terapéutico personalizado. Sin sala de espera, sin prisas — solo un espacio silencioso donde cada sesión se adapta a ti, ya sea tejido profundo, relajación o recuperación.",
+      body: "pluma es un estudio tranquilo y privado en casa que ofrece masaje personalizado. Sin sala de espera, sin prisas — solo un espacio silencioso donde cada sesión se adapta a la presión y las zonas que pidas.",
       stephen:
-        "Soy Stephen, tu masajista. Te recibo en mi estudio en casa con el mismo cuidado que pongo en cada sesión — cálido, profesional y centrado en lo que tu cuerpo necesita.",
+        "Soy Stephen, tu masajista. Te recibo en mi estudio en casa con el mismo cuidado que pongo en cada sesión — cercano, sin prisas y centrado en lo que me pidas.",
       stephenPhotoAlt: "Stephen, masajista en el estudio en casa pluma",
+      credential: "Stephen · masajista",
+    },
+    firstVisit: {
+      title: "Tu primera visita",
+      description: "Qué ocurre exactamente, para que nada te sorprenda.",
+      changing: {
+        title: "Vestuario privado y cobertura con toalla",
+        body: "Hay vestuario y baño privados. Permaneces cubierto con toalla o sábana durante toda la sesión y solo se descubre la zona que se está trabajando.",
+      },
+      control: {
+        title: "Puedes cambiar de idea en cualquier momento",
+        body: "Dile a Stephen si quieres más o menos presión, otra zona, o parar. No necesitas dar ningún motivo.",
+      },
+      personalisation: {
+        title: "Se acuerda antes de empezar",
+        body: "Antes del masaje acordáis la presión, las zonas en las que centrarse y lo que hay que evitar.",
+      },
+      access: {
+        title: "Cómo llegar",
+        body: "El estudio es un estudio privado en casa en Ciutat Vella, Valencia. La dirección completa, la planta y los datos de acceso se envían con la confirmación de tu reserva.",
+      },
+      accessPending:
+        "El acceso sin escalones, la disponibilidad de ascensor y el tiempo exacto a pie desde el Mercado Central aún no están confirmados. Pregunta a Stephen antes de reservar si el acceso es importante para tu visita.",
+      timePending:
+        "Se está confirmando si el tiempo reservado incluye la conversación inicial y el cambio de ropa, o si es solo tiempo de masaje.",
     },
     types: {
-      title: "Tipos",
-      pregnancy: "Embarazo",
-      pregnancyAlt: "Dibujo lineal de una figura embarazada",
-      relaxingLymphatic: "Relajante y linfático",
-      deepTissue: "Tejido profundo",
-      sports: "Deportivo",
+      eyebrow: "Durante la sesión",
+      title: "Relajación o trabajo más firme",
+      description:
+        "Dos descripciones sencillas de cómo puede sentirse una sesión. Dile a Stephen cuál prefieres.",
+      relaxing: {
+        title: "Más lento y suave",
+        body: "Movimientos largos y regulares a un ritmo constante, con menos presión. Es lo que la mayoría elige para desconectar.",
+      },
+      firm: {
+        title: "Más lento y firme",
+        body: "Presión más sostenida en las zonas que indiques, a un ritmo que acordáis sobre la marcha.",
+      },
+      note: "El masaje en pluma busca relajación y bienestar. No es fisioterapia ni un tratamiento para enfermedades o lesiones.",
+      draft: {
+        title: "No disponible actualmente",
+        body: "Las sesiones de embarazo y drenaje linfático no se pueden reservar mientras se revisan la formación de Stephen y el proceso de idoneidad correspondiente.",
+      },
     },
     pricing: {
       eyebrow: "Sesiones",
       title: "Precios",
       description:
-        "Tarifas por duración en el estudio en casa. Ahorra con tarjetas voucher prepago en citas de 60 y 90 minutos.",
+        "Precios por duración en el estudio en casa. Los bonos digitales prepago reducen el precio por sesión en las de 60 y 90 minutos.",
       book: "Reservar sesión",
       durationMinutes: "{minutes} min",
       singleTitle: "Sesiones sueltas",
-      durationScope: {
-        "30": "Una zona — trabajo focalizado en un área",
-        "60": "Cuerpo completo, relajación",
-        "90": "Cuerpo completo, tejido profundo",
-        "120": "Cuerpo completo prolongado y tejido profundo",
-      },
-      voucherTitle: "Tarjetas voucher",
+      voucherTitle: "Bonos digitales",
       voucherDescription:
-        "Las tarjetas voucher prepago incluyen descuento en sesiones de 60 y 90 minutos. Pregunta a Stephen por las tarjetas voucher en tu próxima visita o por correo.",
+        "Un bono prepago cubre varias sesiones de la misma duración a un precio por sesión más bajo.",
       total: "total",
       perSession: "por sesión",
+      saving: "Ahorras {amount}",
+      validity: "Validez de {months} meses",
       voucher5: {
-        title: "Tarjeta voucher de 5 sesiones",
+        title: "Bono de 5 sesiones",
         discount: "10% dto.",
       },
       voucher10: {
-        title: "Tarjeta voucher de 10 sesiones",
+        title: "Bono de 10 sesiones",
         discount: "15% dto.",
       },
+      taxNote:
+        "Los precios mostrados son el total que pagas. El tratamiento fiscal se está confirmando con un asesor; no se añadirá ningún cargo sobre el precio mostrado.",
+      conflictNote:
+        "El precio de 90 minutos se está confirmando. La cifra mostrada procede de la web actual y todavía no se ha reconciliado con el calendario.",
+      bonoLink: "Ver bonos digitales",
     },
     booking: {
       eyebrow: "Reservar sesión",
-      title: "Agenda tu visita",
+      title: "Encuentra tu cita",
       description:
-        "Elige el horario que te convenga. Recibirás un correo de confirmación con indicaciones al estudio en casa y todo lo que necesitas antes de tu cita.",
+        "Elige la duración y después el horario. Los horarios corresponden a la hora local de Valencia.",
+      selected: "Seleccionado",
+      changeDuration: "Cambiar duración",
+      timezone:
+        "Todos los horarios corresponden a la hora local de Valencia (Europe/Madrid).",
+      inPerson:
+        "Es una cita presencial en el estudio en casa de Valencia.",
+      iframeTitle: "Reservar un masaje presencial con Stephen",
+      loading: "Cargando el calendario…",
+      timeoutTitle: "El calendario no carga",
+      timeoutBody:
+        "Puede estar bloqueado o tardando en responder. Puedes abrirlo directamente o escribir a Stephen para acordar un horario.",
+      openCalendar: "Abrir el calendario en una pestaña nueva",
+      emailFallback: "Escribir a Stephen",
+      retry: "Reintentar",
+      privacyNotice:
+        "Stephen recibe tu nombre, correo y los datos de la cita para organizarla y confirmarla. Por favor, no incluyas información médica.",
+      privacyLink: "Cómo trata pluma tus datos",
+      enquirySubject: "Consulta sobre un masaje",
+      enquiryBody:
+        "Hola Stephen:%0D%0A%0D%0AMe gustaría consultar por una sesión de masaje.%0D%0A%0D%0AGracias,",
     },
-    memberCard: {
-      eyebrow: "Tarjeta de miembro",
-      title: "Tarjeta de miembro",
+    bonos: {
+      eyebrow: "Bonos digitales",
+      title: "Tus masajes, en tu móvil.",
+      subtitle: "Un bono digital que recibirás por email.",
+      subtitleSoon: "Los bonos digitales llegarán próximamente.",
+      intro:
+        "Un bono cubre varias sesiones de la misma duración, se paga una vez y lo usas a lo largo de tus visitas.",
+      stepsTitle: "Cómo funcionará",
+      steps: {
+        buy: {
+          title: "Elige tu bono",
+          body: "Selecciona las sesiones y el diseño, y paga online.",
+        },
+        email: {
+          title: "Revisa tu email",
+          body: "Recibirás tu tarjeta digital y las instrucciones.",
+        },
+        phone: {
+          title: "Añádelo a tu móvil",
+          body: "Guárdalo en tu wallet compatible y consulta las sesiones que te quedan.",
+        },
+      },
+      stepsNote:
+        "Este es el recorrido previsto. La compatibilidad con wallets y la rapidez de actualización aún se están verificando.",
+      remainingReady:
+        "Tus sesiones restantes se actualizan después de registrar cada visita.",
+      packagesTitle: "Elige tu bono",
+      packagesDescription:
+        "Mismos diseños, mismas condiciones. Solo cambian el número de sesiones y su duración.",
+      sessionsLabel: "Sesiones",
+      durationLabel: "Duración de la sesión",
+      sessionsOption: "{count} sesiones",
+      summaryTitle: "Tu selección",
+      summarySessions: "{count} × {minutes} min",
+      summaryTotal: "Total",
+      summaryPerSession: "Por sesión",
+      summarySaving: "Ahorro frente a sesiones sueltas",
+      summaryValidity: "Validez",
+      summaryValidityValue: "{months} meses",
+      validityStartPending:
+        "Todavía se está decidiendo cuándo empieza la validez y cómo se gestionan las ampliaciones.",
+      designTitle: "Elige tu diseño",
+      designDescription: "El mismo bono. Elige tu diseño.",
+      designLegend: "Diseño de la tarjeta",
+      designSelected: "Seleccionado",
+      previewTitle: "Bono digital",
+      previewRemaining: "Sesiones restantes",
+      previewSample: "Cifra de ejemplo",
+      previewAlt:
+        "Ilustración de un bono digital en un móvil; cifra de sesiones restantes de ejemplo",
+      previewNote:
+        "Ilustración genérica de un móvil. No es una pantalla de Apple Wallet ni de Google Wallet, ni una cuenta real.",
+      cardAlt: "Bono digital pluma, diseño {design}",
+      returnTitle: "¿Prefieres una sesión suelta?",
+      returnCta: "Reserva un masaje",
+      termsLink: "Condiciones de los bonos",
+      walletPending:
+        "Qué wallets serán compatibles y cómo se actualiza la tarjeta aún se están verificando. Todavía no hay nada a la venta.",
+    },
+    studio: {
+      eyebrow: "El estudio",
+      title: "Un estudio tranquilo en casa",
       description:
-        "Sesiones habituales a tarifa reducida. Pregunta a Stephen por las opciones de tarjeta de miembro en tu próxima visita o por correo.",
-    },
-    cal: {
-      notConfigured: "Cal.com aún no está configurado",
-      instructions: "Añade tu enlace de reservas en",
-      inFile: "en un archivo",
-      file: "(p. ej.",
-    },
-    legal: {
-      notice: "Aviso legal",
-      privacy: "Política de privacidad",
-      cookies: "Política de cookies",
-    },
-    legalPages: {
-      notice: {
-        title: "Aviso legal",
-        body: "En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE), se facilita la siguiente información.\n\nTitular del sitio web: Stephen Michetti, con nombre comercial pluma.\nDomicilio: Pl. de les Escoles Pies, Ciutat Vella, 46001 València, España.\nCorreo de contacto: {email}.\n\nEste sitio web ofrece información sobre servicios de masaje terapéutico en un estudio privado en casa y permite reservar citas en línea.\n\npluma no se responsabiliza del contenido de enlaces externos. El uso de este sitio implica la aceptación de este aviso legal.",
-      },
-      privacy: {
-        title: "Política de privacidad",
-        body: "De conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), le informamos sobre el tratamiento de sus datos personales.\n\nResponsable del tratamiento: Stephen Michetti (pluma). Contacto: {email}.\n\nTratamos los datos que facilita al reservar una sesión (nombre, correo y datos de la cita) únicamente para gestionar su cita y comunicarnos con usted sobre su visita.\n\nBase legal: ejecución del servicio solicitado y su consentimiento al reservar.\n\nLos datos no se ceden a terceros salvo las herramientas de reserva necesarias para programar su cita.\n\nPuede ejercer sus derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición contactando con {email}.\n\nPuede presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD).",
-      },
-      cookies: {
-        title: "Política de cookies",
-        body: "Este sitio web utiliza almacenamiento local del navegador para recordar sus preferencias de idioma y tema. No se utilizan cookies de publicidad ni de seguimiento de terceros.\n\nPuede eliminar estas preferencias en cualquier momento borrando los datos del navegador para este sitio.\n\nSi utiliza el widget de reservas, ese proveedor puede establecer sus propias cookies conforme a su política de privacidad.",
+        "Entra en el espacio donde tienen lugar las sesiones — una habitación privada y silenciosa para descansar.",
+      collageLabel: "Escenas del estudio en casa pluma",
+      videoLabel: "Recorrido del estudio en casa pluma",
+      highlights: {
+        oldTown: "Casco antiguo",
+        heatedTable: "Camilla de masaje calefactada",
+        noWait: "Sin tiempo de espera",
+        privateRoom: "Vestuario y baño privados",
+        masseur: "Stephen · masajista",
       },
     },
-    footer: {
-      tagline: "Masaje restaurativo en un estudio privado en casa.",
-      contactTitle: "Contacto",
-      legalTitle: "Información legal",
-      owner: "Titular",
-      nif: "NIF",
-      rights: "Todos los derechos reservados.",
+    treatments: {
+      title: "Dónde son las sesiones",
+      description:
+        "En el estudio privado en casa, en Ciutat Vella, Valencia.",
+      comingSoon: "Aún no disponible",
+      atStudio: {
+        name: "En el estudio",
+        description:
+          "Un estudio privado en casa junto al Mercado Central. Sin sala de espera.",
+      },
+      onSite: {
+        name: "En tu ubicación",
+        description:
+          "Las sesiones en tu casa, hotel u oficina aún no están disponibles. Escríbele a Stephen si quieres que te avise cuando lo estén.",
+      },
     },
-    badges: {
-      nestling: "polluelo",
-      fledgling: "volantón",
-      wingmate: "wingmate",
+    benefits: {
+      title: "Detalles",
+      description: "Pequeñas cosas que definen cómo se siente la sesión.",
+      proof: {
+        title: "Un estudio cuidado",
+        body: "Aceites vegetales, una sala tranquila junto al Mercado Central y sesiones adaptadas a lo que pidas.",
+      },
+      leaf: {
+        title: "Aceites y aromas orgánicos",
+        body: "Aceites vegetales y aromas suaves, elegidos para una sala calmada y amable con la piel.",
+      },
+      landscape: {
+        title: "Junto al Mercado Central",
+        body: "Un estudio privado en Ciutat Vella, a un breve paseo del mercado.",
+      },
+      texture: {
+        title: "Sesiones personalizadas",
+        body: "La presión, las zonas en las que centrarse y lo que hay que evitar se acuerdan contigo antes de empezar.",
+      },
+      languages: {
+        title: "Idiomas",
+        body: "Inglés y francés nativos, español fluido.",
+      },
+    },
+    quote: {
+      title: "Lo que dicen los clientes",
+      collageLabel: "Retratos de clientes",
+      pause: "Pausar",
+      play: "Reproducir",
+      previous: "Testimonio anterior",
+      next: "Testimonio siguiente",
+      provenanceNote:
+        "Reseñas compartidas con pluma por sus clientes. Los permisos de las fotografías se están confirmando.",
+    },
+    ribbon: {
+      message: "Reserva tu sesión · Masaje en estudio en casa · Valencia",
+    },
+    faq: {
+      title: "Preguntas frecuentes",
+      booking: {
+        question: "¿Cómo reservo una sesión?",
+        answer:
+          "Elige una duración y un horario en la página de reservas. Recibirás un correo de confirmación con las indicaciones para llegar al estudio y todo lo que necesitas antes de tu visita.",
+      },
+      location: {
+        question: "¿Dónde está el estudio?",
+        answer:
+          "pluma es un estudio privado en casa en Ciutat Vella, Valencia, a un breve paseo del Mercado Central. La dirección completa y las indicaciones se envían con la confirmación de la reserva.",
+      },
+      expect: {
+        question: "¿Qué debo esperar?",
+        answer:
+          "Sin sala de espera y sin prisas. Antes de empezar acordáis la presión y las zonas en las que centrarse, hay vestuario privado y permaneces cubierto durante toda la sesión.",
+      },
+      cancel: {
+        question: "¿Cuál es la política de cancelación?",
+        answer:
+          "Las condiciones de cancelación, cambio de cita y retrasos se están finalizando; se publicarán aquí y se mostrarán antes de confirmar una reserva. Mientras tanto, escribe por correo lo antes posible.",
+      },
+      length: {
+        question: "¿Qué duración elijo?",
+        answer:
+          "Stephen recomienda los 90 minutos: dan tiempo a una sesión de cuerpo completo con más atención donde la necesites. Los 60 minutos son una sesión de cuerpo completo más breve y los 30 minutos cubren una sola zona.",
+      },
     },
     testimonials: {
       eyebrow: "Testimonios",
-      title: "Lo que dicen nuestros clientes",
+      title: "Lo que dicen los clientes",
       carla: {
         name: "Carla M.",
         countries: "España",
@@ -423,7 +1021,7 @@ export const translations = {
         name: "Candice R.",
         countries: "Estados Unidos e India",
         quote:
-          "Cálida, profesional y con un cuidado genuino. pluma ya forma parte de mi rutina mensual de autocuidado.",
+          "Cálido, profesional y con un cuidado genuino. pluma ya forma parte de mi rutina mensual de autocuidado.",
       },
       beatrice: {
         name: "Beatrice H.",
@@ -450,101 +1048,168 @@ export const translations = {
           "Sigo volviendo. El estudio en casa es tranquilo, Stephen escucha lo que necesitas y sales completamente renovada.",
       },
     },
-    studio: {
-      eyebrow: "El estudio",
-      title: "Un estudio tranquilo en casa",
-      description:
-        "Entra en el espacio donde tienen lugar las sesiones — una habitación privada y pacífica diseñada para el descanso y la recuperación.",
-      collageLabel: "Escenas del estudio en casa pluma",
-      videoLabel: "Recorrido del estudio en casa pluma",
-      highlights: {
-        oldTown: "Casco antiguo",
-        heatedTable: "Camilla de masaje calefactada",
-        noWait: "Sin tiempo de espera",
-        privateRoom: "Vestuario y baño privados",
-        certified: "Masajista certificada",
+    badges: {
+      nestling: "polluelo",
+      fledgling: "volantón",
+      wingmate: "wingmate",
+    },
+    cal: {
+      notConfigured: "El calendario de reservas aún no está conectado",
+      notConfiguredBody:
+        "Puedes consultar a Stephen por correo sobre una cita.",
+    },
+    legal: {
+      notice: "Aviso legal",
+      privacy: "Política de privacidad",
+      cookies: "Política de cookies",
+      terms: "Condiciones de reserva",
+      bonoTerms: "Condiciones de los bonos",
+    },
+    legalPages: {
+      pendingBanner:
+        "Esta página está incompleta. Los puntos marcados dependen de información de negocio confirmada y deben resolverse antes de abrir reservas o pagos.",
+      pendingItem: "Pendiente de información confirmada",
+      notice: {
+        title: "Aviso legal",
+        intro:
+          "Información facilitada conforme al artículo 10 de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE).",
+        operatorTitle: "Titular",
+        operatorName: "Nombre comercial: pluma.",
+        operatorPending:
+          "El nombre legal completo, el NIF y el domicilio de la actividad todavía no están confirmados y por eso no se publican aquí.",
+        contactTitle: "Contacto",
+        contactBody: "Correo: {email}.",
+        activityTitle: "Actividad",
+        activityBody:
+          "Este sitio web describe sesiones de masaje en un estudio privado en casa en Valencia y, cuando abra, permitirá reservar citas en línea.",
+        activityPending:
+          "El alta como autónomo, la clasificación de la actividad del local y los datos de titulación y seguro profesional no están confirmados. Nada en este sitio debe interpretarse como una afirmación de que lo estén.",
+        complaintsTitle: "Reclamaciones",
+        complaintsBody:
+          "Las reclamaciones pueden enviarse a {email}. Las hojas de reclamación oficiales de la Generalitat Valenciana todavía no están disponibles para este estudio.",
+        linksTitle: "Enlaces externos",
+        linksBody:
+          "pluma no se responsabiliza del contenido de los sitios web externos enlazados desde este sitio.",
+      },
+      privacy: {
+        title: "Política de privacidad",
+        intro:
+          "Esta política explica cómo trata pluma los datos personales, conforme al Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).",
+        controllerTitle: "Quién es responsable",
+        controllerBody:
+          "Stephen Michetti, con nombre comercial pluma. Contacto: {email}.",
+        controllerPending:
+          "La identidad legal completa y el domicilio del responsable están pendientes de confirmación y se añadirán aquí.",
+        inventoryTitle: "Qué datos se tratan",
+        inventoryIntro:
+          "La tabla siguiente recoge cada categoría de datos que se recopila realmente a través de este sitio, para qué se trata y quién los recibe.",
+        inventoryHeaders: {
+          data: "Datos",
+          purpose: "Finalidad",
+          basis: "Base legal",
+          recipients: "Destinatarios",
+          retention: "Conservación",
+        },
+        healthTitle: "Información de salud",
+        healthBody:
+          "Por favor, no envíes información médica a través del formulario de reserva ni por correo. Una reserva ordinaria no aporta una condición lícita para tratar datos de salud. Si se introduce un proceso específico, tendrá su propia explicación y garantías.",
+        marketingTitle: "Comunicaciones comerciales",
+        marketingBody:
+          "Reservar no te suscribe a nada. pluma no envía actualmente comunicaciones comerciales.",
+        rightsTitle: "Tus derechos",
+        rightsBody:
+          "Puedes solicitar acceso, rectificación, supresión, limitación, portabilidad u oponerte al tratamiento escribiendo a {email}. También puedes reclamar ante la Agencia Española de Protección de Datos (AEPD).",
+        transfersTitle: "Transferencias fuera del EEE",
+        transfersPending:
+          "Se están revisando los contratos de encargado de tratamiento y los mecanismos de transferencia internacional del proveedor de reservas y del alojamiento. Esta sección indicará la situación real cuando se confirme.",
+      },
+      cookies: {
+        title: "Política de cookies",
+        intro:
+          "Esta página indica qué guarda este sitio en tu navegador y qué peticiones hace a terceros.",
+        necessaryTitle: "Almacenamiento necesario",
+        necessaryBody:
+          "Se guardan dos valores en el almacenamiento local de tu navegador: el idioma que eliges y el tema claro u oscuro. Solo se establecen cuando haces una elección, solo los lee este sitio y están exentos de consentimiento porque cumplen una preferencia que has pedido. Puedes eliminarlos borrando los datos del sitio en tu navegador.",
+        analyticsTitle: "Analítica y publicidad",
+        analyticsBody:
+          "Este sitio no tiene analítica, publicidad ni seguimiento, y no tiene banner de cookies porque no hay nada que consentir. Si eso cambia, el almacenamiento no esencial solo se cargará tras una elección clara, con opciones de aceptar y rechazar igual de accesibles.",
+        thirdPartyTitle: "Peticiones a terceros",
+        thirdPartyBody:
+          "Las tipografías se cargan desde Google Fonts, por lo que tu navegador contacta con fonts.googleapis.com y fonts.gstatic.com. La página de reservas carga el calendario de Cal.com, que establece su propio almacenamiento conforme a su política; eso solo ocurre si abres la página de reservas.",
+        thirdPartyPending:
+          "Alojar las tipografías en el propio servidor, lo que eliminaría por completo la petición a Google Fonts, es una mejora pendiente.",
+      },
+      terms: {
+        title: "Condiciones de reserva",
+        intro:
+          "Estas condiciones se aplicarán a la reserva de una sesión de masaje en el estudio pluma. Se publican como borrador mientras se confirman los puntos restantes.",
+        draftBanner:
+          "Borrador. Las reservas no están abiertas. Estas condiciones aún no están en vigor y varios puntos siguen por decidir.",
+        serviceTitle: "Qué se reserva",
+        serviceBody:
+          "Una sesión de masaje presencial de la duración que elijas, en un estudio privado en casa en Ciutat Vella, Valencia. La sesión busca relajación y bienestar. No es fisioterapia, ni diagnóstico, ni tratamiento de ninguna enfermedad o lesión.",
+        priceTitle: "Precio",
+        priceBody:
+          "El precio mostrado al reservar es el total de la sesión. No se añade ningún cargo en un paso posterior.",
+        pricePending:
+          "Los precios definitivos aprobados y su tratamiento fiscal se están confirmando con un asesor.",
+        paymentTitle: "Pago",
+        paymentPending:
+          "Las formas de pago aceptadas, el momento del cobro y si se aplica una señal todavía no están decididos.",
+        cancellationTitle: "Cancelación, cambios y retrasos",
+        cancellationPending:
+          "El plazo de aviso, cómo cambiar la cita, qué ocurre si llegas tarde o no acudes y cualquier consecuencia económica todavía no están decididos. No hay ningún plazo ni pérdida de importe en vigor.",
+        withdrawalTitle: "Derecho de desistimiento",
+        withdrawalPending:
+          "Se está revisando con un asesor cómo se aplica el derecho legal de desistimiento de 14 días a una cita con fecha. La cancelación de una cita y el desistimiento legal son cosas distintas y se describirán por separado.",
+        complaintsTitle: "Reclamaciones",
+        complaintsBody:
+          "Escribe a {email}. Las hojas de reclamación oficiales se tratan en el aviso legal.",
+      },
+      bonoTerms: {
+        title: "Condiciones de los bonos",
+        intro:
+          "Estas condiciones se aplicarán a los bonos digitales prepago. Se publican como borrador; los bonos no están a la venta.",
+        draftBanner:
+          "Borrador. Los bonos digitales todavía no se pueden comprar y estas condiciones no están en vigor.",
+        whatTitle: "Qué es un bono",
+        whatBody:
+          "Un crédito prepago para un número determinado de sesiones de masaje de una misma duración, en el estudio pluma. Un bono no es un saldo en efectivo y no tiene valor en metálico.",
+        priceTitle: "Precio y sesiones",
+        priceBody:
+          "Un bono de 5 sesiones reduce el precio por sesión un 10%. Uno de 10 sesiones lo reduce un 15%. Hay bonos para sesiones de 60 y 90 minutos.",
+        validityTitle: "Validez",
+        validityBody:
+          "Un bono de 5 sesiones es válido 3 meses y uno de 10 sesiones, 6 meses.",
+        validityPending:
+          "Cuándo empieza el periodo de validez, cómo se gestiona el final de un mes natural y si son posibles las ampliaciones todavía no están decididos.",
+        transferTitle: "Compartir, regalar y mezclar duraciones",
+        transferPending:
+          "Si un bono se puede compartir o regalar, y si se pueden mezclar sesiones de distinta duración, todavía no está decidido.",
+        unusedTitle: "Sesiones no utilizadas y reembolsos",
+        unusedPending:
+          "Cómo se tratan las sesiones no utilizadas al final del periodo de validez, y qué ocurre si pluma no puede prestarlas, todavía no está decidido. No hay ninguna regla de pérdida en vigor.",
+        deliveryTitle: "Entrega",
+        deliveryPending:
+          "El proveedor de correo y de los pases, las wallets compatibles y la actualización de las sesiones restantes no están cerrados ni probados.",
+        withdrawalTitle: "Derecho de desistimiento",
+        withdrawalPending:
+          "Se está revisando con un asesor el derecho legal de desistimiento para un paquete prepago sin fecha. Recibir un pase por correo no elimina por sí solo ese derecho.",
       },
     },
-    treatments: {
-      title: "Servicios de masaje",
-      description: "En el estudio o a domicilio en Valencia.",
-      comingSoon: "Próximamente",
-      atStudio: {
-        name: "En el estudio",
-        description:
-          "Ven a Pluma Studio, junto al Mercat Central. Sin tiempos de espera.",
-      },
-      onSite: {
-        name: "A domicilio",
-        description:
-          "En tu oficina, casa u hotel dentro de la ciudad de Valencia.",
-      },
+    notFound: {
+      title: "Esta página no existe",
+      body: "Puede que la dirección esté mal escrita o que la página se haya movido.",
+      home: "Ir a la página de inicio",
+      book: "Reservar sesión",
     },
-    benefits: {
-      title: "Beneficios",
-      description:
-        "Detalles cuidados que hacen que cada sesión se sienta pensada para ti.",
-      proof: {
-        title: "Un estudio cuidado",
-        body: "Aceites orgánicos, una sala tranquila junto al Mercat Central y sesiones pensadas para ti.",
-      },
-      leaf: {
-        title: "Aceites y aromas 100% orgánicos",
-        body: "Aceites vegetales y aromas suaves, elegidos para una sala calmada y amable con la piel.",
-      },
-      landscape: {
-        title: "Junto al Mercat Central",
-        body: "Un estudio privado en Ciutat Vella, a un breve paseo del mercado.",
-      },
-      texture: {
-        title: "Sesiones personalizadas",
-        body: "Nativo en inglés y francés, fluido en español, para que una o varias sesiones resulten coherentes.",
-      },
-      languages: {
-        title: "Idiomas",
-        body: "Inglés y francés nativos, español fluido.",
-      },
-    },
-    clients: {
-      title: "Quién visita",
-      description:
-        "La mayoría de las sesiones son con mujeres. El estudio es un espacio privado y tranquilo para mujeres y hombres.",
-      female: "Mujeres",
-      male: "Hombres",
-      summary:
-        "El {female} por ciento de los clientes son mujeres y el {male} por ciento son hombres.",
-    },
-    quote: {
-      title: "Testimonio destacado",
-      text: "Salí sintiéndome completamente renovada. El estudio en casa es tan tranquilo y cada sesión se adapta exactamente a lo que mi cuerpo necesita.",
-      attribution: "Carla M.",
-      collageLabel: "Momentos del estudio y clientes",
-    },
-    ribbon: {
-      message: "Reserva tu sesión · Masaje en estudio en casa · Valencia",
-    },
-    faq: {
-      title: "Preguntas frecuentes",
-      booking: {
-        question: "¿Cómo reservo una sesión?",
-        answer:
-          "Elige un horario en la página de reservas. Recibirás un correo de confirmación con indicaciones al estudio en casa y todo lo que necesitas antes de tu visita.",
-      },
-      location: {
-        question: "¿Dónde está el estudio?",
-        answer:
-          "pluma es un estudio privado en casa en Ciutat Vella, Valencia — a unos 5 minutos a pie del Mercado Central. La dirección completa y las indicaciones se envían con tu confirmación de reserva.",
-      },
-      expect: {
-        question: "¿Qué debo esperar?",
-        answer:
-          "Sin sala de espera, sin prisas. Stephen te recibe en un espacio privado y tranquilo y adapta cada sesión a lo que tu cuerpo necesita — tejido profundo, relajación o recuperación.",
-      },
-      cancel: {
-        question: "¿Cuál es la política de cancelación?",
-        answer:
-          "Si necesitas reprogramar o cancelar, contacta lo antes posible por correo para que la cita pueda ofrecerse a otra persona.",
-      },
+    footer: {
+      tagline: "Masaje restaurativo en un estudio privado en casa.",
+      contactTitle: "Contacto",
+      legalTitle: "Información legal",
+      owner: "Titular",
+      nif: "NIF",
+      rights: "Todos los derechos reservados.",
     },
     gallery: {
       label: "Retratos de clientes",
@@ -552,18 +1217,16 @@ export const translations = {
   },
 } as const;
 
-export type TranslationKey = keyof typeof translations.en;
-
 function getNestedValue(
   obj: Record<string, unknown>,
   path: string,
-): string | undefined {
+): unknown {
   return path.split(".").reduce<unknown>((current, key) => {
     if (current && typeof current === "object" && key in current) {
       return (current as Record<string, unknown>)[key];
     }
     return undefined;
-  }, obj) as string | undefined;
+  }, obj);
 }
 
 export function translate(language: Language, key: string): string {
@@ -571,7 +1234,17 @@ export function translate(language: Language, key: string): string {
     getNestedValue(translations[language], key) ??
     getNestedValue(translations.en, key);
 
-  return value ?? key;
+  return typeof value === "string" ? value : key;
+}
+
+/** Substitutes `{name}` placeholders in a translated string. */
+export function interpolate(
+  template: string,
+  values: Record<string, string | number>,
+): string {
+  return template.replace(/\{(\w+)\}/g, (match, name: string) =>
+    name in values ? String(values[name]) : match,
+  );
 }
 
 function languageFromTag(tag: string): Language | null {

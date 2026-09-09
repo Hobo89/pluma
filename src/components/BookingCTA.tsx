@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
+import { BookingAction } from "./BookingAction";
 
 export function BookingCTA() {
   const { t } = useLanguage();
@@ -16,9 +17,11 @@ export function BookingCTA() {
       <h2 className="psl-display" style={{ color: "var(--psl-white)" }}>
         {t("booking.title")}
       </h2>
-      <Link to="/book" className="psl-button">
-        {t("hero.book")}
-      </Link>
+      <BookingAction
+        label={t("hero.primaryCta")}
+        duration={recommendedDuration}
+        placement="footer_cta"
+      />
     </section>
   );
 }
