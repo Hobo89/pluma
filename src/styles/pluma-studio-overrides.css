@@ -1810,6 +1810,10 @@ html.dark .psl-feature-list__icon img {
   font-size: var(--psl-type-card);
 }
 
+/* The ghost button is designed for dark hero backgrounds. On light surfaces
+   its white text on a translucent dark fill fails contrast, so anywhere inside
+   a normal page it gets a bordered light treatment instead. */
+.psl-page .psl-button--ghost,
 .psl-bono-return .psl-button--ghost,
 .psl-bono-teaser .psl-button--ghost {
   background: transparent;
