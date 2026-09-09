@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { translations } from "./src/i18n/translations";
 
 const ORIGIN = "https://pluma.life";
-const SOCIAL_IMAGE = "/assets/images/hero-poster.jpg";
+const SOCIAL_IMAGE = "/favicon.png";
 
 /** Documented default language for the static HTML that crawlers receive. */
 const DEFAULT_LANGUAGE = "en";
@@ -88,7 +88,7 @@ function htmlForRoute(
     `<meta property="og:url" content="${canonical}" />`,
     `<meta property="og:image" content="${ORIGIN}${SOCIAL_IMAGE}" />`,
     `<meta property="og:locale" content="en_GB" />`,
-    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:card" content="summary" />`,
   ].join("\n    ");
 
   return shell
@@ -146,4 +146,9 @@ function siteFiles(): Plugin {
 export default defineConfig({
   plugins: [react(), tailwindcss(), siteFiles()],
   base: "/",
+  server: {
+    // The project lives on a Google Drive mount, which emits no filesystem
+    // events. Without polling the dev server keeps serving stale modules.
+    watch: { usePolling: true, interval: 300 },
+  },
 });

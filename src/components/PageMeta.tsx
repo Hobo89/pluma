@@ -75,7 +75,7 @@ export function PageMeta({ page, noindex = false }: PageMetaProps) {
     upsertMeta("property", "og:url", canonical);
     upsertMeta("property", "og:image", `${site.origin}${site.socialImage}`);
     upsertMeta("property", "og:locale", language === "es" ? "es_ES" : "en_GB");
-    upsertMeta("name", "twitter:card", "summary_large_image");
+    upsertMeta("name", "twitter:card", "summary");
     upsertMeta("name", "twitter:title", fullTitle);
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", `${site.origin}${site.socialImage}`);

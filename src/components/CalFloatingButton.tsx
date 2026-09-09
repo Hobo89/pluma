@@ -20,6 +20,29 @@ function removeFloatingButton(namespace: string) {
     ?.remove();
 }
 
+/** Cal.com hides the icon but leaves the label's left margin in place. */
+function dropIconSpacing(namespace: string) {
+  const apply = () => {
+    const host = document.querySelector(
+      `cal-floating-button[data-cal-namespace="${namespace}"]`,
+    );
+    const label = host?.shadowRoot?.querySelector<HTMLElement>("#button");
+    if (!label) return false;
+    label.style.marginLeft = "0";
+    return true;
+  };
+
+  if (apply()) return;
+
+  let frames = 0;
+  const retry = () => {
+    frames += 1;
+    if (apply() || frames > 30) return;
+    requestAnimationFrame(retry);
+  };
+  requestAnimationFrame(retry);
+}
+
 /**
  * Persistent Cal.com floating booking button on every page except `/book`,
  * where the inline calendar already provides the same flow.
@@ -52,12 +75,14 @@ export function CalFloatingButton() {
       cal("floatingButton", {
         calLink,
         buttonText: t("floatingButton.label"),
+        hideButtonIcon: true,
         buttonColor: BUTTON_COLOR,
         config: {
           layout: "month_view",
           useSlotsViewOnSmallScreen: "true",
         },
       });
+      dropIconSpacing(calFloatingNamespace);
 
       cal("ui", {
         theme,
