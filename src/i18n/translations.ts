@@ -97,6 +97,9 @@ export const translations = {
     sticky: {
       label: "Book a massage",
     },
+    floatingButton: {
+      label: "Book Massage",
+    },
     durations: {
       eyebrow: "Session lengths",
       title: "How long would you like?",
@@ -685,6 +688,9 @@ export const translations = {
     },
     sticky: {
       label: "Reservar un masaje",
+    },
+    floatingButton: {
+      label: "Reservar masaje",
     },
     durations: {
       eyebrow: "Duraciones",

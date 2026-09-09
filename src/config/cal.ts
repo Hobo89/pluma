@@ -62,6 +62,9 @@ export function calTargetFor(duration?: PricingDuration): CalTarget | null {
 export const calConfigured =
   calLink.length > 0 || Object.values(perDuration).some(Boolean);
 
+/** Isolated namespace for the floating popup button (separate from the inline embed). */
+export const calFloatingNamespace = "secret";
+
 /** Public URL for the "open the calendar directly" fallback. */
 export function calDirectUrl(target: CalTarget): string {
   const query = new URLSearchParams(target.params).toString();

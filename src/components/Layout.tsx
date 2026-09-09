@@ -1,4 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
+import { CalFloatingButton } from "./CalFloatingButton";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useLanguage } from "../context/LanguageContext";
@@ -22,6 +23,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <CalFloatingButton />
     </div>
   );
 }
