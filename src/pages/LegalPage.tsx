@@ -175,9 +175,6 @@ function TermsBody() {
       </Section>
       <Section title={t(`${k}.priceTitle`)}>
         <p className="psl-copy">{t(`${k}.priceBody`)}</p>
-        <PendingNote label={t("legalPages.pendingItem")}>
-          {t(`${k}.pricePending`)}
-        </PendingNote>
       </Section>
       <Section title={t(`${k}.paymentTitle`)}>
         <PendingNote label={t("legalPages.pendingItem")}>

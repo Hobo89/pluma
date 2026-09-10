@@ -39,7 +39,7 @@ export function Footer() {
             )}
             <li>
               <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
-                {site.address}
+                {t("footer.address")}
               </a>
             </li>
           </ul>

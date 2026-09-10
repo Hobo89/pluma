@@ -39,8 +39,8 @@ export const processingInventory: readonly ProcessingEntry[] = [
       es: "Cal.com, que gestiona el calendario de reservas",
     },
     retention: {
-      en: "Pending: the retention period is being set with an adviser",
-      es: "Pendiente: el plazo de conservación se está fijando con un asesor",
+      en: "Pending: the retention period has not been set yet",
+      es: "Pendiente: el plazo de conservación todavía no está fijado",
     },
     pending: true,
   },
@@ -63,8 +63,8 @@ export const processingInventory: readonly ProcessingEntry[] = [
       es: "El proveedor de correo que aloja el buzón de pluma",
     },
     retention: {
-      en: "Pending: the retention period is being set with an adviser",
-      es: "Pendiente: el plazo de conservación se está fijando con un asesor",
+      en: "Pending: the retention period has not been set yet",
+      es: "Pendiente: el plazo de conservación todavía no está fijado",
     },
     pending: true,
   },

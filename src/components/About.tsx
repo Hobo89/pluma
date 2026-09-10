@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { StudioVideo } from "./StudioVideo";
+import { StudioFeature } from "./StudioFeature";
 
 export function About() {
   const { t } = useLanguage();
@@ -42,10 +42,9 @@ export function About() {
 
       <div className="psl-container psl-page">
         <p className="psl-copy">{t("about.stephen")}</p>
-        <div style={{ marginTop: "var(--psl-space-12)" }}>
-          <StudioVideo showHeading={false} />
-        </div>
       </div>
+
+      <StudioFeature />
     </>
   );
 }

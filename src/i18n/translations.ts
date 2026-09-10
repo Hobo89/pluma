@@ -14,7 +14,7 @@ export const translations = {
         about: {
           title: "About Stephen · Massage studio in Valencia",
           description:
-            "Meet Stephen and the private home studio in Ciutat Vella, Valencia, where every massage is shaped around what you ask for.",
+            "Meet Stephen and the private home studio in Valencia's Old Town, where every massage is shaped around what you ask for.",
         },
         pricing: {
           title: "Prices · Massage sessions in Valencia",
@@ -64,7 +64,7 @@ export const translations = {
     nav: {
       about: "About",
       pricing: "Prices",
-      bonos: "Digital bonos",
+      bonos: "Vouchers",
       book: "Book",
       main: "Main",
       openMenu: "Open menu",
@@ -134,29 +134,6 @@ export const translations = {
       stephenPhotoAlt: "Stephen, certified masseur at the pluma home studio",
       credential: "Stephen · your certified masseur",
     },
-    firstVisit: {
-      title: "Your first visit",
-      description:
-        "What actually happens, so nothing about the visit is a surprise.",
-      changing: {
-        title: "Private changing and draping",
-        body: "There is a private changing room and bathroom. You stay covered with a towel or sheet throughout, and only the area being worked on is uncovered.",
-      },
-      control: {
-        title: "You can change your mind at any point",
-        body: "Tell Stephen if you want more or less pressure, a different area, or to stop. You do not need a reason.",
-      },
-      personalisation: {
-        title: "Agreed before you start",
-        body: "Before the massage you agree the pressure, the areas to focus on and anything to avoid.",
-      },
-      access: {
-        title: "Getting there",
-        body: "The studio is a private home studio in Ciutat Vella, Valencia. Full address, floor and entrance details are sent with your booking confirmation.",
-      },
-      accessNote:
-        "If step-free access or a lift matters for your visit, please ask before booking so Stephen can tell you exactly what to expect.",
-    },
     types: {
       title: "Types",
       pregnancy: "Pregnancy",
@@ -197,7 +174,7 @@ export const translations = {
         discount: "15% off",
       },
       taxNote:
-        "Prices shown are the total you pay. Tax treatment is being confirmed with an adviser; no charge will be added on top of a displayed price.",
+        "Prices include tax. The amount shown is the total you pay.",
       conflictNote:
         "The price for 90 minutes is being confirmed. The figure shown here is from the current website and has not yet been reconciled with the calendar.",
       bonoLink: "See digital bonos",
@@ -290,29 +267,16 @@ export const translations = {
       title: "A calm home studio",
       description:
         "Step inside the space where sessions take place — a private, quiet room for rest.",
+      accessNote:
+        "Access to the third floor is by stairs, without a lift, so unfortunately we cannot welcome wheelchair users or persons with reduced mobility. However, at-home massages will soon be available!",
       collageLabel: "Scenes from the pluma home studio",
       videoLabel: "Tour of the pluma home studio",
       highlights: {
-        oldTown: "Old town",
+        oldTown: "Old Town",
         heatedTable: "Heated massage table",
         noWait: "No wait time",
         privateRoom: "Private changing room and bathroom",
         masseur: "Stephen · your certified masseur",
-      },
-    },
-    treatments: {
-      title: "Where sessions happen",
-      description: "At the private home studio in Ciutat Vella, Valencia.",
-      comingSoon: "Not available yet",
-      atStudio: {
-        name: "At the studio",
-        description:
-          "A private home studio next to the Central Market. No waiting room.",
-      },
-      onSite: {
-        name: "At your location",
-        description:
-          "Sessions at your home, hotel or office are not available yet. Get in touch if you would like to be told when they are.",
       },
     },
     benefits: {
@@ -363,12 +327,12 @@ export const translations = {
       location: {
         question: "Where is the studio?",
         answer:
-          "pluma is a private home studio in Ciutat Vella, Valencia, a short walk from the Central Market. The full address and directions are sent with your booking confirmation.",
+          "pluma is a private home studio in Valencia's Old Town, a short walk from the Central Market. Full address, floor and entrance details are sent with your booking confirmation. The studio is on the third floor, reached by stairs with no lift, so it is not accessible for wheelchair users or people with reduced mobility. At-home massages will soon be available.",
       },
-      expect: {
-        question: "What should I expect?",
+      visit: {
+        question: "What happens on a first visit?",
         answer:
-          "No waiting room and no rush. You agree the pressure and the areas to focus on before starting, there is a private changing room, and you stay covered throughout.",
+          "Before the massage you agree the pressure, the areas to focus on and anything to avoid. There is a private changing room and bathroom; you stay covered with a towel or sheet, and only the area being worked on is uncovered. You can ask for more or less pressure, a different area, or to stop at any point — you do not need a reason.",
       },
       cancel: {
         question: "What is your cancellation policy?",
@@ -526,12 +490,10 @@ export const translations = {
           "Draft. Bookings are not open. These terms are not yet in force and several items below are still being decided.",
         serviceTitle: "What is being booked",
         serviceBody:
-          "An in-person massage session of the length you select, at a private home studio in Ciutat Vella, Valencia. The session is for relaxation and comfort. It is not physiotherapy, diagnosis or treatment of any illness or injury.",
+          "An in-person massage session of the length you select, at a private home studio in Valencia's Old Town. The session is for relaxation and comfort. It is not physiotherapy, diagnosis or treatment of any illness or injury.",
         priceTitle: "Price",
         priceBody:
-          "The price shown when you book is the total for the session. No charge is added at a later step.",
-        pricePending:
-          "Final approved prices and their tax treatment are being confirmed with an adviser.",
+          "The price shown when you book is the total for the session, including tax. No charge is added at a later step.",
         paymentTitle: "Payment",
         paymentPending:
           "Accepted payment methods, when payment is taken and whether a deposit applies are not yet decided.",
@@ -540,7 +502,7 @@ export const translations = {
           "The notice period, how to reschedule, what happens if you arrive late or do not attend, and any monetary consequence are not yet decided. No deadline or forfeiture rule is in force.",
         withdrawalTitle: "Right of withdrawal",
         withdrawalPending:
-          "How the statutory 14-day distance-contract withdrawal right applies to a dated appointment is being reviewed with an adviser. Appointment cancellation and statutory withdrawal are separate things and will be described separately.",
+          "How the statutory 14-day distance-contract withdrawal right applies to a dated appointment is still being confirmed. Appointment cancellation and statutory withdrawal are separate things and will be described separately.",
         complaintsTitle: "Complaints",
         complaintsBody:
           "Please email {email}. Official complaint forms are covered in the legal notice.",
@@ -556,7 +518,7 @@ export const translations = {
           "A prepaid credit for a set number of massage sessions of a single length, at the pluma home studio. A bono is not a cash balance and has no cash value.",
         priceTitle: "Price and sessions",
         priceBody:
-          "A 5-session bono reduces the per-session price by 10%. A 10-session bono reduces it by 15%. Bonos are available for 60 and 90 minute sessions.",
+          "A 5-session bono reduces the per-session price by 10%. A 10-session bono reduces it by 15%. Bonos are available for 60 and 90 minute sessions. Prices include tax.",
         validityTitle: "Validity",
         validityBody:
           "A 5-session bono is valid for 3 months and a 10-session bono for 6 months.",
@@ -573,7 +535,7 @@ export const translations = {
           "The email and pass provider, the wallets that will be supported and how remaining sessions update have not been finalised or tested.",
         withdrawalTitle: "Right of withdrawal",
         withdrawalPending:
-          "The statutory withdrawal right for an open-dated prepaid package is being reviewed with an adviser. Receiving a pass by email does not by itself remove that right.",
+          "The statutory withdrawal right for an open-dated prepaid package is still being confirmed. Receiving a pass by email does not by itself remove that right.",
       },
     },
     notFound: {
@@ -586,12 +548,10 @@ export const translations = {
       tagline: "Restorative massage in a private home studio.",
       contactTitle: "Contact",
       legalTitle: "Legal information",
+      address: "Pl. de les Escoles Pies, Old Town, 46001 València, Valencia",
       owner: "Owner",
       nif: "Tax ID (NIF)",
       rights: "All rights reserved.",
-    },
-    gallery: {
-      label: "Client portraits",
     },
   },
   es: {
@@ -728,28 +688,6 @@ export const translations = {
       stephenPhotoAlt: "Stephen, masajista certificado en el estudio en casa pluma",
       credential: "Stephen · masajista certificado",
     },
-    firstVisit: {
-      title: "Tu primera visita",
-      description: "Qué ocurre exactamente, para que nada te sorprenda.",
-      changing: {
-        title: "Vestuario privado y cobertura con toalla",
-        body: "Hay vestuario y baño privados. Permaneces cubierto con toalla o sábana durante toda la sesión y solo se descubre la zona que se está trabajando.",
-      },
-      control: {
-        title: "Puedes cambiar de idea en cualquier momento",
-        body: "Dile a Stephen si quieres más o menos presión, otra zona, o parar. No necesitas dar ningún motivo.",
-      },
-      personalisation: {
-        title: "Se acuerda antes de empezar",
-        body: "Antes del masaje acordáis la presión, las zonas en las que centrarse y lo que hay que evitar.",
-      },
-      access: {
-        title: "Cómo llegar",
-        body: "El estudio es un estudio privado en casa en Ciutat Vella, Valencia. La dirección completa, la planta y los datos de acceso se envían con la confirmación de tu reserva.",
-      },
-      accessNote:
-        "Si el acceso sin escalones o el ascensor son importantes para tu visita, pregúntanos antes de reservar y Stephen te dirá exactamente qué esperar.",
-    },
     types: {
       title: "Tipos",
       pregnancy: "Embarazo",
@@ -791,7 +729,7 @@ export const translations = {
         discount: "15% dto.",
       },
       taxNote:
-        "Los precios mostrados son el total que pagas. El tratamiento fiscal se está confirmando con un asesor; no se añadirá ningún cargo sobre el precio mostrado.",
+        "Los precios incluyen impuestos. El importe mostrado es el total que pagas.",
       conflictNote:
         "El precio de 90 minutos se está confirmando. La cifra mostrada procede de la web actual y todavía no se ha reconciliado con el calendario.",
       bonoLink: "Ver bonos digitales",
@@ -886,6 +824,8 @@ export const translations = {
       title: "Un estudio tranquilo en casa",
       description:
         "Entra en el espacio donde tienen lugar las sesiones — una habitación privada y silenciosa para descansar.",
+      accessNote:
+        "El acceso a la tercera planta es por escaleras, sin ascensor, así que lamentablemente no podemos recibir a personas en silla de ruedas ni con movilidad reducida. Sin embargo, ¡pronto habrá masajes a domicilio!",
       collageLabel: "Escenas del estudio en casa pluma",
       videoLabel: "Recorrido del estudio en casa pluma",
       highlights: {
@@ -894,22 +834,6 @@ export const translations = {
         noWait: "Sin tiempo de espera",
         privateRoom: "Vestuario y baño privados",
         masseur: "Stephen · masajista certificado",
-      },
-    },
-    treatments: {
-      title: "Dónde son las sesiones",
-      description:
-        "En el estudio privado en casa, en Ciutat Vella, Valencia.",
-      comingSoon: "Aún no disponible",
-      atStudio: {
-        name: "En el estudio",
-        description:
-          "Un estudio privado en casa junto al Mercado Central. Sin sala de espera.",
-      },
-      onSite: {
-        name: "En tu ubicación",
-        description:
-          "Las sesiones en tu casa, hotel u oficina aún no están disponibles. Escríbele a Stephen si quieres que te avise cuando lo estén.",
       },
     },
     benefits: {
@@ -960,12 +884,12 @@ export const translations = {
       location: {
         question: "¿Dónde está el estudio?",
         answer:
-          "pluma es un estudio privado en casa en Ciutat Vella, Valencia, a un breve paseo del Mercado Central. La dirección completa y las indicaciones se envían con la confirmación de la reserva.",
+          "pluma es un estudio privado en casa en Ciutat Vella, Valencia, a un breve paseo del Mercado Central. La dirección completa, la planta y los datos de acceso se envían con la confirmación de la reserva. El estudio está en la tercera planta, se accede por escaleras y no hay ascensor, así que no es accesible para personas en silla de ruedas ni con movilidad reducida. Pronto habrá masajes a domicilio.",
       },
-      expect: {
-        question: "¿Qué debo esperar?",
+      visit: {
+        question: "¿Qué ocurre en la primera visita?",
         answer:
-          "Sin sala de espera y sin prisas. Antes de empezar acordáis la presión y las zonas en las que centrarse, hay vestuario privado y permaneces cubierto durante toda la sesión.",
+          "Antes del masaje acordáis la presión, las zonas en las que centrarse y lo que hay que evitar. Hay vestuario y baño privados; permaneces cubierto con toalla o sábana y solo se descubre la zona que se está trabajando. Puedes pedir más o menos presión, otra zona, o parar en cualquier momento, sin dar ningún motivo.",
       },
       cancel: {
         question: "¿Cuál es la política de cancelación?",
@@ -1126,9 +1050,7 @@ export const translations = {
           "Una sesión de masaje presencial de la duración que elijas, en un estudio privado en casa en Ciutat Vella, Valencia. La sesión busca relajación y bienestar. No es fisioterapia, ni diagnóstico, ni tratamiento de ninguna enfermedad o lesión.",
         priceTitle: "Precio",
         priceBody:
-          "El precio mostrado al reservar es el total de la sesión. No se añade ningún cargo en un paso posterior.",
-        pricePending:
-          "Los precios definitivos aprobados y su tratamiento fiscal se están confirmando con un asesor.",
+          "El precio mostrado al reservar es el total de la sesión, impuestos incluidos. No se añade ningún cargo en un paso posterior.",
         paymentTitle: "Pago",
         paymentPending:
           "Las formas de pago aceptadas, el momento del cobro y si se aplica una señal todavía no están decididos.",
@@ -1137,7 +1059,7 @@ export const translations = {
           "El plazo de aviso, cómo cambiar la cita, qué ocurre si llegas tarde o no acudes y cualquier consecuencia económica todavía no están decididos. No hay ningún plazo ni pérdida de importe en vigor.",
         withdrawalTitle: "Derecho de desistimiento",
         withdrawalPending:
-          "Se está revisando con un asesor cómo se aplica el derecho legal de desistimiento de 14 días a una cita con fecha. La cancelación de una cita y el desistimiento legal son cosas distintas y se describirán por separado.",
+          "Todavía se está confirmando cómo se aplica el derecho legal de desistimiento de 14 días a una cita con fecha. La cancelación de una cita y el desistimiento legal son cosas distintas y se describirán por separado.",
         complaintsTitle: "Reclamaciones",
         complaintsBody:
           "Escribe a {email}. Las hojas de reclamación oficiales se tratan en el aviso legal.",
@@ -1153,7 +1075,7 @@ export const translations = {
           "Un crédito prepago para un número determinado de sesiones de masaje de una misma duración, en el estudio pluma. Un bono no es un saldo en efectivo y no tiene valor en metálico.",
         priceTitle: "Precio y sesiones",
         priceBody:
-          "Un bono de 5 sesiones reduce el precio por sesión un 10%. Uno de 10 sesiones lo reduce un 15%. Hay bonos para sesiones de 60 y 90 minutos.",
+          "Un bono de 5 sesiones reduce el precio por sesión un 10%. Uno de 10 sesiones lo reduce un 15%. Hay bonos para sesiones de 60 y 90 minutos. Los precios incluyen impuestos.",
         validityTitle: "Validez",
         validityBody:
           "Un bono de 5 sesiones es válido 3 meses y uno de 10 sesiones, 6 meses.",
@@ -1170,7 +1092,7 @@ export const translations = {
           "El proveedor de correo y de los pases, las wallets compatibles y la actualización de las sesiones restantes no están cerrados ni probados.",
         withdrawalTitle: "Derecho de desistimiento",
         withdrawalPending:
-          "Se está revisando con un asesor el derecho legal de desistimiento para un paquete prepago sin fecha. Recibir un pase por correo no elimina por sí solo ese derecho.",
+          "Todavía se está confirmando el derecho legal de desistimiento para un paquete prepago sin fecha. Recibir un pase por correo no elimina por sí solo ese derecho.",
       },
     },
     notFound: {
@@ -1183,12 +1105,10 @@ export const translations = {
       tagline: "Masaje restaurativo en un estudio privado en casa.",
       contactTitle: "Contacto",
       legalTitle: "Información legal",
+      address: "Pl. de les Escoles Pies, Ciutat Vella, 46001 València, Valencia",
       owner: "Titular",
       nif: "NIF",
       rights: "Todos los derechos reservados.",
-    },
-    gallery: {
-      label: "Retratos de clientes",
     },
   },
 } as const;

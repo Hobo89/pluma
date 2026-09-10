@@ -5,8 +5,8 @@
  * this file. Amounts are integer cents so no arithmetic in page code can
  * introduce a rounding difference between a total and its per-session figure.
  *
- * Displayed amounts are gross consumer prices. Nothing may add tax on top of
- * them at a later step; tax treatment is an unresolved owner input.
+ * Displayed amounts are tax-inclusive consumer prices. Nothing may add tax
+ * on top of them at a later step.
  */
 
 export type PricingDuration = 30 | 60 | 90 | 120;

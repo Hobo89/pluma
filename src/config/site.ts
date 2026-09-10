@@ -16,8 +16,8 @@ export const site = {
    */
   legalName: undefined as string | undefined,
   nif: undefined as string | undefined,
-  /** Public-facing neighbourhood only. The lawful business address is unresolved. */
-  address: "Pl. de les Escoles Pies, Ciutat Vella, 46001 València, Valencia",
+  /** Public-facing neighbourhood. English copy uses Old Town, not Ciutat Vella. */
+  address: "Pl. de les Escoles Pies, Old Town, 46001 València, Valencia",
   email: "hello@pluma.life",
   phone: undefined as string | undefined,
   timezone: "Europe/Madrid",

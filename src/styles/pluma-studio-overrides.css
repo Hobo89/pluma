@@ -6,8 +6,7 @@
 
 html.dark .psl-button:not(.psl-button--dark):not(.psl-button--ghost),
 html.dark .psl-skip,
-html.dark .psl-ribbon,
-html.dark .psl-product__soon {
+html.dark .psl-ribbon {
   color: var(--psl-ink);
 }
 
@@ -84,9 +83,25 @@ html.dark .psl-field input {
   color: var(--psl-white);
 }
 
-/* Treatment cards — photos fill the image frame */
-.psl-product-grid--pair {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+/* Booking panel — bright sheet footage needs a darker overlay so the
+   display title stays readable as white type. */
+.psl-cta--video::before {
+  background:
+    radial-gradient(
+      ellipse 78% 72% at 50% 48%,
+      rgb(8 39 7 / 72%) 0%,
+      rgb(8 39 7 / 58%) 58%,
+      rgb(8 39 7 / 48%) 100%
+    );
+}
+
+.psl-cta--video .psl-display {
+  color: var(--psl-white);
+  text-shadow: 0 2px 28px rgb(0 0 0 / 55%);
+}
+
+.psl-cta--video .psl-button:not(.psl-button--ghost):not(.psl-button--dark) {
+  box-shadow: 0 8px 28px rgb(0 0 0 / 28%);
 }
 
 .psl-product-grid--types {
@@ -114,62 +129,10 @@ html.dark .psl-field input {
   }
 }
 
-@media (max-width: 767px) {
-  .psl-product-grid--pair {
-    grid-template-columns: 1fr;
-  }
-}
-
-.psl-product--soon {
-  cursor: default;
-}
-
-.psl-product__heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 12px;
-  width: 100%;
-}
-
-.psl-product__soon {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 4px 10px;
-  border-radius: var(--psl-radius-pill);
-  background: var(--psl-lime);
-  color: var(--psl-heading);
-  font-size: var(--psl-type-label);
-  font-weight: 500;
-  letter-spacing: 0.025em;
-  line-height: 1.2;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.psl-product__image img {
-  object-fit: cover;
-  padding: 0;
-}
-
 .psl-product__image--illustration img {
   object-fit: contain;
   object-position: center;
   padding: 0;
-}
-
-.psl-product__image img[src$=".svg"] {
-  object-fit: cover;
-  background: var(--psl-surface-sage);
-}
-
-.psl-product__description {
-  width: 100%;
-  margin: 0;
-  color: var(--psl-muted);
-  font-size: var(--psl-type-small);
-  line-height: 1.45;
 }
 
 /* Testimonial cards — keep Pluma brush-border cards inside Pluma studio layout sections */
@@ -379,20 +342,21 @@ html.dark .psl-field input {
   margin: 0;
   padding: 0;
   list-style: none;
-  color: var(--psl-text);
-  font-size: var(--psl-type-small);
+  color: var(--psl-heading);
+  font-size: var(--psl-type-card);
+  line-height: 1.3;
 }
 
 .psl-client-mix__legend li {
   display: inline-flex;
   align-items: center;
-  gap: var(--psl-space-2);
+  gap: var(--psl-space-3);
 }
 
 .psl-client-mix__swatch {
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 0.7em;
+  height: 0.7em;
   border-radius: var(--psl-radius-pill);
 }
 
@@ -459,6 +423,25 @@ html.dark .psl-feature-list__icon img {
 
 .psl-feature__body .psl-feature-list {
   justify-self: stretch;
+}
+
+.psl-feature__note {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  gap: var(--psl-space-2);
+  align-items: start;
+  margin: 0;
+  max-width: 42ch;
+  color: var(--psl-muted);
+  font-size: var(--psl-type-small);
+  line-height: 1.45;
+}
+
+.psl-feature__note-icon {
+  display: grid;
+  place-items: start center;
+  padding-top: 0.15em;
+  color: var(--psl-heading);
 }
 
 .psl-feature--video {
@@ -1369,41 +1352,8 @@ button.psl-button {
   font-size: var(--psl-type-body);
 }
 
-.psl-firstvisit {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--psl-space-6);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.psl-firstvisit__item {
-  display: grid;
-  gap: var(--psl-space-2);
-  align-content: start;
-}
-
-.psl-firstvisit__title {
-  color: var(--psl-heading);
-  font-size: var(--psl-type-body);
-}
-
-.psl-firstvisit__body {
-  color: var(--psl-muted);
-  font-size: var(--psl-type-small);
-  line-height: 1.5;
-}
-
-.psl-firstvisit__pending {
-  display: grid;
-  gap: var(--psl-space-3);
-  margin-top: var(--psl-space-8);
-}
-
 @media (max-width: 767px) {
-  .psl-styles,
-  .psl-firstvisit {
+  .psl-styles {
     grid-template-columns: 1fr;
   }
 }
@@ -1872,45 +1822,14 @@ button.psl-button {
    its white text on a translucent dark fill fails contrast, so anywhere inside
    a normal page it gets a bordered light treatment instead. */
 .psl-page .psl-button--ghost,
-.psl-bono-return .psl-button--ghost,
-.psl-bono-teaser .psl-button--ghost {
+.psl-bono-return .psl-button--ghost {
   background: transparent;
   border-color: var(--psl-line);
   color: var(--psl-heading);
 }
 
-.psl-bono-teaser {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--psl-space-8);
-  padding: var(--psl-space-8);
-  border-radius: var(--psl-radius-media);
-  background: var(--psl-surface-sage);
-}
-
-.psl-bono-teaser__body {
-  display: grid;
-  gap: var(--psl-space-3);
-  justify-items: start;
-}
-
-.psl-bono-teaser__title {
-  color: var(--psl-heading);
-  font: 400 var(--psl-type-card) / 1.15 var(--psl-font-body);
-}
-
-.psl-bono-teaser__art {
-  display: block;
-  width: 260px;
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--psl-radius-small);
-}
-
 @media (max-width: 991px) {
-  .psl-bono-head,
-  .psl-bono-teaser {
+  .psl-bono-head {
     grid-template-columns: 1fr;
   }
 
