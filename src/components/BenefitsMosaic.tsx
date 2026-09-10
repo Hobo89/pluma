@@ -1,6 +1,12 @@
 import { useLanguage } from "../context/LanguageContext";
 
-const cards = [
+type BenefitCard = {
+  id: "arrive" | "settle" | "privacy";
+  image: string;
+  imagePosition?: string;
+};
+
+const cards: BenefitCard[] = [
   {
     id: "arrive",
     image: "/assets/images/stephen.jpg",
@@ -15,7 +21,7 @@ const cards = [
     id: "privacy",
     image: "/assets/images/session-attention.jpg",
   },
-] as const;
+];
 
 const stripItems = [
   "attention",
