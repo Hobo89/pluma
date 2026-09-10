@@ -1,6 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
+import { recommendedDuration } from "../config/pricing";
 import { site } from "../config/site";
 import { useLanguage } from "../context/LanguageContext";
+import { BookingAction } from "./BookingAction";
 import { Logo } from "./Logo";
 
 const legalLinks = [
@@ -47,7 +49,12 @@ export function Footer() {
           <Link to="/about">{t("nav.about")}</Link>
           <Link to="/pricing">{t("nav.pricing")}</Link>
           <Link to="/member-card">{t("nav.bonos")}</Link>
-          <Link to="/book">{t("nav.book")}</Link>
+          <BookingAction
+            label={t("nav.book")}
+            duration={recommendedDuration}
+            placement="footer_nav"
+            className="psl-footer__book"
+          />
           {legalLinks.map(({ to, key }) => (
             <Link key={to} to={to}>
               {t(key)}

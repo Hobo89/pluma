@@ -8,8 +8,8 @@ const services: {
 }[] = [
   {
     id: "atStudio",
-    image: "/assets/images/at-studio.jpg",
-    imagePosition: "52% 28%",
+    image: "/assets/images/studio-room-peek.jpg",
+    imagePosition: "42% 45%",
   },
   {
     id: "onSite",

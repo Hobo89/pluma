@@ -51,8 +51,11 @@ export function HomePage() {
         descriptionKey="studio.description"
         collage={studioPhotoCluster}
         collageLabelKey="studio.collageLabel"
+        video="/videos/studio.mp4"
+        videoPoster="/assets/images/studio-room.jpg"
+        videoLabelKey="studio.videoLabel"
         actionLabelKey="sticky.label"
-        actionTo="/book"
+        bookingPlacement="studio"
         reverse
         highlights="studio"
       />

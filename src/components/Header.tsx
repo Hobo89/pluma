@@ -1,6 +1,8 @@
 import { useEffect, useState, type KeyboardEvent } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
+import { BookingAction } from "./BookingAction";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
@@ -110,9 +112,11 @@ export function Header({ solid = false }: HeaderProps) {
           <ThemeToggle />
         </div>
 
-        <NavLink to="/book" className="psl-button">
-          {t("nav.book")}
-        </NavLink>
+        <BookingAction
+          label={t("nav.book")}
+          duration={recommendedDuration}
+          placement="header"
+        />
 
         <details
           className="psl-mobile-menu"
@@ -137,7 +141,9 @@ export function Header({ solid = false }: HeaderProps) {
             className="psl-mobile-menu__panel"
             aria-label={t("nav.main")}
             onClick={(event) => {
-              if ((event.target as HTMLElement).closest("a")) {
+              if (
+                (event.target as HTMLElement).closest("a, [data-cal-link]")
+              ) {
                 setMenuOpen(false);
               }
             }}
@@ -147,9 +153,12 @@ export function Header({ solid = false }: HeaderProps) {
                 {link.label}
               </NavLink>
             ))}
-            <NavLink to="/book" className="psl-button">
-              {t("nav.book")}
-            </NavLink>
+            <BookingAction
+              label={t("nav.book")}
+              duration={recommendedDuration}
+              placement="header"
+              onTriggered={() => setMenuOpen(false)}
+            />
           </nav>
         </details>
       </header>

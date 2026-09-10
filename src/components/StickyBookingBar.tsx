@@ -3,40 +3,36 @@ import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { BookingAction } from "./BookingAction";
 
+const MOBILE_BOOKING_BAR = "(max-width: 767px)";
+
 /**
- * One unobtrusive booking control on small screens, shown only after the hero
- * call to action has scrolled out of view.
+ * Full-width booking control on small screens. The Cal.com floating button is
+ * removed while this is on screen so the two CTAs do not stack.
  *
  * Rendered on the home page only, so it cannot cover the calendar's own
  * actions on the booking page. Safe-area padding is applied in CSS.
  */
 export function StickyBookingBar() {
   const { t } = useLanguage();
-  const [visible, setVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia(MOBILE_BOOKING_BAR).matches,
+  );
 
   useEffect(() => {
-    // One rect read per scroll event on a single element. Deliberately not an
-    // IntersectionObserver or a rAF loop: both are throttled or suspended in
-    // background and embedded views, where this would silently never appear.
-    const measure = () => {
-      const heroActions = document.querySelector("[data-hero-actions]");
-      if (!heroActions) return;
-      setVisible(heroActions.getBoundingClientRect().bottom <= 0);
-    };
-
-    measure();
-    window.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("resize", measure, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", measure);
-      window.removeEventListener("resize", measure);
-    };
+    const media = window.matchMedia(MOBILE_BOOKING_BAR);
+    const sync = () => setIsMobile(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
   }, []);
 
-  // Not rendered while hidden, so the button never sits off-screen in the tab
-  // order or behind `aria-hidden`.
-  if (!visible) return null;
+  useEffect(() => {
+    document.documentElement.toggleAttribute("data-psl-sticky-book", isMobile);
+    return () =>
+      document.documentElement.removeAttribute("data-psl-sticky-book");
+  }, [isMobile]);
+
+  if (!isMobile) return null;
 
   return (
     <div className="psl-sticky-book">
@@ -44,7 +40,7 @@ export function StickyBookingBar() {
         label={t("sticky.label")}
         duration={recommendedDuration}
         placement="sticky"
-        className="psl-button psl-button--dark psl-sticky-book__button"
+        className="psl-button psl-sticky-book__button"
       />
     </div>
   );

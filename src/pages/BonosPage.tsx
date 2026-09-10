@@ -13,6 +13,7 @@ import {
 } from "../config/bonos";
 import {
   pricingPolicy,
+  recommendedDuration,
   voucherCards,
   voucherRateFor,
   type VoucherDuration,
@@ -23,6 +24,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { formatPrice } from "../lib/money";
 import { mailto } from "../lib/contact";
 import { track } from "../lib/analytics";
+import { BookingAction } from "../components/BookingAction";
 
 const DESIGN_STORAGE_KEY = "bonoDesign";
 
@@ -256,19 +258,12 @@ export function BonosPage() {
         <h2 id="bono-return-heading" className="psl-bono-return__title">
           {t("bonos.returnTitle")}
         </h2>
-        <Link
-          to="/#durations"
+        <BookingAction
+          label={t("bonos.returnCta")}
+          duration={recommendedDuration}
+          placement="bono_return"
           className="psl-button psl-button--ghost"
-          onClick={() =>
-            track({
-              name: "booking_cta_clicked",
-              placement: "bono_return",
-              language,
-            })
-          }
-        >
-          {t("bonos.returnCta")}
-        </Link>
+        />
       </section>
     </PageContainer>
   );

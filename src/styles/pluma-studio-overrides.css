@@ -430,6 +430,27 @@ html.dark .psl-feature-list__icon img {
   justify-self: stretch;
 }
 
+.psl-feature--video {
+  align-items: start;
+}
+
+.psl-feature__media--video {
+  justify-self: center;
+  width: min(100%, 28rem);
+  aspect-ratio: 9 / 16;
+  max-height: min(70vh, 40rem);
+}
+
+.psl-feature__media--video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.psl-feature__stills {
+  grid-column: 1 / -1;
+}
+
 .psl-feature__media--cluster {
   overflow: visible;
   aspect-ratio: auto;
@@ -438,57 +459,34 @@ html.dark .psl-feature-list__icon img {
 }
 
 .psl-photo-cluster {
-  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--psl-space-3);
   width: 100%;
-  aspect-ratio: 0.94;
 }
 
-.psl-feature__media--cluster .psl-photo-cluster__item {
-  position: absolute;
+.psl-photo-cluster__item {
   display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
   object-fit: cover;
   border-radius: var(--psl-radius-media);
   background: var(--psl-surface-sage);
 }
 
-.psl-feature__media--cluster .psl-photo-cluster__item--top {
-  top: 0;
-  left: 31%;
-  width: 38%;
-  height: 44%;
-  z-index: 2;
-}
-
-.psl-feature__media--cluster .psl-photo-cluster__item--left {
-  top: 20%;
-  left: 0;
-  width: 36%;
-  height: 46%;
-  z-index: 1;
-}
-
-.psl-feature__media--cluster .psl-photo-cluster__item--right {
-  top: 16%;
-  right: 0;
-  width: 34%;
-  height: 52%;
-  z-index: 3;
-}
-
-.psl-feature__media--cluster .psl-photo-cluster__item--bottom {
-  right: auto;
-  bottom: 0;
-  left: 22%;
-  width: 48%;
-  height: 36%;
-  z-index: 2;
+@media (max-width: 991px) {
+  .psl-photo-cluster {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 767px) {
-  .psl-photo-cluster {
-    aspect-ratio: 1;
-    max-width: 28rem;
-    margin-inline: auto;
+  .psl-feature .psl-feature__stills {
+    grid-row: 3;
+  }
+
+  .psl-feature__media--video {
+    max-height: min(70vh, 32rem);
   }
 }
 
@@ -796,8 +794,26 @@ html.dark .psl-feature-list__icon img {
 }
 
 .psl-footer__brand-logo {
+  display: block;
   height: var(--psl-logo-height, 36px);
   width: calc(var(--psl-logo-height, 36px) * 318 / 144);
+}
+
+button.psl-button {
+  appearance: none;
+}
+
+.psl-footer__book {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: var(--psl-type-label);
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 /* Legal / inner pages */
@@ -1266,6 +1282,11 @@ html.dark .psl-feature-list__icon img {
 @media (max-width: 767px) {
   .psl-sticky-book {
     display: block;
+  }
+
+  html[data-psl-sticky-book] cal-floating-button {
+    display: none !important;
+    pointer-events: none !important;
   }
 }
 

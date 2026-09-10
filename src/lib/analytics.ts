@@ -18,7 +18,16 @@ import type { PricingDuration } from "../config/pricing";
 export type AnalyticsEvent =
   | {
       name: "booking_cta_clicked";
-      placement: "hero" | "durations" | "sticky" | "footer_cta" | "pricing" | "bono_return";
+      placement:
+        | "hero"
+        | "header"
+        | "durations"
+        | "studio"
+        | "sticky"
+        | "footer_cta"
+        | "footer_nav"
+        | "pricing"
+        | "bono_return";
       language: Language;
       duration?: PricingDuration;
     }

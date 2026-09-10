@@ -5,6 +5,12 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useLanguage } from "../context/LanguageContext";
 
+declare global {
+  interface Window {
+    __pslLastScrollRoute?: string;
+  }
+}
+
 function withInstantScroll(action: () => void) {
   const html = document.documentElement;
   const previous = html.style.scrollBehavior;
@@ -20,6 +26,13 @@ export function Layout() {
   const isAbout = pathname === "/about";
 
   useLayoutEffect(() => {
+    const key = `${pathname}${hash}`;
+    // Survive HMR remounts of this layout: only jump when the route itself
+    // changed. Resetting scroll on every remount pinned the page at the hero
+    // and hid the mobile booking bar.
+    if (window.__pslLastScrollRoute === key) return;
+    window.__pslLastScrollRoute = key;
+
     const id = hash.startsWith("#") ? decodeURIComponent(hash.slice(1)) : "";
     const target = id ? document.getElementById(id) : null;
     withInstantScroll(() => {
