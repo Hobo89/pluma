@@ -316,27 +316,28 @@ export const translations = {
       },
     },
     benefits: {
-      title: "Details",
-      description: "Small things that shape how the session feels.",
-      proof: {
-        title: "A considered studio",
-        body: "Plant oils, a quiet room next to the Central Market, and sessions shaped around what you ask for.",
+      eyebrow: "Why pluma",
+      title: "A massage shaped around you",
+      description:
+        "No fixed routine. We agree on the focus, pressure and pace together, based on how your body feels that day.",
+      arrive: {
+        title: "Made for how you arrive",
+        body: "Tension, tiredness, heavy legs or simply the need to switch off—tell me what you need, and I’ll shape the session around it.",
       },
-      leaf: {
-        title: "Organic oils and scents",
-        body: "Plant oils and quiet scents, chosen to keep the room calm and kind to skin.",
+      settle: {
+        title: "Time to properly settle",
+        body: "The 90-minute pluma session gives you time to arrive, adjust the pressure and stay with what needs attention—without making the experience feel rushed.",
       },
-      landscape: {
-        title: "Next to the Central Market",
-        body: "A private home studio in Ciutat Vella, a short walk from the market.",
+      privacy: {
+        title: "Private, attentive and unhurried",
+        body: "A quiet, appointment-only home studio where the space—and my attention—are entirely yours.",
       },
-      texture: {
-        title: "Personalised sessions",
-        body: "Pressure, areas of focus and anything to avoid are agreed with you before the massage starts.",
-      },
-      languages: {
-        title: "Languages",
-        body: "English and French natively, Spanish fluently.",
+      strip: {
+        attention: "One-to-one attention",
+        languages: "English · French · Spanish",
+        changing: "Private changing room and bathroom",
+        draping: "Professional draping, with room to adjust",
+        market: "A short walk from the Central Market",
       },
     },
     quote: {
@@ -912,27 +913,28 @@ export const translations = {
       },
     },
     benefits: {
-      title: "Detalles",
-      description: "Pequeñas cosas que definen cómo se siente la sesión.",
-      proof: {
-        title: "Un estudio cuidado",
-        body: "Aceites vegetales, una sala tranquila junto al Mercado Central y sesiones adaptadas a lo que pidas.",
+      eyebrow: "Por qué pluma",
+      title: "Un masaje a tu medida",
+      description:
+        "Sin una rutina fija. Acordamos juntos el enfoque, la presión y el ritmo, según cómo se siente tu cuerpo ese día.",
+      arrive: {
+        title: "Hecho para cómo llegas",
+        body: "Tensión, cansancio, piernas pesadas o simplemente ganas de desconectar: dime qué necesitas y doy forma a la sesión a partir de eso.",
       },
-      leaf: {
-        title: "Aceites y aromas orgánicos",
-        body: "Aceites vegetales y aromas suaves, elegidos para una sala calmada y amable con la piel.",
+      settle: {
+        title: "Tiempo para instalarte de verdad",
+        body: "La sesión de 90 minutos de pluma te da tiempo para llegar, ajustar la presión y quedarte con lo que necesita atención, sin que la experiencia se sienta precipitada.",
       },
-      landscape: {
-        title: "Junto al Mercado Central",
-        body: "Un estudio privado en Ciutat Vella, a un breve paseo del mercado.",
+      privacy: {
+        title: "Privado, atento y sin prisas",
+        body: "Un estudio en casa, tranquilo y solo con cita, donde el espacio —y mi atención— son enteramente tuyos.",
       },
-      texture: {
-        title: "Sesiones personalizadas",
-        body: "La presión, las zonas en las que centrarse y lo que hay que evitar se acuerdan contigo antes de empezar.",
-      },
-      languages: {
-        title: "Idiomas",
-        body: "Inglés y francés nativos, español fluido.",
+      strip: {
+        attention: "Atención uno a uno",
+        languages: "Inglés · Francés · Español",
+        changing: "Vestuario y baño privados",
+        draping: "Cobertura profesional, con margen para ajustar",
+        market: "A un breve paseo del Mercado Central",
       },
     },
     quote: {
