@@ -34,6 +34,7 @@ export function HomePage() {
         imageAlt={t("about.stephenPhotoAlt")}
         imagePosition="64% 32%"
         portrait="/assets/images/stephen-portrait.jpg"
+        portraitAlt={t("about.stephenPhotoAlt")}
         actionLabelKey="hero.learnMore"
         actionTo="/about"
         badge={t("about.credential")}
@@ -44,8 +45,16 @@ export function HomePage() {
       <MassageTypes />
 
       <BenefitsMosaic />
-      <ClientMix />
-      <EditorialQuote />
+      <div className="psl-container psl-section--roomy psl-audience">
+        <div className="psl-section-head psl-section-head--stack psl-audience__head">
+          <h2 id="clients-heading" className="psl-title">
+            {t("clients.title")}
+          </h2>
+          <p className="psl-copy">{t("clients.description")}</p>
+        </div>
+        <ClientMix />
+        <EditorialQuote />
+      </div>
       <PromoRibbon />
       <FAQ />
       <BookingCTA />

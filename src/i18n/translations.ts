@@ -132,7 +132,7 @@ export const translations = {
       stephen:
         "I'm Stephen, your certified masseur. I welcome you into my home studio with the same care I bring to every session — warm, unhurried, and focused on what you ask for.",
       stephenPhotoAlt: "Stephen, certified masseur at the pluma home studio",
-      credential: "Stephen · your certified masseur",
+      credential: "Hola, Hi, Salut, I'm your certified masseur and creator of pluma",
     },
     types: {
       title: "Types and techniques",
@@ -700,7 +700,7 @@ export const translations = {
       stephen:
         "Soy Stephen, tu masajista certificado. Te recibo en mi estudio en casa con el mismo cuidado que pongo en cada sesión — cercano, sin prisas y centrado en lo que me pidas.",
       stephenPhotoAlt: "Stephen, masajista certificado en el estudio en casa pluma",
-      credential: "Stephen · masajista certificado",
+      credential: "Hola, Hi, Salut, soy tu masajista certificado y creador de pluma",
     },
     types: {
       title: "Tipos y técnicas",

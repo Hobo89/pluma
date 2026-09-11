@@ -90,7 +90,7 @@ export function EditorialQuote() {
     <section
       ref={sectionRef}
       aria-labelledby="quote-heading"
-      className="psl-container psl-section"
+      className="psl-audience__quotes"
       // Rotation stops while a pointer or the keyboard is inside the section,
       // so the quote cannot change out from under someone reading it.
       onMouseEnter={() => setInteracting(true)}

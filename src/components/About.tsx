@@ -40,7 +40,16 @@ export function About() {
         </div>
       </section>
 
-      <div className="psl-container psl-page">
+      <div className="psl-container psl-page psl-about-stephen">
+        <figure className="psl-about-stephen__portrait">
+          <img
+            src="/assets/images/stephen-portrait-smile.jpg"
+            alt={t("about.stephenPhotoAlt")}
+            width={480}
+            height={640}
+            loading="lazy"
+          />
+        </figure>
         <p className="psl-copy">{t("about.stephen")}</p>
       </div>
 

@@ -412,6 +412,49 @@ html.dark .psl-field input {
   background: var(--psl-forest);
 }
 
+.psl-audience {
+  display: grid;
+  gap: var(--psl-space-12);
+}
+
+@media (min-width: 992px) {
+  .psl-audience {
+    grid-template-columns: minmax(16rem, 0.42fr) minmax(0, 1fr);
+    align-items: start;
+    column-gap: clamp(32px, 4vw, 72px);
+    row-gap: var(--psl-space-8);
+  }
+
+  .psl-audience__head {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .psl-audience__quotes {
+    min-width: 0;
+  }
+
+  .psl-audience .psl-client-mix__wheel {
+    width: min(100%, 14.5rem);
+  }
+
+  .psl-audience .psl-client-mix__legend {
+    font-size: var(--psl-type-body);
+  }
+
+  .psl-audience .psl-quote {
+    padding-block: var(--psl-space-4);
+  }
+
+  .psl-audience .psl-quote blockquote {
+    max-width: 28ch;
+  }
+
+  .psl-audience .psl-collage {
+    margin-top: var(--psl-space-6);
+  }
+}
+
 .psl-feature-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -515,7 +558,7 @@ html.dark .psl-feature-list__icon img {
   aspect-ratio: 1;
   border-radius: var(--psl-radius-media);
   object-fit: cover;
-  object-position: 50% 18%;
+  object-position: 50% 42%;
   box-shadow: 0 10px 28px rgb(0 0 0 / 28%);
   outline: 3px solid var(--psl-canvas);
 }
@@ -525,6 +568,8 @@ html.dark .psl-feature-list__icon img {
   right: 16px;
   width: max-content;
   max-width: calc(100% - min(42%, 11.5rem) - 40px);
+  line-height: 1.35;
+  text-wrap: pretty;
 }
 
 .psl-feature__stills {
@@ -555,7 +600,7 @@ html.dark .psl-feature-list__icon img {
 }
 
 .psl-photo-cluster__card {
-  flex: 0 0 min(78%, 17.5rem);
+  flex: 0 0 min(55%, 12.25rem);
   margin: 0;
   scroll-snap-align: start;
 }
@@ -1030,6 +1075,39 @@ button.psl-button {
 
 .psl-page .psl-copy {
   max-width: 55ch;
+}
+
+.psl-about-stephen {
+  display: grid;
+  gap: var(--psl-space-8);
+  align-items: center;
+}
+
+.psl-about-stephen__portrait {
+  margin: 0;
+}
+
+.psl-about-stephen__portrait img {
+  display: block;
+  width: min(100%, 22rem);
+  height: auto;
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface-sage);
+}
+
+@media (min-width: 768px) {
+  .psl-about-stephen {
+    grid-template-columns: minmax(18rem, 24rem) minmax(0, 1fr);
+    gap: var(--psl-space-12);
+  }
+
+  .psl-about-stephen__portrait img {
+    width: 100%;
+  }
+
+  .psl-about-stephen .psl-copy {
+    max-width: 48ch;
+  }
 }
 
 .psl-booking-embed {

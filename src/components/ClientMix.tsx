@@ -24,15 +24,8 @@ export function ClientMix() {
   return (
     <section
       aria-labelledby="clients-heading"
-      className="psl-container psl-section--roomy"
+      className="psl-audience__mix"
     >
-      <div className="psl-section-head psl-section-head--stack">
-        <h2 id="clients-heading" className="psl-title">
-          {t("clients.title")}
-        </h2>
-        <p className="psl-copy">{t("clients.description")}</p>
-      </div>
-
       <div className="psl-client-mix">
         <div className="psl-client-mix__wheel">
           <svg
