@@ -135,7 +135,9 @@ export const translations = {
       credential: "Stephen · your certified masseur",
     },
     types: {
-      title: "Types",
+      title: "Types and techniques",
+      description:
+        "A private studio means the session can follow how you feel that day. These techniques are combined and adjusted as we go — you do not have to choose one in advance.",
       pregnancy: "Pregnancy",
       pregnancyAlt: "Line drawing of a pregnant figure",
       relaxingLymphatic: "Relaxing and lymphatic",
@@ -689,7 +691,9 @@ export const translations = {
       credential: "Stephen · masajista certificado",
     },
     types: {
-      title: "Tipos",
+      title: "Tipos y técnicas",
+      description:
+        "Al ser un estudio privado, la sesión se adapta a cómo te encuentras ese día. Estas técnicas se combinan y ajustan sobre la marcha — no tienes que elegir una de antemano.",
       pregnancy: "Embarazo",
       pregnancyAlt: "Dibujo lineal de una figura embarazada",
       relaxingLymphatic: "Relajante y linfático",

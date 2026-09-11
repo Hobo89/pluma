@@ -30,13 +30,14 @@ export function MassageTypes() {
 
   return (
     <section
-      className="psl-container psl-section"
+      className="psl-container psl-section psl-types"
       aria-labelledby="massage-types-heading"
     >
       <div className="psl-section-head psl-section-head--stack">
         <h2 id="massage-types-heading" className="psl-title">
           {t("types.title")}
         </h2>
+        <p className="psl-copy">{t("types.description")}</p>
       </div>
 
       <div className="psl-product-grid psl-product-grid--types">

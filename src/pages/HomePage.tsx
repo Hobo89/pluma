@@ -15,8 +15,8 @@ import { useLanguage } from "../context/LanguageContext";
 
 /**
  * Booking-first order:
- * offer and availability, trust, duration choice, what the session is like,
- * reviews, then the final individual-booking call to action.
+ * the studio, then offer and availability, duration choice, what the session
+ * is like, reviews, then the final individual-booking call to action.
  */
 export function HomePage() {
   const { t } = useLanguage();
@@ -25,6 +25,7 @@ export function HomePage() {
     <>
       <PageMeta page="home" />
       <Hero />
+      <StudioFeature />
 
       <FeatureStory
         titleKey="about.title"
@@ -40,8 +41,6 @@ export function HomePage() {
       <DurationChoice />
 
       <MassageTypes />
-
-      <StudioFeature />
 
       <BenefitsMosaic />
       <ClientMix />

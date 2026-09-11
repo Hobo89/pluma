@@ -11,12 +11,12 @@ export function Hero() {
 
   return (
     <section
-      className="psl-hero"
+      className="psl-hero psl-hero--video"
       style={
         {
           "--psl-focal": "50% 40%",
           "--psl-focal-mobile": "60% 45%",
-          "--psl-hero-exposure": -2,
+          "--psl-hero-exposure": -3,
           "--psl-hero-whites": -2,
         } as CSSProperties
       }
@@ -40,12 +40,7 @@ export function Hero() {
         <h1 className="psl-hero__logo">
           <Logo variant="fullWhite" className="psl-hero__logo-image" />
         </h1>
-        <p
-          className="psl-copy"
-          style={{ color: "rgb(255 255 255 / 90%)", maxWidth: "42ch" }}
-        >
-          {t("hero.tagline")}
-        </p>
+        <p className="psl-copy">{t("hero.tagline")}</p>
         <div className="psl-actions" data-hero-actions>
           <Link to="/about" className="psl-button psl-button--ghost">
             {t("hero.learnMore")}

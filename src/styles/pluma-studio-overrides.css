@@ -43,6 +43,46 @@ html.dark .psl-field input {
   );
 }
 
+/* Bright canopy/sky footage: hold a forest veil behind the type so white
+   copy stays readable as leaves and sky move through the frame. */
+.psl-hero--video::before {
+  background:
+    radial-gradient(
+      ellipse 78% 68% at 50% 42%,
+      rgb(8 39 7 / 78%) 0%,
+      rgb(8 39 7 / 58%) 42%,
+      rgb(8 39 7 / 32%) 100%
+    );
+}
+
+.psl-hero--video .psl-hero__eyebrow,
+.psl-hero--video .psl-copy {
+  color: var(--psl-white);
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 55%),
+    0 10px 28px rgb(0 0 0 / 50%);
+}
+
+.psl-hero--video .psl-copy {
+  max-width: 42ch;
+}
+
+.psl-hero--video .psl-hero__logo-image {
+  filter: drop-shadow(0 2px 18px rgb(0 0 0 / 55%));
+}
+
+.psl-hero--video .psl-button--ghost {
+  background: rgb(8 39 7 / 72%);
+  border-color: rgb(255 255 255 / 82%);
+  color: var(--psl-white);
+}
+
+@media (hover: hover) {
+  .psl-hero--video .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover {
+    background: rgb(8 39 7 / 88%);
+  }
+}
+
 .psl-hero > video.psl-hero__image {
   filter: brightness(calc(1 + var(--psl-hero-exposure, 0) * 0.05))
     contrast(calc(1 - var(--psl-hero-whites, 0) * 0.015));
@@ -158,6 +198,10 @@ html.dark .psl-field input {
 
 .psl-section-head--stack .psl-copy {
   max-width: 44ch;
+}
+
+.psl-types .psl-section-head--stack .psl-copy {
+  max-width: 52ch;
 }
 
 /* Benefits — three dominant experience cards + quieter practical strip */
