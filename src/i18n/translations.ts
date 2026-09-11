@@ -105,7 +105,7 @@ export const translations = {
       title: "How long would you like?",
       description:
         "Every session is shaped around the pressure and areas you ask for. Ninety minutes is the length Stephen recommends.",
-      recommended: "Recommended",
+      recommended: "Client favorite",
       recommendedNote: "Stephen's recommendation, not a sales-volume claim.",
       cta: "Book {minutes} minutes",
       scope: {
@@ -273,6 +273,18 @@ export const translations = {
         "Access to the third floor is by stairs, without a lift, so unfortunately we cannot welcome wheelchair users or persons with reduced mobility. However, at-home massages will soon be available!",
       collageLabel: "Scenes from the pluma home studio",
       videoLabel: "Tour of the pluma home studio",
+      photos: {
+        entrance: "Entrance",
+        hallway: "Hallway",
+        studioEntrance: "Studio entrance",
+        studio: "Studio",
+        bathroom: "Private bathroom",
+        towels: "Soft towels",
+        view: "View {caption}",
+        close: "Close",
+        previous: "Previous photo",
+        next: "Next photo",
+      },
       highlights: {
         oldTown: "Old Town",
         heatedTable: "Heated massage table",
@@ -660,7 +672,7 @@ export const translations = {
       title: "¿Cuánto tiempo quieres?",
       description:
         "Cada sesión se adapta a la presión y las zonas que pidas. Stephen recomienda los 90 minutos.",
-      recommended: "Recomendado",
+      recommended: "Favorito de clientes",
       recommendedNote:
         "Es la recomendación de Stephen, no una afirmación sobre ventas.",
       cta: "Reservar {minutes} minutos",
@@ -832,6 +844,18 @@ export const translations = {
         "El acceso a la tercera planta es por escaleras, sin ascensor, así que lamentablemente no podemos recibir a personas en silla de ruedas ni con movilidad reducida. Sin embargo, ¡pronto habrá masajes a domicilio!",
       collageLabel: "Escenas del estudio en casa pluma",
       videoLabel: "Recorrido del estudio en casa pluma",
+      photos: {
+        entrance: "Entrada",
+        hallway: "Pasillo",
+        studioEntrance: "Entrada al estudio",
+        studio: "Estudio",
+        bathroom: "Baño privado",
+        towels: "Toallas suaves",
+        view: "Ver {caption}",
+        close: "Cerrar",
+        previous: "Foto anterior",
+        next: "Foto siguiente",
+      },
       highlights: {
         oldTown: "Casco antiguo",
         heatedTable: "Camilla de masaje calefactada",

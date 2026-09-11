@@ -5,8 +5,8 @@ import { formatPrice } from "../lib/money";
 import { BookingAction } from "./BookingAction";
 
 /**
- * The duration chooser. Ninety minutes carries the recommendation, expressed
- * through an outline, a label and ordering rather than colour alone.
+ * The duration chooser. Ninety minutes is marked as the client favourite,
+ * through an outline, a label, and first position in the mobile strip.
  */
 export function DurationChoice({ compact = false }: { compact?: boolean }) {
   const { t, language } = useLanguage();
@@ -40,19 +40,6 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
                 </h3>
                 {rate.recommended ? (
                   <span className="psl-duration__flag">
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="14"
-                      height="14"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="m5 13 4 4L19 7" />
-                    </svg>
                     {t("durations.recommended")}
                   </span>
                 ) : null}

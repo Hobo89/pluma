@@ -87,14 +87,15 @@ its Book button now goes to the calendar, but the Cal.com event only offers
 | 4.5 | Rescheduling rules | open | | | Stephen |
 | 4.6 | Lateness and no-show consequences, including any charge | open | | | Stephen |
 | 4.7 | How the statutory 14-day distance withdrawal right applies to a dated appointment | open | | | Adviser |
-| 4.8 | Exact Cal.com event URL or ID per duration, and per language if separate events are used | open | | | Stephen |
+| 4.8 | Exact Cal.com event URL or ID per duration, and per language if separate events are used | partial | Default event https://cal.com/pluma-massage/valencia. Per-duration and per-language events still unset. | Owner-supplied URL | Stephen |
 | 4.9 | Whether the default event is multi-duration and accepts the `duration` parameter | open | | | Stephen |
 | 4.10 | Real working days, buffers, minimum notice, advance window, daily workload | open | | | Stephen |
 | 4.11 | Whether the mandatory WhatsApp field is justified or should become optional | open | | | Stephen |
 
 No arbitrary 24-hour deadline or forfeiture rule has been invented. The booking
-terms page states that these are undecided. Supply 4.8 through
-`VITE_CALCOM_LINK_30/60/90/120` in `.env`.
+terms page states that these are undecided. The default calendar is
+`pluma-massage/valencia`. Supply remaining per-duration events through
+`VITE_CALCOM_LINK_30/60/90/120` in `.env` if they are created.
 
 ## 5. Bono commercial terms — blocks bono sales
 

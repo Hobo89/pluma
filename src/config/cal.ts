@@ -3,9 +3,11 @@ import type { PricingDuration } from "./pricing";
 /**
  * Cal.com booking links.
  *
- * `VITE_CALCOM_LINK` is the default event. A per-duration link can be supplied
- * with `VITE_CALCOM_LINK_30` / `_60` / `_90` / `_120` when the owner creates a
- * separate event for each length.
+ * Default event: https://cal.com/pluma-massage/valencia
+ *
+ * `VITE_CALCOM_LINK` can override that event. A per-duration link can be
+ * supplied with `VITE_CALCOM_LINK_30` / `_60` / `_90` / `_120` when the owner
+ * creates a separate event for each length.
  *
  * The mapping is explicit and owner-supplied on purpose. The installed embed
  * (`@calcom/embed-react` 1.5.3) types its config as an open record of query
@@ -14,13 +16,26 @@ import type { PricingDuration } from "./pricing";
  * a slug, a locale parameter or a duration option.
  */
 
-export const calLink = import.meta.env.VITE_CALCOM_LINK ?? "";
+/** Event slug used by the embed (`username/event`). */
+export const DEFAULT_CAL_LINK = "pluma-massage/valencia";
+
+/** Accept a slug or a full cal.com URL; the embed wants the path only. */
+function calSlug(value: string | undefined): string {
+  if (!value) return "";
+  return value
+    .trim()
+    .replace(/^https?:\/\/(?:www\.)?cal\.com\//i, "")
+    .replace(/^\/+|\/+$/g, "");
+}
+
+export const calLink =
+  calSlug(import.meta.env.VITE_CALCOM_LINK) || DEFAULT_CAL_LINK;
 
 const perDuration: Partial<Record<PricingDuration, string>> = {
-  30: import.meta.env.VITE_CALCOM_LINK_30,
-  60: import.meta.env.VITE_CALCOM_LINK_60,
-  90: import.meta.env.VITE_CALCOM_LINK_90,
-  120: import.meta.env.VITE_CALCOM_LINK_120,
+  30: calSlug(import.meta.env.VITE_CALCOM_LINK_30) || undefined,
+  60: calSlug(import.meta.env.VITE_CALCOM_LINK_60) || undefined,
+  90: calSlug(import.meta.env.VITE_CALCOM_LINK_90) || undefined,
+  120: calSlug(import.meta.env.VITE_CALCOM_LINK_120) || undefined,
 };
 
 /**

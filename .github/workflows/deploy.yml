@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          VITE_CALCOM_LINK: ${{ vars.VITE_CALCOM_LINK }}
+          VITE_CALCOM_LINK: pluma-massage/valencia
 
       - uses: peaceiris/actions-gh-pages@v4
         with:

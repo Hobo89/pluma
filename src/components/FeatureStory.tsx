@@ -15,6 +15,8 @@ type FeatureStoryProps = {
   image?: string;
   imageAlt?: string;
   imagePosition?: string;
+  portrait?: string;
+  portraitAlt?: string;
   collage?: readonly PhotoClusterImage[];
   collageLabelKey?: string;
   video?: string;
@@ -38,6 +40,8 @@ export function FeatureStory({
   image,
   imageAlt = "",
   imagePosition,
+  portrait,
+  portraitAlt = "",
   collage,
   collageLabelKey,
   video,
@@ -125,7 +129,9 @@ export function FeatureStory({
           />
         </div>
       ) : (
-        <figure className="psl-feature__media">
+        <figure
+          className={`psl-feature__media${portrait ? " psl-feature__media--with-portrait" : ""}`}
+        >
           {image && (
             <img
               src={image}
@@ -135,6 +141,15 @@ export function FeatureStory({
               style={
                 imagePosition ? { objectPosition: imagePosition } : undefined
               }
+            />
+          )}
+          {portrait && (
+            <img
+              className="psl-feature__portrait"
+              src={portrait}
+              alt={portraitAlt}
+              loading="lazy"
+              sizes="(max-width: 767px) 40vw, 12vw"
             />
           )}
           {badge && <figcaption className="psl-badge">{badge}</figcaption>}

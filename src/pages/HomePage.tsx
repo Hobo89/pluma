@@ -33,6 +33,7 @@ export function HomePage() {
         image="/assets/images/stephen.jpg"
         imageAlt={t("about.stephenPhotoAlt")}
         imagePosition="64% 32%"
+        portrait="/assets/images/stephen-portrait.jpg"
         actionLabelKey="hero.learnMore"
         actionTo="/about"
         badge={t("about.credential")}

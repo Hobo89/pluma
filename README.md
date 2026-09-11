@@ -63,16 +63,15 @@ DNS for `pluma.life` is configured at Hostinger. The `public/CNAME` file is incl
 
 ## Cal.com booking
 
-1. Copy `.env.example` to `.env`
-2. Set your Cal.com link:
+The live calendar is [cal.com/pluma-massage/valencia](https://cal.com/pluma-massage/valencia). Booking CTAs, the `/book` embed and the floating button all use that event by default (`src/config/cal.ts`).
+
+To point at a different event locally, copy `.env.example` to `.env` and set:
 
    ```
-   VITE_CALCOM_LINK=your-username/massage
+   VITE_CALCOM_LINK=pluma-massage/valencia
    ```
 
    Find this in Cal.com under **Event Types → Embed** (the part after `cal.com/`).
-
-3. For production, add `VITE_CALCOM_LINK` as a GitHub Actions **repository variable** or secret so the build includes it.
 
 The booking page lives at `/book`.
 

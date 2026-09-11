@@ -22,6 +22,13 @@ export const site = {
   phone: undefined as string | undefined,
   timezone: "Europe/Madrid",
   socialImage: "/favicon.png",
+  /**
+   * When false, every HTML response is `noindex, nofollow` and no sitemap is
+   * published. Crawlers are still allowed to fetch pages so they can see that
+   * tag and drop already-indexed URLs; blocking the crawl would leave those
+   * listings stuck.
+   */
+  searchIndexing: false,
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Pl.+de+les+Escoles+Pies,+46001+Val%C3%A8ncia,+Spain",
 } as const;

@@ -80,8 +80,8 @@ export function PageMeta({ page, noindex = false }: PageMetaProps) {
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", `${site.origin}${site.socialImage}`);
 
-    if (noindex) {
-      upsertMeta("name", "robots", "noindex, follow");
+    if (noindex || !site.searchIndexing) {
+      upsertMeta("name", "robots", "noindex, nofollow");
     } else {
       removeMeta("name", "robots");
     }

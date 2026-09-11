@@ -4,6 +4,7 @@ import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { translations } from "./src/i18n/translations";
+import { site } from "./src/config/site";
 
 const ORIGIN = "https://pluma.life";
 const SOCIAL_IMAGE = "/favicon.png";
@@ -12,12 +13,14 @@ const SOCIAL_IMAGE = "/favicon.png";
 const DEFAULT_LANGUAGE = "en";
 
 /**
- * Canonical, indexable pages. Must match the routes in `src/App.tsx`.
+ * Canonical pages. Must match the routes in `src/App.tsx`.
  *
  * `meta` is the key under `meta.pages` in the translations.
  *
  * Excluded on purpose: the 404 route, and anything that would later hold a
- * checkout, an order or a personal pass link.
+ * checkout, an order or a personal pass link. While `site.searchIndexing` is
+ * false these URLs are still built as 200s, but they are noindex and omitted
+ * from the sitemap.
  */
 const ROUTES = [
   { path: "/", meta: "home", priority: "1.0" },
@@ -71,7 +74,7 @@ function htmlForRoute(
       )
       .replace(
         /<meta\s+name="description"[\s\S]*?\/>/,
-        `<meta name="description" content="${escapeHtml(metaFor("notFound").description)}" />\n    <meta name="robots" content="noindex, follow" />`,
+        `<meta name="description" content="${escapeHtml(metaFor("notFound").description)}" />`,
       );
   }
 
@@ -138,7 +141,9 @@ function siteFiles(): Plugin {
         htmlForRoute(shell, null),
         "utf8",
       );
-      writeFileSync(resolve(dist, "sitemap.xml"), sitemapXml(), "utf8");
+      if (site.searchIndexing) {
+        writeFileSync(resolve(dist, "sitemap.xml"), sitemapXml(), "utf8");
+      }
     },
   };
 }
