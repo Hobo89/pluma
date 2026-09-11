@@ -1,4 +1,5 @@
+# Pages stay fetchable so crawlers can see the noindex tag and drop the site
+# from search results. Blocking the crawl would leave already-indexed URLs
+# stuck. There is no sitemap while search indexing is off.
 User-agent: *
 Allow: /
-
-Sitemap: https://pluma.life/sitemap.xml
