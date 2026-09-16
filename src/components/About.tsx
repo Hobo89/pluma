@@ -1,4 +1,5 @@
 import { CopyBlocks } from "./CopyBlocks";
+import { Philosophy } from "./Philosophy";
 import { StudioFeature } from "./StudioFeature";
 import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
@@ -34,6 +35,7 @@ export function About() {
   return (
     <>
       <div className="psl-container psl-page psl-about-page">
+        <Philosophy />
         {sections.map((section, index) => (
           <article
             key={section.id}

@@ -5,7 +5,6 @@ import { MassageTypes } from "../components/MassageTypes";
 import { BenefitsMosaic } from "../components/BenefitsMosaic";
 import { SafetyControl } from "../components/SafetyControl";
 import { EditorialQuote } from "../components/EditorialQuote";
-import { Philosophy } from "../components/Philosophy";
 import { PromoRibbon } from "../components/PromoRibbon";
 import { FAQ } from "../components/FAQ";
 import { BookingCTA } from "../components/BookingCTA";
@@ -42,7 +41,6 @@ export function HomePage() {
       <BenefitsMosaic />
       <SafetyControl />
       <EditorialQuote />
-      <Philosophy />
       <PromoRibbon />
       <FAQ />
       <BookingCTA />

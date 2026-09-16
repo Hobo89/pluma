@@ -48,10 +48,33 @@ type PhotoClusterProps = {
 export function PhotoCluster({ images, label }: PhotoClusterProps) {
   const { t } = useLanguage();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const scrollerRef = useRef<HTMLUListElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showEndFade, setShowEndFade] = useState(true);
   const titleId = useId();
   const openImage = openIndex === null ? null : images[openIndex];
   const caption = openImage ? t(openImage.captionKey) : "";
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const updateFade = () => {
+      const remaining =
+        scroller.scrollWidth - scroller.clientWidth - scroller.scrollLeft;
+      setShowEndFade(remaining > 12);
+    };
+
+    updateFade();
+    scroller.addEventListener("scroll", updateFade, { passive: true });
+    const observer = new ResizeObserver(updateFade);
+    observer.observe(scroller);
+
+    return () => {
+      scroller.removeEventListener("scroll", updateFade);
+      observer.disconnect();
+    };
+  }, [images.length]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -89,40 +112,54 @@ export function PhotoCluster({ images, label }: PhotoClusterProps) {
 
   return (
     <>
-      <ul className="psl-photo-cluster" aria-label={label}>
-        {images.map((image, index) => {
-          const photoCaption = t(image.captionKey);
+      <div
+        className={
+          showEndFade
+            ? "psl-photo-cluster-wrap psl-photo-cluster-wrap--more"
+            : "psl-photo-cluster-wrap"
+        }
+      >
+        <ul
+          ref={scrollerRef}
+          className="psl-photo-cluster"
+          aria-label={label}
+        >
+          {images.map((image, index) => {
+            const photoCaption = t(image.captionKey);
 
-          return (
-            <li key={image.src} className="psl-photo-cluster__card">
-              <figure>
-                <button
-                  type="button"
-                  className="psl-photo-cluster__open"
-                  onClick={() => setOpenIndex(index)}
-                  aria-label={t("studio.photos.view", { caption: photoCaption })}
-                >
-                  <img
-                    className="psl-photo-cluster__item"
-                    src={image.src}
-                    alt=""
-                    loading="lazy"
-                    sizes="(max-width: 767px) 78vw, 18rem"
-                    style={
-                      image.position
-                        ? { objectPosition: image.position }
-                        : undefined
-                    }
-                  />
-                </button>
-                <figcaption className="psl-photo-cluster__caption">
-                  {photoCaption}
-                </figcaption>
-              </figure>
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li key={image.src} className="psl-photo-cluster__card">
+                <figure>
+                  <button
+                    type="button"
+                    className="psl-photo-cluster__open"
+                    onClick={() => setOpenIndex(index)}
+                    aria-label={t("studio.photos.view", {
+                      caption: photoCaption,
+                    })}
+                  >
+                    <img
+                      className="psl-photo-cluster__item"
+                      src={image.src}
+                      alt=""
+                      loading="lazy"
+                      sizes="(max-width: 767px) 78vw, 18rem"
+                      style={
+                        image.position
+                          ? { objectPosition: image.position }
+                          : undefined
+                      }
+                    />
+                  </button>
+                  <figcaption className="psl-photo-cluster__caption">
+                    {photoCaption}
+                  </figcaption>
+                </figure>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
 
       <dialog
         ref={dialogRef}

@@ -326,20 +326,20 @@ export const translations = {
       description:
         "I keep my schedule intentionally light, so your massage never feels like the next appointment in a queue. We take the time to understand what you need today—and, if you return, build on what we learn together.",
       arrive: {
-        title: "Come as you are.",
-        body: "Tense, tired, heavy-legged or simply ready to switch off. Each session starts with how you feel that day, not a fixed routine.",
+        title: "Come as you are",
+        body: "Each session starts with how you feel that day, not a fixed routine.",
       },
       return: {
-        title: "Each session builds on the last.",
-        body: "Over time, I get to know how your body responds, what kind of pressure works for you and where tension tends to return. You don’t have to start from the beginning at every appointment.",
+        title: "Each session builds on the last",
+        body: "You don’t have to start from the beginning at every appointment.",
       },
       recover: {
-        title: "Space to recover and reset.",
-        body: "Massage can help ease everyday tension, support tired muscles after physical effort and give you time to slow down. Sometimes the benefit is simply leaving a little lighter and more at ease in your body.",
+        title: "Space to recover and reset",
+        body: "Time to ease everyday tension, support tired muscles, and slow down.",
       },
       yours: {
-        title: "Your time stays yours.",
-        body: "One appointment at a time. A private bathroom, space to change and no one waiting outside for their turn.",
+        title: "Range of techniques",
+        body: "Addressing your body’s needs that day.",
       },
       strip: {
         attention: "One-to-one attention",
@@ -402,6 +402,7 @@ export const translations = {
     },
     testimonials: {
       title: "What clients say",
+      from: "from",
       countries: {
         uk: "United Kingdom",
         china: "China",
@@ -892,20 +893,20 @@ export const translations = {
       description:
         "Mantengo una agenda ligera a propósito, para que nunca sientas que eres la siguiente cita de una lista. Nos tomamos el tiempo de entender qué necesitas hoy y, si vuelves, seguimos a partir de lo que vamos aprendiendo juntos.",
       arrive: {
-        title: "Ven tal como estás.",
-        body: "Con tensión, cansancio, las piernas pesadas o, simplemente, ganas de desconectar. Cada sesión empieza por cómo te sientes ese día, no por una rutina fija.",
+        title: "Ven tal como estás",
+        body: "Cada sesión empieza por cómo te sientes ese día, no por una rutina fija.",
       },
       return: {
-        title: "Cada sesión parte de la anterior.",
-        body: "Con el tiempo, voy entendiendo cómo responde tu cuerpo, qué presión te funciona y dónde suele volver la tensión. No tienes que empezar de cero en cada cita.",
+        title: "Cada sesión parte de la anterior",
+        body: "No tienes que empezar de cero en cada cita.",
       },
       recover: {
-        title: "Un espacio para recuperarte y bajar el ritmo.",
-        body: "El masaje puede aliviar la tensión del día a día, ayudar a que los músculos se recuperen después del esfuerzo y darte tiempo para bajar revoluciones. A veces el beneficio es, sencillamente, salir un poco más ligero y más a gusto en tu cuerpo.",
+        title: "Un espacio para recuperarte y bajar el ritmo",
+        body: "Tiempo para aliviar la tensión del día a día, apoyar los músculos cansados y bajar el ritmo.",
       },
       yours: {
-        title: "Tu tiempo es solo tuyo.",
-        body: "Una cita cada vez. Un baño privado, espacio para cambiarte y nadie esperando fuera a que termine su turno.",
+        title: "Gama de técnicas",
+        body: "Atendiendo las necesidades de tu cuerpo ese día.",
       },
       strip: {
         attention: "Atención uno a uno",
@@ -968,6 +969,7 @@ export const translations = {
     },
     testimonials: {
       title: "Lo que dicen los clientes",
+      from: "de",
       countries: {
         uk: "Reino Unido",
         china: "China",

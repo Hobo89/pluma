@@ -5,14 +5,16 @@ export function Philosophy() {
   const { t } = useLanguage();
 
   return (
-    <section
+    <header
       aria-labelledby="philosophy-heading"
-      className="psl-container psl-section psl-philosophy"
+      className="psl-philosophy"
     >
-      <h2 id="philosophy-heading" className="psl-display">
+      <h1 id="philosophy-heading" className="psl-display">
         {t("philosophy.heading")}
-      </h2>
-      <CopyBlocks text={t("philosophy.body")} />
-    </section>
+      </h1>
+      <div className="psl-philosophy__support">
+        <CopyBlocks text={t("philosophy.body")} />
+      </div>
+    </header>
   );
 }

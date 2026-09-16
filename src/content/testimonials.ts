@@ -39,8 +39,8 @@ export const testimonials: readonly TestimonialRecord[] = [
     quote:
       "Regularly get massaged here and really enjoy the technique, atmosphere and strength.",
     image: "/testimonials/sarah.jpg",
-    flags: [{ type: "emoji", glyph: "🇬🇧" }],
-    countriesKey: "uk",
+    flags: [{ type: "emoji", glyph: "🇫🇷" }],
+    countriesKey: "france",
     areas: ["fullBody"],
     objectPosition: "center 18%",
   },

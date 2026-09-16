@@ -23,7 +23,6 @@ export function Layout() {
   const { pathname, hash } = useLocation();
   const { t } = useLanguage();
   const isHome = pathname === "/";
-  const isAbout = pathname === "/about";
 
   useLayoutEffect(() => {
     const key = `${pathname}${hash}`;
@@ -49,8 +48,8 @@ export function Layout() {
       <a href="#main" className="psl-skip">
         {t("nav.skipToContent")}
       </a>
-      <Header solid={!isHome && !isAbout} />
-      {!isHome && !isAbout && (
+      <Header solid={!isHome} />
+      {!isHome && (
         <div className="psl-header-offset" aria-hidden="true" />
       )}
       <main id="main" tabIndex={-1}>

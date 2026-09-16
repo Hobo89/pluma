@@ -65,6 +65,7 @@ export function BenefitsMosaic() {
             />
             <div className="psl-tile__copy">
               <h3>{t(`benefits.${id}.title`)}</h3>
+              <p className="psl-copy">{t(`benefits.${id}.body`)}</p>
             </div>
           </article>
         ))}
