@@ -4,7 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
 import { BookingAction } from "./BookingAction";
 import { HashLink } from "./HashLink";
-import { Logo } from "./Logo";
+import { PlumaHeroLogo } from "./PlumaHeroLogo";
 
 const VIDEO_SRC = "/videos/hero.mp4";
 const POSTER = "/assets/images/hero-poster.jpg";
@@ -42,7 +42,7 @@ export function Hero() {
 
       <div className="psl-hero__body psl-hero__body--center psl-container">
         <p className="psl-hero__logo">
-          <Logo variant="fullWhite" className="psl-hero__logo-image" />
+          <PlumaHeroLogo className="psl-hero__logo-image" />
         </p>
         <h1 className="psl-copy">{t("hero.headline")}</h1>
         <div className="psl-actions psl-hero__actions" data-hero-actions>

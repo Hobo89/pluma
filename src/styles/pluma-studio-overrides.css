@@ -94,7 +94,7 @@ html.dark .psl-field input {
 .psl-hero__body--center {
   align-items: center;
   text-align: center;
-  margin-top: 6rem;
+  margin-top: 8rem;
 }
 
 .psl-hero__body--center .psl-actions {
@@ -225,7 +225,7 @@ html.dark .psl-field input {
 }
 
 .psl-bento--benefits .psl-tile::before {
-  background: linear-gradient(transparent 28%, rgb(0 0 0 / 78%));
+  background: linear-gradient(transparent 52%, rgb(0 0 0 / 62%));
 }
 
 .psl-bento--benefits .psl-tile img {
@@ -233,18 +233,9 @@ html.dark .psl-field input {
 }
 
 .psl-tile__copy {
-  display: grid;
-  gap: var(--psl-space-2);
-  max-width: 100%;
   position: relative;
   z-index: 1;
-}
-
-.psl-tile__copy .psl-copy {
-  color: inherit;
-  max-width: none;
-  font-size: var(--psl-type-small);
-  opacity: 0.92;
+  max-width: 100%;
 }
 
 .psl-benefits-strip {
@@ -795,11 +786,31 @@ html.dark .psl-field input {
   align-items: center;
   line-height: 0;
   text-decoration: none;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.4s var(--psl-ease),
+    visibility 0s linear 0s;
+}
+
+/* On the transparent home overlay the hero already carries the mark.
+   Bring the colored nav logo in with the bar background. */
+.psl-header-shell:not(.psl-header-shell--solid) .psl-brand {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.4s var(--psl-ease),
+    visibility 0s linear 0.4s;
 }
 
 .psl-brand__logo {
+  display: block;
   height: var(--psl-logo-height, 32px);
-  width: calc(var(--psl-logo-height, 32px) * 318 / 144);
+  width: auto;
+  max-width: calc(var(--psl-logo-height, 32px) * 1024 / 462);
+  object-fit: contain;
+  object-position: left center;
 }
 
 .psl-logo {
@@ -1552,6 +1563,8 @@ button.psl-button {
 
 @media (prefers-reduced-motion: reduce) {
   .psl-header,
+  .psl-brand,
+  .psl-header-shell:not(.psl-header-shell--solid) .psl-brand,
   .psl-logo__wordmark,
   .psl-nav a,
   .psl-header:not(.psl-header--solid) .psl-mobile-menu summary,
@@ -1707,10 +1720,14 @@ button.psl-button {
 }
 
 .psl-durations__terms {
-  display: grid;
-  gap: var(--psl-space-3);
-  justify-items: start;
+  max-width: none;
   margin-top: var(--psl-space-8);
+  text-align: center;
+}
+
+.psl-durations__terms .psl-textlink {
+  display: inline;
+  min-height: 0;
 }
 
 @media (max-width: 991px) {
@@ -2469,7 +2486,7 @@ button.psl-button {
   /* The hero carries more content than before (offer line, availability note,
      two actions), so it needs less dead space above and room below the curve. */
   .psl-hero__body--center {
-    margin-top: var(--psl-space-12);
+    margin-top: calc(var(--psl-space-12) + 2rem);
     padding-bottom: var(--psl-space-24);
   }
 

@@ -23,7 +23,8 @@ const cards: BenefitCard[] = [
   },
   {
     id: "yours",
-    image: "/assets/images/studio-draping.jpg",
+    image: "/assets/images/studio-tools.jpg",
+    imagePosition: "42% 50%",
   },
 ];
 
@@ -64,7 +65,6 @@ export function BenefitsMosaic() {
             />
             <div className="psl-tile__copy">
               <h3>{t(`benefits.${id}.title`)}</h3>
-              <p className="psl-copy">{t(`benefits.${id}.body`)}</p>
             </div>
           </article>
         ))}

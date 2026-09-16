@@ -6,6 +6,7 @@ import { BookingAction } from "./BookingAction";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
+import { useTheme } from "../context/ThemeContext";
 
 type HeaderProps = {
   solid?: boolean;
@@ -42,6 +43,7 @@ function MenuIcon({ open }: { open: boolean }) {
 export function Header({ solid = false }: HeaderProps) {
   const { pathname } = useLocation();
   const { t } = useLanguage();
+  const { isDark } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const overlay = !solid && pathname === "/";
@@ -96,7 +98,11 @@ export function Header({ solid = false }: HeaderProps) {
     >
       <header className={`psl-header${solidNav ? " psl-header--solid" : ""}`}>
         <NavLink to="/" className="psl-brand" aria-label="pluma home">
-          <Logo className="psl-brand__logo" />
+          <Logo
+            variant={isDark ? "fullWhite" : "fullColor"}
+            className="psl-brand__logo"
+            alt=""
+          />
         </NavLink>
 
         <nav className="psl-nav" aria-label={t("nav.main")}>

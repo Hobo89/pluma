@@ -4,18 +4,22 @@ type LogoProps = {
   className?: string;
   height?: number;
   variant?: "mark" | "fullWhite" | "fullColor";
+  alt?: string;
 };
 
 export function Logo({
   className,
   height = 32,
   variant = "mark",
+  alt,
 }: LogoProps) {
+  const label = alt ?? site.businessName;
+
   if (variant === "fullWhite") {
     return (
       <img
         src={site.logos.fullWhiteSvg}
-        alt={site.businessName}
+        alt={label}
         className={className}
         width={318}
         height={144}
@@ -25,15 +29,13 @@ export function Logo({
   }
 
   if (variant === "fullColor") {
-    const width = Math.round((318 / 144) * height);
-
     return (
       <img
         src={site.logos.fullColor}
-        alt={site.businessName}
+        alt={label}
         className={className}
-        width={width}
-        height={height}
+        width={1024}
+        height={462}
         decoding="async"
       />
     );

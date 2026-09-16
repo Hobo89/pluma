@@ -1,0 +1,72 @@
+/* Scoped to the hero logo: navigation logos are unaffected.
+   Width stays with .psl-hero__logo-image so the existing hero size is unchanged.
+   Keyframes are prefixed so they do not collide with .pluma-illustration. */
+.pluma-hero-logo {
+  display: block;
+  height: auto;
+  overflow: visible;
+  color: var(--psl-white);
+}
+.pluma-hero-logo .pluma-feather-outline {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: pluma-hero-trace 900ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.pluma-hero-logo .pluma-feather-fill {
+  animation: pluma-hero-fill 550ms ease-out 650ms both;
+}
+.pluma-hero-logo .pluma-letter {
+  animation: pluma-hero-drop 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.pluma-hero-logo .pluma-letter-0 {
+  animation-delay: 850ms;
+}
+.pluma-hero-logo .pluma-letter-1 {
+  animation-delay: 925ms;
+}
+.pluma-hero-logo .pluma-letter-2 {
+  animation-delay: 1000ms;
+}
+.pluma-hero-logo .pluma-letter-3 {
+  animation-delay: 1075ms;
+}
+.pluma-hero-logo .pluma-letter-4 {
+  animation-delay: 1150ms;
+}
+@keyframes pluma-hero-trace {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes pluma-hero-fill {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* 45 SVG units is about 10px at a 280px display width. */
+@keyframes pluma-hero-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-45px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pluma-hero-logo .pluma-letter,
+  .pluma-hero-logo .pluma-feather-fill,
+  .pluma-hero-logo .pluma-feather-outline {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+  }
+}

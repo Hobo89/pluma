@@ -63,13 +63,12 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
       </ul>
 
       {compact ? null : (
-        <div className="psl-durations__terms">
-          <p className="psl-copy psl-copy--small">{t("durations.priceNote")}</p>
-          <p className="psl-copy psl-copy--small">{t("pricing.taxNote")}</p>
+        <p className="psl-copy psl-copy--small psl-durations__terms">
+          {t("durations.priceNote")} {t("pricing.taxNote")}{" "}
           <Link to="/condiciones-reserva" className="psl-textlink">
             {t("durations.termsLink")}
           </Link>
-        </div>
+        </p>
       )}
     </section>
   );
