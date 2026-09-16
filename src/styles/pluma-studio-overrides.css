@@ -1137,7 +1137,8 @@ button.psl-button {
   background: var(--psl-surface);
 }
 
-.psl-about-block__media img {
+.psl-about-block__media img,
+.psl-about-block__media video {
   display: block;
   width: 100%;
   height: auto;
@@ -1146,9 +1147,8 @@ button.psl-button {
 }
 
 .psl-about-block__feather {
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
-  padding: var(--psl-space-12);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   background: var(--psl-surface-sage);
 }
 

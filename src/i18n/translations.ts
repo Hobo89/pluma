@@ -124,6 +124,7 @@ export const translations = {
       origin: {
         heading: "Where it started",
         imageLabel: "A personal photograph for this story",
+        photoAlt: "Stephen’s mother looking up at a blue sky",
         body: "My relationship with touch started long before I thought about massage professionally.\n\nMy mother was an artist who felt everything intensely, and somehow, even as a kid, I learned that touch could bring grounding for her.\n\nIt stayed with me. Years later, friends began telling me how different they felt after I worked on their necks, shoulders, or backs.\n\nEventually, I paid attention too.",
       },
       why: {
@@ -687,6 +688,7 @@ export const translations = {
       origin: {
         heading: "Dónde empezó todo",
         imageLabel: "Una fotografía personal para esta historia",
+        photoAlt: "La madre de Stephen mirando un cielo azul",
         body: "Mi relación con el contacto empezó mucho antes de que pensara en dedicarme profesionalmente al masaje.\n\nMi madre era artista y sentía todo con mucha intensidad. De alguna manera, incluso de niño, aprendí que el contacto podía ayudarla a volver a tierra.\n\nAquello se quedó conmigo. Años después, mis amigos empezaron a contarme lo distintos que se sentían cuando les trabajaba el cuello, los hombros o la espalda.\n\nAl final, yo también presté atención.",
       },
       why: {
