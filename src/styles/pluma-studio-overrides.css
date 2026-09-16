@@ -1959,6 +1959,51 @@ button.psl-button {
   margin-inline: auto;
 }
 
+.psl-ribbon {
+  margin-block-start: var(--psl-space-8);
+}
+
+.psl-ribbon__track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: psl-ribbon-scroll 40s linear infinite;
+}
+
+.psl-ribbon__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--psl-space-6);
+  padding-inline-end: var(--psl-space-6);
+}
+
+.psl-ribbon__group span {
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .psl-ribbon:hover .psl-ribbon__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes psl-ribbon-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psl-ribbon__track {
+    animation: none;
+  }
+}
+
 /* ==========================================================================
    Booking page and calendar embed
    ========================================================================== */
