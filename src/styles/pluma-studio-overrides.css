@@ -1451,14 +1451,15 @@ button.psl-button {
 }
 
 /* Interactive quote collage */
+.psl-quote figcaption,
 .psl-quote__meta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--psl-space-2);
+  font-style: normal;
+}
+
+.psl-quote__meta {
+  display: block;
   margin-top: var(--psl-space-6);
   color: var(--psl-muted);
-  font-style: italic;
   font-size: var(--psl-type-small);
 }
 
@@ -1512,6 +1513,12 @@ button.psl-button {
   font: 500 0.62rem / 1.25 var(--psl-font-body);
   letter-spacing: 0.01em;
   backdrop-filter: blur(8px);
+}
+
+@media (max-width: 767px) {
+  .psl-quote__areas li:nth-child(n + 4) {
+    display: none;
+  }
 }
 
 .psl-collage--interactive {

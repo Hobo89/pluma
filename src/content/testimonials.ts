@@ -81,7 +81,8 @@ export const testimonials: readonly TestimonialRecord[] = [
     quote:
       "El masaje que me dio Stephen fue una experiencia increíblemente reconfortante; desde el primer momento transmitió profesionalidad y calma, y a medida que avanzaba la sesión sentí cómo toda la tensión de mi cuerpo desaparecía, dejándome una sensación de ligereza y bienestar tanto físico como mental que hacía tiempo no experimentaba.",
     image: "/testimonials/dana.jpg",
-    flags: [],
+    flags: [{ type: "emoji", glyph: "🇦🇷" }],
+    countriesKey: "argentina",
     areas: ["back", "neck", "upperBack"],
     objectPosition: "center 18%",
   },
@@ -134,7 +135,8 @@ export const testimonials: readonly TestimonialRecord[] = [
     quote:
       "It’s very rare to have a 1h30 to 2h long massage and it makes the difference. The first hour is the just the warm up to finally be relaxed. After that, it’s pure joy. And Stephen does it wonderfully well, adapting his massage to your needs. For me it meant almost entirely my upper back. Can you imagine so long on such a small zone? ❤️",
     image: "/testimonials/ruben.jpg",
-    flags: [],
+    flags: [{ type: "emoji", glyph: "🇧🇪" }],
+    countriesKey: "belgium",
     areas: ["back", "face", "head"],
     objectPosition: "center 22%",
   },

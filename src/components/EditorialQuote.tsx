@@ -150,13 +150,14 @@ export function EditorialQuote() {
             {active.quote}
           </blockquote>
           <figcaption className="psl-quote__meta">
-            <span>{active.name}</span>
             {active.flags.length > 0 ? (
               <>
-                <span>{t("testimonials.from")}</span>
+                {active.name} {t("testimonials.from")}{" "}
                 <FlagMarks flags={active.flags} label={countriesLabel} />
               </>
-            ) : null}
+            ) : (
+              active.name
+            )}
           </figcaption>
         </div>
       </figure>
