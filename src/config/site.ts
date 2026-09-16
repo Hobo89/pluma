@@ -19,6 +19,7 @@ export const site = {
   /** Public-facing neighbourhood. English copy uses Old Town, not Ciutat Vella. */
   address: "Pl. de les Escoles Pies, Old Town, 46001 València, Valencia",
   email: "hello@pluma.life",
+  ownerEmail: "stephen@pluma.life",
   phone: undefined as string | undefined,
   timezone: "Europe/Madrid",
   socialImage: "/favicon.png",

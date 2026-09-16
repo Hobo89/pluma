@@ -37,9 +37,6 @@ const perDuration: Partial<Record<PricingDuration, string>> = {
   120: calSlug(import.meta.env.VITE_CALCOM_LINK_120) || undefined,
 };
 
-/** Inquiry calendar used for voucher questions. No checkout is attached. */
-export const voucherInquiryUrl = `https://cal.com/${DEFAULT_CAL_LINK}`;
-
 /**
  * Set only when the owner confirms the default event is a multi-duration event
  * that accepts the `duration` query parameter. Until then no duration is sent,

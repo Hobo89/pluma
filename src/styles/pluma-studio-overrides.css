@@ -882,10 +882,6 @@ html.dark .psl-field input {
   color: var(--psl-heading);
 }
 
-.psl-footer__brand .psl-logo__wordmark {
-  color: var(--psl-white);
-}
-
 .psl-header-shell--solid .psl-brand__logo,
 .psl-header--solid .psl-brand__logo {
   height: var(--psl-logo-height, 32px);
@@ -1071,8 +1067,11 @@ html.dark .psl-field input {
 
 .psl-footer__brand-logo {
   display: block;
-  height: var(--psl-logo-height, 36px);
-  width: calc(var(--psl-logo-height, 36px) * 318 / 144);
+  height: 36px;
+  width: auto;
+  max-width: calc(36px * 1024 / 462);
+  object-fit: contain;
+  object-position: left center;
 }
 
 button.psl-button {

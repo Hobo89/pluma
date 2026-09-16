@@ -212,8 +212,11 @@ export const translations = {
       pricesNote: "All prices shown are the total price payable.",
       interestedTitle: "Interested in a voucher?",
       interestedBody:
-        "Choose a time through the calendar and I’ll help you select the option that suits you. I’ll confirm the details and answer any questions before the voucher is arranged.",
+        "Email me and I’ll help you select the option that suits you. I’ll confirm the details and answer any questions before the voucher is arranged.",
       cta: "Ask about a voucher",
+      enquirySubject: "Voucher inquiry",
+      enquiryBody:
+        "Hello Stephen,%0D%0A%0D%0AI would like to ask about a voucher.%0D%0A%0D%0AThank you,",
       termsAgree:
         "By arranging a voucher, you agree to the Voucher Terms. Please read them before confirming.",
       termsLink: "Voucher Terms",
@@ -227,7 +230,7 @@ export const translations = {
         arrange: {
           question: "How do I arrange a voucher?",
           answer:
-            "Select Ask about a voucher and choose a suitable time through the calendar.\n\nI’ll help you choose the session length and number of sessions, confirm the terms and answer any questions before you commit. Vouchers are arranged directly; there is no online checkout on the website.",
+            "Select Ask about a voucher to email me.\n\nI’ll help you choose the session length and number of sessions, confirm the terms and answer any questions before you commit. Vouchers are arranged directly; there is no online checkout on the website.",
         },
         after: {
           question: "What happens after my voucher is confirmed?",
@@ -358,8 +361,8 @@ export const translations = {
       body: "We talk. We eat together. We laugh. Touch probably belongs somewhere in there too.\n\nFunny that we’ve made it complicated.",
     },
     cta: {
-      heading: "Ready when your body is.",
-      body: "Choose 60, 90, or 120 minutes and find a time that works.",
+      heading: "Ready when your body is",
+      body: "Don't over think it.",
     },
     quote: {
       title: "What clients say",
@@ -779,8 +782,11 @@ export const translations = {
       pricesNote: "Todos los precios mostrados son el precio total a pagar.",
       interestedTitle: "¿Te interesa un bono?",
       interestedBody:
-        "Elige una hora en el calendario y te ayudo a escoger la opción que mejor te encaje. Confirmaré los detalles y resolveré cualquier duda antes de formalizarlo.",
+        "Escríbeme y te ayudo a escoger la opción que mejor te encaje. Confirmaré los detalles y resolveré cualquier duda antes de formalizarlo.",
       cta: "Preguntar por un bono",
+      enquirySubject: "Consulta sobre un bono",
+      enquiryBody:
+        "Hola Stephen:%0D%0A%0D%0AMe gustaría consultar por un bono.%0D%0A%0D%0AGracias,",
       termsAgree:
         "Al formalizar un bono, aceptas las Condiciones de los bonos. Léelas antes de confirmar.",
       termsLink: "Condiciones de los bonos",
@@ -794,7 +800,7 @@ export const translations = {
         arrange: {
           question: "¿Cómo se formaliza un bono?",
           answer:
-            "Pulsa Preguntar por un bono y elige una hora en el calendario.\n\nTe ayudo a elegir la duración y el número de sesiones, confirmar las condiciones y resolver cualquier duda antes de que te comprometas. Los bonos se formalizan de forma directa; en la web no hay un proceso de compra online.",
+            "Pulsa Preguntar por un bono para enviarme un email.\n\nTe ayudo a elegir la duración y el número de sesiones, confirmar las condiciones y resolver cualquier duda antes de que te comprometas. Los bonos se formalizan de forma directa; en la web no hay un proceso de compra online.",
         },
         after: {
           question: "¿Qué ocurre cuando se confirma el bono?",
@@ -925,8 +931,8 @@ export const translations = {
       body: "Hablamos. Comemos juntos. Nos reímos. Seguramente el contacto también debería estar en esa lista.\n\nCurioso que lo hayamos complicado tanto.",
     },
     cta: {
-      heading: "Cuando tu cuerpo esté listo.",
-      body: "Elige 60, 90 o 120 minutos y encuentra una hora que te venga bien.",
+      heading: "Cuando tu cuerpo esté listo",
+      body: "No le des tantas vueltas.",
     },
     quote: {
       title: "Lo que dicen los clientes",

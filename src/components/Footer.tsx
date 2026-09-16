@@ -22,7 +22,11 @@ export function Footer() {
       <div className="psl-footer__top">
         <div className="psl-stack">
           <NavLink to="/" className="psl-footer__brand" aria-label="pluma home">
-            <Logo className="psl-footer__brand-logo" height={36} />
+            <Logo
+              variant="fullWhite"
+              className="psl-footer__brand-logo"
+              alt=""
+            />
           </NavLink>
           <h2>{t("footer.contactTitle")}</h2>
           <p className="psl-copy" style={{ color: "rgb(255 255 255 / 75%)" }}>

@@ -3,7 +3,7 @@ import { PageContainer } from "../components/PageContainer";
 import { PageMeta } from "../components/PageMeta";
 import { CopyBlocks } from "../components/CopyBlocks";
 import { BookingAction } from "../components/BookingAction";
-import { voucherInquiryUrl } from "../config/cal";
+import { mailto } from "../lib/contact";
 import {
   recommendedDuration,
   sessionRates,
@@ -113,7 +113,10 @@ export function BonosPage() {
           {t("bonos.interestedTitle")}
         </h2>
         <p className="psl-copy">{t("bonos.interestedBody")}</p>
-        <a href={voucherInquiryUrl} className="psl-button psl-button--dark">
+        <a
+          href={mailto(t("bonos.enquirySubject"), t("bonos.enquiryBody"))}
+          className="psl-button psl-button--dark"
+        >
           {t("bonos.cta")}
         </a>
         <p className="psl-copy psl-copy--small">
