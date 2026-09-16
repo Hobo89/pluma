@@ -8,6 +8,7 @@ import { FeatureStory } from "./FeatureStory";
 export function StudioFeature() {
   return (
     <FeatureStory
+      id="studio"
       titleKey="studio.title"
       descriptionKey="studio.description"
       collage={studioPhotoCluster}

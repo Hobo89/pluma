@@ -4,7 +4,10 @@ import { PageMeta } from "../components/PageMeta";
 import { PendingNote } from "../components/PendingNote";
 import { processingInventory } from "../config/processing";
 import { site } from "../config/site";
+import { voucherTermsEn } from "../content/voucherTermsEn";
+import { voucherCards } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
+import { formatPrice } from "../lib/money";
 
 export type LegalPageId =
   | "notice"
@@ -201,47 +204,73 @@ function TermsBody() {
 }
 
 function BonoTermsBody() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const k = "legalPages.bonoTerms";
+
+  if (language !== "en") {
+    return (
+      <p className="psl-legal__draft" role="note">
+        {t(`${k}.spanishPending`)}
+      </p>
+    );
+  }
 
   return (
     <>
-      <p className="psl-legal__draft" role="note">
-        {t(`${k}.draftBanner`)}
-      </p>
-      <p className="psl-copy">{t(`${k}.intro`)}</p>
-      <Section title={t(`${k}.whatTitle`)}>
-        <p className="psl-copy">{t(`${k}.whatBody`)}</p>
-      </Section>
-      <Section title={t(`${k}.priceTitle`)}>
-        <p className="psl-copy">{t(`${k}.priceBody`)}</p>
-      </Section>
-      <Section title={t(`${k}.validityTitle`)}>
-        <p className="psl-copy">{t(`${k}.validityBody`)}</p>
-        <PendingNote label={t("legalPages.pendingItem")}>
-          {t(`${k}.validityPending`)}
-        </PendingNote>
-      </Section>
-      <Section title={t(`${k}.transferTitle`)}>
-        <PendingNote label={t("legalPages.pendingItem")}>
-          {t(`${k}.transferPending`)}
-        </PendingNote>
-      </Section>
-      <Section title={t(`${k}.unusedTitle`)}>
-        <PendingNote label={t("legalPages.pendingItem")}>
-          {t(`${k}.unusedPending`)}
-        </PendingNote>
-      </Section>
-      <Section title={t(`${k}.deliveryTitle`)}>
-        <PendingNote label={t("legalPages.pendingItem")}>
-          {t(`${k}.deliveryPending`)}
-        </PendingNote>
-      </Section>
-      <Section title={t(`${k}.withdrawalTitle`)}>
-        <PendingNote label={t("legalPages.pendingItem")}>
-          {t(`${k}.withdrawalPending`)}
-        </PendingNote>
-      </Section>
+      <p className="psl-copy psl-copy--small">{voucherTermsEn.version}</p>
+      {voucherTermsEn.sections.map((section) => (
+        <Section key={section.title} title={section.title}>
+          {section.title.startsWith("2.") ? (
+            <div className="psl-legal__table-wrap">
+              <table className="psl-legal__table">
+                <thead>
+                  <tr>
+                    <th scope="col">Voucher</th>
+                    <th scope="col">Standard total</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Voucher price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {voucherCards.flatMap((card) =>
+                    card.rates.map((rate) => (
+                      <tr key={`${card.sessions}-${rate.minutes}`}>
+                        <th scope="row">
+                          {card.sessions === 5 ? "Five" : "Ten"} ×{" "}
+                          {rate.minutes}-minute sessions
+                        </th>
+                        <td>
+                          {formatPrice(rate.totalCents + rate.savingCents, "en")}
+                        </td>
+                        <td>{card.discountPercent}%</td>
+                        <td>{formatPrice(rate.totalCents, "en")}</td>
+                      </tr>
+                    )),
+                  )}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
+          {section.paragraphs.map((paragraph) => (
+            <p key={paragraph} className="psl-copy">
+              {paragraph}
+            </p>
+          ))}
+          {section.title.startsWith("14.") ? (
+            <>
+              <PendingNote label={t("legalPages.pendingItem")}>
+                Legal operator: [LEGAL NAME]
+              </PendingNote>
+              <PendingNote label={t("legalPages.pendingItem")}>
+                NIF/NIE: [NIF/NIE]
+              </PendingNote>
+              <PendingNote label={t("legalPages.pendingItem")}>
+                Business address: [LEGAL BUSINESS ADDRESS]
+              </PendingNote>
+            </>
+          ) : null}
+        </Section>
+      ))}
     </>
   );
 }
@@ -261,11 +290,12 @@ export function LegalPage({ page }: LegalPageProps) {
   return (
     <PageContainer>
       <PageMeta page={page} />
-      <p className="psl-eyebrow">{t("footer.legalTitle")}</p>
       <h1 className="psl-title">{t(`legalPages.${page}.title`)}</h1>
-      <p className="psl-legal__banner" role="note">
-        {t("legalPages.pendingBanner")}
-      </p>
+      {page === "bonoTerms" ? null : (
+        <p className="psl-legal__banner" role="note">
+          {t("legalPages.pendingBanner")}
+        </p>
+      )}
       <div className="psl-legal">
         <Body />
       </div>

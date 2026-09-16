@@ -28,7 +28,6 @@ export function BookingPage() {
     <PageContainer wide>
       <PageMeta page="book" />
 
-      <p className="psl-eyebrow">{t("booking.eyebrow")}</p>
       <h1 className="psl-title">{t("booking.title")}</h1>
       <p className="psl-copy" style={{ marginBlock: "var(--psl-space-6)" }}>
         {t("booking.description")}

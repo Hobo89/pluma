@@ -47,7 +47,7 @@ body {
 .testimonial-card {
   position: relative;
   min-height: 22rem;
-  padding: 1.4rem 1.3rem 1.2rem;
+  padding: 1.4rem 1.3rem 2.4rem;
   background: var(--psl-surface);
   box-shadow: 0 4px 18px rgb(0 0 0 / 0.04);
 }
@@ -83,6 +83,12 @@ body {
   object-fit: cover;
   border: 1.5px solid var(--psl-lime);
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+.testimonial-card .psl-quote__areas {
+  left: 1.2rem;
+  bottom: 0.9rem;
+  max-width: calc(100% - 2.4rem);
 }
 
 .testimonial-name-row {

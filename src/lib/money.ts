@@ -6,7 +6,7 @@ import type { Language } from "../i18n/translations";
  */
 
 const LOCALES: Record<Language, string> = {
-  en: "en-IE",
+  en: "en-US",
   es: "es-ES",
 };
 

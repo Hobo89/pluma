@@ -1,3 +1,12 @@
+import type { ComponentType } from "react";
+import {
+  HeatedTableIcon,
+  MasseurIcon,
+  NoWaitIcon,
+  OldTownIcon,
+  PrivateRoomIcon,
+} from "./StudioIcons";
+
 type HighlightId =
   | "oldTown"
   | "heatedTable"
@@ -5,18 +14,19 @@ type HighlightId =
   | "privateRoom"
   | "masseur";
 
-const highlightIcons: Record<HighlightId, string> = {
-  oldTown: "/assets/images/icon-old-town.png",
-  noWait: "/assets/images/icon-no-wait-time.png",
-  // Reuses the existing icon file. The label no longer claims a certification,
-  // which is unverified; see OWNER-INPUTS.md.
-  masseur: "/assets/images/icon-certified-masseuse.png",
-  heatedTable: "/assets/images/icon-heated-massage-table.png",
-  privateRoom: "/assets/images/icon-private-room.png",
+const highlightIcons: Record<HighlightId, ComponentType> = {
+  oldTown: OldTownIcon,
+  noWait: NoWaitIcon,
+  // The mark is an award, not a credential. The label no longer claims a
+  // certification, which is unverified; see OWNER-INPUTS.md.
+  masseur: MasseurIcon,
+  heatedTable: HeatedTableIcon,
+  privateRoom: PrivateRoomIcon,
 };
 
 function HighlightIcon({ id }: { id: HighlightId }) {
-  return <img src={highlightIcons[id]} alt="" aria-hidden="true" />;
+  const Icon = highlightIcons[id];
+  return <Icon />;
 }
 
 export const studioHighlightIds = [

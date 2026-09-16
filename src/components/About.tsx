@@ -1,56 +1,73 @@
-import type { CSSProperties } from "react";
-import { useLanguage } from "../context/LanguageContext";
+import { CopyBlocks } from "./CopyBlocks";
 import { StudioFeature } from "./StudioFeature";
+import { useLanguage } from "../context/LanguageContext";
+
+const sections = [
+  {
+    id: "how",
+    image: "/assets/images/stephen-portrait-smile.jpg",
+    imageAltKey: "about.stephenPhotoAlt",
+    placeholder: false,
+  },
+  {
+    id: "origin",
+    image: null,
+    imageAltKey: "about.origin.imageLabel",
+    placeholder: true,
+  },
+  {
+    id: "why",
+    image: "/assets/images/pluma-logo-feather-only.svg",
+    imageAltKey: "about.why.photoAlt",
+    placeholder: false,
+    imageClass: "psl-about-block__feather",
+  },
+] as const;
 
 export function About() {
   const { t } = useLanguage();
 
   return (
     <>
-      <section
-        className="psl-hero"
-        style={
-          {
-            "--psl-focal": "50% 15%",
-            "--psl-focal-mobile": "50% 20%",
-            minHeight: "clamp(420px, 72vh, 640px)",
-          } as CSSProperties
-        }
-      >
-        <img
-          className="psl-hero__image"
-          src="/assets/images/stephen.jpg"
-          alt=""
-          aria-hidden="true"
-          loading="eager"
-        />
-        <div className="psl-hero__body psl-container">
-          <p className="psl-eyebrow" style={{ color: "rgb(255 255 255 / 85%)" }}>
-            {t("about.eyebrow")}
-          </p>
-          <h1 className="psl-display" style={{ color: "var(--psl-white)" }}>
-            {t("about.title")}
-          </h1>
-          <p
-            className="psl-copy"
-            style={{ color: "rgb(255 255 255 / 90%)", maxWidth: "42ch" }}
+      <div className="psl-container psl-page psl-about-page">
+        {sections.map((section, index) => (
+          <article
+            key={section.id}
+            className={`psl-about-block${index % 2 === 1 ? " psl-about-block--reverse" : ""}`}
           >
-            {t("about.body")}
-          </p>
-        </div>
-      </section>
-
-      <div className="psl-container psl-page psl-about-stephen">
-        <figure className="psl-about-stephen__portrait">
-          <img
-            src="/assets/images/stephen-portrait-smile.jpg"
-            alt={t("about.stephenPhotoAlt")}
-            width={480}
-            height={640}
-            loading="lazy"
-          />
-        </figure>
-        <p className="psl-copy">{t("about.stephen")}</p>
+            <figure className="psl-about-block__media">
+              {section.placeholder ? (
+                <div
+                  className="psl-about-placeholder"
+                  aria-hidden="true"
+                >
+                  <span className="psl-about-placeholder__mark" />
+                  <span className="psl-about-placeholder__label">
+                    {t(section.imageAltKey)}
+                  </span>
+                </div>
+              ) : (
+                <img
+                  src={section.image}
+                  alt={t(section.imageAltKey)}
+                  className={"imageClass" in section ? section.imageClass : undefined}
+                  width={section.id === "how" ? 768 : 480}
+                  height={section.id === "how" ? 1024 : 640}
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              )}
+              {section.placeholder ? (
+                <figcaption className="psl-sr-only">
+                  {t(section.imageAltKey)}
+                </figcaption>
+              ) : null}
+            </figure>
+            <div className="psl-about-block__body">
+              <h2 className="psl-title">{t(`about.${section.id}.heading`)}</h2>
+              <CopyBlocks text={t(`about.${section.id}.body`)} />
+            </div>
+          </article>
+        ))}
       </div>
 
       <StudioFeature />

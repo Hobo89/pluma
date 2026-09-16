@@ -90,7 +90,7 @@ function htmlForRoute(
     `<meta property="og:description" content="${escapeHtml(description)}" />`,
     `<meta property="og:url" content="${canonical}" />`,
     `<meta property="og:image" content="${ORIGIN}${SOCIAL_IMAGE}" />`,
-    `<meta property="og:locale" content="en_GB" />`,
+    `<meta property="og:locale" content="en_US" />`,
     `<meta name="twitter:card" content="summary" />`,
   ].join("\n    ");
 

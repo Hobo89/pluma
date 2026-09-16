@@ -3,8 +3,9 @@ import { DurationChoice } from "../components/DurationChoice";
 import { FeatureStory } from "../components/FeatureStory";
 import { MassageTypes } from "../components/MassageTypes";
 import { BenefitsMosaic } from "../components/BenefitsMosaic";
-import { ClientMix } from "../components/ClientMix";
+import { SafetyControl } from "../components/SafetyControl";
 import { EditorialQuote } from "../components/EditorialQuote";
+import { Philosophy } from "../components/Philosophy";
 import { PromoRibbon } from "../components/PromoRibbon";
 import { FAQ } from "../components/FAQ";
 import { BookingCTA } from "../components/BookingCTA";
@@ -13,11 +14,6 @@ import { StickyBookingBar } from "../components/StickyBookingBar";
 import { StudioFeature } from "../components/StudioFeature";
 import { useLanguage } from "../context/LanguageContext";
 
-/**
- * Booking-first order:
- * the studio, then offer and availability, duration choice, what the session
- * is like, reviews, then the final individual-booking call to action.
- */
 export function HomePage() {
   const { t } = useLanguage();
 
@@ -25,11 +21,13 @@ export function HomePage() {
     <>
       <PageMeta page="home" />
       <Hero />
-      <StudioFeature />
+      <DurationChoice />
 
       <FeatureStory
         titleKey="about.title"
         descriptionKey="about.body"
+        extraDescriptionKey="about.body2"
+        trustKey="about.languages"
         image="/assets/images/stephen.jpg"
         imageAlt={t("about.stephenPhotoAlt")}
         imagePosition="64% 32%"
@@ -37,24 +35,14 @@ export function HomePage() {
         portraitAlt={t("about.stephenPhotoAlt")}
         actionLabelKey="hero.learnMore"
         actionTo="/about"
-        badge={t("about.credential")}
       />
 
-      <DurationChoice />
-
+      <StudioFeature />
       <MassageTypes />
-
       <BenefitsMosaic />
-      <div className="psl-container psl-section--roomy psl-audience">
-        <div className="psl-section-head psl-section-head--stack psl-audience__head">
-          <h2 id="clients-heading" className="psl-title">
-            {t("clients.title")}
-          </h2>
-          <p className="psl-copy">{t("clients.description")}</p>
-        </div>
-        <ClientMix />
-        <EditorialQuote />
-      </div>
+      <SafetyControl />
+      <EditorialQuote />
+      <Philosophy />
       <PromoRibbon />
       <FAQ />
       <BookingCTA />

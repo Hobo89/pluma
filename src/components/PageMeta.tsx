@@ -74,12 +74,14 @@ export function PageMeta({ page, noindex = false }: PageMetaProps) {
     upsertMeta("property", "og:description", description);
     upsertMeta("property", "og:url", canonical);
     upsertMeta("property", "og:image", `${site.origin}${site.socialImage}`);
-    upsertMeta("property", "og:locale", language === "es" ? "es_ES" : "en_GB");
+    upsertMeta("property", "og:locale", language === "es" ? "es_ES" : "en_US");
     upsertMeta("name", "twitter:card", "summary");
     upsertMeta("name", "twitter:title", fullTitle);
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", `${site.origin}${site.socialImage}`);
 
+    // Indexing requires a separate explicit launch decision. Do not flip
+    // `site.searchIndexing` as part of a copy or catalogue update.
     if (noindex || !site.searchIndexing) {
       upsertMeta("name", "robots", "noindex, nofollow");
     } else {

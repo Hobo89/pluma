@@ -1,257 +1,148 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PageContainer } from "../components/PageContainer";
 import { PageMeta } from "../components/PageMeta";
-import { PendingNote } from "../components/PendingNote";
-import { BonoDesignPicker } from "../components/BonoDesignPicker";
-import { BonoPhonePreview } from "../components/BonoPhonePreview";
-import { BuyIcon, EmailIcon, PhoneIcon } from "../components/BonoIcons";
+import { CopyBlocks } from "../components/CopyBlocks";
+import { BookingAction } from "../components/BookingAction";
+import { voucherInquiryUrl } from "../config/cal";
 import {
-  defaultBonoDesign,
-  isBonoDesignId,
-  type BonoDesignId,
-} from "../config/bonos";
-import {
-  pricingPolicy,
   recommendedDuration,
+  sessionRates,
   voucherCards,
-  voucherRateFor,
   type VoucherDuration,
-  type VoucherSessions,
 } from "../config/pricing";
-import { readiness } from "../config/readiness";
 import { useLanguage } from "../context/LanguageContext";
 import { formatPrice } from "../lib/money";
-import { mailto } from "../lib/contact";
-import { track } from "../lib/analytics";
-import { BookingAction } from "../components/BookingAction";
 
-const DESIGN_STORAGE_KEY = "bonoDesign";
-
-const steps = [
-  { id: "buy", Icon: BuyIcon },
-  { id: "email", Icon: EmailIcon },
-  { id: "phone", Icon: PhoneIcon },
+const faqIds = [
+  "include",
+  "arrange",
+  "after",
+  "active",
+  "valid",
+  "book",
+  "change",
+  "plumaCancel",
+  "extend",
+  "share",
+  "prices",
+  "refund",
+  "expire",
+  "lost",
 ] as const;
-
-function readStoredDesign(): BonoDesignId {
-  try {
-    const stored = localStorage.getItem(DESIGN_STORAGE_KEY);
-    if (isBonoDesignId(stored)) return stored;
-  } catch {
-    // Blocked storage just means the default design is used.
-  }
-  return defaultBonoDesign;
-}
 
 export function BonosPage() {
   const { t, language } = useLanguage();
-  const [design, setDesign] = useState<BonoDesignId>(readStoredDesign);
-  const [sessions, setSessions] = useState<VoucherSessions>(5);
-  const [minutes, setMinutes] = useState<VoucherDuration>(90);
-
-  // Carried through so the same design reaches checkout and issuance once
-  // those exist. Today it also travels in the enquiry email.
-  useEffect(() => {
-    try {
-      localStorage.setItem(DESIGN_STORAGE_KEY, design);
-    } catch {
-      // Non-fatal.
-    }
-  }, [design]);
-
-  const card = voucherCards.find((entry) => entry.sessions === sessions);
-  const rate = voucherRateFor(sessions, minutes);
-  const packageId = `${sessions}x${minutes}`;
-
-  const enquiryBody = `${t("booking.enquiryBody")}%0D%0A%0D%0A${encodeURIComponent(
-    `${sessions} × ${minutes} min · ${design}`,
-  )}`;
+  const voucherDurations = sessionRates
+    .map((rate) => rate.minutes)
+    .filter((minutes): minutes is VoucherDuration => minutes === 60 || minutes === 90);
 
   return (
     <PageContainer>
       <PageMeta page="bonos" />
 
-      <div className="psl-bono-head">
-        <div className="psl-bono-head__body">
-          <p className="psl-eyebrow">{t("bonos.eyebrow")}</p>
-          {!readiness.bonoSalesReady ? (
-            <p className="psl-badge-soon">{t("prelaunch.bonoBadge")}</p>
-          ) : null}
-          <h1 className="psl-title">{t("bonos.title")}</h1>
-          <p className="psl-copy psl-copy--lead">
-            {readiness.bonoSalesReady
-              ? t("bonos.subtitle")
-              : t("bonos.subtitleSoon")}
-          </p>
-          <p className="psl-copy">{t("bonos.intro")}</p>
-          {!readiness.bonoSalesReady ? (
-            <p className="psl-copy psl-copy--small">{t("prelaunch.bonoNotice")}</p>
-          ) : null}
-        </div>
-
-        <BonoPhonePreview
-          design={design}
-          sessions={sessions}
-          minutes={minutes}
-        />
+      <h1 className="psl-title">{t("bonos.title")}</h1>
+      <div className="psl-bono-intro">
+        <CopyBlocks text={t("bonos.pageIntro")} />
+        <CopyBlocks text={t("bonos.body")} />
       </div>
 
-      <section className="psl-section" aria-labelledby="bono-steps-heading">
-        <h2 id="bono-steps-heading" className="psl-title">
-          {t("bonos.stepsTitle")}
+      <section
+        className="psl-section"
+        aria-labelledby="voucher-options-heading"
+      >
+        <h2 id="voucher-options-heading" className="psl-title">
+          {t("bonos.optionsTitle")}
         </h2>
-        <ol className="psl-bono-steps">
-          {steps.map(({ id, Icon }, index) => (
-            <li key={id} className="psl-bono-step">
-              <span className="psl-bono-step__icon">
-                <Icon />
-              </span>
-              <span className="psl-bono-step__index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="psl-bono-step__title">
-                {t(`bonos.steps.${id}.title`)}
-              </h3>
-              <p className="psl-bono-step__body">
-                {t(`bonos.steps.${id}.body`)}
-              </p>
-            </li>
-          ))}
-        </ol>
-        {readiness.balanceUpdatesReady ? (
-          <p className="psl-copy psl-copy--small">{t("bonos.remainingReady")}</p>
-        ) : (
-          <PendingNote label={t("prelaunch.previewLabel")}>
-            {t("bonos.stepsNote")}
-          </PendingNote>
-        )}
+
+        <div className="psl-voucher-table-wrap">
+          <table className="psl-voucher-table">
+            <thead>
+              <tr>
+                <th scope="col">{t("bonos.optionsTitle")}</th>
+                {voucherCards.map((card) => (
+                  <th key={card.sessions} scope="col">
+                    {t(`pricing.voucher${card.sessions}.title`)}
+                    <span className="psl-voucher-table__discount">
+                      {t(`pricing.voucher${card.sessions}.discount`)}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {voucherDurations.map((minutes) => (
+                <tr key={minutes}>
+                  <th scope="row">
+                    {t("pricing.durationMinutes", { minutes })}
+                    <span className="psl-voucher-table__single">
+                      {formatPrice(
+                        sessionRates.find((rate) => rate.minutes === minutes)
+                          ?.cents ?? 0,
+                        language,
+                      )}
+                    </span>
+                  </th>
+                  {voucherCards.map((card) => {
+                    const rate = card.rates.find(
+                      (entry) => entry.minutes === minutes,
+                    );
+                    if (!rate) return <td key={card.sessions} />;
+                    return (
+                      <td key={card.sessions}>
+                        <strong>{formatPrice(rate.totalCents, language)}</strong>
+                        <span>
+                          {formatPrice(rate.perSessionCents, language)}{" "}
+                          {t("pricing.perSession")}
+                        </span>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="psl-copy psl-copy--small">{t("bonos.pricesNote")}</p>
       </section>
 
-      <section className="psl-section" aria-labelledby="bono-packages-heading">
-        <h2 id="bono-packages-heading" className="psl-title">
-          {t("bonos.packagesTitle")}
+      <section
+        className="psl-section psl-bono-inquiry"
+        aria-labelledby="voucher-inquiry-heading"
+      >
+        <h2 id="voucher-inquiry-heading" className="psl-title">
+          {t("bonos.interestedTitle")}
         </h2>
-        <p className="psl-copy">{t("bonos.packagesDescription")}</p>
-
-        <div className="psl-bono-choices">
-          <fieldset className="psl-bono-choice">
-            <legend className="psl-bono-choice__legend">
-              {t("bonos.sessionsLabel")}
-            </legend>
-            <div className="psl-bono-choice__options">
-              {voucherCards.map((entry) => (
-                <label key={entry.sessions} className="psl-bono-chip">
-                  <input
-                    type="radio"
-                    name="bono-sessions"
-                    value={entry.sessions}
-                    checked={entry.sessions === sessions}
-                    onChange={() => setSessions(entry.sessions)}
-                  />
-                  <span>
-                    {t("bonos.sessionsOption", { count: entry.sessions })}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <fieldset className="psl-bono-choice">
-            <legend className="psl-bono-choice__legend">
-              {t("bonos.durationLabel")}
-            </legend>
-            <div className="psl-bono-choice__options">
-              {pricingPolicy.voucherCardDurations.map((duration) => (
-                <label key={duration} className="psl-bono-chip">
-                  <input
-                    type="radio"
-                    name="bono-duration"
-                    value={duration}
-                    checked={duration === minutes}
-                    onChange={() => setMinutes(duration)}
-                  />
-                  <span>{t("pricing.durationMinutes", { minutes: duration })}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-        </div>
-
-        <BonoDesignPicker value={design} onChange={setDesign} />
-
-        <div className="psl-bono-summary" aria-live="polite">
-          <h3 className="psl-bono-summary__title">{t("bonos.summaryTitle")}</h3>
-          <dl className="psl-bono-summary__list">
-            <div>
-              <dt>{t("bonos.summarySessions", { count: sessions, minutes })}</dt>
-              <dd>{t("pricing.durationMinutes", { minutes })}</dd>
-            </div>
-            <div>
-              <dt>{t("bonos.summaryTotal")}</dt>
-              <dd className="psl-bono-summary__total">
-                {formatPrice(rate.totalCents, language)}
-              </dd>
-            </div>
-            <div>
-              <dt>{t("bonos.summaryPerSession")}</dt>
-              <dd>{formatPrice(rate.perSessionCents, language)}</dd>
-            </div>
-            <div>
-              <dt>{t("bonos.summarySaving")}</dt>
-              <dd>{formatPrice(rate.savingCents, language)}</dd>
-            </div>
-            <div>
-              <dt>{t("bonos.summaryValidity")}</dt>
-              <dd>
-                {t("bonos.summaryValidityValue", {
-                  months: card?.validityMonths ?? 0,
-                })}
-              </dd>
-            </div>
-          </dl>
-
-          <PendingNote label={t("prelaunch.previewLabel")}>
-            {t("bonos.validityStartPending")}
-          </PendingNote>
-
-          {readiness.bonoSalesReady ? (
-            <button
-              type="button"
-              className="psl-button psl-button--dark"
-              onClick={() =>
-                track({
-                  name: "bono_checkout_started",
-                  packageId,
-                  design,
-                })
-              }
-            >
-              {t("bonos.packagesTitle")}
-            </button>
-          ) : (
-            <a
-              href={mailto(
-                `${t("bonos.eyebrow")} · ${sessions} × ${minutes} min`,
-                enquiryBody,
-              )}
-              className="psl-button psl-button--dark"
-            >
-              {t("prelaunch.bonoCta")}
-            </a>
-          )}
-
-          <p className="psl-copy psl-copy--small">{t("pricing.taxNote")}</p>
+        <p className="psl-copy">{t("bonos.interestedBody")}</p>
+        <a href={voucherInquiryUrl} className="psl-button psl-button--dark">
+          {t("bonos.cta")}
+        </a>
+        <p className="psl-copy psl-copy--small">
+          {t("bonos.termsAgree")}{" "}
           <Link to="/condiciones-bonos" className="psl-textlink">
             {t("bonos.termsLink")}
           </Link>
-        </div>
+        </p>
+      </section>
 
-        {!readiness.bonoSalesReady ? (
-          <PendingNote label={t("prelaunch.previewLabel")}>
-            {t("bonos.walletPending")}
-          </PendingNote>
-        ) : null}
+      <section className="psl-faq" aria-labelledby="voucher-faq-heading">
+        <h2 id="voucher-faq-heading" className="psl-title">
+          {t("bonos.faqTitle")}
+        </h2>
+        <div>
+          {faqIds.map((id) => (
+            <details key={id}>
+              <summary>
+                {t(`bonos.faq.${id}.question`)}
+                <span className="psl-faq__icon" aria-hidden="true" />
+              </summary>
+              {t(`bonos.faq.${id}.answer`)
+                .split("\n\n")
+                .map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+            </details>
+          ))}
+        </div>
       </section>
 
       <section className="psl-bono-return" aria-labelledby="bono-return-heading">

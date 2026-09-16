@@ -27,7 +27,7 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     const initial = detectLanguage();
-    document.documentElement.lang = initial;
+    document.documentElement.lang = initial === "es" ? "es-ES" : "en-US";
     return initial;
   });
 
@@ -41,7 +41,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    document.documentElement.lang = language;
+    document.documentElement.lang = language === "es" ? "es-ES" : "en-US";
   }, [language]);
 
   const value = useMemo(

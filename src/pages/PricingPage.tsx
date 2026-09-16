@@ -16,7 +16,6 @@ export function PricingPage() {
   return (
     <PageContainer>
       <PageMeta page="pricing" />
-      <p className="psl-eyebrow">{t("pricing.eyebrow")}</p>
       <h1 className="psl-title">{t("pricing.title")}</h1>
       <p className="psl-copy" style={{ marginBlock: "var(--psl-space-6)" }}>
         {t("pricing.description")}

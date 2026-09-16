@@ -51,7 +51,7 @@ export const processingInventory: readonly ProcessingEntry[] = [
       es: "Tu dirección de correo y lo que escribas en el mensaje",
     },
     purpose: {
-      en: "Answering an enquiry sent to the studio",
+      en: "Answering an inquiry sent to the studio",
       es: "Responder a una consulta enviada al estudio",
     },
     basis: {

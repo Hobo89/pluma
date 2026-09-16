@@ -5,7 +5,7 @@ import { formatPrice } from "../lib/money";
 import { BookingAction } from "./BookingAction";
 
 /**
- * The duration chooser. Ninety minutes is marked as the client favourite,
+ * The duration chooser. Ninety minutes is marked as Stephen's recommendation,
  * through an outline, a label, and first position in the mobile strip.
  */
 export function DurationChoice({ compact = false }: { compact?: boolean }) {
@@ -18,7 +18,6 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
       className="psl-container psl-section--roomy"
     >
       <div className="psl-section-head psl-section-head--stack">
-        <p className="psl-eyebrow">{t("durations.eyebrow")}</p>
         <h2 id="durations-heading" className="psl-title">
           {t("durations.title")}
         </h2>

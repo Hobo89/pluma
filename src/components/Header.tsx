@@ -44,7 +44,7 @@ export function Header({ solid = false }: HeaderProps) {
   const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const overlay = !solid && (pathname === "/" || pathname === "/about");
+  const overlay = !solid && pathname === "/";
   const solidNav = solid || !overlay || scrolled;
 
   const navLinks = [

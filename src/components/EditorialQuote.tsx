@@ -1,25 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import {
+  testimonials,
+  type AreaId,
+  type TestimonialFlag,
+  type TestimonialRecord,
+} from "../content/testimonials";
 
-/**
- * All clients in the quote carousel (left-to-right cycle order).
- *
- * The portraits are part of the design and each one belongs with its own
- * review. Do not remove a portrait, swap which person appears beside a quote,
- * or replace these files.
- */
-export const QUOTE_TESTIMONIALS = [
-  { id: "carla", image: "/testimonials/carla.jpg", flags: ["🇪🇸"] },
-  { id: "sara", image: "/testimonials/sara.jpg", flags: ["🇲🇦"] },
-  { id: "candice", image: "/testimonials/candice.jpg", flags: ["🇺🇸", "🇮🇳"] },
-  { id: "beatrice", image: "/testimonials/beatrice.jpg", flags: ["🇧🇪"] },
-  { id: "jesus", image: "/testimonials/jesus.jpg", flags: ["🇪🇸"] },
-  { id: "juanma", image: "/testimonials/juanma.jpg", flags: ["🇪🇸"] },
-  { id: "sarah", image: "/testimonials/sarah.jpg", flags: ["🇬🇧"] },
-] as const;
+export const QUOTE_TESTIMONIALS = testimonials;
 
 const COUNT = QUOTE_TESTIMONIALS.length;
-const INTERVAL_MS = 6000;
+const INTERVAL_MS = 9000;
 const VISIBLE_OFFSETS = [-2, -1, 0, 1, 2] as const;
 
 function wrapIndex(index: number) {
@@ -43,6 +34,47 @@ function PlayIcon() {
   );
 }
 
+function FlagMarks({
+  flags,
+  label,
+}: {
+  flags: readonly TestimonialFlag[];
+  label?: string;
+}) {
+  if (flags.length === 0) return null;
+
+  return (
+    <span className="psl-quote__flags" role="img" aria-label={label}>
+      {flags.map((flag) =>
+        flag.type === "emoji" ? (
+          <span key={flag.glyph}>{flag.glyph}</span>
+        ) : (
+          <img
+            key={flag.src}
+            src={flag.src}
+            alt=""
+            className="psl-quote__flag-image"
+          />
+        ),
+      )}
+    </span>
+  );
+}
+
+function AreaBadges({ areas }: { areas: readonly AreaId[] }) {
+  const { t } = useLanguage();
+
+  if (areas.length === 0) return null;
+
+  return (
+    <ul className="psl-quote__areas">
+      {areas.map((area) => (
+        <li key={area}>{t(`testimonials.areas.${area}`)}</li>
+      ))}
+    </ul>
+  );
+}
+
 export function EditorialQuote() {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -53,6 +85,9 @@ export function EditorialQuote() {
 
   const active = QUOTE_TESTIMONIALS[activeIndex];
   const visibleOffsets = compact ? ([-1, 0, 1] as const) : VISIBLE_OFFSETS;
+  const countriesLabel = active.countriesKey
+    ? t(`testimonials.countries.${active.countriesKey}`)
+    : undefined;
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
@@ -112,19 +147,11 @@ export function EditorialQuote() {
         </span>
         <div className="psl-quote__body">
           <blockquote aria-live={playing && !interacting ? "off" : "polite"}>
-            {t(`testimonials.${active.id}.quote`)}
+            {active.quote}
           </blockquote>
           <figcaption className="psl-quote__meta">
-            {active.flags.length > 0 && (
-              <span
-                className="psl-quote__flags"
-                role="img"
-                aria-label={t(`testimonials.${active.id}.countries`)}
-              >
-                {active.flags.join("\u2009")}
-              </span>
-            )}
-            <span>{t(`testimonials.${active.id}.name`)}</span>
+            <FlagMarks flags={active.flags} label={countriesLabel} />
+            <span>{active.name}</span>
           </figcaption>
         </div>
       </figure>
@@ -136,7 +163,7 @@ export function EditorialQuote() {
       >
         {visibleOffsets.map((offset) => {
           const index = wrapIndex(activeIndex + offset);
-          const item = QUOTE_TESTIMONIALS[index];
+          const item: TestimonialRecord = QUOTE_TESTIMONIALS[index];
           const isSpotlight = offset === 0;
           const isEdge = Math.abs(offset) === 2;
 
@@ -157,14 +184,20 @@ export function EditorialQuote() {
                 .join(" ")}
               onClick={() => setActiveIndex(index)}
               aria-pressed={isSpotlight}
-              aria-label={t(`testimonials.${item.id}.name`)}
+              aria-label={item.name}
             >
               <img
                 src={item.image}
                 alt=""
                 loading="lazy"
                 sizes="(max-width: 767px) 28vw, 14vw"
+                style={
+                  item.objectPosition
+                    ? { objectPosition: item.objectPosition }
+                    : undefined
+                }
               />
+              {isSpotlight ? <AreaBadges areas={item.areas} /> : null}
             </button>
           );
         })}
@@ -200,10 +233,6 @@ export function EditorialQuote() {
           </svg>
         </button>
       </div>
-
-      <p className="psl-copy psl-copy--small psl-quote__provenance">
-        {t("quote.provenanceNote")}
-      </p>
     </section>
   );
 }

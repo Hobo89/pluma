@@ -1,7 +1,7 @@
 import { useLanguage } from "../context/LanguageContext";
 
 type BenefitCard = {
-  id: "arrive" | "settle" | "privacy";
+  id: "arrive" | "return" | "recover" | "yours";
   image: string;
   imagePosition?: string;
 };
@@ -9,17 +9,21 @@ type BenefitCard = {
 const cards: BenefitCard[] = [
   {
     id: "arrive",
-    image: "/assets/images/stephen.jpg",
-    imagePosition: "62% 28%",
+    image: "/assets/images/session-arrive.jpg",
+    imagePosition: "50% 42%",
   },
   {
-    id: "settle",
+    id: "return",
+    image: "/assets/images/session-attention.jpg",
+  },
+  {
+    id: "recover",
     image: "/assets/images/studio-room.jpg",
     imagePosition: "42% 78%",
   },
   {
-    id: "privacy",
-    image: "/assets/images/session-attention.jpg",
+    id: "yours",
+    image: "/assets/images/studio-draping.jpg",
   },
 ];
 
@@ -40,7 +44,6 @@ export function BenefitsMosaic() {
       className="psl-container psl-section--roomy psl-benefits"
     >
       <div className="psl-section-head psl-section-head--stack">
-        <p className="psl-eyebrow">{t("benefits.eyebrow")}</p>
         <h2 id="benefits-heading" className="psl-title">
           {t("benefits.title")}
         </h2>
@@ -54,7 +57,7 @@ export function BenefitsMosaic() {
               src={image}
               alt=""
               loading="lazy"
-              sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 991px) 30vw, 22vw"
+              sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 991px) 45vw, 22vw"
               style={
                 imagePosition ? { objectPosition: imagePosition } : undefined
               }

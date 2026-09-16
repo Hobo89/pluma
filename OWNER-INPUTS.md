@@ -59,17 +59,13 @@ longer blockers in the code. They are live commercial risks instead.
 | # | Input | Status | Value | Evidence | Owner |
 |---|---|---|---|---|---|
 | 3.1 | **Price for 90 minutes. URGENT.** The website says €65 and the Cal.com event description says €55. Customers can now book, so a visitor reads €65 on the site and €55 in the calendar in the same journey. Fix one or the other today. | open — live conflict | | | Stephen |
-| 3.2 | Confirm the full catalogue: 30 / 60 / 90 / 120 minutes at €25 / €45 / €65 / €85 | partial — audited baseline only | | | Stephen |
-| 3.3 | Whether 30 minutes stays in the catalogue | open | | | Stephen |
+| 3.2 | Confirm the full catalogue: 60 / 90 / 120 minutes at €45 / €65 / €85 | closed — 15 September 2026 handoff | 30 minutes removed | docs/handoff/2026-09-15 | Stephen |
+| 3.3 | Whether 30 minutes stays in the catalogue | closed — removed | No | docs/handoff/2026-09-15 | Stephen |
 | 3.4 | VAT treatment and rate. AEAT places masoterapistas outside the medical exemption, so do not assume the service is exempt. | open | | | Gestor |
 | 3.5 | Invoicing arrangements, including for prepaid bonos | open | | | Gestor |
 
 The catalogue lives in `src/config/pricing.ts` in integer cents. Change it
-there and every price, saving and duration label on the site follows. The
-90-minute conflict stays recorded in `pricingConflicts` for the record; the
-customer-facing note was removed when booking went live, because an internal
-"pending approval" banner does not belong on a page people are buying from.
-Delete that entry once 3.1 is settled.
+there and every price, saving and duration label on the site follows.
 
 **Also urgent: the 120-minute session.** The site sells 120 minutes at €85 and
 its Book button now goes to the calendar, but the Cal.com event only offers

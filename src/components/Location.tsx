@@ -10,7 +10,6 @@ export function Location() {
       className="border-b border-border bg-surface py-10 md:py-12"
     >
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 px-6 text-center">
-        <p className="type-label text-accent">{t("location.eyebrow")}</p>
         <h2
           id="location-heading"
           className="type-section-title text-2xl md:text-3xl"

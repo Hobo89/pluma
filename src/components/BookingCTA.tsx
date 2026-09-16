@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
 import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
+import { useAmbientVideo } from "../lib/useAmbientVideo";
 import { BookingAction } from "./BookingAction";
 
 const VIDEO_SRC = "/videos/appointment-loop.mp4";
@@ -12,27 +12,7 @@ const POSTER = "/assets/images/appointment-poster.jpg";
  */
 export function BookingCTA() {
   const { t } = useLanguage();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const syncMotion = () => {
-      if (motion.matches) {
-        video.pause();
-        video.currentTime = 0;
-        return;
-      }
-      void video.play();
-    };
-
-    syncMotion();
-    motion.addEventListener("change", syncMotion);
-    return () => motion.removeEventListener("change", syncMotion);
-  }, []);
+  const videoRef = useAmbientVideo();
 
   return (
     <section className="psl-cta psl-cta--video psl-container psl-container--wide">
@@ -48,7 +28,8 @@ export function BookingCTA() {
       >
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
-      <h2 className="psl-display">{t("booking.title")}</h2>
+      <h2 className="psl-display">{t("cta.heading")}</h2>
+      <p className="psl-copy">{t("cta.body")}</p>
       <BookingAction
         label={t("hero.book")}
         duration={recommendedDuration}

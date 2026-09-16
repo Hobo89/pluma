@@ -1,98 +1,81 @@
-import { BadgeIcon } from "./BadgeIcon";
 import { TestimonialBrushBorder } from "./TestimonialBrushBorder";
 import { useLanguage } from "../context/LanguageContext";
+import {
+  testimonials,
+  type AreaId,
+  type TestimonialFlag,
+  type TestimonialRecord,
+} from "../content/testimonials";
 
-type BadgeTier = "nestling" | "fledgling" | "wingmate";
+function FlagMarks({
+  flags,
+  label,
+}: {
+  flags: readonly TestimonialFlag[];
+  label?: string;
+}) {
+  if (flags.length === 0) return null;
 
-type Testimonial = {
-  id: string;
-  image: string;
-  flags: string[];
-  badge: BadgeTier;
-  stroke: number;
-  objectPosition?: string;
-};
+  return (
+    <span
+      className="testimonial-flags"
+      role="img"
+      aria-label={label}
+    >
+      {flags.map((flag) =>
+        flag.type === "emoji" ? (
+          <span key={flag.glyph}>{flag.glyph}</span>
+        ) : (
+          <img
+            key={flag.src}
+            src={flag.src}
+            alt=""
+            className="psl-quote__flag-image"
+          />
+        ),
+      )}
+    </span>
+  );
+}
 
-const testimonials: Testimonial[] = [
-  {
-    id: "carla",
-    image: "/testimonials/carla.jpg",
-    flags: ["🇪🇸"],
-    badge: "nestling",
-    stroke: 0,
-    objectPosition: "center top",
-  },
-  {
-    id: "sara",
-    image: "/testimonials/sara.jpg",
-    flags: ["🇲🇦"],
-    badge: "fledgling",
-    stroke: 1,
-    objectPosition: "center top",
-  },
-  {
-    id: "candice",
-    image: "/testimonials/candice.jpg",
-    flags: ["🇺🇸", "🇮🇳"],
-    badge: "wingmate",
-    stroke: 2,
-    objectPosition: "center top",
-  },
-  {
-    id: "beatrice",
-    image: "/testimonials/beatrice.jpg",
-    flags: ["🇧🇪"],
-    badge: "nestling",
-    stroke: 3,
-    objectPosition: "center top",
-  },
-  {
-    id: "jesus",
-    image: "/testimonials/jesus.jpg",
-    flags: ["🇪🇸"],
-    badge: "nestling",
-    stroke: 4,
-    objectPosition: "center 12%",
-  },
-  {
-    id: "juanma",
-    image: "/testimonials/juanma.jpg",
-    flags: ["🇪🇸"],
-    badge: "fledgling",
-    stroke: 5,
-    objectPosition: "center 18%",
-  },
-  {
-    id: "sarah",
-    image: "/testimonials/sarah.jpg",
-    flags: ["🇬🇧"],
-    badge: "wingmate",
-    stroke: 6,
-    objectPosition: "center 20%",
-  },
-];
+function AreaBadges({ areas }: { areas: readonly AreaId[] }) {
+  const { t } = useLanguage();
+
+  return (
+    <ul className="psl-quote__areas">
+      {areas.map((area) => (
+        <li key={area}>{t(`testimonials.areas.${area}`)}</li>
+      ))}
+    </ul>
+  );
+}
 
 function TestimonialCard({
-  id,
+  name,
+  quote,
   image,
   flags,
-  badge,
-  stroke,
+  areas,
+  countriesKey,
   objectPosition = "center top",
-}: Testimonial) {
+  stroke,
+}: TestimonialRecord & { stroke: number }) {
   const { t } = useLanguage();
+  const countriesLabel = countriesKey
+    ? t(`testimonials.countries.${countriesKey}`)
+    : undefined;
 
   return (
     <figure className="testimonial-card flex w-[18.5rem] shrink-0 flex-col sm:w-[19.5rem]">
       <TestimonialBrushBorder variant={stroke} />
       <blockquote className="testimonial-quote relative z-[1] flex-1">
-        &ldquo;{t(`testimonials.${id}.quote`)}&rdquo;
+        &ldquo;{quote}&rdquo;
       </blockquote>
 
       <figcaption className="testimonial-meta relative z-[1]">
         <img
           src={image}
-          alt={t(`testimonials.${id}.name`)}
+          alt={name}
           width={64}
           height={64}
           loading="lazy"
@@ -100,22 +83,11 @@ function TestimonialCard({
           style={{ objectPosition }}
         />
         <div className="testimonial-name-row">
-          {flags.length > 0 && (
-            <span
-              className="testimonial-flags"
-              role="img"
-              aria-label={t(`testimonials.${id}.countries`)}
-            >
-              {flags.join("\u2009")}
-            </span>
-          )}
-          <span className="testimonial-name">{t(`testimonials.${id}.name`)}</span>
+          <FlagMarks flags={flags} label={countriesLabel} />
+          <span className="testimonial-name">{name}</span>
         </div>
-        <span className={`testimonial-badge testimonial-badge--${badge}`}>
-          <BadgeIcon tier={badge} />
-          {t(`badges.${badge}`)}
-        </span>
       </figcaption>
+      <AreaBadges areas={areas} />
     </figure>
   );
 }
@@ -130,7 +102,6 @@ export function Testimonials() {
       className="psl-container psl-section"
     >
       <div className="psl-section-head psl-section-head--center">
-        <p className="psl-eyebrow">{t("testimonials.eyebrow")}</p>
         <h2 id="testimonials-heading" className="psl-title">
           {t("testimonials.title")}
         </h2>
@@ -139,7 +110,11 @@ export function Testimonials() {
       <div className="psl-testimonials-marquee testimonials-marquee-mask overflow-hidden">
         <div className="testimonials-marquee flex w-max gap-5">
           {loop.map((item, index) => (
-            <TestimonialCard key={`${item.id}-${index}`} {...item} />
+            <TestimonialCard
+              key={`${item.id}-${index}`}
+              {...item}
+              stroke={index % 7}
+            />
           ))}
         </div>
       </div>

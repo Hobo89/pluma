@@ -17,6 +17,7 @@ export function StickyBookingBar() {
   const [isMobile, setIsMobile] = useState(
     () => window.matchMedia(MOBILE_BOOKING_BAR).matches,
   );
+  const [heroActionsVisible, setHeroActionsVisible] = useState(true);
 
   useEffect(() => {
     const media = window.matchMedia(MOBILE_BOOKING_BAR);
@@ -27,12 +28,29 @@ export function StickyBookingBar() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.toggleAttribute("data-psl-sticky-book", isMobile);
+    const heroActions = document.querySelector("[data-hero-actions]");
+    if (!heroActions) {
+      setHeroActionsVisible(false);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroActionsVisible(entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(heroActions);
+    return () => observer.disconnect();
+  }, []);
+
+  const visible = isMobile && !heroActionsVisible;
+
+  useEffect(() => {
+    document.documentElement.toggleAttribute("data-psl-sticky-book", visible);
     return () =>
       document.documentElement.removeAttribute("data-psl-sticky-book");
-  }, [isMobile]);
+  }, [visible]);
 
-  if (!isMobile) return null;
+  if (!visible) return null;
 
   return (
     <div className="psl-sticky-book">

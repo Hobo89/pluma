@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
+import { useAmbientVideo } from "../lib/useAmbientVideo";
 import type { AnalyticsEvent } from "../lib/analytics";
 import { BookingAction } from "./BookingAction";
 import {
@@ -10,8 +11,11 @@ import {
 import { PhotoCluster, type PhotoClusterImage } from "./PhotoCluster";
 
 type FeatureStoryProps = {
+  id?: string;
   titleKey: string;
   descriptionKey: string;
+  extraDescriptionKey?: string;
+  trustKey?: string;
   image?: string;
   imageAlt?: string;
   imagePosition?: string;
@@ -22,7 +26,7 @@ type FeatureStoryProps = {
   video?: string;
   videoPoster?: string;
   videoLabelKey?: string;
-  actionLabelKey: string;
+  actionLabelKey?: string;
   actionTo?: string;
   bookingPlacement?: Extract<
     AnalyticsEvent,
@@ -35,8 +39,11 @@ type FeatureStoryProps = {
 };
 
 export function FeatureStory({
+  id,
   titleKey,
   descriptionKey,
+  extraDescriptionKey,
+  trustKey,
   image,
   imageAlt = "",
   imagePosition,
@@ -56,34 +63,42 @@ export function FeatureStory({
   noteKey,
 }: FeatureStoryProps) {
   const { t } = useLanguage();
+  const videoRef = useAmbientVideo();
   const hasCollage = Boolean(collage?.length);
   const hasVideo = Boolean(video);
   const stillsBelowVideo = hasVideo && hasCollage;
 
   return (
     <section
+      id={id}
       className={`psl-feature psl-container psl-section${reverse ? " psl-feature--reverse" : ""}${hasVideo ? " psl-feature--video" : ""}${stillsBelowVideo ? " psl-feature--stills" : ""}`}
     >
       <div className="psl-feature__body">
         <h2 className="psl-title">{t(titleKey)}</h2>
         <p className="psl-copy">{t(descriptionKey)}</p>
+        {extraDescriptionKey ? (
+          <p className="psl-copy">{t(extraDescriptionKey)}</p>
+        ) : null}
+        {trustKey ? (
+          <p className="psl-copy psl-copy--small">{t(trustKey)}</p>
+        ) : null}
         {highlights === "studio" && (
           <FeatureHighlights
             ids={studioHighlightIds}
-            label={(id) => t(`studio.highlights.${id}`)}
+            label={(highlightId) => t(`studio.highlights.${highlightId}`)}
           />
         )}
-        {bookingPlacement ? (
+        {actionLabelKey && bookingPlacement ? (
           <BookingAction
             label={t(actionLabelKey)}
             duration={recommendedDuration}
             placement={bookingPlacement}
           />
-        ) : (
+        ) : actionLabelKey ? (
           <Link to={actionTo ?? "/"} className="psl-button">
             {t(actionLabelKey)}
           </Link>
-        )}
+        ) : null}
         {noteKey ? (
           <p className="psl-feature__note" role="note">
             <span className="psl-feature__note-icon" aria-hidden="true">
@@ -109,6 +124,7 @@ export function FeatureStory({
       {video ? (
         <figure className="psl-feature__media psl-feature__media--video">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted

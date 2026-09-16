@@ -6,7 +6,7 @@ import type { PricingDuration } from "./pricing";
  * Default event: https://cal.com/pluma-massage/valencia
  *
  * `VITE_CALCOM_LINK` can override that event. A per-duration link can be
- * supplied with `VITE_CALCOM_LINK_30` / `_60` / `_90` / `_120` when the owner
+ * supplied with `VITE_CALCOM_LINK_60` / `_90` / `_120` when the owner
  * creates a separate event for each length.
  *
  * The mapping is explicit and owner-supplied on purpose. The installed embed
@@ -32,11 +32,13 @@ export const calLink =
   calSlug(import.meta.env.VITE_CALCOM_LINK) || DEFAULT_CAL_LINK;
 
 const perDuration: Partial<Record<PricingDuration, string>> = {
-  30: calSlug(import.meta.env.VITE_CALCOM_LINK_30) || undefined,
   60: calSlug(import.meta.env.VITE_CALCOM_LINK_60) || undefined,
   90: calSlug(import.meta.env.VITE_CALCOM_LINK_90) || undefined,
   120: calSlug(import.meta.env.VITE_CALCOM_LINK_120) || undefined,
 };
+
+/** Inquiry calendar used for voucher questions. No checkout is attached. */
+export const voucherInquiryUrl = `https://cal.com/${DEFAULT_CAL_LINK}`;
 
 /**
  * Set only when the owner confirms the default event is a multi-duration event

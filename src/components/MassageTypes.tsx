@@ -37,7 +37,13 @@ export function MassageTypes() {
         <h2 id="massage-types-heading" className="psl-title">
           {t("types.title")}
         </h2>
-        <p className="psl-copy">{t("types.description")}</p>
+        {t("types.description")
+          .split("\n\n")
+          .map((paragraph) => (
+            <p key={paragraph} className="psl-copy">
+              {paragraph}
+            </p>
+          ))}
       </div>
 
       <div className="psl-product-grid psl-product-grid--types">

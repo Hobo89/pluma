@@ -7,9 +7,11 @@
  *
  * Displayed amounts are tax-inclusive consumer prices. Nothing may add tax
  * on top of them at a later step.
+ *
+ * Source: docs/handoff/2026-09-15/reference/DECISIONS.md
  */
 
-export type PricingDuration = 30 | 60 | 90 | 120;
+export type PricingDuration = 60 | 90 | 120;
 export type VoucherDuration = 60 | 90;
 export type VoucherSessions = 5 | 10;
 
@@ -17,8 +19,8 @@ export type VoucherSessions = 5 | 10;
 export type BookingRoute =
   /** A calendar event exists (subject to owner verification of the mapping). */
   | "calendar"
-  /** No matching event confirmed; the only honest route is an email enquiry. */
-  | "enquiry";
+  /** No matching event confirmed; the only honest route is an email inquiry. */
+  | "inquiry";
 
 export type SessionRate = {
   minutes: PricingDuration;
@@ -30,7 +32,6 @@ export type SessionRate = {
 };
 
 export const sessionRates: readonly SessionRate[] = [
-  { minutes: 30, cents: 2500, recommended: false, bookingRoute: "calendar" },
   { minutes: 60, cents: 4500, recommended: false, bookingRoute: "calendar" },
   { minutes: 90, cents: 6500, recommended: true, bookingRoute: "calendar" },
   { minutes: 120, cents: 8500, recommended: false, bookingRoute: "calendar" },
@@ -41,21 +42,9 @@ export const recommendedDuration: PricingDuration = 90;
 export const pricingPolicy = {
   /** Voucher cards apply to 60 and 90 minute sessions only. */
   voucherCardDurations: [60, 90] as const satisfies readonly PricingDuration[],
+  /** First session must take place within this many days of issue. */
+  firstSessionDeadlineDays: 30,
 } as const;
-
-/**
- * Unresolved commercial conflicts carried from the 8 September 2026 audit.
- * These are surfaced to the owner rather than silently resolved here.
- */
-export const pricingConflicts = [
-  {
-    id: "duration-90-price",
-    minutes: 90 as PricingDuration,
-    websiteCents: 6500,
-    calendarCents: 5500,
-    note: "Website showed €65 and the calendar description showed €55. The €65 figure is an audited staging baseline, not approved pricing.",
-  },
-] as const;
 
 export function rateFor(minutes: PricingDuration): SessionRate {
   const rate = sessionRates.find((entry) => entry.minutes === minutes);
@@ -77,7 +66,7 @@ export function parseDuration(value: string | null): PricingDuration | null {
   return isPricingDuration(parsed) ? parsed : null;
 }
 
-// --- Voucher cards (digital bonos) -----------------------------------------
+// --- Vouchers --------------------------------------------------------------
 
 export type VoucherRate = {
   minutes: VoucherDuration;
@@ -92,7 +81,7 @@ export type VoucherRate = {
 export type VoucherCard = {
   sessions: VoucherSessions;
   discountPercent: 10 | 15;
-  /** Owner-confirmed validity length. The start trigger is unresolved. */
+  /** Validity length from the first session. */
   validityMonths: 3 | 6;
   rates: readonly VoucherRate[];
 };
@@ -152,4 +141,10 @@ export function voucherRateFor(
   const rate = card?.rates.find((entry) => entry.minutes === minutes);
   if (!rate) throw new Error(`No voucher rate for ${sessions}×${minutes}`);
   return rate;
+}
+
+export function voucherCardFor(sessions: VoucherSessions): VoucherCard {
+  const card = voucherCards.find((entry) => entry.sessions === sessions);
+  if (!card) throw new Error(`No voucher card for ${sessions} sessions`);
+  return card;
 }
