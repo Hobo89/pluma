@@ -4,6 +4,7 @@ import { useEffect, type RefObject } from "react";
 export const ORBIT_PAD_PX = 6;
 
 const ORBIT_MS = 4300;
+const SAMPLE_COUNT = 192;
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
@@ -16,9 +17,9 @@ function clamp(value: number, min: number, max: number) {
 function orbitWidth(t: number, phase: number) {
   const angle = t * Math.PI * 2 - phase;
   return clamp(
-    2.35 + 1.5 * Math.sin(angle * 2 + 0.55) + 0.5 * Math.sin(angle * 5 - 0.8),
-    1.15,
-    4.6,
+    2.5 + 1.35 * Math.sin(angle * 2 + 0.55) + 0.45 * Math.sin(angle * 5 - 0.8),
+    1.75,
+    4.5,
   );
 }
 
@@ -48,7 +49,8 @@ function fmt(value: number) {
   return value.toFixed(2);
 }
 
-type Sample = { x: number; y: number; nx: number; ny: number; t: number };
+type Point = { x: number; y: number };
+type Sample = Point & { nx: number; ny: number; t: number };
 
 function sampleRoundedRect(
   x: number,
@@ -56,7 +58,7 @@ function sampleRoundedRect(
   width: number,
   height: number,
   radius: number,
-  count = 160,
+  count = SAMPLE_COUNT,
 ): Sample[] {
   const r = Math.min(radius, width / 2, height / 2);
   const straightX = width - 2 * r;
@@ -155,35 +157,64 @@ function sampleRoundedRect(
   return samples;
 }
 
-function outerOffsetPath(samples: Sample[], phase: number) {
-  const points = samples.map(({ x, y, nx, ny, t }) => {
-    const width = orbitWidth(t, phase);
-    return `${fmt(x + nx * width)} ${fmt(y + ny * width)}`;
-  });
-  return `M${points[0]}L${points.slice(1).join("L")}Z`;
+/** Soften sharp joins from outward normals so the stroke does not jitter. */
+function chaikinClosed(points: Point[], iterations = 2): Point[] {
+  let current = points;
+  for (let pass = 0; pass < iterations; pass += 1) {
+    const next: Point[] = [];
+    for (let i = 0; i < current.length; i += 1) {
+      const a = current[i];
+      const b = current[(i + 1) % current.length];
+      next.push(
+        { x: 0.75 * a.x + 0.25 * b.x, y: 0.75 * a.y + 0.25 * b.y },
+        { x: 0.25 * a.x + 0.75 * b.x, y: 0.25 * a.y + 0.75 * b.y },
+      );
+    }
+    current = next;
+  }
+  return current;
 }
 
-function orbitStrokeMask(
-  width: number,
-  height: number,
-  inner: string,
-  samples: Sample[],
-  phase: number,
-) {
-  if (width < 8 || height < 8 || samples.length === 0) return "none";
-
-  const pad = ORBIT_PAD_PX;
-  const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width + pad * 2} ${height + pad * 2}">` +
-    `<path fill="white" fill-rule="evenodd" d="${outerOffsetPath(samples, phase)}${inner}"/></svg>`;
-
-  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+function outerOffsetPoints(samples: Sample[], phase: number): Point[] {
+  return chaikinClosed(
+    samples.map(({ x, y, nx, ny, t }) => {
+      const width = orbitWidth(t, phase);
+      return { x: x + nx * width, y: y + ny * width };
+    }),
+  );
 }
 
+function pointsToPath(points: Point[]) {
+  if (points.length === 0) return "";
+  return (
+    `M${fmt(points[0].x)} ${fmt(points[0].y)}` +
+    points
+      .slice(1)
+      .map((point) => `L${fmt(point.x)} ${fmt(point.y)}`)
+      .join("") +
+    "Z"
+  );
+}
+
+function orbitRingPath(samples: Sample[], inner: string, phase: number) {
+  return `${pointsToPath(outerOffsetPoints(samples, phase))}${inner}`;
+}
+
+/**
+ * Drives the 90-minute card orbit. Updates an inline SVG path each frame
+ * instead of rewriting a CSS data-URI mask (which breaks down on mobile).
+ */
 export function useOrbitStrokeMask(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    const svg = node.querySelector<SVGSVGElement>(".psl-duration__orbit");
+    const path = node.querySelector<SVGPathElement>(".psl-duration__orbit-path");
+    const gradient = node.querySelector<SVGLinearGradientElement>(
+      ".psl-duration__orbit-grad",
+    );
+    if (!svg || !path || !gradient) return;
 
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let samples: Sample[] = [];
@@ -195,13 +226,24 @@ export function useOrbitStrokeMask(ref: RefObject<HTMLElement | null>) {
     let last = 0;
 
     const paint = (phase: number) => {
-      node.style.setProperty(
-        "--psl-orbit-mask",
-        orbitStrokeMask(boxW, boxH, inner, samples, phase),
-      );
-      node.style.setProperty(
-        "--psl-brand-angle",
-        `${((phase * 180) / Math.PI) % 360}deg`,
+      if (boxW < 8 || boxH < 8 || samples.length === 0) return;
+
+      const pad = ORBIT_PAD_PX;
+      const svgW = boxW + pad * 2;
+      const svgH = boxH + pad * 2;
+      svg.setAttribute("viewBox", `0 0 ${svgW} ${svgH}`);
+      path.setAttribute("d", orbitRingPath(samples, inner, phase));
+
+      const angle = ((phase * 180) / Math.PI) % 360;
+      const cx = svgW / 2;
+      const cy = svgH / 2;
+      gradient.setAttribute("x1", "0");
+      gradient.setAttribute("y1", String(cy));
+      gradient.setAttribute("x2", String(svgW));
+      gradient.setAttribute("y2", String(cy));
+      gradient.setAttribute(
+        "gradientTransform",
+        `rotate(${angle.toFixed(2)} ${cx.toFixed(2)} ${cy.toFixed(2)})`,
       );
     };
 
@@ -211,7 +253,13 @@ export function useOrbitStrokeMask(ref: RefObject<HTMLElement | null>) {
       boxW = node.offsetWidth;
       boxH = node.offsetHeight;
       inner = roundedRectPath(ORBIT_PAD_PX, ORBIT_PAD_PX, boxW, boxH, radius);
-      samples = sampleRoundedRect(ORBIT_PAD_PX, ORBIT_PAD_PX, boxW, boxH, radius);
+      samples = sampleRoundedRect(
+        ORBIT_PAD_PX,
+        ORBIT_PAD_PX,
+        boxW,
+        boxH,
+        radius,
+      );
     };
 
     const tick = (now: number) => {
@@ -263,8 +311,6 @@ export function useOrbitStrokeMask(ref: RefObject<HTMLElement | null>) {
       resize.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
       motion.removeEventListener("change", onVisibility);
-      node.style.removeProperty("--psl-orbit-mask");
-      node.style.removeProperty("--psl-brand-angle");
     };
   }, [ref]);
 }

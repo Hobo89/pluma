@@ -218,7 +218,7 @@ export const translations = {
     },
     bonos: {
       title:
-        "You're in good hands.\nSort those massages.",
+        "You're in good hands.\nPlan those massages.",
       titleHighlight: "good hands",
       pageTitle: "A regular space to come back to",
       pageIntro:
@@ -238,7 +238,7 @@ export const translations = {
       termsAgree:
         "By arranging a voucher, you agree to the Voucher Terms. Please read them before confirming.",
       termsLink: "Voucher Terms",
-      faqTitle: "Voucher questions.\nThey're good questions, clear answers.",
+      faqTitle: "Voucher questions.\nGood questions, clear answers.",
       faqTitleHighlight: "clear",
       faqGroups: {
         buying: "Buying & gifting",
@@ -816,7 +816,7 @@ export const translations = {
     },
     bonos: {
       title:
-        "Estás en buenas manos.\nOrganiza esos masajes.",
+        "Estás en buenas manos.\nPlanifica esos masajes.",
       titleHighlight: "buenas manos",
       pageTitle: "Un espacio al que volver",
       pageIntro:
@@ -836,7 +836,7 @@ export const translations = {
       termsAgree:
         "Al formalizar un bono, aceptas las Condiciones de los bonos. Léelas antes de confirmar.",
       termsLink: "Condiciones de los bonos",
-      faqTitle: "Preguntas sobre los bonos.\nSon buenas preguntas, respuestas claras.",
+      faqTitle: "Preguntas sobre los bonos.\nBuenas preguntas, respuestas claras.",
       faqTitleHighlight: "claras",
       faqGroups: {
         buying: "Compra y regalos",

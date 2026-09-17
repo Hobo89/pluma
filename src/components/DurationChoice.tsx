@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { Link } from "react-router-dom";
 import { sessionRates } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
@@ -13,6 +14,7 @@ import { BookingAction } from "./BookingAction";
 export function DurationChoice({ compact = false }: { compact?: boolean }) {
   const { t, language } = useLanguage();
   const recommended = useInViewOnce<HTMLLIElement>();
+  const orbitGradId = `psl-orbit-${useId().replace(/:/g, "")}`;
   useOrbitStrokeMask(recommended.ref);
 
   return (
@@ -38,6 +40,32 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
               ref={rate.recommended ? recommended.ref : undefined}
               className={`psl-duration${rate.recommended ? " psl-duration--recommended" : ""}${rate.recommended && recommended.inView ? " is-inview" : ""}`}
             >
+              {rate.recommended ? (
+                <svg
+                  className="psl-duration__orbit"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <defs>
+                    <linearGradient
+                      id={orbitGradId}
+                      className="psl-duration__orbit-grad"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0%" stopColor="var(--psl-brand-gold)" />
+                      <stop offset="35%" stopColor="var(--psl-brand-warm)" />
+                      <stop offset="70%" stopColor="var(--psl-brand-warm)" />
+                      <stop offset="100%" stopColor="var(--psl-brand-gold)" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    className="psl-duration__orbit-path"
+                    fill={`url(#${orbitGradId})`}
+                    fillRule="evenodd"
+                  />
+                </svg>
+              ) : null}
+
               <div className="psl-duration__head">
                 <h3 id={headingId} className="psl-duration__title">
                   <span>

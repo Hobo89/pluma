@@ -1737,30 +1737,46 @@ button.psl-button {
 
 @media (max-width: 767px) {
   .psl-pricing-invite {
-    min-height: 26rem;
+    min-height: 30rem;
+  }
+
+  .psl-pricing-invite__copy {
+    gap: var(--psl-space-12);
+    max-width: min(56rem, calc(100vw - 32px));
+    padding-block: var(--psl-space-12);
+    padding-inline: 28px;
+  }
+
+  .psl-pricing-invite__copy::before {
+    inset: -28% -18%;
+  }
+
+  .psl-pricing-invite__title {
+    padding-block: var(--psl-space-4);
+    line-height: 1.28;
   }
 
   .psl-pricing-invite__card--gold {
-    top: 4%;
-    left: -6%;
+    top: 2%;
+    left: -10%;
     width: min(10.5rem, 48vw);
   }
 
   .psl-pricing-invite__card--cyan {
-    top: 6%;
-    right: -8%;
+    top: 4%;
+    right: -12%;
     width: min(9.5rem, 44vw);
   }
 
   .psl-pricing-invite__card--green {
-    bottom: 10%;
-    left: -2%;
+    bottom: 8%;
+    left: -6%;
     width: min(9rem, 42vw);
   }
 
   .psl-pricing-invite__card--pink {
-    bottom: 8%;
-    right: -7%;
+    bottom: 6%;
+    right: -11%;
     width: min(11rem, 50vw);
   }
 }
@@ -2158,7 +2174,7 @@ button.psl-button {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--psl-space-3);
   margin: 0;
-  padding: 6px 16px 18px 6px;
+  padding: 12px 16px 28px 12px;
   list-style: none;
 }
 
@@ -2192,34 +2208,23 @@ button.psl-button {
   border-color: transparent;
 }
 
-.psl-duration--recommended::before {
-  content: "";
+.psl-duration__orbit {
   position: absolute;
   inset: calc(-1 * var(--psl-orbit-pad));
   z-index: 0;
-  background: conic-gradient(
-    from var(--psl-brand-angle),
-    var(--psl-brand-gold) 0deg,
-    var(--psl-brand-warm) 70deg,
-    var(--psl-brand-warm) 290deg,
-    var(--psl-brand-gold) 360deg
-  );
+  width: auto;
+  height: auto;
+  overflow: visible;
   pointer-events: none;
   opacity: 0;
-  -webkit-mask-image: var(--psl-orbit-mask);
-  mask-image: var(--psl-orbit-mask);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
 }
 
-.psl-duration--recommended.is-inview::before,
-.psl-duration--recommended:focus-within::before {
+.psl-duration--recommended.is-inview .psl-duration__orbit,
+.psl-duration--recommended:focus-within .psl-duration__orbit {
   opacity: 1;
 }
 
-.psl-duration--recommended > * {
+.psl-duration--recommended > *:not(.psl-duration__orbit) {
   position: relative;
   z-index: 1;
 }
@@ -2315,7 +2320,7 @@ button.psl-button {
     grid-template-columns: none;
     gap: var(--psl-space-3);
     margin-inline: -20px;
-    padding: 6px 20px 18px;
+    padding: 12px 20px 28px;
     scroll-padding-inline: 20px;
     overflow-x: auto;
     overscroll-behavior-x: contain;
@@ -3225,9 +3230,11 @@ html.dark
     border-color: transparent;
   }
 
-  .psl-duration--recommended::before {
+  .psl-duration__orbit {
     opacity: 1;
-    animation: none;
-    background: var(--psl-brand-gradient);
+  }
+
+  .psl-duration__orbit-path {
+    fill: var(--psl-brand-warm);
   }
 }
