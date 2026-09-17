@@ -1486,6 +1486,12 @@ button.psl-button {
   margin-block: var(--psl-space-6);
 }
 
+.psl-voucher-notes {
+  display: grid;
+  gap: var(--psl-space-2);
+  justify-items: center;
+}
+
 .psl-voucher-table {
   width: 100%;
   min-width: 36rem;
@@ -2182,6 +2188,63 @@ button.psl-button {
   margin-top: var(--psl-space-4);
   text-align: center;
   margin-inline: auto;
+}
+
+.psl-bono-strip {
+  overflow: hidden;
+  margin-block: var(--psl-space-8);
+}
+
+.psl-page .psl-bono-strip {
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
+.psl-bono-strip__track {
+  display: flex;
+  width: max-content;
+  animation: psl-bono-strip-scroll 25.7s linear infinite;
+}
+
+.psl-bono-strip__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--psl-space-12);
+  padding-inline-end: var(--psl-space-12);
+}
+
+.psl-bono-strip__card {
+  flex: 0 0 auto;
+  width: min(17.5rem, 72vw);
+  height: auto;
+}
+
+@media (hover: hover) {
+  .psl-bono-strip:hover .psl-bono-strip__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes psl-bono-strip-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psl-bono-strip {
+    overflow-x: auto;
+  }
+
+  .psl-bono-strip__track {
+    animation: none;
+  }
 }
 
 .psl-ribbon {

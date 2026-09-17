@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BonoCardStrip } from "../components/BonoCardStrip";
 import { PageContainer } from "../components/PageContainer";
 import { PageMeta } from "../components/PageMeta";
 import { CopyBlocks } from "../components/CopyBlocks";
@@ -42,8 +43,9 @@ export function BonosPage() {
       <h1 className="psl-title">{t("bonos.title")}</h1>
       <div className="psl-bono-intro">
         <CopyBlocks text={t("bonos.pageIntro")} />
-        <CopyBlocks text={t("bonos.body")} />
       </div>
+
+      <BonoCardStrip />
 
       <section
         className="psl-section"
@@ -101,7 +103,10 @@ export function BonosPage() {
             </tbody>
           </table>
         </div>
-        <p className="psl-copy psl-copy--small">{t("bonos.pricesNote")}</p>
+        <div className="psl-voucher-notes">
+          <p className="psl-copy psl-copy--small">{t("bonos.pricesNote")}</p>
+          <p className="psl-copy psl-copy--small">{t("bonos.validityNote")}</p>
+        </div>
       </section>
 
       <section
@@ -111,7 +116,6 @@ export function BonosPage() {
         <h2 id="voucher-inquiry-heading" className="psl-title">
           {t("bonos.interestedTitle")}
         </h2>
-        <p className="psl-copy">{t("bonos.interestedBody")}</p>
         <a
           href={mailto(t("bonos.enquirySubject"), t("bonos.enquiryBody"))}
           className="psl-button psl-button--dark"

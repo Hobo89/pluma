@@ -6,6 +6,7 @@ import { BenefitsMosaic } from "../components/BenefitsMosaic";
 import { SafetyControl } from "../components/SafetyControl";
 import { EditorialQuote } from "../components/EditorialQuote";
 import { PromoRibbon } from "../components/PromoRibbon";
+import { BonoCardStrip } from "../components/BonoCardStrip";
 import { FAQ } from "../components/FAQ";
 import { BookingCTA } from "../components/BookingCTA";
 import { PageMeta } from "../components/PageMeta";
@@ -41,6 +42,7 @@ export function HomePage() {
       <BenefitsMosaic />
       <SafetyControl />
       <EditorialQuote />
+      <BonoCardStrip />
       <PromoRibbon />
       <FAQ />
       <BookingCTA />

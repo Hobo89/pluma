@@ -52,6 +52,34 @@ export const bonoDesigns: readonly BonoDesign[] = [
 
 export const defaultBonoDesign: BonoDesignId = "aqua";
 
+/** Visual finishes for the marquee. Same voucher; colour is the only difference. */
+export const bonoStripCards = [
+  {
+    id: "gold",
+    png: "/assets/bonos/pluma-bono-gold.png",
+    width: 730,
+    height: 477,
+  },
+  {
+    id: "cyan",
+    png: "/assets/bonos/pluma-bono-cyan.png",
+    width: 730,
+    height: 477,
+  },
+  {
+    id: "green",
+    png: "/assets/bonos/pluma-bono-green.png",
+    width: 730,
+    height: 477,
+  },
+  {
+    id: "pink",
+    png: "/assets/bonos/pluma-bono-pink.png",
+    width: 730,
+    height: 477,
+  },
+] as const;
+
 export function isBonoDesignId(value: unknown): value is BonoDesignId {
   return bonoDesigns.some((design) => design.id === value);
 }

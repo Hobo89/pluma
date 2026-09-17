@@ -221,13 +221,12 @@ export const translations = {
       title: "A few good massages, already sorted.",
       pageTitle: "A regular space to come back to",
       pageIntro:
-        "A Pluma voucher is for anyone who wants massage to become part of their rhythm, rather than something they only reach for when tension has already built up.\n\nChoose five or ten sessions, with either 60 or 90 minutes each time. As we work together over several visits, I can get to know what helps you settle, where you tend to hold tension and how your needs change from one session to the next.",
-      body: "Choose five or ten sessions for a discount. I’ll send your digital voucher by email.\n\nFive-session vouchers are valid for three months. Ten-session vouchers are valid for six months. The validity period begins with the first session, which must take place within 30 days after the voucher is issued.",
+        "A Pluma voucher is for anyone who wants massage to become part of their rhythm, rather than something they only reach for when tension has already built up.",
       optionsTitle: "Voucher options",
-      pricesNote: "All prices shown are the total price payable.",
+      pricesNote: "(1) All prices shown are the total price payable.",
+      validityNote:
+        "(2) Five-session vouchers are valid for three months. Ten-session vouchers are valid for six months. The validity period begins with the first session, which must take place within 30 days after the voucher is issued.",
       interestedTitle: "Interested in a voucher?",
-      interestedBody:
-        "Email me and I’ll help you select the option that suits you. I’ll confirm the details and answer any questions before the voucher is arranged.",
       cta: "Ask about a voucher",
       enquirySubject: "Voucher inquiry",
       enquiryBody:
@@ -815,13 +814,12 @@ export const translations = {
       title: "Varios buenos masajes, ya organizados.",
       pageTitle: "Un espacio al que volver",
       pageIntro:
-        "Un bono Pluma es para quien quiere que el masaje forme parte de su ritmo, y no solo de esos momentos en los que la tensión ya se ha acumulado.\n\nElige cinco o diez sesiones, de 60 o 90 minutos cada una. Al trabajar juntos a lo largo de varias visitas, voy conociendo qué te ayuda a asentar, dónde sueles guardar tensión y cómo cambian tus necesidades de una sesión a la siguiente.",
-      body: "Elige cinco o diez sesiones con descuento. Te enviaré el bono digital por email.\n\nLos bonos de cinco sesiones tienen una validez de tres meses. Los de diez sesiones, de seis meses. La validez empieza con la primera sesión, que debe tener lugar dentro de los 30 días posteriores a la emisión del bono.",
+        "Un bono Pluma es para quien quiere que el masaje forme parte de su ritmo, y no solo de esos momentos en los que la tensión ya se ha acumulado.",
       optionsTitle: "Opciones de bono",
-      pricesNote: "Todos los precios mostrados son el precio total a pagar.",
+      pricesNote: "(1) Todos los precios mostrados son el precio total a pagar.",
+      validityNote:
+        "(2) Los bonos de cinco sesiones tienen una validez de tres meses. Los de diez sesiones, de seis meses. La validez empieza con la primera sesión, que debe tener lugar dentro de los 30 días posteriores a la emisión del bono.",
       interestedTitle: "¿Te interesa un bono?",
-      interestedBody:
-        "Escríbeme y te ayudo a escoger la opción que mejor te encaje. Confirmaré los detalles y resolveré cualquier duda antes de formalizarlo.",
       cta: "Preguntar por un bono",
       enquirySubject: "Consulta sobre un bono",
       enquiryBody:
