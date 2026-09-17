@@ -17,8 +17,6 @@ type HighlightId =
 const highlightIcons: Record<HighlightId, ComponentType> = {
   oldTown: OldTownIcon,
   noWait: NoWaitIcon,
-  // The mark is an award, not a credential. The label no longer claims a
-  // certification, which is unverified; see OWNER-INPUTS.md.
   masseur: MasseurIcon,
   heatedTable: HeatedTableIcon,
   privateRoom: PrivateRoomIcon,

@@ -3,14 +3,12 @@ import { useLanguage } from "../context/LanguageContext";
 type BenefitCard = {
   id: "arrive" | "return" | "recover" | "yours";
   image: string;
-  imagePosition?: string;
 };
 
 const cards: BenefitCard[] = [
   {
     id: "arrive",
     image: "/assets/images/session-arrive.jpg",
-    imagePosition: "50% 42%",
   },
   {
     id: "return",
@@ -19,12 +17,10 @@ const cards: BenefitCard[] = [
   {
     id: "recover",
     image: "/assets/images/studio-room.jpg",
-    imagePosition: "42% 78%",
   },
   {
     id: "yours",
     image: "/assets/images/studio-tools.jpg",
-    imagePosition: "42% 50%",
   },
 ];
 
@@ -52,16 +48,13 @@ export function BenefitsMosaic() {
       </div>
 
       <div className="psl-bento psl-bento--benefits">
-        {cards.map(({ id, image, imagePosition }) => (
+        {cards.map(({ id, image }) => (
           <article key={id} className={`psl-tile psl-tile--${id}`}>
             <img
               src={image}
               alt=""
               loading="lazy"
               sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 991px) 45vw, 22vw"
-              style={
-                imagePosition ? { objectPosition: imagePosition } : undefined
-              }
             />
             <div className="psl-tile__copy">
               <h3>{t(`benefits.${id}.title`)}</h3>

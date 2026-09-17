@@ -146,9 +146,18 @@ export const translations = {
         "Tell me what you want from the session. I can combine lymphatic drainage, deep-tissue, sports, and other specialized techniques for, say, pregnancy massages, then adjust as we go.\n\nThese are tools, not fixed routines.",
       pregnancy: "Pregnancy",
       pregnancyAlt: "Line drawing of a pregnant figure",
-      relaxingLymphatic: "Relaxing and lymphatic",
+      relaxingLymphatic: "Relaxing & lymphatic",
       deepTissue: "Deep tissue",
       sports: "Sports",
+      copy: {
+        pregnancy:
+          "I adapt your position to keep you comfortable and well supported, using pillows and different positions as needed.",
+        relaxingLymphatic:
+          "Slow, flowing work for when you want to feel lighter all over.",
+        deepTissue:
+          "Firm, focused, gradual work for areas that feel tight, heavy or overworked.",
+        sports: "I mix in mobility stretches for bodies that move a lot.",
+      },
     },
     clients: {
       title: "Who visits",
@@ -327,7 +336,7 @@ export const translations = {
         heatedTable: "Heated massage table",
         noWait: "No wait time",
         privateRoom: "Private changing room and bathroom",
-        masseur: "Stephen · your masseur",
+        masseur: "Certified masseur",
       },
     },
     benefits: {
@@ -360,7 +369,14 @@ export const translations = {
     },
     safety: {
       heading: "You’re always in control.",
-      body: "Before we begin, we’ll agree on the pressure, the areas to focus on, and anything to avoid.\n\nYou can ask me to change the pressure, work somewhere else, or stop at any moment—no explanation needed. I’ll check in too.\n\nStrong massage should not mean painful. If something bothers you, you tell me. That’s useful information, not a complaint.\n\nIf anything is making you nervous beforehand, tell me.",
+      points: {
+        agree:
+          "Before we begin, we’ll agree on the pressure, the areas to focus on, and anything to avoid.",
+        change:
+          "You can ask me to change the pressure, work somewhere else, or stop at any moment—no explanation needed. I’ll check in too.",
+        pain: "Strong massage should not mean painful. If something bothers you, you tell me. That’s useful information, not a complaint.",
+        nervous: "If anything is making you nervous beforehand, tell me.",
+      },
     },
     philosophy: {
       heading: "Touch is good.",
@@ -724,6 +740,16 @@ export const translations = {
       relaxingLymphatic: "Relajante y linfático",
       deepTissue: "Tejido profundo",
       sports: "Deportivo",
+      copy: {
+        pregnancy:
+          "Adapto tu posición para que estés cómoda y bien apoyada, usando almohadas y distintas posturas según haga falta.",
+        relaxingLymphatic:
+          "Trabajo lento y fluido para cuando quieres una sensación de ligereza en todo el cuerpo.",
+        deepTissue:
+          "Trabajo firme, preciso y gradual en las zonas que se sienten tensas, pesadas o sobrecargadas.",
+        sports:
+          "Incluyo estiramientos de movilidad para cuerpos que se mueven mucho.",
+      },
     },
     clients: {
       title: "Quién visita",
@@ -904,7 +930,7 @@ export const translations = {
         heatedTable: "Camilla de masaje calefactada",
         noWait: "Sin tiempo de espera",
         privateRoom: "Vestuario y baño privados",
-        masseur: "Stephen · masajista",
+        masseur: "Masajista certificado",
       },
     },
     benefits: {
@@ -937,7 +963,14 @@ export const translations = {
     },
     safety: {
       heading: "Tú tienes el control.",
-      body: "Antes de empezar, acordamos la presión, las zonas que quieres trabajar y cualquier cosa que prefieras evitar.\n\nPuedes pedirme que cambie la presión, que trabaje otra zona o que pare en cualquier momento, sin tener que dar explicaciones. Yo también iré comprobando cómo estás.\n\nUn masaje firme no debería ser doloroso. Si algo te molesta, dímelo. Es información útil, no una queja.\n\nSi hay algo que te preocupa antes de venir, cuéntamelo.",
+      points: {
+        agree:
+          "Antes de empezar, acordamos la presión, las zonas que quieres trabajar y cualquier cosa que prefieras evitar.",
+        change:
+          "Puedes pedirme que cambie la presión, que trabaje otra zona o que pare en cualquier momento, sin tener que dar explicaciones. Yo también iré comprobando cómo estás.",
+        pain: "Un masaje firme no debería ser doloroso. Si algo te molesta, dímelo. Es información útil, no una queja.",
+        nervous: "Si hay algo que te preocupa antes de venir, cuéntamelo.",
+      },
     },
     philosophy: {
       heading: "El contacto nos hace bien.",

@@ -70,3 +70,56 @@
     stroke-dashoffset: 0;
   }
 }
+
+/* Scroll-triggered instance: stay complete until JS arms it off-screen,
+   then draw once it enters the viewport. */
+.pluma-hero-logo--onview {
+  color: var(--psl-heading);
+}
+
+.pluma-hero-logo--onview .pluma-letter,
+.pluma-hero-logo--onview .pluma-feather-fill,
+.pluma-hero-logo--onview .pluma-feather-outline {
+  animation: none;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="armed"] .pluma-feather-outline {
+  stroke-dashoffset: 1;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="armed"] .pluma-feather-fill,
+.pluma-hero-logo--onview[data-pluma-state="armed"] .pluma-letter {
+  opacity: 0;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-feather-outline {
+  animation: pluma-hero-trace 900ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-feather-fill {
+  animation: pluma-hero-fill 550ms ease-out 650ms both;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-letter {
+  animation: pluma-hero-drop 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-letter-0 {
+  animation-delay: 850ms;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-letter-1 {
+  animation-delay: 925ms;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-letter-2 {
+  animation-delay: 1000ms;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-letter-3 {
+  animation-delay: 1075ms;
+}
+
+.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-letter-4 {
+  animation-delay: 1150ms;
+}
