@@ -3,7 +3,7 @@ import { useEffect, type RefObject } from "react";
 /** Extra space around the card so the thickest part of the stroke is not clipped. */
 export const ORBIT_PAD_PX = 6;
 
-const ORBIT_MS = 4300;
+const ORBIT_MS = 6615;
 const SAMPLE_COUNT = 192;
 
 function clamp(value: number, min: number, max: number) {
