@@ -35,7 +35,10 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
             >
               <div className="psl-duration__head">
                 <h3 id={headingId} className="psl-duration__title">
-                  {t("pricing.durationMinutes", { minutes: rate.minutes })}
+                  <span>
+                    {t("durations.cardTitle", { minutes: rate.minutes })} /
+                  </span>{" "}
+                  <span>{formatPrice(rate.cents, language)}</span>
                 </h3>
                 {rate.recommended ? (
                   <span className="psl-duration__flag">
@@ -44,8 +47,8 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
                 ) : null}
               </div>
 
-              <p className="psl-duration__price">
-                {formatPrice(rate.cents, language)}
+              <p className="psl-duration__subhead">
+                {t(`durations.subhead.${rate.minutes}`)}
               </p>
               <p className="psl-duration__scope">
                 {t(`durations.scope.${rate.minutes}`)}

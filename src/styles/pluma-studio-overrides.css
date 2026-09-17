@@ -1350,25 +1350,45 @@ button.psl-button {
 }
 
 .psl-pricing-card {
+  appearance: none;
   display: grid;
   gap: var(--psl-space-3);
   min-width: 0;
   padding: var(--psl-space-6);
+  border: 0;
   border-radius: var(--psl-radius-media);
   background: var(--psl-surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform var(--psl-duration) var(--psl-ease);
+}
+
+@media (hover: hover) {
+  .psl-pricing-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psl-pricing-card {
+    transition: none;
+  }
+
+  .psl-pricing-card:hover {
+    transform: none;
+  }
 }
 
 .psl-pricing-card__duration {
   color: var(--psl-heading);
-  font: 400 var(--psl-type-quote) / 1.08 var(--psl-font-display);
+  font: 400 clamp(1.375rem, 1.7vw, 1.75rem) / 1.12 var(--psl-font-display);
   letter-spacing: -0.02em;
-  text-wrap: balance;
 }
 
-.psl-pricing-card__price {
-  color: var(--psl-text);
-  font: 400 var(--psl-type-card) / 1.15 var(--psl-font-body);
-  letter-spacing: 0;
+.psl-pricing-card__duration span {
+  white-space: nowrap;
 }
 
 .psl-pricing-card__meta {
@@ -1735,8 +1755,12 @@ button.psl-button {
 
 .psl-duration__title {
   color: var(--psl-heading);
-  font: 400 var(--psl-type-quote) / 1.08 var(--psl-font-display);
+  font: 400 clamp(1.375rem, 1.7vw, 1.75rem) / 1.12 var(--psl-font-display);
   letter-spacing: -0.02em;
+}
+
+.psl-duration__title span {
+  white-space: nowrap;
 }
 
 .psl-duration__flag {
@@ -1754,9 +1778,10 @@ button.psl-button {
   white-space: nowrap;
 }
 
-.psl-duration__price {
-  color: var(--psl-text);
-  font: 400 var(--psl-type-card) / 1.15 var(--psl-font-body);
+.psl-duration__subhead,
+.psl-pricing-card__subhead {
+  color: var(--psl-heading);
+  font: 400 var(--psl-type-card) / 1.25 var(--psl-font-body);
 }
 
 .psl-duration__scope,

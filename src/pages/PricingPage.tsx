@@ -2,11 +2,7 @@ import { Link } from "react-router-dom";
 import { PageContainer } from "../components/PageContainer";
 import { PageMeta } from "../components/PageMeta";
 import { BookingAction } from "../components/BookingAction";
-import {
-  recommendedDuration,
-  sessionRates,
-  voucherCards,
-} from "../config/pricing";
+import { sessionRates, voucherCards } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { formatPrice } from "../lib/money";
 
@@ -33,25 +29,31 @@ export function PricingPage() {
 
         <div className="psl-pricing-grid">
           {sessionRates.map((rate) => (
-            <article
+            <BookingAction
               key={rate.minutes}
+              label={t("durations.cta", { minutes: rate.minutes })}
+              duration={rate.minutes}
+              placement="pricing"
               className={`psl-pricing-card${rate.recommended ? " psl-pricing-card--recommended" : ""}`}
             >
               {rate.recommended ? (
-                <p className="psl-pricing-card__flag">
+                <span className="psl-pricing-card__flag">
                   {t("durations.recommended")}
-                </p>
+                </span>
               ) : null}
-              <p className="psl-pricing-card__duration">
-                {t("pricing.durationMinutes", { minutes: rate.minutes })}
-              </p>
-              <p className="psl-pricing-card__price">
-                {formatPrice(rate.cents, language)}
-              </p>
-              <p className="psl-pricing-card__meta">
+              <span className="psl-pricing-card__duration">
+                <span>
+                  {t("durations.cardTitle", { minutes: rate.minutes })} /
+                </span>{" "}
+                <span>{formatPrice(rate.cents, language)}</span>
+              </span>
+              <span className="psl-pricing-card__subhead">
+                {t(`durations.subhead.${rate.minutes}`)}
+              </span>
+              <span className="psl-pricing-card__meta">
                 {t(`durations.scope.${rate.minutes}`)}
-              </p>
-            </article>
+              </span>
+            </BookingAction>
           ))}
         </div>
 
@@ -118,7 +120,6 @@ export function PricingPage() {
       <div className="psl-actions" style={{ marginTop: "var(--psl-space-12)" }}>
         <BookingAction
           label={t("hero.book")}
-          duration={recommendedDuration}
           placement="pricing"
           className="psl-button psl-button--dark"
         />

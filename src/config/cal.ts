@@ -3,21 +3,28 @@ import type { PricingDuration } from "./pricing";
 /**
  * Cal.com booking links.
  *
- * Default event: https://cal.com/pluma-massage/valencia
+ * Default booking page: https://cal.com/pluma-massage-studio
  *
- * `VITE_CALCOM_LINK` can override that event. A per-duration link can be
- * supplied with `VITE_CALCOM_LINK_60` / `_90` / `_120` when the owner
- * creates a separate event for each length.
+ * Dedicated events:
+ * - 60  https://cal.com/pluma-massage-studio/60m-massage
+ * - 90  https://cal.com/pluma-massage-studio/90-massage
+ * - 120 https://cal.com/pluma-massage-studio/120m-massage
  *
- * The mapping is explicit and owner-supplied on purpose. The installed embed
- * (`@calcom/embed-react` 1.5.3) types its config as an open record of query
- * parameters, so almost anything can be passed, but only a value the owner has
- * actually verified against a real event is safe to send. Nothing here guesses
- * a slug, a locale parameter or a duration option.
+ * `VITE_CALCOM_LINK` and `VITE_CALCOM_LINK_60` / `_90` / `_120` can override
+ * those paths. The mapping is explicit and owner-supplied on purpose. The
+ * installed embed (`@calcom/embed-react` 1.5.3) types its config as an open
+ * record of query parameters, so almost anything can be passed, but only a
+ * value the owner has actually verified against a real event is safe to send.
  */
 
-/** Event slug used by the embed (`username/event`). */
-export const DEFAULT_CAL_LINK = "pluma-massage/valencia";
+/** Event slug used by the embed (`username` or `username/event`). */
+export const DEFAULT_CAL_LINK = "pluma-massage-studio";
+
+const DEFAULT_DURATION_LINKS: Record<PricingDuration, string> = {
+  60: "pluma-massage-studio/60m-massage",
+  90: "pluma-massage-studio/90-massage",
+  120: "pluma-massage-studio/120m-massage",
+};
 
 /** Accept a slug or a full cal.com URL; the embed wants the path only. */
 function calSlug(value: string | undefined): string {
@@ -31,10 +38,14 @@ function calSlug(value: string | undefined): string {
 export const calLink =
   calSlug(import.meta.env.VITE_CALCOM_LINK) || DEFAULT_CAL_LINK;
 
-const perDuration: Partial<Record<PricingDuration, string>> = {
-  60: calSlug(import.meta.env.VITE_CALCOM_LINK_60) || undefined,
-  90: calSlug(import.meta.env.VITE_CALCOM_LINK_90) || undefined,
-  120: calSlug(import.meta.env.VITE_CALCOM_LINK_120) || undefined,
+const perDuration: Record<PricingDuration, string> = {
+  60:
+    calSlug(import.meta.env.VITE_CALCOM_LINK_60) || DEFAULT_DURATION_LINKS[60],
+  90:
+    calSlug(import.meta.env.VITE_CALCOM_LINK_90) || DEFAULT_DURATION_LINKS[90],
+  120:
+    calSlug(import.meta.env.VITE_CALCOM_LINK_120) ||
+    DEFAULT_DURATION_LINKS[120],
 };
 
 /**

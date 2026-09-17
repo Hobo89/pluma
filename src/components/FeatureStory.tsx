@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
 import type { AnalyticsEvent } from "../lib/analytics";
@@ -91,7 +90,6 @@ export function FeatureStory({
         {actionLabelKey && bookingPlacement ? (
           <BookingAction
             label={t(actionLabelKey)}
-            duration={recommendedDuration}
             placement={bookingPlacement}
           />
         ) : actionLabelKey ? (

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { BookingAction } from "./BookingAction";
 
@@ -56,7 +55,6 @@ export function StickyBookingBar() {
     <div className="psl-sticky-book">
       <BookingAction
         label={t("sticky.label")}
-        duration={recommendedDuration}
         placement="sticky"
         className="psl-button psl-sticky-book__button"
       />

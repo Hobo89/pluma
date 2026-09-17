@@ -1,4 +1,3 @@
-import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
 import { BookingAction } from "./BookingAction";
@@ -32,7 +31,6 @@ export function BookingCTA() {
       <p className="psl-copy">{t("cta.body")}</p>
       <BookingAction
         label={t("hero.book")}
-        duration={recommendedDuration}
         placement="footer_cta"
       />
     </section>

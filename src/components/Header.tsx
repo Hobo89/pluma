@@ -1,6 +1,5 @@
 import { useEffect, useState, type KeyboardEvent } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { BookingAction } from "./BookingAction";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -120,7 +119,6 @@ export function Header({ solid = false }: HeaderProps) {
 
         <BookingAction
           label={t("nav.book")}
-          duration={recommendedDuration}
           placement="header"
         />
 
@@ -161,7 +159,6 @@ export function Header({ solid = false }: HeaderProps) {
             ))}
             <BookingAction
               label={t("nav.book")}
-              duration={recommendedDuration}
               placement="header"
               onTriggered={() => setMenuOpen(false)}
             />

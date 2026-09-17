@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { getCalApi } from "@calcom/embed-react";
 import { Link } from "react-router-dom";
 import {
@@ -21,6 +22,7 @@ type BookingActionProps = {
   placement: Placement;
   className?: string;
   onTriggered?: () => void;
+  children?: ReactNode;
 };
 
 function modalConfig(
@@ -48,16 +50,20 @@ export function BookingAction({
   placement,
   className = "psl-button",
   onTriggered,
+  children,
 }: BookingActionProps) {
   const { language } = useLanguage();
   const { theme } = useTheme();
   const target = calTargetFor(duration);
+  const content = children ?? label;
+  const labelledByChildren = Boolean(children);
 
   if (!calConfigured || !target) {
     return (
       <Link
         to={duration ? `/book?duration=${duration}` : "/book"}
         className={className}
+        aria-label={labelledByChildren ? label : undefined}
         onClick={() => {
           track({
             name: "booking_cta_clicked",
@@ -68,7 +74,7 @@ export function BookingAction({
           onTriggered?.();
         }}
       >
-        {label}
+        {content}
       </Link>
     );
   }
@@ -79,6 +85,7 @@ export function BookingAction({
     <button
       type="button"
       className={className}
+      aria-label={labelledByChildren ? label : undefined}
       data-cal-namespace={calFloatingNamespace}
       data-cal-link={target.link}
       data-cal-config={JSON.stringify(config)}
@@ -108,7 +115,7 @@ export function BookingAction({
         }
       }}
     >
-      {label}
+      {content}
     </button>
   );
 }

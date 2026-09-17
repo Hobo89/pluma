@@ -1,5 +1,4 @@
 import type { CSSProperties } from "react";
-import { recommendedDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
 import { BookingAction } from "./BookingAction";
@@ -48,7 +47,6 @@ export function Hero() {
         <div className="psl-actions psl-hero__actions" data-hero-actions>
           <BookingAction
             label={t("hero.book")}
-            duration={recommendedDuration}
             placement="hero"
             className="psl-button"
           />

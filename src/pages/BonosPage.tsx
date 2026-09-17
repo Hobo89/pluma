@@ -5,7 +5,6 @@ import { CopyBlocks } from "../components/CopyBlocks";
 import { BookingAction } from "../components/BookingAction";
 import { mailto } from "../lib/contact";
 import {
-  recommendedDuration,
   sessionRates,
   voucherCards,
   type VoucherDuration,
@@ -154,7 +153,6 @@ export function BonosPage() {
         </h2>
         <BookingAction
           label={t("bonos.returnCta")}
-          duration={recommendedDuration}
           placement="bono_return"
           className="psl-button psl-button--ghost"
         />
