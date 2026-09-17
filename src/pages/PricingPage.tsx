@@ -47,9 +47,6 @@ export function PricingPage() {
                 </span>{" "}
                 <span>{formatPrice(rate.cents, language)}</span>
               </span>
-              <span className="psl-pricing-card__subhead">
-                {t(`durations.subhead.${rate.minutes}`)}
-              </span>
               <span className="psl-pricing-card__meta">
                 {t(`durations.scope.${rate.minutes}`)}
               </span>

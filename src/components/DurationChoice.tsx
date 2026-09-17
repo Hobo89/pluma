@@ -47,9 +47,6 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
                 ) : null}
               </div>
 
-              <p className="psl-duration__subhead">
-                {t(`durations.subhead.${rate.minutes}`)}
-              </p>
               <p className="psl-duration__scope">
                 {t(`durations.scope.${rate.minutes}`)}
               </p>

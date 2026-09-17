@@ -100,11 +100,6 @@ export const translations = {
       recommended: "My recommendation",
       cta: "Book {minutes} minutes",
       cardTitle: "{minutes} minutes",
-      subhead: {
-        "60": "Focused and effective.",
-        "90": "More time to work things through.",
-        "120": "The most complete session.",
-      },
       scope: {
         "60": "A full-body massage at a steady pace, or more focused across a few areas that need attention.",
         "90": "A full-body massage with room to slow down and spend extra time on areas holding more tension.",
@@ -690,11 +685,6 @@ export const translations = {
       recommended: "Mi recomendación",
       cta: "Reservar {minutes} minutos",
       cardTitle: "{minutes} minutos",
-      subhead: {
-        "60": "Enfocado y eficaz.",
-        "90": "Más tiempo para trabajarlo con calma.",
-        "120": "La sesión más completa.",
-      },
       scope: {
         "60": "Un masaje de cuerpo entero a un ritmo constante, o más centrado en unas pocas zonas que necesitan atención.",
         "90": "Un masaje de cuerpo entero con margen para bajar el ritmo y dedicar tiempo extra a las zonas que guardan más tensión.",

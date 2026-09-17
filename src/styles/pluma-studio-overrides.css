@@ -1984,12 +1984,6 @@ button.psl-button {
   white-space: nowrap;
 }
 
-.psl-duration__subhead,
-.psl-pricing-card__subhead {
-  color: var(--psl-heading);
-  font: 400 var(--psl-type-card) / 1.25 var(--psl-font-body);
-}
-
 .psl-duration__scope,
 .psl-duration__note {
   color: var(--psl-muted);
