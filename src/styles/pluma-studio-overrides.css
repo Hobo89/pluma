@@ -1,5 +1,17 @@
 /* Pluma studio layout overrides */
 
+@property --psl-brand-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --psl-brand-fill {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 .psl {
   color-scheme: inherit;
 }
@@ -198,18 +210,26 @@ html.dark .psl-field input {
   inset: 0;
   display: grid;
   align-content: center;
-  justify-items: start;
+  justify-items: center;
+  gap: var(--psl-space-2);
   padding: var(--psl-space-3);
   overflow: hidden;
   border-radius: var(--psl-radius-media);
   background: var(--psl-surface);
   transform: rotateY(180deg);
+  text-align: center;
+}
+
+.psl-product__back-title {
+  color: var(--psl-heading);
+  font: 400 var(--psl-type-small) / 1.25 var(--psl-font-display);
 }
 
 .psl-product__copy {
   color: var(--psl-muted);
   font-size: var(--psl-type-small);
   line-height: 1.35;
+  text-align: center;
   text-wrap: pretty;
 }
 
@@ -663,6 +683,27 @@ html.dark .psl-field input {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.psl-feature__media-link {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border-radius: inherit;
+}
+
+.psl-feature__media-link img:not(.psl-feature__portrait) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.psl-feature__media:has(.psl-feature__media-link:focus-visible) {
+  outline: 3px solid var(--psl-heading);
+  outline-offset: 3px;
 }
 
 .psl-feature__media .psl-feature__portrait {
@@ -1194,6 +1235,10 @@ html.dark .psl-field input {
   margin-top: var(--psl-space-3);
 }
 
+.psl-footer h2 {
+  font-size: var(--psl-type-card);
+}
+
 .psl-footer__brand {
   display: inline-flex;
   align-self: start;
@@ -1260,8 +1305,23 @@ button.psl-button {
   text-align: center;
 }
 
-.psl-faq > div {
+.psl-page > .psl-faq > .psl-title {
+  max-width: none;
+}
+
+.psl-faq > div,
+.psl-faq__group {
   width: 100%;
+}
+
+.psl-faq__group + .psl-faq__group {
+  margin-top: var(--psl-space-8);
+}
+
+.psl-faq__group-title {
+  margin: 0 0 var(--psl-space-2);
+  color: var(--psl-heading);
+  font: 400 var(--psl-type-small) / 1.3 var(--psl-font-display);
 }
 
 .psl-about-stephen {
@@ -1489,7 +1549,8 @@ button.psl-button {
 .psl-voucher-notes {
   display: grid;
   gap: var(--psl-space-2);
-  justify-items: center;
+  justify-items: start;
+  text-align: start;
 }
 
 .psl-voucher-table {
@@ -1514,12 +1575,30 @@ button.psl-button {
 
 .psl-voucher-table__discount,
 .psl-voucher-table__single,
-.psl-voucher-table td span {
+.psl-voucher-table td span:not(.psl-voucher-table__saving) {
   display: block;
   margin-top: 4px;
   color: var(--psl-muted);
   font-size: var(--psl-type-small);
   font-weight: 400;
+}
+
+.psl-voucher-table__single-label {
+  font-weight: 400;
+}
+
+.psl-voucher-table__saving {
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--psl-space-3);
+  padding: 3px 9px;
+  border: 1px solid var(--psl-heading);
+  border-radius: var(--psl-radius-pill);
+  color: var(--psl-text);
+  font-size: var(--psl-type-label);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {
@@ -1543,6 +1622,157 @@ button.psl-button {
 /* Pricing page */
 .psl-pricing-section {
   margin-top: var(--psl-space-12);
+}
+
+.psl-page > .psl-pricing-section:first-of-type {
+  margin-top: 0;
+}
+
+.psl-pricing-invite {
+  --psl-scatter: 0;
+  --psl-invite-shadow-room: 4rem;
+  position: relative;
+  isolation: isolate;
+  width: 100vw;
+  max-width: 100vw;
+  min-height: clamp(28rem, 62vh, 40rem);
+  margin-inline: calc(50% - 50vw);
+  padding-bottom: var(--psl-invite-shadow-room);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.psl-pricing-invite__stage {
+  position: absolute;
+  inset: 0 0 var(--psl-invite-shadow-room);
+  pointer-events: none;
+}
+
+.psl-pricing-invite__card {
+  --lag: 1;
+  --entered: min(1, var(--psl-scatter, 0) * var(--lag));
+  position: absolute;
+  height: auto;
+  transform: translate3d(
+      calc((1 - var(--entered)) * var(--from-x)),
+      calc((1 - var(--entered)) * 18px),
+      0
+    )
+    rotate(var(--tilt));
+  opacity: calc(0.12 + var(--entered) * 0.88);
+  filter: drop-shadow(0 18px 32px rgb(8 39 7 / 16%));
+  will-change: transform, opacity;
+}
+
+.psl-pricing-invite__card--left {
+  --from-x: -46vw;
+}
+
+.psl-pricing-invite__card--right {
+  --from-x: 46vw;
+}
+
+.psl-pricing-invite__card--gold {
+  top: 6%;
+  left: 3%;
+  width: min(15.5rem, 42vw);
+  --tilt: -16deg;
+  --lag: 1.28;
+}
+
+.psl-pricing-invite__card--cyan {
+  top: 8%;
+  right: 4%;
+  width: min(13.75rem, 38vw);
+  --tilt: 13deg;
+  --lag: 1.08;
+}
+
+.psl-pricing-invite__card--green {
+  bottom: 12%;
+  left: 9%;
+  width: min(12.75rem, 36vw);
+  --tilt: 9deg;
+  --lag: 0.92;
+}
+
+.psl-pricing-invite__card--pink {
+  bottom: 10%;
+  right: 2%;
+  width: min(16.25rem, 44vw);
+  --tilt: -12deg;
+  --lag: 0.78;
+}
+
+.psl-pricing-invite__copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: var(--psl-space-8);
+  max-width: min(56rem, calc(100vw - 48px));
+  padding-inline: 20px;
+  text-align: center;
+}
+
+.psl-pricing-invite__copy::before {
+  content: "";
+  position: absolute;
+  inset: -18% -28%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    var(--psl-canvas) 0%,
+    transparent 72%
+  );
+}
+
+.psl-pricing-invite__title {
+  max-width: none;
+  font-size: clamp(1.5rem, 2.3vw, 2.25rem);
+  text-wrap: unset;
+}
+
+@media (max-width: 767px) {
+  .psl-pricing-invite {
+    min-height: 26rem;
+  }
+
+  .psl-pricing-invite__card--gold {
+    top: 4%;
+    left: -6%;
+    width: min(10.5rem, 48vw);
+  }
+
+  .psl-pricing-invite__card--cyan {
+    top: 6%;
+    right: -8%;
+    width: min(9.5rem, 44vw);
+  }
+
+  .psl-pricing-invite__card--green {
+    bottom: 10%;
+    left: -2%;
+    width: min(9rem, 42vw);
+  }
+
+  .psl-pricing-invite__card--pink {
+    bottom: 8%;
+    right: -7%;
+    width: min(11rem, 50vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psl-pricing-invite {
+    --psl-scatter: 1;
+  }
+
+  .psl-pricing-invite__card {
+    will-change: auto;
+  }
 }
 
 .psl-pricing-section .psl-section-head {
@@ -1928,7 +2158,7 @@ button.psl-button {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--psl-space-3);
   margin: 0;
-  padding: 0;
+  padding: 6px 16px 18px 6px;
   list-style: none;
 }
 
@@ -1947,9 +2177,51 @@ button.psl-button {
 }
 
 .psl-duration--recommended {
+  --psl-orbit-pad: 6px;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: visible;
   border-width: 2px;
   border-color: var(--psl-heading);
   background: var(--psl-surface-sage);
+}
+
+.psl-duration--recommended.is-inview,
+.psl-duration--recommended:focus-within {
+  border-color: transparent;
+}
+
+.psl-duration--recommended::before {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--psl-orbit-pad));
+  z-index: 0;
+  background: conic-gradient(
+    from var(--psl-brand-angle),
+    var(--psl-brand-gold) 0deg,
+    var(--psl-brand-warm) 70deg,
+    var(--psl-brand-warm) 290deg,
+    var(--psl-brand-gold) 360deg
+  );
+  pointer-events: none;
+  opacity: 0;
+  -webkit-mask-image: var(--psl-orbit-mask);
+  mask-image: var(--psl-orbit-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.psl-duration--recommended.is-inview::before,
+.psl-duration--recommended:focus-within::before {
+  opacity: 1;
+}
+
+.psl-duration--recommended > * {
+  position: relative;
+  z-index: 1;
 }
 
 .psl-duration__head {
@@ -1970,14 +2242,19 @@ button.psl-button {
 }
 
 .psl-duration__flag {
+  position: absolute;
+  right: -10px;
+  bottom: -12px;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 4px;
   min-height: 24px;
-  padding: 4px 10px;
+  padding: 3px 9px;
+  border: 1px solid var(--psl-heading);
   border-radius: var(--psl-radius-pill);
-  background: var(--psl-heading);
-  color: var(--psl-canvas);
+  background: var(--psl-canvas);
+  color: var(--psl-text);
   font-size: var(--psl-type-label);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -1995,19 +2272,33 @@ button.psl-button {
   margin-top: auto;
 }
 
-.psl-duration .psl-button--ghost {
+.psl-duration .psl-button--ghost,
+.psl-page .psl-button--ghost,
+.psl-bono-return .psl-button--ghost {
   background: transparent;
-  border-color: var(--psl-line);
+  border-color: var(--psl-heading);
   color: var(--psl-heading);
 }
 
-.psl-durations__terms {
+@media (hover: hover) {
+  .psl-duration .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover,
+  .psl-page .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover,
+  .psl-bono-return .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover {
+    background: var(--psl-lime);
+    border-color: var(--psl-lime);
+    color: var(--psl-heading);
+  }
+}
+
+.psl-durations__terms,
+.psl-pricing-terms {
   max-width: none;
   margin-top: var(--psl-space-8);
   text-align: center;
 }
 
-.psl-durations__terms .psl-textlink {
+.psl-durations__terms .psl-textlink,
+.psl-pricing-terms .psl-textlink {
   display: inline;
   min-height: 0;
 }
@@ -2024,7 +2315,7 @@ button.psl-button {
     grid-template-columns: none;
     gap: var(--psl-space-3);
     margin-inline: -20px;
-    padding: 0 20px var(--psl-space-2);
+    padding: 6px 20px 18px;
     scroll-padding-inline: 20px;
     overflow-x: auto;
     overscroll-behavior-x: contain;
@@ -2213,12 +2504,6 @@ button.psl-button {
   flex: 0 0 auto;
   width: min(17.5rem, 72vw);
   height: auto;
-}
-
-@media (hover: hover) {
-  .psl-bono-strip:hover .psl-bono-strip__track {
-    animation-play-state: paused;
-  }
 }
 
 @keyframes psl-bono-strip-scroll {
@@ -2712,16 +2997,6 @@ button.psl-button {
   font-size: var(--psl-type-card);
 }
 
-/* The ghost button is designed for dark hero backgrounds. On light surfaces
-   its white text on a translucent dark fill fails contrast, so anywhere inside
-   a normal page it gets a bordered light treatment instead. */
-.psl-page .psl-button--ghost,
-.psl-bono-return .psl-button--ghost {
-  background: transparent;
-  border-color: var(--psl-line);
-  color: var(--psl-heading);
-}
-
 @media (max-width: 991px) {
   .psl-bono-head {
     grid-template-columns: 1fr;
@@ -2825,10 +3100,11 @@ button.psl-button {
 
 .psl-pricing-card__flag {
   justify-self: start;
-  padding: 4px 10px;
+  padding: 3px 9px;
+  border: 1px solid var(--psl-heading);
   border-radius: var(--psl-radius-pill);
-  background: var(--psl-heading);
-  color: var(--psl-canvas);
+  background: transparent;
+  color: var(--psl-text);
   font-size: var(--psl-type-label);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -2916,5 +3192,42 @@ html.dark
 @media (prefers-reduced-motion: reduce) {
   html.dark .pluma-illustration[data-pluma-state] [data-pluma-accent] {
     opacity: 0.22 !important;
+  }
+}
+
+/* Shared brand-gradient highlight: heading word fill and the 90-minute border. */
+.psl-brand-mark {
+  display: inline;
+  background-image:
+    linear-gradient(var(--psl-heading), var(--psl-heading)),
+    linear-gradient(90deg, var(--psl-brand-warm), var(--psl-brand-gold));
+  background-size: calc((1 - var(--psl-brand-fill, 0)) * 100%) 100%, 100% 100%;
+  background-position: 100% 0, 0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@keyframes psl-brand-orbit {
+  to {
+    --psl-brand-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psl-brand-mark {
+    --psl-brand-fill: 1;
+  }
+
+  .psl-duration--recommended {
+    border-color: transparent;
+  }
+
+  .psl-duration--recommended::before {
+    opacity: 1;
+    animation: none;
+    background: var(--psl-brand-gradient);
   }
 }

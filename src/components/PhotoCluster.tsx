@@ -34,9 +34,9 @@ export const studioPhotoCluster = [
     position: "50% 40%",
   },
   {
-    src: "/assets/images/studio-draping.jpg",
-    captionKey: "studio.photos.towels",
-    position: "50% 45%",
+    src: "/assets/images/studio-tools.jpg",
+    captionKey: "studio.photos.tools",
+    position: "50% 55%",
   },
 ] as const satisfies readonly PhotoClusterImage[];
 

@@ -3,6 +3,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
 import type { AnalyticsEvent } from "../lib/analytics";
 import { BookingAction } from "./BookingAction";
+import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import {
   FeatureHighlights,
   studioHighlightIds,
@@ -25,8 +26,10 @@ type FeatureStoryProps = {
   video?: string;
   videoPoster?: string;
   videoLabelKey?: string;
+  titleHighlightKey?: string;
   actionLabelKey?: string;
   actionTo?: string;
+  mediaTo?: string;
   bookingPlacement?: Extract<
     AnalyticsEvent,
     { name: "booking_cta_clicked" }
@@ -53,8 +56,10 @@ export function FeatureStory({
   video,
   videoPoster,
   videoLabelKey,
+  titleHighlightKey,
   actionLabelKey,
   actionTo,
+  mediaTo,
   bookingPlacement,
   reverse = false,
   badge,
@@ -66,6 +71,36 @@ export function FeatureStory({
   const hasCollage = Boolean(collage?.length);
   const hasVideo = Boolean(video);
   const stillsBelowVideo = hasVideo && hasCollage;
+  const stillAlts = !mediaTo;
+  const mediaLabel = mediaTo
+    ? [actionLabelKey ? t(actionLabelKey) : null, imageAlt]
+        .filter(Boolean)
+        .join(". ")
+    : "";
+  const stills = (
+    <>
+      {image && (
+        <img
+          src={image}
+          alt={stillAlts ? imageAlt : ""}
+          loading="lazy"
+          sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
+          style={
+            imagePosition ? { objectPosition: imagePosition } : undefined
+          }
+        />
+      )}
+      {portrait && (
+        <img
+          className="psl-feature__portrait"
+          src={portrait}
+          alt={stillAlts ? portraitAlt : ""}
+          loading="lazy"
+          sizes="(max-width: 767px) 40vw, 12vw"
+        />
+      )}
+    </>
+  );
 
   return (
     <section
@@ -73,7 +108,15 @@ export function FeatureStory({
       className={`psl-feature psl-container psl-section${reverse ? " psl-feature--reverse" : ""}${hasVideo ? " psl-feature--video" : ""}${stillsBelowVideo ? " psl-feature--stills" : ""}`}
     >
       <div className="psl-feature__body">
-        <h2 className="psl-title">{t(titleKey)}</h2>
+        {titleHighlightKey ? (
+          <BrandMarkedHeading
+            className="psl-title"
+            text={t(titleKey)}
+            word={t(titleHighlightKey)}
+          />
+        ) : (
+          <h2 className="psl-title">{t(titleKey)}</h2>
+        )}
         <p className="psl-copy">{t(descriptionKey)}</p>
         {extraDescriptionKey ? (
           <p className="psl-copy">{t(extraDescriptionKey)}</p>
@@ -146,25 +189,16 @@ export function FeatureStory({
         <figure
           className={`psl-feature__media${portrait ? " psl-feature__media--with-portrait" : ""}`}
         >
-          {image && (
-            <img
-              src={image}
-              alt={imageAlt}
-              loading="lazy"
-              sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
-              style={
-                imagePosition ? { objectPosition: imagePosition } : undefined
-              }
-            />
-          )}
-          {portrait && (
-            <img
-              className="psl-feature__portrait"
-              src={portrait}
-              alt={portraitAlt}
-              loading="lazy"
-              sizes="(max-width: 767px) 40vw, 12vw"
-            />
+          {mediaTo ? (
+            <Link
+              to={mediaTo}
+              className="psl-feature__media-link"
+              aria-label={mediaLabel}
+            >
+              {stills}
+            </Link>
+          ) : (
+            stills
           )}
           {badge && <figcaption className="psl-badge">{badge}</figcaption>}
         </figure>

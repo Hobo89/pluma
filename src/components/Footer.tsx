@@ -27,10 +27,10 @@ export function Footer() {
               alt=""
             />
           </NavLink>
-          <h2>{t("footer.contactTitle")}</h2>
           <p className="psl-copy" style={{ color: "rgb(255 255 255 / 75%)" }}>
             {t("footer.tagline")}
           </p>
+          <h2>{t("footer.contactTitle")}</h2>
           <ul className="psl-stack" style={{ gap: "var(--psl-space-2)" }}>
             <li>
               <a href={`mailto:${site.email}`}>{site.email}</a>

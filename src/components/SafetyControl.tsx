@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import { PlumaHeroLogo } from "./PlumaHeroLogo";
 import { AgreeIcon, ChangeIcon, PainIcon } from "./SafetyIcons";
 
@@ -22,9 +23,12 @@ export function SafetyControl() {
       className="psl-container psl-section psl-safety"
     >
       <div className="psl-section-head psl-section-head--stack">
-        <h2 id="safety-heading" className="psl-title">
-          {t("safety.heading")}
-        </h2>
+        <BrandMarkedHeading
+          id="safety-heading"
+          className="psl-title"
+          text={t("safety.heading")}
+          word={t("safety.headingHighlight")}
+        />
       </div>
 
       <ul className="psl-safety__grid">

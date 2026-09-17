@@ -123,3 +123,13 @@
 .pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-letter-4 {
   animation-delay: 1150ms;
 }
+
+/* Safety-section feather: same path and easing, about twice as slow. */
+.psl-safety__logo-image.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-feather-outline {
+  animation-duration: 1800ms;
+}
+
+.psl-safety__logo-image.pluma-hero-logo--onview[data-pluma-state="playing"] .pluma-feather-fill {
+  animation-duration: 1100ms;
+  animation-delay: 1300ms;
+}

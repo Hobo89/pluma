@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { sessionRates } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
+import { useInViewOnce } from "../lib/useInViewOnce";
+import { useOrbitStrokeMask } from "../lib/orbitStrokeMask";
 import { formatPrice } from "../lib/money";
 import { BookingAction } from "./BookingAction";
 
@@ -10,6 +12,8 @@ import { BookingAction } from "./BookingAction";
  */
 export function DurationChoice({ compact = false }: { compact?: boolean }) {
   const { t, language } = useLanguage();
+  const recommended = useInViewOnce<HTMLLIElement>();
+  useOrbitStrokeMask(recommended.ref);
 
   return (
     <section
@@ -31,7 +35,8 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
           return (
             <li
               key={rate.minutes}
-              className={`psl-duration${rate.recommended ? " psl-duration--recommended" : ""}`}
+              ref={rate.recommended ? recommended.ref : undefined}
+              className={`psl-duration${rate.recommended ? " psl-duration--recommended" : ""}${rate.recommended && recommended.inView ? " is-inview" : ""}`}
             >
               <div className="psl-duration__head">
                 <h3 id={headingId} className="psl-duration__title">
@@ -40,11 +45,6 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
                   </span>{" "}
                   <span>{formatPrice(rate.cents, language)}</span>
                 </h3>
-                {rate.recommended ? (
-                  <span className="psl-duration__flag">
-                    {t("durations.recommended")}
-                  </span>
-                ) : null}
               </div>
 
               <p className="psl-duration__scope">
@@ -57,6 +57,12 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
                 placement="durations"
                 className={`psl-button${rate.recommended ? " psl-button--dark" : " psl-button--ghost"} psl-duration__cta`}
               />
+
+              {rate.recommended ? (
+                <span className="psl-duration__flag">
+                  {t("durations.recommended")}
+                </span>
+              ) : null}
             </li>
           );
         })}

@@ -5,11 +5,16 @@ import { FeatureStory } from "./FeatureStory";
  * The studio block shared by the homepage and the about page: video, stills,
  * highlights, booking action and the access note.
  */
-export function StudioFeature() {
+export function StudioFeature({
+  highlightTitle = false,
+}: {
+  highlightTitle?: boolean;
+}) {
   return (
     <FeatureStory
       id="studio"
       titleKey="studio.title"
+      titleHighlightKey={highlightTitle ? "studio.titleHighlight" : undefined}
       descriptionKey="studio.description"
       collage={studioPhotoCluster}
       collageLabelKey="studio.collageLabel"

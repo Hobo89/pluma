@@ -1,4 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
+import { BrandMarkedHeading } from "./BrandMarkedHeading";
 
 type BenefitCard = {
   id: "arrive" | "return" | "recover" | "yours";
@@ -41,9 +42,12 @@ export function BenefitsMosaic() {
       className="psl-container psl-section--roomy psl-benefits"
     >
       <div className="psl-section-head psl-section-head--stack">
-        <h2 id="benefits-heading" className="psl-title">
-          {t("benefits.title")}
-        </h2>
+        <BrandMarkedHeading
+          id="benefits-heading"
+          className="psl-title"
+          text={t("benefits.title")}
+          word={t("benefits.titleHighlight")}
+        />
         <p className="psl-copy">{t("benefits.description")}</p>
       </div>
 

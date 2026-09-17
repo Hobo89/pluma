@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { BonoCardStrip } from "../components/BonoCardStrip";
+import { BrandMarkedHeading } from "../components/BrandMarkedHeading";
 import { PageContainer } from "../components/PageContainer";
 import { PageMeta } from "../components/PageMeta";
 import { CopyBlocks } from "../components/CopyBlocks";
@@ -13,21 +14,23 @@ import {
 import { useLanguage } from "../context/LanguageContext";
 import { formatPrice } from "../lib/money";
 
-const faqIds = [
-  "include",
-  "arrange",
-  "after",
-  "active",
-  "valid",
-  "book",
-  "change",
-  "plumaCancel",
-  "extend",
-  "share",
-  "prices",
-  "refund",
-  "expire",
-  "lost",
+const faqGroups = [
+  {
+    id: "buying",
+    items: ["include", "arrange", "share", "prices"],
+  },
+  {
+    id: "using",
+    items: ["after", "book"],
+  },
+  {
+    id: "validity",
+    items: ["valid", "expire"],
+  },
+  {
+    id: "changes",
+    items: ["change", "plumaCancel", "extend", "refund"],
+  },
 ] as const;
 
 export function BonosPage() {
@@ -40,7 +43,12 @@ export function BonosPage() {
     <PageContainer>
       <PageMeta page="bonos" />
 
-      <h1 className="psl-title">{t("bonos.title")}</h1>
+      <BrandMarkedHeading
+        as="h1"
+        className="psl-title"
+        text={t("bonos.title")}
+        word={t("bonos.titleHighlight")}
+      />
       <div className="psl-bono-intro">
         <CopyBlocks text={t("bonos.pageIntro")} />
       </div>
@@ -51,9 +59,12 @@ export function BonosPage() {
         className="psl-section"
         aria-labelledby="voucher-options-heading"
       >
-        <h2 id="voucher-options-heading" className="psl-title">
-          {t("bonos.optionsTitle")}
-        </h2>
+        <BrandMarkedHeading
+          id="voucher-options-heading"
+          className="psl-title"
+          text={t("bonos.optionsHeading")}
+          word={t("bonos.optionsHeadingHighlight")}
+        />
 
         <div className="psl-voucher-table-wrap">
           <table className="psl-voucher-table">
@@ -80,7 +91,10 @@ export function BonosPage() {
                         sessionRates.find((rate) => rate.minutes === minutes)
                           ?.cents ?? 0,
                         language,
-                      )}
+                      )}{" "}
+                      <span className="psl-voucher-table__single-label">
+                        {t("pricing.singleSessionPrice")}
+                      </span>
                     </span>
                   </th>
                   {voucherCards.map((card) => {
@@ -94,6 +108,11 @@ export function BonosPage() {
                         <span>
                           {formatPrice(rate.perSessionCents, language)}{" "}
                           {t("pricing.perSession")}
+                        </span>
+                        <span className="psl-voucher-table__saving">
+                          {t("pricing.saving", {
+                            amount: formatPrice(rate.savingCents, language),
+                          })}
                         </span>
                       </td>
                     );
@@ -131,24 +150,32 @@ export function BonosPage() {
       </section>
 
       <section className="psl-faq" aria-labelledby="voucher-faq-heading">
-        <h2 id="voucher-faq-heading" className="psl-title">
-          {t("bonos.faqTitle")}
-        </h2>
-        <div>
-          {faqIds.map((id) => (
-            <details key={id}>
-              <summary>
-                {t(`bonos.faq.${id}.question`)}
-                <span className="psl-faq__icon" aria-hidden="true" />
-              </summary>
-              {t(`bonos.faq.${id}.answer`)
-                .split("\n\n")
-                .map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-            </details>
-          ))}
-        </div>
+        <BrandMarkedHeading
+          id="voucher-faq-heading"
+          className="psl-title"
+          text={t("bonos.faqTitle")}
+          word={t("bonos.faqTitleHighlight")}
+        />
+        {faqGroups.map((group) => (
+          <div key={group.id} className="psl-faq__group">
+            <h3 className="psl-faq__group-title">
+              {t(`bonos.faqGroups.${group.id}`)}
+            </h3>
+            {group.items.map((id) => (
+              <details key={id}>
+                <summary>
+                  {t(`bonos.faq.${id}.question`)}
+                  <span className="psl-faq__icon" aria-hidden="true" />
+                </summary>
+                {t(`bonos.faq.${id}.answer`)
+                  .split("\n\n")
+                  .map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+              </details>
+            ))}
+          </div>
+        ))}
       </section>
 
       <section className="psl-bono-return" aria-labelledby="bono-return-heading">

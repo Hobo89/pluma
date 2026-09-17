@@ -6,6 +6,7 @@ import {
   type PointerEvent,
 } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import {
   MassageIllustrationDeepTissue,
   MassageIllustrationPregnancy,
@@ -100,9 +101,12 @@ export function MassageTypes() {
       aria-labelledby="massage-types-heading"
     >
       <div className="psl-section-head psl-section-head--stack">
-        <h2 id="massage-types-heading" className="psl-title">
-          {t("types.title")}
-        </h2>
+        <BrandMarkedHeading
+          id="massage-types-heading"
+          className="psl-title"
+          text={t("types.title")}
+          word={t("types.titleHighlight")}
+        />
         {t("types.description")
           .split("\n\n")
           .map((paragraph) => (
@@ -143,6 +147,7 @@ export function MassageTypes() {
                   className="psl-product__face psl-product__face--back"
                   aria-hidden={!flipped}
                 >
+                  <span className="psl-product__back-title">{title}</span>
                   <span id={copyId} className="psl-product__copy">
                     {copy}
                   </span>

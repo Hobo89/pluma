@@ -7,12 +7,20 @@
   --psl-ink: #082707;
   --psl-forest: #1f2c22;
   --psl-lime: #d7e58e;
-  --psl-lime-hover: #c8d875;
+  --psl-lime-hover: #c3e068;
   --psl-text: #20251f;
   --psl-muted: #62695f;
   --psl-line: #dde1d9;
   --psl-white: #ffffff;
   --psl-error: #a32a24;
+  /* Warm orange-to-gold from the pluma feather. */
+  --psl-brand-warm: #e8893a;
+  --psl-brand-gold: #f3c48a;
+  --psl-brand-gradient: linear-gradient(
+    90deg,
+    var(--psl-brand-warm),
+    var(--psl-brand-gold)
+  );
   --psl-font-display: "Parkinsans", "Times New Roman", Georgia, serif;
   --psl-font-body: "Instrument Sans", Arial, Helvetica, sans-serif;
   --psl-type-hero: clamp(2.125rem, 4vw, 4.5rem);

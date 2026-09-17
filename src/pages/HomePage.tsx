@@ -6,7 +6,6 @@ import { BenefitsMosaic } from "../components/BenefitsMosaic";
 import { SafetyControl } from "../components/SafetyControl";
 import { EditorialQuote } from "../components/EditorialQuote";
 import { PromoRibbon } from "../components/PromoRibbon";
-import { BonoCardStrip } from "../components/BonoCardStrip";
 import { FAQ } from "../components/FAQ";
 import { BookingCTA } from "../components/BookingCTA";
 import { PageMeta } from "../components/PageMeta";
@@ -25,8 +24,8 @@ export function HomePage() {
 
       <FeatureStory
         titleKey="about.title"
+        titleHighlightKey="about.titleHighlight"
         descriptionKey="about.body"
-        extraDescriptionKey="about.body2"
         trustKey="about.languages"
         image="/assets/images/stephen.jpg"
         imageAlt={t("about.stephenPhotoAlt")}
@@ -35,14 +34,14 @@ export function HomePage() {
         portraitAlt={t("about.stephenPhotoAlt")}
         actionLabelKey="hero.learnMore"
         actionTo="/about"
+        mediaTo="/about"
       />
 
-      <StudioFeature />
+      <StudioFeature highlightTitle />
       <MassageTypes />
       <BenefitsMosaic />
       <SafetyControl />
       <EditorialQuote />
-      <BonoCardStrip />
       <PromoRibbon />
       <FAQ />
       <BookingCTA />

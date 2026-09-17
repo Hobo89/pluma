@@ -94,9 +94,8 @@ export const translations = {
       label: "Book Massage",
     },
     durations: {
-      title: "How long would you like?",
-      description:
-        "60 minutes is absolutely fine. I tend to recommend 90 when there’s quite a bit you want to work on. In any case, all sessions give us time to settle in and understand what’s going on.",
+      title: "Where do you want to start?",
+      description: "We'll take the time to focus on what you need most.",
       recommended: "My recommendation",
       cta: "Book {minutes} minutes",
       cardTitle: "{minutes} minutes",
@@ -112,10 +111,10 @@ export const translations = {
       walk: "A short walk from the Central Market, Valencia",
     },
     about: {
-      title: "A good massage starts with listening.",
-      body: "Tell me what’s been bothering you, or if you simply need to switch off. I’ll adapt the pressure, pace, and techniques as we go.",
-      body2: "I only see a few people each day. I don’t like rushing sessions.",
-      languages: "English · French · Spanish",
+      title: "A good massage starts with listening",
+      titleHighlight: "listening",
+      body: "I only see a few people each day. I don’t like rushing sessions.",
+      languages: "I speak English, French and Spanish.",
       stephenPhotoAlt: "Stephen at the pluma home studio",
       how: {
         heading: "How I work",
@@ -137,8 +136,8 @@ export const translations = {
     },
     types: {
       title: "You can, but don’t need to, choose a technique.",
-      description:
-        "Tell me what you want from the session. I can combine lymphatic drainage, deep-tissue, sports, and other specialized techniques for, say, pregnancy massages, then adjust as we go.\n\nThese are tools, not fixed routines.",
+      titleHighlight: "technique",
+      description: "Each session adapts to your body’s needs.",
       pregnancy: "Pregnancy",
       pregnancyAlt: "Line drawing of a pregnant figure",
       relaxingLymphatic: "Relaxing & lymphatic",
@@ -168,12 +167,17 @@ export const translations = {
         "Session prices by length at the home studio. Vouchers reduce the per-session price on 60 and 90 minute sessions.",
       book: "Book a session",
       durationMinutes: "{minutes} min",
-      singleTitle: "Single sessions",
+      singleTitle: "Single massages prices",
+      inviteTitle:
+        "Some even come regularly\nfor that gooood self-care,\nyour turn?",
+      inviteHighlight: "gooood",
+      inviteCta: "Discover vouchers",
       voucherTitle: "Vouchers",
       voucherDescription:
         "A voucher covers several sessions of the same length at a lower price per session.",
       total: "total",
       perSession: "per session",
+      singleSessionPrice: "Single session price",
       saving: "You save {amount}",
       validity: "Valid for {months} months from the first session",
       voucher5: {
@@ -213,53 +217,60 @@ export const translations = {
         "Hello Stephen,%0D%0A%0D%0AI would like to ask about a massage session.%0D%0A%0D%0AThank you,",
     },
     bonos: {
-      title: "A few good massages, already sorted.",
+      title:
+        "You're in good hands.\nSort those massages.",
+      titleHighlight: "good hands",
       pageTitle: "A regular space to come back to",
       pageIntro:
-        "A Pluma voucher is for anyone who wants massage to become part of their rhythm, rather than something they only reach for when tension has already built up.",
+        "A pluma voucher is for anyone who wants massage to become part of their rhythm, rather than something they only reach for when tension has already built up.",
       optionsTitle: "Voucher options",
+      optionsHeading:
+        "Save money now. Skip the overthinking.\nA healthy body and mind for months to come.",
+      optionsHeadingHighlight: "months to come.",
       pricesNote: "(1) All prices shown are the total price payable.",
       validityNote:
         "(2) Five-session vouchers are valid for three months. Ten-session vouchers are valid for six months. The validity period begins with the first session, which must take place within 30 days after the voucher is issued.",
       interestedTitle: "Interested in a voucher?",
-      cta: "Ask about a voucher",
+      cta: "Write to me",
       enquirySubject: "Voucher inquiry",
       enquiryBody:
         "Hello Stephen,%0D%0A%0D%0AI would like to ask about a voucher.%0D%0A%0D%0AThank you,",
       termsAgree:
         "By arranging a voucher, you agree to the Voucher Terms. Please read them before confirming.",
       termsLink: "Voucher Terms",
-      faqTitle: "Voucher questions",
+      faqTitle: "Voucher questions.\nThey're good questions, clear answers.",
+      faqTitleHighlight: "clear",
+      faqGroups: {
+        buying: "Buying & gifting",
+        using: "Using your voucher",
+        validity: "Validity & bookings",
+        changes: "Changes & cancellations",
+      },
       faq: {
         include: {
-          question: "What does a Pluma voucher include?",
+          question: "What does a pluma voucher include?",
           answer:
             "Each voucher includes either five or ten sessions of the same duration: 60 or 90 minutes.\n\nThe massage itself can still change from one visit to the next. We can adjust the pressure, pace and areas of focus according to how you are feeling and what your body needs that day.",
         },
         arrange: {
           question: "How do I arrange a voucher?",
           answer:
-            "Select Ask about a voucher to email me.\n\nI’ll help you choose the session length and number of sessions, confirm the terms and answer any questions before you commit. Vouchers are arranged directly; there is no online checkout on the website.",
+            "Select Write to me to email me.\n\nI’ll help you choose the session length and number of sessions, confirm the terms and answer any questions before you commit. Vouchers are arranged directly; there is no online checkout on the website.",
         },
         after: {
           question: "What happens after my voucher is confirmed?",
           answer:
-            "You’ll receive your digital voucher by email. I keep its balance and expiration date up to date after each session and can confirm your remaining sessions at any time.",
-        },
-        active: {
-          question: "When does my voucher become active?",
-          answer:
-            "The validity period begins on the date of your first session. Your first session must take place within 30 days of the voucher being issued.",
+            "You’ll receive your digital voucher by email. I keep its balance and expiration date up to date after each session and can confirm your remaining sessions at any time.\n\nIf you lose the voucher email, get in touch and I’ll resend the details after confirming your identity.",
         },
         valid: {
           question: "How long is my voucher valid?",
           answer:
-            "A five-session voucher is valid for three months from the first session. A ten-session voucher is valid for six months from the first session.\n\nYour exact expiration date will be confirmed when you attend your first session.",
+            "The validity period begins on the date of your first session. Your first session must take place within 30 days of the voucher being issued.\n\nA five-session voucher is valid for three months from the first session. A ten-session voucher is valid for six months from the first session.\n\nYour exact expiration date will be confirmed when you attend your first session.",
         },
         book: {
           question: "How do I book my sessions?",
           answer:
-            "Use the Pluma booking calendar to choose each appointment. Sessions are subject to availability, and a voucher does not reserve recurring dates or guarantee a particular time.",
+            "Use the pluma booking calendar to choose each appointment. Sessions are subject to availability, and a voucher does not reserve recurring dates or guarantee a particular time.",
         },
         change: {
           question: "What if I need to change an appointment?",
@@ -267,7 +278,7 @@ export const translations = {
             "You can change or cancel an appointment without losing a session when you give at least 24 hours’ notice.\n\nIf you cancel with less than 24 hours’ notice, or do not attend, one session is deducted from your voucher. Reasonable exceptions may be made for emergencies or exceptional circumstances.",
         },
         plumaCancel: {
-          question: "What if Pluma needs to cancel?",
+          question: "What if pluma needs to cancel?",
           answer:
             "You will never lose a session if I need to cancel. You can choose another available appointment.\n\nIf I become unable to provide the remaining sessions within the voucher period, you may request a refund of their unused paid value.",
         },
@@ -289,17 +300,12 @@ export const translations = {
         refund: {
           question: "Can I receive a refund?",
           answer:
-            "If your voucher was arranged remotely, any applicable statutory withdrawal rights will be explained before it is confirmed.\n\nAfter any applicable withdrawal period, vouchers are not normally refundable because of a change of mind. This does not affect your statutory consumer rights or your right to a refund if Pluma cannot provide the remaining sessions.",
+            "If your voucher was arranged remotely, any applicable statutory withdrawal rights will be explained before it is confirmed.\n\nAfter any applicable withdrawal period, vouchers are not normally refundable because of a change of mind. This does not affect your statutory consumer rights or your right to a refund if pluma cannot provide the remaining sessions.",
         },
         expire: {
           question: "What happens when my voucher expires?",
           answer:
             "Sessions must be used before the confirmed expiration date, including any agreed extension. Unused sessions remaining after that date are not normally refundable.\n\nPlease contact me before expiration if a reasonable circumstance is preventing you from using your sessions.",
-        },
-        lost: {
-          question: "What if I lose the voucher email?",
-          answer:
-            "Get in touch and I’ll resend the details after confirming your identity.",
         },
       },
       returnTitle: "Prefer one session?",
@@ -307,6 +313,7 @@ export const translations = {
     },
     studio: {
       title: "A calm home studio",
+      titleHighlight: "calm",
       description:
         "Step inside the space where sessions take place — a private, quiet room for rest.",
       accessNote:
@@ -319,7 +326,7 @@ export const translations = {
         studioEntrance: "Studio entrance",
         studio: "Studio",
         bathroom: "Private bathroom",
-        towels: "Soft towels",
+        tools: "Massage tools",
         view: "View {caption}",
         close: "Close",
         previous: "Previous photo",
@@ -334,9 +341,10 @@ export const translations = {
       },
     },
     benefits: {
-      title: "A massage shaped around you.",
+      title: "Massage shaped around you",
+      titleHighlight: "shaped",
       description:
-        "I keep my schedule intentionally light, so your massage never feels like the next appointment in a queue. We take the time to understand what you need today—and, if you return, build on what we learn together.",
+        "We take the time to understand what you need today. If you return, we build on what we learn together.",
       arrive: {
         title: "Come as you are",
         body: "Each session starts with how you feel that day, not a fixed routine.",
@@ -363,6 +371,7 @@ export const translations = {
     },
     safety: {
       heading: "You’re always in control.",
+      headingHighlight: "control",
       points: {
         agree:
           "Before we begin, we’ll agree on the pressure, the areas to focus on, and anything to avoid.",
@@ -577,7 +586,8 @@ export const translations = {
       book: "Book a session",
     },
     footer: {
-      tagline: "Personalized massage in a quiet home studio.",
+      tagline:
+        "Personalized massage in a quiet home studio, by me, Stephen, your certified masseur.",
       contactTitle: "Contact",
       legalTitle: "Legal information",
       address: "Pl. de les Escoles Pies, Old Town, 46001 València, Valencia",
@@ -679,9 +689,8 @@ export const translations = {
       label: "Reservar masaje",
     },
     durations: {
-      title: "¿Cuánto tiempo quieres?",
-      description:
-        "60 minutos están muy bien. Suelo recomendar 90 si hay bastantes cosas que quieres trabajar. En cualquier caso, en todas las sesiones nos damos tiempo para bajar el ritmo y entender qué está pasando.",
+      title: "¿Por dónde quieres empezar?",
+      description: "Nos tomamos el tiempo para centrarnos en lo que más necesitas.",
       recommended: "Mi recomendación",
       cta: "Reservar {minutes} minutos",
       cardTitle: "{minutes} minutos",
@@ -697,10 +706,10 @@ export const translations = {
       walk: "A un breve paseo del Mercado Central, Valencia",
     },
     about: {
-      title: "Un buen masaje empieza por escuchar.",
-      body: "Cuéntame qué te está molestando o si, sencillamente, necesitas desconectar. Iré adaptando la presión, el ritmo y las técnicas sobre la marcha.",
-      body2: "Solo atiendo a unas pocas personas al día. No me gusta trabajar con prisas.",
-      languages: "Inglés · Francés · Español",
+      title: "Un buen masaje empieza por escuchar",
+      titleHighlight: "escuchar",
+      body: "Solo atiendo a unas pocas personas al día. No me gusta trabajar con prisas.",
+      languages: "Hablo inglés, francés y español.",
       stephenPhotoAlt: "Stephen en el estudio en casa pluma",
       how: {
         heading: "Cómo trabajo",
@@ -722,8 +731,8 @@ export const translations = {
     },
     types: {
       title: "Puedes elegir una técnica, pero no hace falta.",
-      description:
-        "Cuéntame qué buscas. Puedo combinar drenaje linfático, tejido profundo, masaje deportivo y otras técnicas específicas, como el masaje para embarazadas, e ir adaptando la sesión sobre la marcha.\n\nSon herramientas, no rutinas fijas.",
+      titleHighlight: "técnica",
+      description: "Cada sesión se adapta a las necesidades de tu cuerpo.",
       pregnancy: "Embarazo",
       pregnancyAlt: "Dibujo lineal de una figura embarazada",
       relaxingLymphatic: "Relajante y linfático",
@@ -755,12 +764,17 @@ export const translations = {
         "Precios por duración en el estudio en casa. Los bonos reducen el precio por sesión en las de 60 y 90 minutos.",
       book: "Reservar sesión",
       durationMinutes: "{minutes} min",
-      singleTitle: "Sesiones sueltas",
+      singleTitle: "Precios de masajes sueltos",
+      inviteTitle:
+        "Algunos vienen a menudo\na ese bueeen autocuidado,\n¿te toca?",
+      inviteHighlight: "bueeen",
+      inviteCta: "Descubre los bonos",
       voucherTitle: "Bonos",
       voucherDescription:
         "Un bono cubre varias sesiones de la misma duración a un precio por sesión más bajo.",
       total: "total",
       perSession: "por sesión",
+      singleSessionPrice: "Precio de sesión suelta",
       saving: "Ahorras {amount}",
       validity: "Validez de {months} meses desde la primera sesión",
       voucher5: {
@@ -801,53 +815,60 @@ export const translations = {
         "Hola Stephen:%0D%0A%0D%0AMe gustaría consultar por una sesión de masaje.%0D%0A%0D%0AGracias,",
     },
     bonos: {
-      title: "Varios buenos masajes, ya organizados.",
+      title:
+        "Estás en buenas manos.\nOrganiza esos masajes.",
+      titleHighlight: "buenas manos",
       pageTitle: "Un espacio al que volver",
       pageIntro:
-        "Un bono Pluma es para quien quiere que el masaje forme parte de su ritmo, y no solo de esos momentos en los que la tensión ya se ha acumulado.",
+        "Un bono pluma es para quien quiere que el masaje forme parte de su ritmo, y no solo de esos momentos en los que la tensión ya se ha acumulado.",
       optionsTitle: "Opciones de bono",
+      optionsHeading:
+        "Ahorra ahora. Sin tanto pensarlo.\nUn cuerpo y una mente sanos para los meses que vienen.",
+      optionsHeadingHighlight: "meses que vienen.",
       pricesNote: "(1) Todos los precios mostrados son el precio total a pagar.",
       validityNote:
         "(2) Los bonos de cinco sesiones tienen una validez de tres meses. Los de diez sesiones, de seis meses. La validez empieza con la primera sesión, que debe tener lugar dentro de los 30 días posteriores a la emisión del bono.",
       interestedTitle: "¿Te interesa un bono?",
-      cta: "Preguntar por un bono",
+      cta: "Escríbeme",
       enquirySubject: "Consulta sobre un bono",
       enquiryBody:
         "Hola Stephen:%0D%0A%0D%0AMe gustaría consultar por un bono.%0D%0A%0D%0AGracias,",
       termsAgree:
         "Al formalizar un bono, aceptas las Condiciones de los bonos. Léelas antes de confirmar.",
       termsLink: "Condiciones de los bonos",
-      faqTitle: "Preguntas sobre los bonos",
+      faqTitle: "Preguntas sobre los bonos.\nSon buenas preguntas, respuestas claras.",
+      faqTitleHighlight: "claras",
+      faqGroups: {
+        buying: "Compra y regalos",
+        using: "Uso del bono",
+        validity: "Validez y reservas",
+        changes: "Cambios y cancelaciones",
+      },
       faq: {
         include: {
-          question: "¿Qué incluye un bono Pluma?",
+          question: "¿Qué incluye un bono pluma?",
           answer:
             "Cada bono incluye cinco o diez sesiones de la misma duración: 60 o 90 minutos.\n\nEl masaje en sí puede cambiar de una visita a otra. Podemos ajustar la presión, el ritmo y las zonas según cómo te encuentres y lo que tu cuerpo necesite ese día.",
         },
         arrange: {
           question: "¿Cómo se formaliza un bono?",
           answer:
-            "Pulsa Preguntar por un bono para enviarme un email.\n\nTe ayudo a elegir la duración y el número de sesiones, confirmar las condiciones y resolver cualquier duda antes de que te comprometas. Los bonos se formalizan de forma directa; en la web no hay un proceso de compra online.",
+            "Pulsa Escríbeme para enviarme un email.\n\nTe ayudo a elegir la duración y el número de sesiones, confirmar las condiciones y resolver cualquier duda antes de que te comprometas. Los bonos se formalizan de forma directa; en la web no hay un proceso de compra online.",
         },
         after: {
           question: "¿Qué ocurre cuando se confirma el bono?",
           answer:
-            "Recibirás el bono digital por email. Yo mantengo al día el saldo y la fecha de caducidad después de cada sesión y puedo confirmarte las sesiones que te quedan en cualquier momento.",
-        },
-        active: {
-          question: "¿Cuándo se activa el bono?",
-          answer:
-            "El periodo de validez empieza el día de la primera sesión. Esa primera sesión debe tener lugar en los 30 días posteriores a la emisión del bono.",
+            "Recibirás el bono digital por email. Yo mantengo al día el saldo y la fecha de caducidad después de cada sesión y puedo confirmarte las sesiones que te quedan en cualquier momento.\n\nSi pierdes el email del bono, escríbeme y te reenviaré los datos después de confirmar tu identidad.",
         },
         valid: {
           question: "¿Cuánto tiempo es válido el bono?",
           answer:
-            "Un bono de cinco sesiones es válido tres meses desde la primera sesión. Uno de diez sesiones, seis meses desde la primera sesión.\n\nLa fecha exacta de caducidad se confirma cuando acudes a esa primera sesión.",
+            "El periodo de validez empieza el día de la primera sesión. Esa primera sesión debe tener lugar en los 30 días posteriores a la emisión del bono.\n\nUn bono de cinco sesiones es válido tres meses desde la primera sesión. Uno de diez sesiones, seis meses desde la primera sesión.\n\nLa fecha exacta de caducidad se confirma cuando acudes a esa primera sesión.",
         },
         book: {
           question: "¿Cómo reservo las sesiones?",
           answer:
-            "Utiliza el calendario de Pluma para cada cita. Las sesiones dependen de la disponibilidad, y un bono no reserva fechas fijas ni garantiza una hora concreta.",
+            "Utiliza el calendario de pluma para cada cita. Las sesiones dependen de la disponibilidad, y un bono no reserva fechas fijas ni garantiza una hora concreta.",
         },
         change: {
           question: "¿Y si necesito cambiar una cita?",
@@ -855,7 +876,7 @@ export const translations = {
             "Puedes cambiar o cancelar una cita sin perder una sesión si avisas con al menos 24 horas de antelación.\n\nSi cancelas con menos de 24 horas o no acudes, se descuenta una sesión del bono. Pueden hacerse excepciones razonables en caso de emergencia o circunstancias excepcionales.",
         },
         plumaCancel: {
-          question: "¿Y si Pluma tiene que cancelar?",
+          question: "¿Y si pluma tiene que cancelar?",
           answer:
             "Nunca perderás una sesión si tengo que cancelar yo. Puedes elegir otra cita disponible.\n\nSi no puedo prestar las sesiones restantes dentro del periodo del bono, puedes solicitar el reembolso de su valor no utilizado.",
         },
@@ -877,17 +898,12 @@ export const translations = {
         refund: {
           question: "¿Puedo pedir un reembolso?",
           answer:
-            "Si el bono se formalizó a distancia, cualquier derecho de desistimiento que corresponda se explicará antes de confirmarlo.\n\nPasado ese plazo, los bonos no suelen reembolsarse por un cambio de opinión. Esto no afecta a tus derechos como consumidor ni al derecho a reembolso si Pluma no puede prestar las sesiones restantes.",
+            "Si el bono se formalizó a distancia, cualquier derecho de desistimiento que corresponda se explicará antes de confirmarlo.\n\nPasado ese plazo, los bonos no suelen reembolsarse por un cambio de opinión. Esto no afecta a tus derechos como consumidor ni al derecho a reembolso si pluma no puede prestar las sesiones restantes.",
         },
         expire: {
           question: "¿Qué ocurre cuando caduca el bono?",
           answer:
             "Las sesiones deben usarse antes de la fecha de caducidad confirmada, incluida cualquier ampliación acordada. Las sesiones no usadas después de esa fecha no suelen reembolsarse.\n\nContacta conmigo antes de la caducidad si alguna circunstancia razonable te impide usarlas.",
-        },
-        lost: {
-          question: "¿Y si pierdo el email del bono?",
-          answer:
-            "Escríbeme y te reenviaré los datos después de confirmar tu identidad.",
         },
       },
       returnTitle: "¿Prefieres una sesión suelta?",
@@ -895,6 +911,7 @@ export const translations = {
     },
     studio: {
       title: "Un estudio tranquilo en casa",
+      titleHighlight: "tranquilo",
       description:
         "Entra en el espacio donde tienen lugar las sesiones — una habitación privada y silenciosa para descansar.",
       accessNote:
@@ -907,7 +924,7 @@ export const translations = {
         studioEntrance: "Entrada al estudio",
         studio: "Estudio",
         bathroom: "Baño privado",
-        towels: "Toallas suaves",
+        tools: "Herramientas de masaje",
         view: "Ver {caption}",
         close: "Cerrar",
         previous: "Foto anterior",
@@ -922,9 +939,10 @@ export const translations = {
       },
     },
     benefits: {
-      title: "Un masaje adaptado a ti.",
+      title: "Masaje adaptado a ti",
+      titleHighlight: "adaptado",
       description:
-        "Mantengo una agenda ligera a propósito, para que nunca sientas que eres la siguiente cita de una lista. Nos tomamos el tiempo de entender qué necesitas hoy y, si vuelves, seguimos a partir de lo que vamos aprendiendo juntos.",
+        "Nos tomamos el tiempo de entender qué necesitas hoy. Si vuelves, seguimos a partir de lo que vamos aprendiendo juntos.",
       arrive: {
         title: "Ven tal como estás",
         body: "Cada sesión empieza por cómo te sientes ese día, no por una rutina fija.",
@@ -951,6 +969,7 @@ export const translations = {
     },
     safety: {
       heading: "Tú tienes el control.",
+      headingHighlight: "control",
       points: {
         agree:
           "Antes de empezar, acordamos la presión, las zonas que quieres trabajar y cualquier cosa que prefieras evitar.",
@@ -1165,7 +1184,8 @@ export const translations = {
       book: "Reservar sesión",
     },
     footer: {
-      tagline: "Masaje personalizado en un estudio tranquilo.",
+      tagline:
+        "Masaje personalizado en un estudio tranquilo, por mí, Stephen, tu masajista certificado.",
       contactTitle: "Contacto",
       legalTitle: "Información legal",
       address: "Pl. de les Escoles Pies, Ciutat Vella, 46001 València, Valencia",
