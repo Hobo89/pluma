@@ -2194,6 +2194,7 @@ button.psl-button {
 
 .psl-duration--recommended {
   --psl-orbit-pad: 6px;
+  --psl-orbit-border: 2px;
   position: relative;
   z-index: 1;
   isolation: isolate;
@@ -2210,10 +2211,14 @@ button.psl-button {
 
 .psl-duration__orbit {
   position: absolute;
-  inset: calc(-1 * var(--psl-orbit-pad));
+  top: calc(-1 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
+  right: calc(-1 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
+  bottom: calc(-1 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
+  left: calc(-1 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
   z-index: 0;
-  width: auto;
-  height: auto;
+  display: block;
+  width: calc(100% + 2 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
+  height: calc(100% + 2 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
   overflow: visible;
   pointer-events: none;
   opacity: 0;
@@ -2224,7 +2229,7 @@ button.psl-button {
   opacity: 1;
 }
 
-.psl-duration--recommended > *:not(.psl-duration__orbit) {
+.psl-duration--recommended > *:not(.psl-duration__orbit):not(.psl-duration__flag) {
   position: relative;
   z-index: 1;
 }
@@ -2250,11 +2255,14 @@ button.psl-button {
   position: absolute;
   right: -10px;
   bottom: -12px;
+  left: auto;
+  top: auto;
   z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 4px;
   min-height: 24px;
+  margin: 0;
   padding: 3px 9px;
   border: 1px solid var(--psl-heading);
   border-radius: var(--psl-radius-pill);

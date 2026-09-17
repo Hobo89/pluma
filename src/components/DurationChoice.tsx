@@ -45,6 +45,7 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
                   className="psl-duration__orbit"
                   aria-hidden="true"
                   focusable="false"
+                  preserveAspectRatio="none"
                 >
                   <defs>
                     <linearGradient
