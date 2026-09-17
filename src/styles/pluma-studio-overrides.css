@@ -1995,6 +1995,9 @@ button.psl-button {
 
 .psl-collage--interactive {
   align-items: center;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .psl-collage--interactive > * {

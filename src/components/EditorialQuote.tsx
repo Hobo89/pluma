@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import {
   testimonials,
@@ -12,6 +12,7 @@ export const QUOTE_TESTIMONIALS = testimonials;
 const COUNT = QUOTE_TESTIMONIALS.length;
 const INTERVAL_MS = 9000;
 const VISIBLE_OFFSETS = [-2, -1, 0, 1, 2] as const;
+const SWIPE_THRESHOLD_PX = 40;
 
 function wrapIndex(index: number) {
   return (index + COUNT) % COUNT;
@@ -82,6 +83,12 @@ export function EditorialQuote() {
   const [playing, setPlaying] = useState(false);
   const [interacting, setInteracting] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const swipeRef = useRef<{
+    x: number;
+    y: number;
+    moved: boolean;
+  } | null>(null);
+  const suppressClickRef = useRef(false);
 
   const active = QUOTE_TESTIMONIALS[activeIndex];
   const visibleOffsets = compact ? ([-1, 0, 1] as const) : VISIBLE_OFFSETS;
@@ -120,6 +127,57 @@ export function EditorialQuote() {
   const step = useCallback((delta: number) => {
     setActiveIndex((current) => wrapIndex(current + delta));
   }, []);
+
+  const onCollagePointerDown = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      if (event.pointerType !== "touch") return;
+      suppressClickRef.current = false;
+      swipeRef.current = {
+        x: event.clientX,
+        y: event.clientY,
+        moved: false,
+      };
+      setInteracting(true);
+    },
+    [],
+  );
+
+  const onCollagePointerMove = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      const start = swipeRef.current;
+      if (!start || event.pointerType !== "touch") return;
+      const dx = event.clientX - start.x;
+      const dy = event.clientY - start.y;
+      if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) {
+        start.moved = true;
+      }
+    },
+    [],
+  );
+
+  const finishCollageSwipe = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      const start = swipeRef.current;
+      swipeRef.current = null;
+      if (!start || event.pointerType !== "touch") return;
+
+      const dx = event.clientX - start.x;
+      const dy = event.clientY - start.y;
+      const swiped =
+        start.moved &&
+        Math.abs(dx) >= SWIPE_THRESHOLD_PX &&
+        Math.abs(dx) > Math.abs(dy) * 1.25;
+
+      if (swiped) {
+        suppressClickRef.current = true;
+        step(dx < 0 ? 1 : -1);
+      }
+
+      // Keep autoplay paused briefly after a swipe so the new quote can settle.
+      window.setTimeout(() => setInteracting(false), swiped ? 1200 : 0);
+    },
+    [step],
+  );
 
   return (
     <section
@@ -166,6 +224,10 @@ export function EditorialQuote() {
         className={`psl-collage psl-collage--interactive${compact ? "" : " psl-collage--extended"}`}
         role="group"
         aria-label={t("quote.collageLabel")}
+        onPointerDown={onCollagePointerDown}
+        onPointerMove={onCollagePointerMove}
+        onPointerUp={finishCollageSwipe}
+        onPointerCancel={finishCollageSwipe}
       >
         {visibleOffsets.map((offset) => {
           const index = wrapIndex(activeIndex + offset);
@@ -188,7 +250,15 @@ export function EditorialQuote() {
               ]
                 .filter(Boolean)
                 .join(" ")}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => {
+                // A completed swipe should not also activate the portrait under
+                // the finger.
+                if (suppressClickRef.current) {
+                  suppressClickRef.current = false;
+                  return;
+                }
+                setActiveIndex(index);
+              }}
               aria-pressed={isSpotlight}
               aria-label={item.name}
             >
@@ -196,6 +266,7 @@ export function EditorialQuote() {
                 src={item.image}
                 alt=""
                 loading="lazy"
+                draggable={false}
                 sizes="(max-width: 767px) 28vw, 14vw"
                 style={
                   item.objectPosition
