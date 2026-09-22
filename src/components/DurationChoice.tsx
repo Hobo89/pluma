@@ -100,7 +100,7 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
 
       {compact ? null : (
         <p className="psl-copy psl-copy--small psl-durations__terms">
-          {t("durations.priceNote")} {t("pricing.taxNote")}{" "}
+          {t("pricing.taxNote")}{" "}
           <Link to="/condiciones-reserva" className="psl-textlink">
             {t("durations.termsLink")}
           </Link>

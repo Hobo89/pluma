@@ -77,14 +77,12 @@ export function ReviewCard({
         />
         <div>
           <p className="psl-review-card__name">
+            <span className="psl-review-card__person">{name}</span>
             {flags.length > 0 ? (
-              <>
-                {name} {t("testimonials.from")}{" "}
+              <span className="psl-review-card__from">
                 <FlagMarks flags={flags} label={countriesLabel} />
-              </>
-            ) : (
-              name
-            )}
+              </span>
+            ) : null}
           </p>
           <AreaBadges areas={areas} />
         </div>

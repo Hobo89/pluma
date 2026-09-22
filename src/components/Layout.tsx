@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, type RefObject } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { CalModalBootstrap } from "./CalModalBootstrap";
+import { BookingModalProvider } from "./BookingModal";
 import { Footer } from "./Footer";
 import { SiteNav } from "./SiteNav";
 import { useLanguage } from "../context/LanguageContext";
@@ -31,9 +31,6 @@ export function Layout() {
 
   useLayoutEffect(() => {
     const key = `${pathname}${hash}`;
-    // Survive HMR remounts of this layout: only jump when the route itself
-    // changed. Resetting scroll on every remount pinned the page at the hero
-    // and hid the mobile booking bar.
     if (window.__pslLastScrollRoute === key) return;
     window.__pslLastScrollRoute = key;
 
@@ -49,18 +46,17 @@ export function Layout() {
   }, [pathname, hash]);
 
   return (
-    <div className="psl psl--bottom-nav">
-      <a href="#main" className="psl-skip">
-        {t("nav.skipToContent")}
-      </a>
-      {/* Portal first in the React tree so the nav ref exists before the hero
-          mounts and so nothing inside `.psl` can trap its stacking context. */}
-      <SiteNav ref={navRef} heroLinked={isHome} />
-      <main id="main" tabIndex={-1}>
-        <Outlet context={{ navRef } satisfies LayoutOutletContext} />
-      </main>
-      <Footer />
-      <CalModalBootstrap />
-    </div>
+    <BookingModalProvider>
+      <div className="psl psl--bottom-nav">
+        <a href="#main" className="psl-skip">
+          {t("nav.skipToContent")}
+        </a>
+        <SiteNav ref={navRef} heroLinked={isHome} />
+        <main id="main" tabIndex={-1}>
+          <Outlet context={{ navRef } satisfies LayoutOutletContext} />
+        </main>
+        <Footer />
+      </div>
+    </BookingModalProvider>
   );
 }

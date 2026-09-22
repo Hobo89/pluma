@@ -25,15 +25,9 @@ html {
   color-scheme: light;
 }
 
+/* Dark theme deferred for launch; keep selectors inert if .dark appears. */
 html.dark {
-  color-scheme: dark;
-  --psl-canvas: #121413;
-  --psl-surface: #1c1f1e;
-  --psl-surface-sage: #1a221c;
-  --psl-heading: #eef2ea;
-  --psl-text: #f2f0ec;
-  --psl-muted: #a8a39a;
-  --psl-line: #2e3330;
+  color-scheme: light;
 }
 
 body {
@@ -95,20 +89,34 @@ body {
 
 .testimonial-name-row {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.25rem;
 }
 
 .testimonial-flags {
-  font-size: 0.82rem;
+  font-size: 1.85em;
   line-height: 1;
-  opacity: 0.85;
+  opacity: 0.95;
+}
+
+.testimonial-flags .psl-quote__flag-image {
+  width: 1.15rem;
+  height: 0.8rem;
 }
 
 .testimonial-name {
   color: var(--psl-text);
   font-size: 0.875rem;
+}
+
+.testimonial-from {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: var(--psl-muted);
+  font-size: 0.8rem;
 }
 
 .testimonial-badge {

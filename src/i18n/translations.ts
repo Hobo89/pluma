@@ -70,7 +70,7 @@ export const translations = {
       about: "About",
       reviews: "Reviews",
       pricing: "Prices",
-      bonos: "Vouchers",
+      bonos: "vouchers",
       book: "Book",
       main: "Main",
       openMenu: "Open menu",
@@ -124,7 +124,7 @@ export const translations = {
         "90": "A full-body session with more time where you need it, or a focused session with room to work slowly and deeply on specific areas.",
         "120": "An unhurried full-body and focused session, with time to address several areas.",
       },
-      priceNote: "Price shown is the total for the session.",
+      priceNote: "Prices include tax. The amount shown is the total you pay.",
       termsLink: "Booking terms",
     },
     location: {
@@ -133,7 +133,8 @@ export const translations = {
     about: {
       title: "A good massage starts with listening",
       titleHighlight: "listening",
-      meetTitle: "Meet Stephen.",
+      meetTitle: "Welcome to my home studio, I'm Stephen",
+      meetTitleHighlight: "Stephen",
       facts:
         "Certified masseur. Unhurried, one-to-one sessions in English, French or Spanish.",
       adapt:
@@ -195,7 +196,7 @@ export const translations = {
         "Session prices by length at the home studio. Vouchers reduce the per-session price on 60 and 90 minute sessions.",
       book: "Book massage",
       durationMinutes: "{minutes} min",
-      singleTitle: "Single massage prices.",
+      singleTitle: "Single-session pricing",
       inviteTitle: "Build on what worked last time.",
       inviteHighlight: "worked",
       inviteSupport:
@@ -230,8 +231,12 @@ export const translations = {
       changeDuration: "Change length",
       timezone: "All times are Valencia local time (Europe/Madrid).",
       inPerson:
-        "Your session is in person at my home studio in the Old Town, five minutes from the Central Market. I’ll send the full address and arrival details with your confirmation.",
-      iframeTitle: "Book an in-person massage with Stephen",
+        "Your session is in person at my home studio in the Old Town, a five-minute walk from the Central Market. I’ll send the full address and arrival details with your confirmation.",
+      iframeTitle: "Book a massage with Stephen",
+      dialogTitle: "Book a massage with Stephen",
+      close: "Close booking",
+      practicalNote:
+        "Please use this field for practical preferences only. Do not include medical or health information.",
       loading: "Loading the calendar…",
       timeoutTitle: "The calendar is being stubborn",
       timeoutBody:
@@ -417,7 +422,7 @@ export const translations = {
     },
     cta: {
       heading: "Ready when your body is",
-      body: "Don't over think it.",
+      body: "Don’t overthink it.",
     },
     quote: {
       title: "What clients say",
@@ -701,7 +706,7 @@ export const translations = {
       about: "Sobre mí",
       reviews: "Opiniones",
       pricing: "Precios",
-      bonos: "Bonos",
+      bonos: "bonos",
       book: "Reservar",
       main: "Principal",
       openMenu: "Abrir menú",
@@ -755,7 +760,8 @@ export const translations = {
         "90": "Una sesión de cuerpo entero con más tiempo donde lo necesitas, o una sesión centrada con margen para trabajar despacio y en profundidad zonas concretas.",
         "120": "Una sesión pausada de cuerpo entero y zonas concretas, con tiempo para atender varias áreas.",
       },
-      priceNote: "El precio indicado es el total de la sesión.",
+      priceNote:
+        "Los precios incluyen impuestos. El importe mostrado es el total que pagas.",
       termsLink: "Condiciones de reserva",
     },
     location: {
@@ -764,11 +770,12 @@ export const translations = {
     about: {
       title: "Un buen masaje empieza por escuchar",
       titleHighlight: "escuchar",
-      meetTitle: "Conoce a Stephen.",
+      meetTitle: "Bienvenido a mi estudio en casa, soy Stephen",
+      meetTitleHighlight: "Stephen",
       facts:
         "Masajista certificado. Sesiones pausadas, uno a uno, en inglés, francés o español.",
       adapt:
-        "Adapto la presión, el ritmo y las técnicas, y recuerdo lo que funcionó la próxima vez.",
+        "Adapto la presión, el ritmo y las técnicas, y tengo en cuenta lo que funcionó en tus sesiones anteriores.",
       seeReviews: "Ver más opiniones",
       studioCta: "Ver el estudio",
       body: "Solo atiendo a unas pocas personas al día. No me gusta trabajar con prisas.",
@@ -828,7 +835,7 @@ export const translations = {
         "Precios por duración en el estudio en casa. Los bonos reducen el precio por sesión en las de 60 y 90 minutos.",
       book: "Reservar masaje",
       durationMinutes: "{minutes} min",
-      singleTitle: "Precios de masaje suelto.",
+      singleTitle: "Precios por sesión",
       inviteTitle: "Sigue con lo que funcionó la última vez.",
       inviteHighlight: "funcionó",
       inviteSupport:
@@ -864,8 +871,12 @@ export const translations = {
       timezone:
         "Todos los horarios corresponden a la hora local de Valencia (Europe/Madrid).",
       inPerson:
-        "La sesión es presencial en mi estudio en Ciutat Vella, a cinco minutos del Mercado Central. Recibirás la dirección completa y las indicaciones de llegada con la confirmación.",
-      iframeTitle: "Reservar un masaje presencial con Stephen",
+        "La sesión es presencial en mi estudio en Ciutat Vella, a cinco minutos a pie del Mercado Central. Recibirás la dirección completa y las indicaciones de llegada con la confirmación.",
+      iframeTitle: "Reservar un masaje con Stephen",
+      dialogTitle: "Reservar un masaje con Stephen",
+      close: "Cerrar reserva",
+      practicalNote:
+        "Utiliza este campo solo para preferencias prácticas. No incluyas información médica ni de salud.",
       loading: "Cargando el calendario…",
       timeoutTitle: "El calendario está un poco rebelde",
       timeoutBody:

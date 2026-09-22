@@ -94,7 +94,7 @@ export function About() {
         ))}
 
         <p className="psl-about-studio-link">
-          <HashLink to="/#studio" className="psl-textlink">
+          <HashLink to="/#studio" className="psl-button psl-button--ghost">
             {t("about.studioCta")}
           </HashLink>
         </p>

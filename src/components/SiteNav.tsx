@@ -7,7 +7,7 @@ import {
   type CSSProperties,
 } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { translations, type HeroLanguage } from "../pluma-hero/hero.js";
 import { BookingAction } from "./BookingAction";
@@ -33,12 +33,17 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
   ref,
 ) {
   const { language, setLanguage } = useLanguage();
+  const location = useLocation();
   const labels = translations[language as HeroLanguage] ?? translations.en;
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLElement | null>(null);
   const menuRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const drawerId = useId();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname, location.hash, location.search]);
 
   useEffect(() => {
     if (!open) return;
@@ -70,6 +75,8 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
     else if (ref) ref.current = node;
   };
 
+  const closeMenu = () => setOpen(false);
+
   const nav = (
     <header
       ref={setRefs}
@@ -88,6 +95,7 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
           className="ph-drawer-logo"
           to={LINKS.home}
           aria-label={labels.home}
+          onClick={closeMenu}
         >
           <img
             src={asset("feather-nav.svg")}
@@ -98,16 +106,25 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
           />
         </Link>
         <nav aria-label={labels.navigation}>
-          <Link ref={firstLinkRef} to={LINKS.about}>
+          <Link ref={firstLinkRef} to={LINKS.about} onClick={closeMenu}>
             {labels.about}
           </Link>
-          <Link to={LINKS.prices}>{labels.prices}</Link>
-          <Link to={LINKS.vouchers}>{labels.vouchers}</Link>
+          <Link to={LINKS.prices} onClick={closeMenu}>
+            {labels.prices}
+          </Link>
+          <Link to={LINKS.vouchers} onClick={closeMenu}>
+            {labels.vouchers}
+          </Link>
         </nav>
       </div>
 
       <div className="ph-bar">
-        <Link className="ph-nav-logo" to={LINKS.home} aria-label={labels.home}>
+        <Link
+          className="ph-nav-logo"
+          to={LINKS.home}
+          aria-label={labels.home}
+          onClick={closeMenu}
+        >
           <img
             src={asset("logo-ink.svg")}
             width="1272"

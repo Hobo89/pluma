@@ -1,15 +1,13 @@
 import type { ReactNode } from "react";
-import { getCalApi } from "@calcom/embed-react";
 import { Link } from "react-router-dom";
 import {
   calConfigured,
-  calFloatingNamespace,
   calTargetFor,
 } from "../config/cal";
 import type { PricingDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
-import { useTheme } from "../context/ThemeContext";
 import { track, type AnalyticsEvent } from "../lib/analytics";
+import { useBookingModal } from "./BookingModal";
 
 type Placement = Extract<
   AnalyticsEvent,
@@ -25,24 +23,9 @@ type BookingActionProps = {
   children?: ReactNode;
 };
 
-function modalConfig(
-  params: Record<string, string>,
-  theme: "light" | "dark",
-) {
-  return {
-    layout: "month_view" as const,
-    useSlotsViewOnSmallScreen: "true",
-    theme,
-    ...params,
-  };
-}
-
 /**
- * The single place that decides how a booking call to action opens Cal.com.
- *
- * Configured bookings use the element-click modal from the Cal.com snippet
- * (`data-cal-link` on the control). If the embed is not ready yet, the same
- * modal is opened through the API. Unconfigured bookings still go to `/book`.
+ * Single booking entry point: opens the app-owned accessible dialog with an
+ * inline Cal embed, or routes to /book when Cal is not configured.
  */
 export function BookingAction({
   label,
@@ -53,7 +36,7 @@ export function BookingAction({
   children,
 }: BookingActionProps) {
   const { language } = useLanguage();
-  const { theme } = useTheme();
+  const { openBooking } = useBookingModal();
   const target = calTargetFor(duration);
   const content = children ?? label;
   const labelledByChildren = Boolean(children);
@@ -79,17 +62,12 @@ export function BookingAction({
     );
   }
 
-  const config = modalConfig(target.params, theme);
-
   return (
     <button
       type="button"
       className={className}
       aria-label={labelledByChildren ? label : undefined}
-      data-cal-namespace={calFloatingNamespace}
-      data-cal-link={target.link}
-      data-cal-config={JSON.stringify(config)}
-      onClick={async (event) => {
+      onClick={() => {
         track({
           name: "booking_cta_clicked",
           placement,
@@ -97,22 +75,7 @@ export function BookingAction({
           ...(duration ? { duration } : {}),
         });
         onTriggered?.();
-
-        // The snippet listener only works after embed.js has defined the
-        // namespace. Open the same modal ourselves if the visitor is faster.
-        if (!window.Cal?.ns?.[calFloatingNamespace]) {
-          event.stopPropagation();
-          const cal = await getCalApi({ namespace: calFloatingNamespace });
-          cal("modal", {
-            calLink: target.link,
-            config: {
-              layout: "month_view",
-              useSlotsViewOnSmallScreen: "true",
-              theme,
-              ...target.params,
-            },
-          });
-        }
+        openBooking(duration);
       }}
     >
       {content}

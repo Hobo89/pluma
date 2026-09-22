@@ -3,26 +3,25 @@ import Cal, { getCalApi } from "@calcom/embed-react";
 import { calConfigured, calDirectUrl, calTargetFor } from "../config/cal";
 import type { PricingDuration } from "../config/pricing";
 import { useLanguage } from "../context/LanguageContext";
-import { useTheme } from "../context/ThemeContext";
 import { track } from "../lib/analytics";
 import { mailto } from "../lib/contact";
 
-/** How long to wait for the embed to report itself ready before offering a way out. */
-const LOAD_TIMEOUT_MS = 12000;
+/** How long to wait for the embed to report ready before offering a way out. */
+const LOAD_TIMEOUT_MS = 10000;
 
 type Status = "loading" | "ready" | "failed";
 
 export function CalEmbed({ duration }: { duration?: PricingDuration }) {
-  const { isDark } = useTheme();
   const { t, language } = useLanguage();
-  const theme = isDark ? "dark" : "light";
-  const brandColor = isDark ? "#4a8f76" : "#2d5a4a";
+  const theme = "light";
+  const brandColor = "#FF812B";
 
   const [status, setStatus] = useState<Status>("loading");
   const [attempt, setAttempt] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const target = calTargetFor(duration);
+  const locale = language === "es" ? "es" : "en";
 
   useEffect(() => {
     if (!target) return;
@@ -41,9 +40,6 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
       });
     }, LOAD_TIMEOUT_MS);
 
-    // The embed API is a singleton keyed by namespace. Listeners are removed on
-    // cleanup so a language or duration change cannot leave a stale subscriber
-    // behind or load the script twice.
     const onReady = () => {
       if (cancelled) return;
       setStatus("ready");
@@ -60,9 +56,6 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
       track({ name: "booking_widget_failed", reason: "embed_error" });
     };
 
-    // Documented by Cal.com but not verifiable from the installed bundle, so it
-    // is subscribed defensively and must be confirmed against a real test
-    // booking before any confirmation figure is trusted.
     const onBooked = () => {
       if (cancelled) return;
       track({
@@ -78,7 +71,10 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
       api = await getCalApi();
       if (cancelled) return;
 
-      api("ui", { theme, styles: { branding: { brandColor } } });
+      api("ui", {
+        theme,
+        styles: { branding: { brandColor } },
+      });
       api("on", { action: "linkReady", callback: onReady });
       api("on", { action: "linkFailed", callback: onFailed });
       api("on", { action: "bookingSuccessful", callback: onBooked });
@@ -91,10 +87,8 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
       api?.("off", { action: "linkFailed", callback: onFailed });
       api?.("off", { action: "bookingSuccessful", callback: onBooked });
     };
-  }, [attempt, brandColor, duration, language, target, theme]);
+  }, [attempt, duration, language, target, theme]);
 
-  // Set the accessible name on the generated iframe. The embed does not expose
-  // a title option, and `iframeAttrs` is applied before the element exists.
   useEffect(() => {
     if (status !== "ready") return;
     const iframe = containerRef.current?.querySelector("iframe");
@@ -107,7 +101,7 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
         <p className="psl-embed-fallback__title">{t("cal.notConfigured")}</p>
         <p className="psl-copy">{t("cal.notConfiguredBody")}</p>
         <a
-          className="psl-button psl-button--dark"
+          className="psl-button"
           href={mailto(t("booking.enquirySubject"), t("booking.enquiryBody"))}
         >
           {t("booking.emailFallback")}
@@ -132,7 +126,7 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
           <p className="psl-copy">{t("booking.timeoutBody")}</p>
           <div className="psl-actions">
             <a
-              className="psl-button psl-button--dark"
+              className="psl-button"
               href={calDirectUrl(target)}
               target="_blank"
               rel="noopener noreferrer"
@@ -159,23 +153,21 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
         </div>
       ) : null}
 
-      <div
-        className="psl-embed__frame"
-        data-status={status}
-        // Space is reserved up front so the calendar appearing does not shift
-        // the page content below it.
-      >
-        <Cal
-          key={`${target.link}-${theme}-${attempt}`}
-          calLink={target.link}
-          style={{ width: "100%", height: "100%", minHeight: "650px" }}
-          config={{
-            ...target.params,
-            layout: "month_view",
-            theme,
-          }}
-        />
-      </div>
+      {status !== "failed" ? (
+        <div className="psl-embed__frame" data-status={status}>
+          <Cal
+            key={`${target.link}-${locale}-${attempt}`}
+            calLink={target.link}
+            style={{ width: "100%", height: "100%", minHeight: "650px" }}
+            config={{
+              ...target.params,
+              layout: "month_view",
+              theme,
+              locale,
+            }}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

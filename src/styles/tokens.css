@@ -1,26 +1,26 @@
-/* Screenshot-derived solids; geometry, fonts and states are reconstruction choices. */
+/* Warm ivory launch theme aligned with the hero. */
 :root {
-  --psl-canvas: #ffffff;
-  --psl-surface: #f6f6f3;
-  --psl-surface-sage: #eff2ef;
-  --psl-heading: #082707;
-  --psl-ink: #082707;
-  --psl-forest: #1f2c22;
-  --psl-lime: #d7e58e;
-  --psl-lime-hover: #c3e068;
-  --psl-text: #20251f;
-  --psl-muted: #62695f;
-  --psl-line: #dde1d9;
-  --psl-white: #ffffff;
+  --psl-canvas: #fbfaf5;
+  --psl-surface: #f4efe7;
+  --psl-surface-sage: #f4efe7;
+  --psl-heading: #2b2823;
+  --psl-ink: #2b2823;
+  --psl-forest: #2b2823;
+  --psl-lime: #ff812b;
+  --psl-lime-hover: #f5ac45;
+  --psl-text: #2b2823;
+  --psl-muted: #595650;
+  --psl-line: #d8cec0;
+  --psl-white: #fbfaf5;
   --psl-error: #a32a24;
-  /* Warm orange-to-gold from the pluma feather. */
-  --psl-brand-warm: #e8893a;
-  --psl-brand-gold: #f3c48a;
+  --psl-brand-warm: #ff812b;
+  --psl-brand-gold: #f5ac45;
   --psl-brand-gradient: linear-gradient(
-    90deg,
+    110deg,
     var(--psl-brand-warm),
     var(--psl-brand-gold)
   );
+  --psl-focus: #7a3e1b;
   --psl-font-display: "Parkinsans", "Times New Roman", Georgia, serif;
   --psl-font-body: "Instrument Sans", Arial, Helvetica, sans-serif;
   --psl-type-hero: clamp(2.125rem, 4vw, 4.5rem);
@@ -50,18 +50,11 @@
   --psl-duration: 200ms;
   --psl-ease: cubic-bezier(.2,.7,.2,1);
   --psl-z-header: 1000;
-  /* Bottom site nav — above all page chrome; Cal.com modal stays higher. */
   --psl-z-nav: 100000;
   --psl-header-width-scale: 1.2;
 }
 
+/* Dark theme deferred for this launch; keep selectors inert if a class appears. */
 html.dark {
-  color-scheme: dark;
-  --psl-canvas: #121413;
-  --psl-surface: #1c1f1e;
-  --psl-surface-sage: #1a221c;
-  --psl-heading: #eef2ea;
-  --psl-text: #f2f0ec;
-  --psl-muted: #a8a39a;
-  --psl-line: #2e3330;
+  color-scheme: light;
 }

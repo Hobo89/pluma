@@ -1,90 +1,44 @@
 import {
   createContext,
-  useCallback,
   useContext,
   useEffect,
-  useState,
   type ReactNode,
 } from "react";
 
-type Theme = "light" | "dark";
+/**
+ * Launch theme lock: warm ivory light only. Stored/system dark preference is
+ * not applied so lower sections cannot flip to dark-green under the ivory hero.
+ * Dark-theme UI is deferred; privacy copy about theme storage is an H05 item.
+ */
+type Theme = "light";
 
 type ThemeContextValue = {
   theme: Theme;
-  isDark: boolean;
+  isDark: false;
   toggleTheme: () => void;
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
-const THEME_KEY = "theme";
 
-function getSystemTheme(): Theme {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
-function readStoredTheme(): Theme | null {
-  try {
-    const stored = localStorage.getItem(THEME_KEY);
-    if (stored === "light" || stored === "dark") return stored;
-  } catch {
-    return null;
-  }
-  return null;
-}
-
-function persistTheme(theme: Theme) {
-  try {
-    localStorage.setItem(THEME_KEY, theme);
-  } catch {
-    // Ignore quota / private-mode failures; the session theme still applies.
-  }
-}
-
-function getInitialTheme(): Theme {
-  return readStoredTheme() ?? getSystemTheme();
-}
-
-function applyTheme(theme: Theme) {
-  document.documentElement.classList.toggle("dark", theme === "dark");
-  document.documentElement.style.colorScheme = theme;
+function applyLightTheme() {
+  document.documentElement.classList.remove("dark");
+  document.documentElement.style.colorScheme = "light";
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const initial = getInitialTheme();
-    applyTheme(initial);
-    return initial;
-  });
-
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => {
-      if (readStoredTheme()) return;
-      setTheme(getSystemTheme());
-    };
-
-    media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
-  }, []);
-
-  const toggleTheme = useCallback(() => {
-    setTheme((current) => {
-      const next = current === "dark" ? "light" : "dark";
-      persistTheme(next);
-      applyTheme(next);
-      return next;
-    });
+    applyLightTheme();
   }, []);
 
   return (
     <ThemeContext.Provider
-      value={{ theme, isDark: theme === "dark", toggleTheme }}
+      value={{
+        theme: "light",
+        isDark: false,
+        toggleTheme: () => {
+          /* Dark theme deferred for launch. */
+        },
+      }}
     >
       {children}
     </ThemeContext.Provider>

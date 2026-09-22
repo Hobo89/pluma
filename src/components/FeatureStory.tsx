@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { useAmbientVideo } from "../lib/useAmbientVideo";
 import type { AnalyticsEvent } from "../lib/analytics";
+import { useAmbientVideo } from "../lib/useAmbientVideo";
 import { BookingAction } from "./BookingAction";
 import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import {
@@ -67,7 +67,7 @@ export function FeatureStory({
   noteKey,
 }: FeatureStoryProps) {
   const { t } = useLanguage();
-  const videoRef = useAmbientVideo();
+  const videoRef = useAmbientVideo({ whenVisible: true });
   const hasCollage = Boolean(collage?.length);
   const hasVideo = Boolean(video);
   const stillsBelowVideo = hasVideo && hasCollage;
@@ -170,6 +170,7 @@ export function FeatureStory({
             loop
             muted
             playsInline
+            preload="metadata"
             poster={videoPoster}
             aria-label={
               videoLabelKey ? t(videoLabelKey) : t(collageLabelKey ?? titleKey)

@@ -6,8 +6,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { translations } from "./src/i18n/translations";
 import { site } from "./src/config/site";
 
-const ORIGIN = "https://pluma.life";
-const SOCIAL_IMAGE = "/favicon.png";
+const ORIGIN = site.origin;
+const SOCIAL_IMAGE = site.socialImage;
 
 /** Documented default language for the static HTML that crawlers receive. */
 const DEFAULT_LANGUAGE = "en";
@@ -91,10 +91,18 @@ function htmlForRoute(
     `<meta property="og:url" content="${canonical}" />`,
     `<meta property="og:image" content="${ORIGIN}${SOCIAL_IMAGE}" />`,
     `<meta property="og:locale" content="en_US" />`,
-    `<meta name="twitter:card" content="summary" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:image" content="${ORIGIN}${SOCIAL_IMAGE}" />`,
   ].join("\n    ");
 
-  return shell
+  // Strip any pre-existing social tags from the shell so each built route has
+  // exactly one og:image / twitter card owner (this plugin + PageMeta at runtime).
+  const cleaned = shell
+    .replace(/\s*<meta\s+property="og:[^"]+"[\s\S]*?\/>/g, "")
+    .replace(/\s*<meta\s+name="twitter:[^"]+"[\s\S]*?\/>/g, "")
+    .replace(/\s*<link\s+rel="canonical"[\s\S]*?\/>/g, "");
+
+  return cleaned
     .replace(
       /<title>[\s\S]*?<\/title>/,
       `<title>${escapeHtml(fullTitle)}</title>\n    ${head}`,

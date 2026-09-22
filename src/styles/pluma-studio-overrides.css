@@ -19,7 +19,7 @@
 html.dark .psl-button:not(.psl-button--dark):not(.psl-button--ghost),
 html.dark .psl-skip,
 html.dark .psl-ribbon {
-  color: var(--psl-ink);
+  color: #fff;
 }
 
 @media (hover: hover) {
@@ -616,6 +616,7 @@ html.dark .psl-field input {
 
 @media (max-width: 767px) {
   .psl-feature-list {
+    grid-template-columns: 1fr;
     gap: var(--psl-space-4);
   }
 }
@@ -624,11 +625,19 @@ html.dark .psl-field input {
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   text-align: center;
+  min-width: 0;
 }
 
 .psl-feature__body .psl-feature-list {
   justify-self: stretch;
   text-align: left;
+  min-width: 0;
+}
+
+.psl-feature,
+.psl-feature__media,
+.psl-feature__stills {
+  min-width: 0;
 }
 
 .psl-feature__note {
@@ -663,7 +672,8 @@ html.dark .psl-field input {
   max-height: min(70vh, 40rem);
 }
 
-.psl-feature__media--video video {
+.psl-feature__media--video video,
+.psl-feature__media--video img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1908,26 +1918,43 @@ button.psl-button {
 }
 
 .psl-quote__meta {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
   margin-top: var(--psl-space-6);
   color: var(--psl-muted);
   font-size: var(--psl-type-small);
+  line-height: 1.25;
+}
+
+.psl-quote__name {
+  display: block;
+  color: var(--psl-heading);
+}
+
+.psl-quote__from {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-style: normal;
 }
 
 .psl-quote__flags {
   display: inline-flex;
   align-items: center;
-  gap: 0.18em;
-  font-size: 0.95em;
+  gap: 0.28em;
+  font-size: 2.15em;
   line-height: 1;
   font-style: normal;
-  opacity: 0.88;
+  opacity: 0.95;
 }
 
+/* Catalonia (and other image flags) stay smaller than emoji flags. */
 .psl-quote__flag-image {
   display: block;
-  width: 1.45em;
-  height: 1em;
+  width: 1.25rem;
+  height: 0.88rem;
   object-fit: cover;
   border-radius: 2px;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 22%);
@@ -2271,7 +2298,7 @@ button.psl-button {
 .psl-page .psl-button--ghost,
 .psl-bono-return .psl-button--ghost {
   background: transparent;
-  border-color: var(--psl-heading);
+  border-color: #f8b46b;
   color: var(--psl-heading);
 }
 
@@ -2279,8 +2306,8 @@ button.psl-button {
   .psl-duration .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover,
   .psl-page .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover,
   .psl-bono-return .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover {
-    background: var(--psl-lime);
-    border-color: var(--psl-lime);
+    background: color-mix(in srgb, var(--psl-brand-warm) 10%, transparent);
+    border-color: #f8b46b;
     color: var(--psl-heading);
   }
 }
@@ -2306,30 +2333,19 @@ button.psl-button {
 
 @media (max-width: 767px) {
   .psl-durations {
-    display: flex;
-    grid-template-columns: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--psl-space-3);
-    margin-inline: -20px;
-    padding: 12px 20px 28px;
-    scroll-padding-inline: 20px;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .psl-durations::-webkit-scrollbar {
-    display: none;
+    margin-inline: 0;
+    padding: 12px 0 28px;
+    overflow: visible;
+    scroll-snap-type: none;
   }
 
   .psl-duration {
-    flex: 0 0 min(82%, 18.5rem);
-    scroll-snap-align: start;
-  }
-
-  .psl-duration--recommended {
-    order: -1;
+    flex: none;
+    width: 100%;
+    scroll-snap-align: none;
   }
 }
 
@@ -3238,6 +3254,11 @@ html.dark
   gap: var(--psl-space-10);
 }
 
+/* Pull Meet Stephen closer to the hero on the homepage. */
+.ph-hero-host + .psl-meet.psl-section--roomy {
+  padding-top: clamp(28px, 3vw, 48px);
+}
+
 .psl-meet__intro {
   display: grid;
   gap: var(--psl-space-8);
@@ -3287,7 +3308,7 @@ html.dark
   width: 100%;
 }
 
-.psl-meet__review .psl-textlink {
+.psl-meet__review .psl-button {
   justify-self: start;
 }
 
@@ -3313,9 +3334,37 @@ html.dark
 }
 
 .psl-review-card__name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
   margin: 0;
   color: var(--psl-heading);
   font-size: var(--psl-type-small);
+  line-height: 1.25;
+}
+
+.psl-review-card__person {
+  display: block;
+}
+
+.psl-review-card__from {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: var(--psl-muted);
+  font-style: normal;
+}
+
+.psl-review-card__from .testimonial-flags {
+  font-size: 1.95em;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.psl-review-card__from .psl-quote__flag-image {
+  width: 1.25rem;
+  height: 0.88rem;
 }
 
 .psl-review-card .psl-quote__areas {
@@ -3457,4 +3506,62 @@ html.dark
   .psl-voucher-table-wrap {
     display: none;
   }
+}
+
+/* App-owned booking dialog (P2) */
+.psl-booking-dialog {
+  width: min(960px, calc(100vw - 1.5rem));
+  max-width: 960px;
+  max-height: calc(100dvh - 1.5rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--psl-line);
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-canvas);
+  color: var(--psl-text);
+  box-shadow: 0 16px 48px rgb(43 40 35 / 18%);
+}
+
+.psl-booking-dialog::backdrop {
+  background: rgb(43 40 35 / 45%);
+}
+
+.psl-booking-dialog__panel {
+  display: grid;
+  gap: var(--psl-space-4);
+  max-height: calc(100dvh - 1.5rem);
+  padding: var(--psl-space-6);
+  overflow: auto;
+}
+
+.psl-booking-dialog__chrome {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--psl-space-4);
+}
+
+.psl-booking-dialog__title {
+  margin: 0;
+  font: 400 var(--psl-type-card) / 1.2 var(--psl-font-display);
+  color: var(--psl-heading);
+}
+
+.psl-booking-dialog__close {
+  flex: none;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--psl-line);
+  border-radius: var(--psl-radius-pill);
+  background: transparent;
+  color: var(--psl-heading);
+  cursor: pointer;
+}
+
+.psl-booking-dialog__note {
+  max-width: none;
+}
+
+.psl-booking-dialog__embed {
+  min-height: 650px;
 }

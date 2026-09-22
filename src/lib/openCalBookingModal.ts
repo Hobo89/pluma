@@ -1,28 +1,19 @@
-import { getCalApi } from "@calcom/embed-react";
-import {
-  calConfigured,
-  calFloatingNamespace,
-  calTargetFor,
-} from "../config/cal";
 import type { PricingDuration } from "../config/pricing";
 
-/** Open the shared Cal.com booking modal (same path as BookingAction). */
-export async function openCalBookingModal(
-  duration?: PricingDuration,
-  theme: "light" | "dark" = "light",
-): Promise<boolean> {
-  const target = calTargetFor(duration);
-  if (!calConfigured || !target) return false;
+type OpenBooking = (duration?: PricingDuration) => void;
 
-  const cal = await getCalApi({ namespace: calFloatingNamespace });
-  cal("modal", {
-    calLink: target.link,
-    config: {
-      layout: "month_view",
-      useSlotsViewOnSmallScreen: "true",
-      theme,
-      ...target.params,
-    },
-  });
+/**
+ * Imperative helper for non-React callers. Prefer `useBookingModal()` in
+ * components. Kept so older call sites can be redirected without Cal's modal.
+ */
+let openBookingImpl: OpenBooking | null = null;
+
+export function registerBookingOpener(open: OpenBooking | null) {
+  openBookingImpl = open;
+}
+
+export function openCalBookingModal(duration?: PricingDuration): boolean {
+  if (!openBookingImpl) return false;
+  openBookingImpl(duration);
   return true;
 }

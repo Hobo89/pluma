@@ -83,16 +83,12 @@ function TestimonialCard({
           style={{ objectPosition }}
         />
         <div className="testimonial-name-row">
-          <span className="testimonial-name">
-            {flags.length > 0 ? (
-              <>
-                {name} {t("testimonials.from")}{" "}
-                <FlagMarks flags={flags} label={countriesLabel} />
-              </>
-            ) : (
-              name
-            )}
-          </span>
+          <span className="testimonial-name">{name}</span>
+          {flags.length > 0 ? (
+            <span className="testimonial-from">
+              <FlagMarks flags={flags} label={countriesLabel} />
+            </span>
+          ) : null}
         </div>
       </figcaption>
       <AreaBadges areas={areas} />

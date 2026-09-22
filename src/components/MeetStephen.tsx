@@ -4,6 +4,7 @@ import {
   featuredReviewId,
   testimonialById,
 } from "../content/testimonials";
+import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import { HashLink } from "./HashLink";
 import { ReviewCard } from "./ReviewCard";
 
@@ -21,7 +22,6 @@ export function MeetStephen({
   nested = false,
 }: MeetStephenProps) {
   const { t } = useLanguage();
-  const Heading = headingLevel;
   const featured = showReview ? testimonialById(featuredReviewId) : null;
 
   return (
@@ -32,13 +32,17 @@ export function MeetStephen({
     >
       <div className="psl-meet__intro">
         <div className="psl-meet__body">
-          <Heading id="meet-stephen-heading" className="psl-title">
-            {t("about.meetTitle")}
-          </Heading>
+          <BrandMarkedHeading
+            as={headingLevel}
+            id="meet-stephen-heading"
+            className="psl-title"
+            text={t("about.meetTitle")}
+            word={t("about.meetTitleHighlight")}
+          />
           <p className="psl-copy psl-copy--lead">{t("about.facts")}</p>
           <p className="psl-copy">{t("about.adapt")}</p>
           {showAboutLink ? (
-            <Link to="/about" className="psl-textlink">
+            <Link to="/about" className="psl-button psl-button--ghost">
               {t("hero.learnMore")}
             </Link>
           ) : null}
@@ -69,7 +73,7 @@ export function MeetStephen({
       {featured ? (
         <aside className="psl-meet__review" aria-label={t("reviews.featuredLabel")}>
           <ReviewCard {...featured} />
-          <HashLink to="/#reviews" className="psl-textlink">
+          <HashLink to="/#reviews" className="psl-button psl-button--ghost">
             {t("about.seeReviews")}
           </HashLink>
         </aside>

@@ -78,6 +78,7 @@ export function BookingPage() {
 
         <p className="psl-copy psl-copy--small">{t("booking.inPerson")}</p>
         <p className="psl-copy psl-copy--small">{t("booking.timezone")}</p>
+        <p className="psl-copy psl-copy--small">{t("booking.practicalNote")}</p>
         <p className="psl-copy psl-copy--small">{t("pricing.taxNote")}</p>
 
         <div className="psl-booking-privacy">
