@@ -1,24 +1,33 @@
 import { useLanguage } from "../context/LanguageContext";
+import { useAmbientVideo } from "../lib/useAmbientVideo";
 import { BookingAction } from "./BookingAction";
 
+const VIDEO = "/videos/appointment-loop.mp4";
 const POSTER = "/assets/images/appointment-poster.jpg";
 
 /**
- * Closing invitation. Uses the existing still poster instead of autoplaying
- * the below-the-fold decorative loop for launch.
+ * Closing invitation with a muted ambient loop. Poster remains the
+ * first paint / fallback when autoplay is blocked.
  */
 export function BookingCTA() {
   const { t } = useLanguage();
+  const videoRef = useAmbientVideo({ whenVisible: true });
 
   return (
     <section className="psl-cta psl-cta--video psl-container psl-container--wide">
-      <img
+      <video
+        ref={videoRef}
         className="psl-cta__image"
-        src={POSTER}
-        alt=""
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        poster={POSTER}
         aria-hidden="true"
-        loading="lazy"
-      />
+      >
+        <source src={VIDEO} type="video/mp4" />
+      </video>
       <h2 className="psl-display">{t("cta.heading")}</h2>
       <p className="psl-copy">{t("cta.body")}</p>
       <BookingAction label={t("hero.book")} placement="footer_cta" />
