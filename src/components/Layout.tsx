@@ -1,8 +1,7 @@
 import { useLayoutEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { CalFloatingButton } from "./CalFloatingButton";
-import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { SiteNav } from "./SiteNav";
 import { useLanguage } from "../context/LanguageContext";
 
 declare global {
@@ -44,21 +43,17 @@ export function Layout() {
   }, [pathname, hash]);
 
   return (
-    <div className="psl">
+    <div className={`psl${isHome ? "" : " psl--bottom-nav"}`}>
       <a href="#main" className="psl-skip">
         {t("nav.skipToContent")}
       </a>
-      {/* Homepage opening ships its own fixed bottom nav; keep the site header
-          and Cal floating CTA for every other route. */}
-      {!isHome && <Header solid />}
-      {!isHome && (
-        <div className="psl-header-offset" aria-hidden="true" />
-      )}
       <main id="main" tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />
-      {!isHome && <CalFloatingButton />}
+      {/* Homepage hero owns the bottom bar; every other route uses the same
+          fixed bottom nav so there is no top header. */}
+      {!isHome && <SiteNav />}
     </div>
   );
 }

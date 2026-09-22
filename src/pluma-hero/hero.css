@@ -50,3 +50,43 @@
 .dark .ph-hero {
   color-scheme: light;
 }
+
+/* Standalone bottom nav on non-home routes (same chrome as the hero bar). */
+.ph-nav--site {
+  --ph-nav-height: 76px;
+  color: #595650;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ph-nav--site * {
+  box-sizing: border-box;
+}
+.ph-nav--site a {
+  color: inherit;
+  text-decoration: none;
+}
+.ph-nav--site button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.ph-nav--site a:focus-visible,
+.ph-nav--site button:focus-visible {
+  outline: 2px solid #a15329;
+  outline-offset: 5px;
+}
+.ph-nav--site .ph-drawer[hidden] {
+  display: none !important;
+}
+@media (max-width: 699px) {
+  .ph-nav--site {
+    --ph-nav-height: 68px;
+  }
+}
+
+.psl--bottom-nav main {
+  padding-bottom: calc(110px + env(safe-area-inset-bottom));
+}
+.psl--bottom-nav .psl-footer {
+  padding-bottom: calc(32px + env(safe-area-inset-bottom));
+}
