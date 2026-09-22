@@ -45,7 +45,8 @@
   --psl-container-max: 1240px;
   --psl-container-wide-max: 1360px;
   --psl-radius-small: 8px;
-  --psl-radius-media: 16px;
+  /* Match the hero massage photo corners (34px desktop / 27px phone). */
+  --psl-radius-media: 34px;
   --psl-radius-pill: 999px;
   --psl-duration: 200ms;
   --psl-ease: cubic-bezier(.2,.7,.2,1);
@@ -57,4 +58,10 @@
 /* Dark theme deferred for this launch; keep selectors inert if a class appears. */
 html.dark {
   color-scheme: light;
+}
+
+@media (max-width: 699px) {
+  :root {
+    --psl-radius-media: 27px;
+  }
 }
