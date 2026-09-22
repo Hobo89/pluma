@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { translations, type HeroLanguage } from "../pluma-hero/hero.js";
+import { BookingAction } from "./BookingAction";
 
 const ASSET_BASE = "/pluma-hero/assets/";
 
@@ -10,7 +11,6 @@ const LINKS = {
   about: "/about",
   prices: "/pricing",
   vouchers: "/member-card",
-  booking: "/book",
 } as const;
 
 function asset(file: string) {
@@ -118,9 +118,7 @@ export function SiteNav() {
             </button>
           ))}
         </div>
-        <Link className="ph-book" to={LINKS.booking}>
-          {labels.book}
-        </Link>
+        <BookingAction label={labels.book} placement="header" className="ph-book" />
         <button
           ref={menuRef}
           className="ph-menu"

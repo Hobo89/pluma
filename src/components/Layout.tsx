@@ -1,5 +1,6 @@
 import { useLayoutEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { CalModalBootstrap } from "./CalModalBootstrap";
 import { Footer } from "./Footer";
 import { SiteNav } from "./SiteNav";
 import { useLanguage } from "../context/LanguageContext";
@@ -54,6 +55,7 @@ export function Layout() {
       {/* Homepage hero owns the bottom bar; every other route uses the same
           fixed bottom nav so there is no top header. */}
       {!isHome && <SiteNav />}
+      <CalModalBootstrap />
     </div>
   );
 }
