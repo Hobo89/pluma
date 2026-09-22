@@ -53,13 +53,24 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Parkinsans:wght@300;400&display=swap"
       rel="stylesheet"
     />
-    <!-- The hero poster is the largest contentful paint on every first view. -->
+    <!-- Homepage first-paint guard for the responsive hero intro. -->
+    <script>
+      (function () {
+        try {
+          var path = location.pathname.replace(/\/+$/, "") || "/";
+          if (path !== "/" && path !== "/index.html") return;
+          var s = document.createElement("script");
+          s.src = "/pluma-hero/boot.js";
+          document.head.appendChild(s);
+        } catch (e) {}
+      })();
+    </script>
     <link
       rel="preload"
       as="image"
-      href="/assets/images/hero-poster.jpg"
-      imagesrcset="/assets/images/hero-poster-780.webp 780w, /assets/images/hero-poster-1280.webp 1280w, /assets/images/hero-poster-1920.webp 1920w"
-      imagesizes="100vw"
+      href="/pluma-hero/assets/massage-1280.webp"
+      imagesrcset="/pluma-hero/assets/massage-640.webp 640w, /pluma-hero/assets/massage-1280.webp 1280w, /pluma-hero/assets/massage-1920.webp 1920w"
+      imagesizes="(max-width: 699px) 92vw, min(72vw, 980px)"
       type="image/webp"
     />
     <meta property="og:image" content="https://pluma.life/assets/images/og-share.jpg" />

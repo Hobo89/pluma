@@ -7,7 +7,6 @@ import { EditorialQuote } from "../components/EditorialQuote";
 import { FAQ } from "../components/FAQ";
 import { BookingCTA } from "../components/BookingCTA";
 import { PageMeta } from "../components/PageMeta";
-import { StickyBookingBar } from "../components/StickyBookingBar";
 import { StudioFeature } from "../components/StudioFeature";
 
 export function HomePage() {
@@ -23,7 +22,6 @@ export function HomePage() {
       <SafetyControl />
       <FAQ />
       <BookingCTA />
-      <StickyBookingBar />
     </>
   );
 }

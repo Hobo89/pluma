@@ -48,7 +48,9 @@ export function Layout() {
       <a href="#main" className="psl-skip">
         {t("nav.skipToContent")}
       </a>
-      <Header solid={!isHome} />
+      {/* Homepage opening ships its own fixed bottom nav; keep the site header
+          and Cal floating CTA for every other route. */}
+      {!isHome && <Header solid />}
       {!isHome && (
         <div className="psl-header-offset" aria-hidden="true" />
       )}
@@ -56,7 +58,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
-      <CalFloatingButton />
+      {!isHome && <CalFloatingButton />}
     </div>
   );
 }
