@@ -9,7 +9,6 @@ import { PromoRibbon } from "../components/PromoRibbon";
 import { FAQ } from "../components/FAQ";
 import { BookingCTA } from "../components/BookingCTA";
 import { PageMeta } from "../components/PageMeta";
-import { StickyBookingBar } from "../components/StickyBookingBar";
 import { StudioFeature } from "../components/StudioFeature";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -45,7 +44,6 @@ export function HomePage() {
       <PromoRibbon />
       <FAQ />
       <BookingCTA />
-      <StickyBookingBar />
     </>
   );
 }

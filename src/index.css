@@ -4,6 +4,7 @@
 @import "./styles/pluma-studio-overrides.css";
 @import "./styles/pluma-illustrations.css";
 @import "./styles/pluma-hero.css";
+@import "./pluma-hero/hero.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
