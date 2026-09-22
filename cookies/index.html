@@ -5,14 +5,9 @@
     <script>
       (function () {
         try {
-          var theme = localStorage.getItem("theme");
-          if (theme !== "light" && theme !== "dark") {
-            theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
-          }
-          document.documentElement.classList.toggle("dark", theme === "dark");
-          document.documentElement.style.colorScheme = theme;
+          // Launch theme lock: warm ivory only (no stored/system dark flash).
+          document.documentElement.classList.remove("dark");
+          document.documentElement.style.colorScheme = "light";
 
           var lang = localStorage.getItem("language");
           if (lang !== "en" && lang !== "es") {
@@ -43,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Cookies, local storage and third-party requests used by pluma.life." />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#082707" />
+    <meta name="theme-color" content="#FBFAF5" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -70,8 +65,6 @@
       imagesizes="(max-width: 699px) 92vw, min(72vw, 980px)"
       type="image/webp"
     />
-    <meta property="og:image" content="https://pluma.life/assets/images/og-share.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
     <title>Cookie policy · pluma</title>
     <link rel="canonical" href="https://pluma.life/cookies" />
     <meta property="og:type" content="website" />
@@ -79,13 +72,24 @@
     <meta property="og:title" content="Cookie policy · pluma" />
     <meta property="og:description" content="Cookies, local storage and third-party requests used by pluma.life." />
     <meta property="og:url" content="https://pluma.life/cookies" />
-    <meta property="og:image" content="https://pluma.life/favicon.png" />
+    <meta property="og:image" content="https://pluma.life/assets/images/og-share.jpg" />
     <meta property="og:locale" content="en_US" />
-    <meta name="twitter:card" content="summary" />
-    <script type="module" crossorigin src="/assets/index-Dp1KyaYH.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-6JW2Aj_j.css">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://pluma.life/assets/images/og-share.jpg" />
+    <script type="module" crossorigin src="/assets/index-DZ3848gQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bw4PkMum.css">
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <main style="max-width:40rem;margin:2rem auto;padding:1.5rem;font-family:Arial,Helvetica,sans-serif;color:#2B2823;background:#FBFAF5;line-height:1.5">
+        <h1 style="font-size:1.75rem;font-weight:400">pluma</h1>
+        <p>Personalized massage with Stephen in Valencia’s Old Town. Sessions of 60 minutes (€45), 90 minutes (€65), or 120 minutes (€85).</p>
+        <p>Masaje personalizado con Stephen en el casco antiguo de Valencia. Sesiones de 60 minutos (45 €), 90 minutos (65 €) o 120 minutos (85 €).</p>
+        <p>Book online: <a href="https://cal.com/pluma-massage-studio">cal.com/pluma-massage-studio</a></p>
+        <p>Email: <a href="mailto:stephen@pluma.life">stephen@pluma.life</a></p>
+        <p>Home studio · third floor · stairs only · no lift · near Valencia Central Market.</p>
+      </main>
+    </noscript>
   </body>
 </html>

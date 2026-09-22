@@ -1,9 +1,25 @@
-/* Load synchronously in the homepage head before hero.css. Fails open after 4s. */
+/* Homepage script-failure watchdog. Hides decorative layers until the hero
+   controller releases them. Does not skip the intro on interaction or timers. */
 (() => {
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.connection?.saveData)return;
-  let timeout;const html=document.documentElement,guard={status:'pending',release};
-  window.__plumaHeroBoot=guard;html.setAttribute('data-ph-intro-pending','');
-  function release(){clearTimeout(timeout);html.removeAttribute('data-ph-intro-pending');window.removeEventListener('scroll',skip);document.removeEventListener('keydown',skip,true);document.removeEventListener('pointerdown',skip,true);if(guard.status==='pending')guard.status='released';}
-  function skip(){guard.status='skipped';release();}
-  window.addEventListener('scroll',skip,{passive:true});document.addEventListener('keydown',skip,true);document.addEventListener('pointerdown',skip,true);timeout=setTimeout(skip,4000);
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (navigator.connection?.saveData) return;
+
+  const html = document.documentElement;
+  let timeout;
+  const guard = {
+    status: "pending",
+    release(reason = "controller") {
+      if (guard.status === "released") return;
+      clearTimeout(timeout);
+      html.removeAttribute("data-ph-intro-pending");
+      guard.status = "released";
+      guard.releaseReason = reason;
+    },
+  };
+
+  window.__plumaHeroBoot = guard;
+  html.setAttribute("data-ph-intro-pending", "");
+
+  // Fail open if the module bundle never mounts the controller.
+  timeout = setTimeout(() => guard.release("watchdog"), 8000);
 })();
