@@ -27,9 +27,9 @@
 .psl-section-head--center { display: grid; justify-items: center; gap: var(--psl-space-3); text-align: center; }
 .psl-section-head--center .psl-copy { max-width: 44ch; }
 .psl-actions { display: flex; align-items: center; flex-wrap: wrap; gap: var(--psl-space-3); }
-.psl-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--psl-space-2); min-height: 44px; padding: 12px 24px; border: 1px solid #f8b46b; border-radius: var(--psl-radius-pill); background: var(--psl-brand-gradient); color: #fff; font: 500 var(--psl-type-small)/1.25 var(--psl-font-body); text-decoration: none; text-align: center; transition: filter var(--psl-duration) var(--psl-ease), transform var(--psl-duration) var(--psl-ease), background var(--psl-duration) var(--psl-ease), border-color var(--psl-duration) var(--psl-ease), color var(--psl-duration) var(--psl-ease); }
-.psl-button--dark { background: var(--psl-brand-gradient); color: #fff; border-color: #f8b46b; }
-.psl-button--ghost { background: transparent; color: var(--psl-heading); border-color: #f8b46b; }
+.psl-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--psl-space-2); min-height: 44px; padding: 12px 24px; border: 1px solid #f7a54e; border-radius: var(--psl-radius-pill); background: var(--psl-brand-gradient); color: #fff; font: 500 var(--psl-type-small)/1.25 var(--psl-font-body); text-decoration: none; text-align: center; transition: filter var(--psl-duration) var(--psl-ease), transform var(--psl-duration) var(--psl-ease), background var(--psl-duration) var(--psl-ease), border-color var(--psl-duration) var(--psl-ease), color var(--psl-duration) var(--psl-ease); }
+.psl-button--dark { background: var(--psl-brand-gradient); color: #fff; border-color: #f7a54e; }
+.psl-button--ghost { background: transparent; color: var(--psl-heading); border-color: #f7a54e; }
 .psl-button:disabled, .psl-button[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
 @media (hover: hover) {
   .psl-button:not(:disabled):not([aria-disabled="true"]):hover { transform: translateY(-1px); filter: brightness(1.03); }

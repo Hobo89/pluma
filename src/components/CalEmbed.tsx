@@ -14,7 +14,7 @@ type Status = "loading" | "ready" | "failed";
 export function CalEmbed({ duration }: { duration?: PricingDuration }) {
   const { t, language } = useLanguage();
   const theme = "light";
-  const brandColor = "#FF812B";
+  const brandColor = "#FF6F0C";
 
   const [status, setStatus] = useState<Status>("loading");
   const [attempt, setAttempt] = useState(0);

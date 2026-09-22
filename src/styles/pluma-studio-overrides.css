@@ -2298,7 +2298,7 @@ button.psl-button {
 .psl-page .psl-button--ghost,
 .psl-bono-return .psl-button--ghost {
   background: transparent;
-  border-color: #f8b46b;
+  border-color: #f7a54e;
   color: var(--psl-heading);
 }
 
@@ -2307,7 +2307,7 @@ button.psl-button {
   .psl-page .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover,
   .psl-bono-return .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover {
     background: color-mix(in srgb, var(--psl-brand-warm) 10%, transparent);
-    border-color: #f8b46b;
+    border-color: #f7a54e;
     color: var(--psl-heading);
   }
 }

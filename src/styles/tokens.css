@@ -6,15 +6,15 @@
   --psl-heading: #2b2823;
   --psl-ink: #2b2823;
   --psl-forest: #2b2823;
-  --psl-lime: #ff812b;
-  --psl-lime-hover: #f5ac45;
+  --psl-lime: #ff6f0c;
+  --psl-lime-hover: #f39f28;
   --psl-text: #2b2823;
   --psl-muted: #595650;
   --psl-line: #d8cec0;
   --psl-white: #fbfaf5;
   --psl-error: #a32a24;
-  --psl-brand-warm: #ff812b;
-  --psl-brand-gold: #f5ac45;
+  --psl-brand-warm: #ff6f0c;
+  --psl-brand-gold: #f39f28;
   --psl-brand-gradient: linear-gradient(
     110deg,
     var(--psl-brand-warm),
