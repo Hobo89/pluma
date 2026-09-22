@@ -12,6 +12,7 @@ type MeetStephenProps = {
   headingLevel?: "h1" | "h2";
   showReview?: boolean;
   showAboutLink?: boolean;
+  showMedia?: boolean;
   nested?: boolean;
 };
 
@@ -19,6 +20,7 @@ export function MeetStephen({
   headingLevel = "h2",
   showReview = false,
   showAboutLink = false,
+  showMedia = true,
   nested = false,
 }: MeetStephenProps) {
   const { t } = useLanguage();
@@ -27,7 +29,7 @@ export function MeetStephen({
   return (
     <section
       id="stephen"
-      className={`psl-meet${nested ? "" : " psl-container psl-section--roomy"}${showReview ? " psl-meet--with-review" : ""}`}
+      className={`psl-meet${nested ? "" : " psl-container psl-section--roomy"}${showReview ? " psl-meet--with-review" : ""}${showMedia ? "" : " psl-meet--text-only"}`}
       aria-labelledby="meet-stephen-heading"
     >
       <div className="psl-meet__intro">
@@ -48,26 +50,34 @@ export function MeetStephen({
           ) : null}
         </div>
 
-        <figure className="psl-meet__media">
-          <img
-            src="/assets/images/stephen.jpg"
-            alt={t("about.stephenPhotoAlt")}
-            width={1024}
-            height={576}
-            loading={headingLevel === "h1" ? "eager" : "lazy"}
-            sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
-            style={{ objectPosition: "64% 32%" }}
-          />
-          <img
-            className="psl-feature__portrait"
-            src="/assets/images/stephen-portrait.jpg"
-            alt=""
-            width={763}
-            height={1024}
-            loading="lazy"
-            sizes="(max-width: 767px) 40vw, 12vw"
-          />
-        </figure>
+        {showMedia ? (
+          <Link
+            to="/about"
+            className="psl-meet__media-link"
+            aria-label={t("about.stephenPhotoAlt")}
+          >
+            <figure className="psl-meet__media">
+              <img
+                src="/assets/images/stephen.jpg"
+                alt=""
+                width={1024}
+                height={576}
+                loading={headingLevel === "h1" ? "eager" : "lazy"}
+                sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
+                style={{ objectPosition: "64% 32%" }}
+              />
+              <img
+                className="psl-feature__portrait"
+                src="/assets/images/stephen-portrait.jpg"
+                alt=""
+                width={763}
+                height={1024}
+                loading="lazy"
+                sizes="(max-width: 767px) 40vw, 12vw"
+              />
+            </figure>
+          </Link>
+        ) : null}
       </div>
 
       {featured ? (

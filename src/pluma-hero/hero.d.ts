@@ -3,6 +3,7 @@ export interface HeroVideo { id: string; desktop: string; mobile: string; poster
 export interface HeroTiming { hold: number; contract: number; reveal: number; brandOffset: number; edgeOffset: number }
 export interface HeroLabels {
   eyebrow: string;
+  navHome: string;
   about: string;
   prices: string;
   vouchers: string;

@@ -106,7 +106,10 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
           />
         </Link>
         <nav aria-label={labels.navigation}>
-          <Link ref={firstLinkRef} to={LINKS.about} onClick={closeMenu}>
+          <Link ref={firstLinkRef} to={LINKS.home} onClick={closeMenu}>
+            {labels.navHome}
+          </Link>
+          <Link to={LINKS.about} onClick={closeMenu}>
             {labels.about}
           </Link>
           <Link to={LINKS.prices} onClick={closeMenu}>
@@ -133,6 +136,7 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
           />
         </Link>
         <nav className="ph-desktop-links" aria-label={labels.navigation}>
+          <Link to={LINKS.home}>{labels.navHome}</Link>
           <Link to={LINKS.about}>{labels.about}</Link>
           <Link to={LINKS.prices}>{labels.prices}</Link>
           <Link to={LINKS.vouchers}>{labels.vouchers}</Link>

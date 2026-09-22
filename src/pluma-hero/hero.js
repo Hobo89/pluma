@@ -3,6 +3,7 @@ import { FEATHER_PATH } from './feather-path.js';
 export const translations = {
   en: {
     eyebrow: 'home massage studio',
+    navHome: 'home',
     about: 'about',
     prices: 'prices',
     vouchers: 'vouchers',
@@ -18,6 +19,7 @@ export const translations = {
   },
   es: {
     eyebrow: 'estudio de masaje en casa',
+    navHome: 'inicio',
     about: 'sobre pluma',
     prices: 'precios',
     vouchers: 'bonos',
@@ -176,12 +178,12 @@ export function heroMarkup(options = {}) {
     <figure class="ph-massage"><img class="ph-massage-photo" src="${a('massage')}" srcset="${a('massageSmall')} 640w, ${a('massageMedium')} 1280w, ${a('massage')} 1920w" sizes="(max-width: 699px) 92vw, 72vw" width="2176" height="1014" alt="${text('photoAlt')}" decoding="async" fetchpriority="high"></figure>
   </div>
   ${c.renderNavigation === false ? '' : `<header class="ph-nav" data-ph-nav>
-    <div class="ph-drawer" hidden><a class="ph-drawer-logo" href="${link('home')}" data-ph-aria="home" aria-label="${text('home')}"><img src="${a('navFeather')}" width="1253" height="132" alt="" aria-hidden="true"></a><button class="ph-close" type="button" data-ph-aria="close" aria-label="${text('close')}">×</button><nav data-ph-aria="navigation" aria-label="${text('navigation')}">${['about', 'prices', 'vouchers'].map((k) => `<a href="${link(k)}" data-ph-label="${k}">${text(k)}</a>`).join('')}</nav></div>
+    <div class="ph-drawer" hidden><a class="ph-drawer-logo" href="${link('home')}" data-ph-aria="home" aria-label="${text('home')}"><img src="${a('navFeather')}" width="1253" height="132" alt="" aria-hidden="true"></a><button class="ph-close" type="button" data-ph-aria="close" aria-label="${text('close')}">×</button><nav data-ph-aria="navigation" aria-label="${text('navigation')}"><a href="${link('home')}" data-ph-label="navHome">${text('navHome')}</a>${['about', 'prices', 'vouchers'].map((k) => `<a href="${link(k)}" data-ph-label="${k}">${text(k)}</a>`).join('')}</nav></div>
     <div class="ph-bar"><a class="ph-nav-logo" href="${link('home')}" data-ph-aria="home" aria-label="${text('home')}">${logo}</a>
-    <nav class="ph-desktop-links" data-ph-aria="navigation" aria-label="${text('navigation')}">${['about', 'prices', 'vouchers'].map((k) => `<a href="${link(k)}" data-ph-label="${k}">${text(k)}</a>`).join('')}</nav>
+    <nav class="ph-desktop-links" data-ph-aria="navigation" aria-label="${text('navigation')}"><a href="${link('home')}" data-ph-label="navHome">${text('navHome')}</a>${['about', 'prices', 'vouchers'].map((k) => `<a href="${link(k)}" data-ph-label="${k}">${text(k)}</a>`).join('')}</nav>
     <div class="ph-languages" role="group" data-ph-aria="language" aria-label="${text('language')}">${['en', 'es'].map((l) => `<button type="button" data-ph-language="${l}" lang="${l}" aria-label="${l === 'en' ? 'English' : 'Español'}" aria-pressed="${c.language === l}">${l}</button>`).join('')}</div>
     <a class="ph-book" href="${link('booking')}" data-ph-label="book">${text('book')}</a><button class="ph-menu" type="button" data-ph-aria="menu" aria-label="${text('menu')}" aria-expanded="false"><img src="${a('menuIcon')}" width="24" height="24" alt="" aria-hidden="true"></button></div>
-    <nav class="ph-fallback-links" aria-label="${text('navigation')}">${['about', 'prices', 'vouchers'].map((k) => `<a href="${link(k)}">${text(k)}</a>`).join('')}</nav>
+    <nav class="ph-fallback-links" aria-label="${text('navigation')}"><a href="${link('home')}">${text('navHome')}</a>${['about', 'prices', 'vouchers'].map((k) => `<a href="${link(k)}">${text(k)}</a>`).join('')}</nav>
   </header>`}
 </section>`;
 }

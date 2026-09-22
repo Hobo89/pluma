@@ -3274,6 +3274,18 @@ html.dark
   background: var(--psl-surface-sage);
 }
 
+.psl-meet__media-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--psl-radius-media);
+}
+
+.psl-meet__media-link:focus-visible {
+  outline: 3px solid var(--psl-heading);
+  outline-offset: 3px;
+}
+
 .psl-meet__media > img:not(.psl-feature__portrait) {
   width: 100%;
   height: 100%;
@@ -3489,6 +3501,10 @@ html.dark
   .psl-meet__intro {
     grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 1fr);
     gap: var(--psl-space-12);
+  }
+
+  .psl-meet--text-only .psl-meet__intro {
+    grid-template-columns: minmax(0, 40rem);
   }
 
   .psl-reviews-grid {

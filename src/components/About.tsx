@@ -36,7 +36,7 @@ export function About() {
   return (
     <>
       <div className="psl-container psl-page psl-about-page">
-        <MeetStephen headingLevel="h1" nested />
+        <MeetStephen headingLevel="h1" nested showMedia={false} />
         <Philosophy headingLevel="h2" />
         {sections.map((section, index) => (
           <article
