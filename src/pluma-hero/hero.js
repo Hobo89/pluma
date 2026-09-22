@@ -194,19 +194,20 @@ export function initPlumaHero(root, options = {}) {
     run();
   }
   function closeMenu(restore = true) {
-    if(!opened)return;opened=false;drawer.hidden=true;ownNav.dataset.open='false';menu.setAttribute('aria-expanded','false');
+    if(!opened||!ownNav||!drawer||!menu)return;opened=false;drawer.hidden=true;ownNav.dataset.open='false';menu.setAttribute('aria-expanded','false');
     if(restore)menu.focus({preventScroll:true});
   }
   function openMenu() {
+    if(!ownNav||!drawer||!menu)return;
     finish();opened=true;drawer.hidden=false;ownNav.dataset.open='true';menu.setAttribute('aria-expanded','true');
     if(!staticMode())drawer.animate([{opacity:0,transform:'translateY(18px) scaleY(.94)'},{opacity:1,transform:'none'}],{duration:280,easing:'cubic-bezier(.22,1,.36,1)'});
-    find('.ph-drawer nav a').focus({preventScroll:true});
+    find('.ph-drawer nav a')?.focus({preventScroll:true});
   }
   setLanguage(language,false);measure();root.dataset.ready='true';draw(1);drawPhoto(1);
   const boot=window.__plumaHeroBoot, skipped=boot?.status==='skipped'; boot?.release();
   if(!staticMode()&&!skipped)startIntro();else finish();
   listen(menu,'click',()=>{if(!opened)openMenu();});
-  listen(document,'pointerdown',e=>{if(intro&&!editing&&!e.target.closest('[data-ph-controls]'))finish();if(opened&&!ownNav.contains(e.target))closeMenu(false);},{capture:true});
+  listen(document,'pointerdown',e=>{if(intro&&!editing&&!e.target.closest('[data-ph-controls]'))finish();if(opened&&ownNav&&!ownNav.contains(e.target))closeMenu(false);},{capture:true});
   listen(document,'keydown',e=>{if(intro&&!editing&&!e.target.closest('[data-ph-controls]'))finish();if(opened&&e.key==='Escape'){e.preventDefault();closeMenu();}},{capture:true});
   root.querySelectorAll('[data-ph-language]').forEach(el=>listen(el,'click',()=>{finish();setLanguage(el.dataset.phLanguage);}));
   listen(window,'scroll',()=>{if(intro&&!editing)finish();},{passive:true});

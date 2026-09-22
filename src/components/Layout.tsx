@@ -1,9 +1,13 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef, type RefObject } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { CalModalBootstrap } from "./CalModalBootstrap";
 import { Footer } from "./Footer";
 import { SiteNav } from "./SiteNav";
 import { useLanguage } from "../context/LanguageContext";
+
+export type LayoutOutletContext = {
+  navRef: RefObject<HTMLElement | null>;
+};
 
 declare global {
   interface Window {
@@ -23,6 +27,7 @@ export function Layout() {
   const { pathname, hash } = useLocation();
   const { t } = useLanguage();
   const isHome = pathname === "/";
+  const navRef = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
     const key = `${pathname}${hash}`;
@@ -44,17 +49,17 @@ export function Layout() {
   }, [pathname, hash]);
 
   return (
-    <div className={`psl${isHome ? "" : " psl--bottom-nav"}`}>
+    <div className="psl psl--bottom-nav">
       <a href="#main" className="psl-skip">
         {t("nav.skipToContent")}
       </a>
+      {/* Portal first in the React tree so the nav ref exists before the hero
+          mounts and so nothing inside `.psl` can trap its stacking context. */}
+      <SiteNav ref={navRef} heroLinked={isHome} />
       <main id="main" tabIndex={-1}>
-        <Outlet />
+        <Outlet context={{ navRef } satisfies LayoutOutletContext} />
       </main>
       <Footer />
-      {/* Homepage hero owns the bottom bar; every other route uses the same
-          fixed bottom nav so there is no top header. */}
-      {!isHome && <SiteNav />}
       <CalModalBootstrap />
     </div>
   );

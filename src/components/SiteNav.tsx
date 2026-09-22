@@ -1,4 +1,12 @@
-import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { translations, type HeroLanguage } from "../pluma-hero/hero.js";
@@ -13,16 +21,21 @@ const LINKS = {
   vouchers: "/member-card",
 } as const;
 
-function asset(file: string) {
-  return `${ASSET_BASE}${file}`;
-}
+type SiteNavProps = {
+  /** When true, hero intro may fade this bar in via `[data-ph-hero-navigation]`. */
+  heroLinked?: boolean;
+};
 
-/** Same fixed bottom bar as the homepage hero, for every other route. */
-export function SiteNav() {
+/** Fixed bottom bar for every route, portaled to `document.body` so page
+ * stacking contexts cannot paint over it. */
+export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
+  { heroLinked = false },
+  ref,
+) {
   const { language, setLanguage } = useLanguage();
   const labels = translations[language as HeroLanguage] ?? translations.en;
   const [open, setOpen] = useState(false);
-  const rootRef = useRef<HTMLElement>(null);
+  const rootRef = useRef<HTMLElement | null>(null);
   const menuRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const drawerId = useId();
@@ -51,11 +64,18 @@ export function SiteNav() {
     };
   }, [open]);
 
-  return (
+  const setRefs = (node: HTMLElement | null) => {
+    rootRef.current = node;
+    if (typeof ref === "function") ref(node);
+    else if (ref) ref.current = node;
+  };
+
+  const nav = (
     <header
-      ref={rootRef}
+      ref={setRefs}
       className="ph-nav ph-nav--site"
       data-ph-nav
+      data-ph-hero-navigation={heroLinked ? "" : undefined}
       data-open={open ? "true" : "false"}
       style={
         {
@@ -139,4 +159,10 @@ export function SiteNav() {
       </div>
     </header>
   );
+
+  return createPortal(nav, document.body);
+});
+
+function asset(file: string) {
+  return `${ASSET_BASE}${file}`;
 }

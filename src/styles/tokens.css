@@ -50,6 +50,8 @@
   --psl-duration: 200ms;
   --psl-ease: cubic-bezier(.2,.7,.2,1);
   --psl-z-header: 1000;
+  /* Bottom site nav — above all page chrome; Cal.com modal stays higher. */
+  --psl-z-nav: 100000;
   --psl-header-width-scale: 1.2;
 }
 
