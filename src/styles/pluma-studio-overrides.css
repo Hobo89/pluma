@@ -55,47 +55,31 @@ html.dark .psl-field input {
   );
 }
 
-/* Bright canopy/sky footage: hold a forest veil behind the type so white
-   copy stays readable as leaves and sky move through the frame. */
-.psl-hero--video::before {
-  background:
-    radial-gradient(
-      ellipse 78% 68% at 50% 42%,
-      rgb(8 39 7 / 78%) 0%,
-      rgb(8 39 7 / 58%) 42%,
-      rgb(8 39 7 / 32%) 100%
-    );
+.psl-hero--photo::before {
+  background: linear-gradient(
+    90deg,
+    rgb(8 39 7 / 62%) 0%,
+    rgb(8 39 7 / 34%) 46%,
+    rgb(8 39 7 / 12%) 100%
+  );
 }
 
-.psl-hero--video .psl-copy {
-  max-width: 42ch;
-  color: var(--psl-white);
-  font: 400 var(--psl-type-body) / 1.5 var(--psl-font-body);
-  letter-spacing: 0;
-  text-wrap: pretty;
+.psl-hero--photo .psl-hero__body {
+  align-items: flex-start;
+  max-width: 42rem;
+  margin-top: 5.5rem;
+}
+
+.psl-hero__eyebrow {
+  color: rgb(255 255 255 / 88%);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 45%);
+}
+
+.psl-hero--photo .psl-hero__title,
+.psl-hero--photo .psl-hero__supporting {
   text-shadow:
-    0 1px 2px rgb(0 0 0 / 55%),
-    0 10px 28px rgb(0 0 0 / 50%);
-}
-
-.psl-hero--video .psl-hero__logo {
-  margin-bottom: var(--psl-space-2);
-}
-
-.psl-hero--video .psl-hero__logo-image {
-  filter: drop-shadow(0 2px 18px rgb(0 0 0 / 55%));
-}
-
-.psl-hero--video .psl-button--ghost {
-  background: rgb(8 39 7 / 72%);
-  border-color: rgb(255 255 255 / 82%);
-  color: var(--psl-white);
-}
-
-@media (hover: hover) {
-  .psl-hero--video .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover {
-    background: rgb(8 39 7 / 88%);
-  }
+    0 1px 2px rgb(0 0 0 / 45%),
+    0 10px 28px rgb(0 0 0 / 35%);
 }
 
 .psl-hero > video.psl-hero__image {
@@ -1006,15 +990,8 @@ html.dark .psl-field input {
     visibility 0s linear 0s;
 }
 
-/* On the transparent home overlay the hero already carries the mark.
-   Bring the colored nav logo in with the bar background. */
-.psl-header-shell:not(.psl-header-shell--solid) .psl-brand {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity 0.4s var(--psl-ease),
-    visibility 0s linear 0.4s;
+.psl-header-shell:not(.psl-header-shell--solid) .psl-brand__logo {
+  filter: drop-shadow(0 1px 10px rgb(0 0 0 / 45%));
 }
 
 .psl-brand__logo {
@@ -1357,7 +1334,9 @@ button.psl-button {
   }
 }
 
-#studio {
+#studio,
+#stephen,
+#reviews {
   scroll-margin-top: 6rem;
 }
 
@@ -1575,7 +1554,7 @@ button.psl-button {
 
 .psl-voucher-table__discount,
 .psl-voucher-table__single,
-.psl-voucher-table td span:not(.psl-voucher-table__saving) {
+.psl-voucher-table td span:not(.psl-voucher-table__saving):not(.psl-voucher-card__flag):not(.psl-save-pill) {
   display: block;
   margin-top: 4px;
   color: var(--psl-muted);
@@ -3159,15 +3138,19 @@ button.psl-button {
 }
 
 @media (max-width: 767px) {
-  /* The hero carries more content than before (offer line, availability note,
-     two actions), so it needs less dead space above and room below the curve. */
-  .psl-hero__body--center {
-    margin-top: calc(var(--psl-space-12) + 2rem);
-    padding-bottom: var(--psl-space-24);
+  .psl-hero--photo::before {
+    background: linear-gradient(
+      180deg,
+      rgb(8 39 7 / 28%) 0%,
+      rgb(8 39 7 / 18%) 32%,
+      rgb(8 39 7 / 58%) 100%
+    );
   }
 
-  .psl-hero--video .psl-hero__logo-image {
-    max-height: 4.5rem;
+  .psl-hero--photo .psl-hero__body {
+    margin-top: calc(var(--psl-space-12) + 2.5rem);
+    padding-bottom: var(--psl-space-16);
+    justify-content: flex-end;
   }
 }
 
@@ -3247,5 +3230,231 @@ html.dark
 
   .psl-duration__orbit-path {
     fill: var(--psl-brand-warm);
+  }
+}
+
+.psl-meet {
+  display: grid;
+  gap: var(--psl-space-10);
+}
+
+.psl-meet__intro {
+  display: grid;
+  gap: var(--psl-space-8);
+  align-items: center;
+}
+
+.psl-meet__media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 0.97;
+  overflow: hidden;
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface-sage);
+}
+
+.psl-meet__media > img:not(.psl-feature__portrait) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.psl-meet__media .psl-feature__portrait {
+  position: absolute;
+  z-index: 1;
+  left: var(--psl-space-4);
+  bottom: var(--psl-space-4);
+  width: min(42%, 11.5rem);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: var(--psl-radius-media);
+  object-fit: cover;
+  object-position: 50% 42%;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 28%);
+  outline: 3px solid var(--psl-canvas);
+}
+
+.psl-meet__body {
+  display: grid;
+  justify-items: start;
+  gap: var(--psl-space-4);
+}
+
+.psl-meet__review {
+  display: grid;
+  justify-items: stretch;
+  gap: var(--psl-space-4);
+  width: 100%;
+}
+
+.psl-meet__review .psl-textlink {
+  justify-self: start;
+}
+
+.psl-review-card {
+  display: grid;
+  gap: var(--psl-space-4);
+  width: 100%;
+  padding: var(--psl-space-6);
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface);
+}
+
+.psl-review-card__quote {
+  margin: 0;
+  color: var(--psl-text);
+  font: 400 var(--psl-type-body) / 1.6 var(--psl-font-body);
+}
+
+.psl-review-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--psl-space-3);
+}
+
+.psl-review-card__name {
+  margin: 0;
+  color: var(--psl-heading);
+  font-size: var(--psl-type-small);
+}
+
+.psl-review-card .psl-quote__areas {
+  position: static;
+  max-width: none;
+  margin-top: var(--psl-space-2);
+  pointer-events: auto;
+}
+
+.psl-review-card .psl-quote__areas li {
+  background: var(--psl-surface-sage);
+  color: var(--psl-heading);
+  backdrop-filter: none;
+}
+
+.psl-reviews-grid {
+  display: grid;
+  gap: var(--psl-space-4);
+  margin-top: var(--psl-space-8);
+}
+
+.psl-safety--note {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.psl-safety--note .psl-copy--lead {
+  max-width: 48ch;
+  margin: 0;
+  padding: var(--psl-space-8);
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface);
+}
+
+.psl-save-pill {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 6px;
+  padding: 3px 10px;
+  border: 1px solid var(--psl-heading);
+  border-radius: var(--psl-radius-pill);
+  color: var(--psl-heading);
+  font-size: var(--psl-type-label);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.psl-voucher-card__title .psl-save-pill,
+.psl-voucher-table th .psl-save-pill {
+  display: flex;
+  width: fit-content;
+}
+
+.psl-voucher-cards {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psl-voucher-card {
+  display: grid;
+  justify-items: start;
+  gap: var(--psl-space-2);
+  padding: var(--psl-space-6);
+  border: 1px solid var(--psl-line);
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-surface);
+}
+
+.psl-voucher-card__title,
+.psl-voucher-card__duration,
+.psl-voucher-card__price,
+.psl-voucher-card__saving {
+  margin: 0;
+}
+
+.psl-voucher-card__price {
+  display: grid;
+  gap: 4px;
+}
+
+.psl-voucher-card__price span,
+.psl-voucher-card__saving {
+  color: var(--psl-muted);
+  font-size: var(--psl-type-small);
+}
+
+.psl-voucher-card__flag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: var(--psl-radius-pill);
+  background: var(--psl-lime);
+  color: var(--psl-heading);
+  font-size: var(--psl-type-label);
+  font-weight: 500;
+}
+
+.psl-voucher-table__favorite .psl-voucher-card__flag {
+  margin-bottom: var(--psl-space-2);
+}
+
+.psl-pricing-invite__support {
+  max-width: 42ch;
+  margin: 0;
+}
+
+.psl-about-studio-link {
+  text-align: center;
+  margin: 0;
+}
+
+.psl-bono-strip__card {
+  width: min(12.5rem, 58vw);
+}
+
+@media (min-width: 768px) {
+  .psl-meet__intro {
+    grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 1fr);
+    gap: var(--psl-space-12);
+  }
+
+  .psl-reviews-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .psl-voucher-cards {
+    display: grid;
+    gap: var(--psl-space-3);
+    margin-block: var(--psl-space-6);
+  }
+
+  .psl-voucher-table-wrap {
+    display: none;
   }
 }

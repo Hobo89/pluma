@@ -22,7 +22,7 @@ export const site = {
   ownerEmail: "stephen@pluma.life",
   phone: undefined as string | undefined,
   timezone: "Europe/Madrid",
-  socialImage: "/favicon.png",
+  socialImage: "/assets/images/og-share.jpg",
   /**
    * When false, every HTML response is `noindex, nofollow` and no sitemap is
    * published. Crawlers are still allowed to fetch pages so they can see that

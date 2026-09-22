@@ -50,6 +50,7 @@ export function Footer() {
 
         <nav className="psl-footer__links" aria-label={t("footer.legalTitle")}>
           <Link to="/about">{t("nav.about")}</Link>
+          <Link to="/reviews">{t("nav.reviews")}</Link>
           <Link to="/pricing">{t("nav.pricing")}</Link>
           <Link to="/member-card">{t("nav.bonos")}</Link>
           <BookingAction

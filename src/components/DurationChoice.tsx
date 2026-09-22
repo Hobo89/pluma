@@ -28,6 +28,7 @@ export function DurationChoice({ compact = false }: { compact?: boolean }) {
           {t("durations.title")}
         </h2>
         <p className="psl-copy">{t("durations.description")}</p>
+        <p className="psl-copy">{t("durations.principle")}</p>
       </div>
 
       <ul className="psl-durations">

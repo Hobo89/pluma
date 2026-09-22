@@ -7,7 +7,7 @@ export const translations = {
         "pluma — personalized massage in a quiet home studio. Book your session with Stephen online.",
       pages: {
         home: {
-          title: "Massage in Valencia with Stephen · pluma",
+          title: "Personalized massage in Valencia Old Town · pluma",
           description:
             "Personalized massage in a quiet home studio near Valencia’s Central Market. Choose a 60-, 90-, or 120-minute session with Stephen.",
         },
@@ -15,6 +15,11 @@ export const translations = {
           title: "About Stephen · pluma massage Valencia",
           description:
             "Meet Stephen and learn how each massage is shaped around what your body needs that day.",
+        },
+        reviews: {
+          title: "Client reviews · pluma",
+          description:
+            "What clients say about massage with Stephen at the pluma home studio in Valencia Old Town.",
         },
         pricing: {
           title: "Massage prices in Valencia · pluma",
@@ -63,6 +68,7 @@ export const translations = {
     },
     nav: {
       about: "About",
+      reviews: "Reviews",
       pricing: "Prices",
       bonos: "Vouchers",
       book: "Book",
@@ -81,28 +87,42 @@ export const translations = {
       toDark: "Switch to dark mode",
     },
     hero: {
-      headline:
-        "Personalized massage in a quiet home studio, five minutes from the Central Market.",
-      book: "Book a massage",
+      eyebrow: "Massage by Stephen · Valencia Old Town",
+      headline: "A massage shaped around you.",
+      supporting:
+        "Unhurried, personalized sessions in a quiet private home studio, five minutes from Central Market.",
+      greeting: "Hola, Hey, Bonjour",
+      introduction: "I’m Stephen, creator of",
+      brand: "pluma,",
+      description: "a home massage studio,\nin the old town\nof Valencia.",
+      dividerStudio: "Home massage studio",
+      dividerCity: "Valencia",
+      tagline: "Slow down. Feel at home.",
+      portraitAlt: "Stephen, founder and massage practitioner at Pluma",
+      massageAlt: "A client receiving a gentle head and neck massage at Pluma",
+      ariaLabel: "Welcome to pluma",
+      book: "Book massage",
       seeStudio: "See the studio",
       learnMore: "Learn more",
     },
     sticky: {
-      label: "Book a massage",
+      label: "Book massage",
     },
     floatingButton: {
-      label: "Book Massage",
+      label: "Book massage",
     },
     durations: {
       title: "Where do you want to start?",
       description: "We'll take the time to focus on what you need most.",
+      principle:
+        "Every session can be full-body or focused areas. Choose based on how much time and how many areas you want to cover.",
       recommended: "My recommendation",
       cta: "Book {minutes} minutes",
       cardTitle: "{minutes} minutes",
       scope: {
-        "60": "A full-body massage at a steady pace, or more focused across a few areas that need attention.",
-        "90": "A full-body massage with room to slow down and spend extra time on areas holding more tension.",
-        "120": "Time for a full-body work, deeper attention to multiple areas, and a slower pace throughout. Ideal when your body needs more than one thing addressed.",
+        "60": "A full-body session at a steady pace, or focused work on a few areas that need attention.",
+        "90": "A full-body session with more time where you need it, or a focused session with room to work slowly and deeply on specific areas.",
+        "120": "An unhurried full-body and focused session, with time to address several areas.",
       },
       priceNote: "Price shown is the total for the session.",
       termsLink: "Booking terms",
@@ -113,6 +133,13 @@ export const translations = {
     about: {
       title: "A good massage starts with listening",
       titleHighlight: "listening",
+      meetTitle: "Meet Stephen.",
+      facts:
+        "Certified masseur. Unhurried, one-to-one sessions in English, French or Spanish.",
+      adapt:
+        "I adapt the pressure, pace and techniques—and remember what worked next time.",
+      seeReviews: "See more reviews",
+      studioCta: "See the home studio",
       body: "I only see a few people each day. I don’t like rushing sessions.",
       languages: "I speak English, French and Spanish.",
       stephenPhotoAlt: "Stephen at the pluma home studio",
@@ -137,7 +164,8 @@ export const translations = {
     types: {
       title: "You can, but don’t need to, choose a technique.",
       titleHighlight: "technique",
-      description: "Each session adapts to your body’s needs.",
+      description:
+        "I adapt to how you feel today, remember previous sessions, and leave space to reset. You can choose a technique, but you don’t need to.",
       pregnancy: "Pregnancy",
       pregnancyAlt: "Line drawing of a pregnant figure",
       relaxingLymphatic: "Relaxing & lymphatic",
@@ -165,13 +193,14 @@ export const translations = {
       title: "Prices",
       description:
         "Session prices by length at the home studio. Vouchers reduce the per-session price on 60 and 90 minute sessions.",
-      book: "Book a session",
+      book: "Book massage",
       durationMinutes: "{minutes} min",
-      singleTitle: "Single massages prices",
-      inviteTitle:
-        "Some even come regularly\nfor that gooood self-care,\nyour turn?",
-      inviteHighlight: "gooood",
-      inviteCta: "Discover vouchers",
+      singleTitle: "Single massage prices.",
+      inviteTitle: "Build on what worked last time.",
+      inviteHighlight: "worked",
+      inviteSupport:
+        "Choose five or ten sessions when you want massage to become part of your rhythm.",
+      inviteCta: "See vouchers.",
       voucherTitle: "Vouchers",
       voucherDescription:
         "A voucher covers several sessions of the same length at a lower price per session.",
@@ -182,12 +211,13 @@ export const translations = {
       validity: "Valid for {months} months from the first session",
       voucher5: {
         title: "5-session voucher",
-        discount: "10% off",
+        discount: "Save 10%",
       },
       voucher10: {
         title: "10-session voucher",
-        discount: "15% off",
+        discount: "Save 15%",
       },
+      clientFavorite: "Client favorite",
       taxNote:
         "Prices include tax. The amount shown is the total you pay.",
       bonoLink: "See vouchers",
@@ -217,21 +247,20 @@ export const translations = {
         "Hello Stephen,%0D%0A%0D%0AI would like to ask about a massage session.%0D%0A%0D%0AThank you,",
     },
     bonos: {
-      title:
-        "You're in good hands.\nPlan those massages.",
-      titleHighlight: "good hands",
+      title: "Make massage part of your rhythm.",
+      titleHighlight: "rhythm",
       pageTitle: "A regular space to come back to",
       pageIntro:
-        "A pluma voucher is for anyone who wants massage to become part of their rhythm, rather than something they only reach for when tension has already built up.",
+        "Choose five or ten sessions so each visit can build on what worked last time.",
       optionsTitle: "Voucher options",
-      optionsHeading:
-        "Save money now. Skip the overthinking.\nA healthy body and mind for months to come.",
-      optionsHeadingHighlight: "months to come.",
+      optionsHeading: "Choose your voucher.",
+      optionsHeadingHighlight: "voucher",
+      optionsSupport: "Save 10% with five sessions or 15% with ten.",
       pricesNote: "(1) All prices shown are the total price payable.",
       validityNote:
         "(2) Five-session vouchers are valid for three months. Ten-session vouchers are valid for six months. The validity period begins with the first session, which must take place within 30 days after the voucher is issued.",
       interestedTitle: "Interested in a voucher?",
-      cta: "Write to me",
+      cta: "Ask about a voucher.",
       enquirySubject: "Voucher inquiry",
       enquiryBody:
         "Hello Stephen,%0D%0A%0D%0AI would like to ask about a voucher.%0D%0A%0D%0AThank you,",
@@ -255,7 +284,7 @@ export const translations = {
         arrange: {
           question: "How do I arrange a voucher?",
           answer:
-            "Select Write to me to email me.\n\nI’ll help you choose the session length and number of sessions, confirm the terms and answer any questions before you commit. Vouchers are arranged directly; there is no online checkout on the website.",
+            "Select Ask about a voucher to email me.\n\nI’ll help you choose the session length and number of sessions, confirm the terms and answer any questions before you commit. Vouchers are arranged directly; there is no online checkout on the website.",
         },
         after: {
           question: "What happens after my voucher is confirmed?",
@@ -309,7 +338,7 @@ export const translations = {
         },
       },
       returnTitle: "Prefer one session?",
-      returnCta: "Book a massage",
+      returnCta: "Book massage",
     },
     studio: {
       title: "A calm home studio",
@@ -372,6 +401,7 @@ export const translations = {
     safety: {
       heading: "You’re always in control.",
       headingHighlight: "control",
+      note: "Before we begin, we’ll agree on pressure, focus areas and anything to avoid. You can ask for an adjustment or pause at any point.",
       points: {
         agree:
           "Before we begin, we’ll agree on the pressure, the areas to focus on, and anything to avoid.",
@@ -425,8 +455,14 @@ export const translations = {
       length: {
         question: "Which session length should I choose?",
         answer:
-          "60 minutes is absolutely fine. I tend to recommend 90 when there’s quite a bit you want to work on. 120 minutes is for a long, unhurried session. All of them give us time to settle in.",
+          "Every session can be full-body or focused areas. Choose based on how much time and how many areas you want to cover.\n\n60 minutes is a full-body session at a steady pace, or focused work on a few areas. 90 minutes gives a full-body session with more time where you need it, or a slower, deeper focused session. 120 minutes is an unhurried full-body and focused session, with time to address several areas.",
       },
+    },
+    reviews: {
+      title: "Client reviews",
+      description:
+        "Words from people who have booked a session at the pluma home studio.",
+      featuredLabel: "A recent review",
     },
     testimonials: {
       title: "What clients say",
@@ -587,7 +623,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "Personalized massage in a quiet home studio, by me, Stephen, your certified masseur.",
+        "Unhurried, personalized massage by Stephen in a quiet private home studio in Valencia’s Old Town.",
       contactTitle: "Contact",
       legalTitle: "Legal information",
       address: "Pl. de les Escoles Pies, Old Town, 46001 València, Valencia",
@@ -602,7 +638,7 @@ export const translations = {
         "pluma — masaje personalizado en un estudio tranquilo. Reserva tu sesión con Stephen en línea.",
       pages: {
         home: {
-          title: "Masaje en Valencia con Stephen · pluma",
+          title: "Masaje personalizado en el casco antiguo de Valencia · pluma",
           description:
             "Masaje personalizado en un estudio tranquilo cerca del Mercado Central de Valencia. Elige una sesión de 60, 90 o 120 minutos con Stephen.",
         },
@@ -610,6 +646,11 @@ export const translations = {
           title: "Sobre Stephen · masaje pluma Valencia",
           description:
             "Conoce a Stephen y descubre cómo adapta cada masaje a lo que tu cuerpo necesita ese día.",
+        },
+        reviews: {
+          title: "Opiniones de clientes · pluma",
+          description:
+            "Lo que dicen quienes han reservado un masaje con Stephen en el estudio pluma del casco antiguo de Valencia.",
         },
         pricing: {
           title: "Precios de masaje en Valencia · pluma",
@@ -658,6 +699,7 @@ export const translations = {
     },
     nav: {
       about: "Sobre mí",
+      reviews: "Opiniones",
       pricing: "Precios",
       bonos: "Bonos",
       book: "Reservar",
@@ -676,14 +718,26 @@ export const translations = {
       toDark: "Cambiar a modo oscuro",
     },
     hero: {
-      headline:
-        "Masaje personalizado en un estudio tranquilo, a cinco minutos del Mercado Central.",
-      book: "Reservar un masaje",
+      eyebrow: "Masaje por Stephen · Casco antiguo de Valencia",
+      headline: "Un masaje adaptado a ti.",
+      supporting:
+        "Sesiones pausadas y personalizadas en un estudio privado y tranquilo, a cinco minutos del Mercado Central.",
+      greeting: "Hola, Hey, Bonjour",
+      introduction: "Soy Stephen, creador de",
+      brand: "pluma,",
+      description: "un estudio de masaje en casa,\nen el casco antiguo\nde Valencia.",
+      dividerStudio: "Estudio de masaje en casa",
+      dividerCity: "Valencia",
+      tagline: "Ve despacio. Siéntete en casa.",
+      portraitAlt: "Stephen, fundador y masajista de Pluma",
+      massageAlt: "Una clienta recibe un masaje suave de cabeza y cuello en Pluma",
+      ariaLabel: "Bienvenida a pluma",
+      book: "Reservar masaje",
       seeStudio: "Ver el estudio",
       learnMore: "Saber más",
     },
     sticky: {
-      label: "Reservar un masaje",
+      label: "Reservar masaje",
     },
     floatingButton: {
       label: "Reservar masaje",
@@ -691,13 +745,15 @@ export const translations = {
     durations: {
       title: "¿Por dónde quieres empezar?",
       description: "Nos tomamos el tiempo para centrarnos en lo que más necesitas.",
+      principle:
+        "Cada sesión puede ser de cuerpo entero o centrada en zonas concretas. Elige según el tiempo y el número de zonas que quieras trabajar.",
       recommended: "Mi recomendación",
       cta: "Reservar {minutes} minutos",
       cardTitle: "{minutes} minutos",
       scope: {
-        "60": "Un masaje de cuerpo entero a un ritmo constante, o más centrado en unas pocas zonas que necesitan atención.",
-        "90": "Un masaje de cuerpo entero con margen para bajar el ritmo y dedicar tiempo extra a las zonas que guardan más tensión.",
-        "120": "Tiempo para un trabajo de cuerpo entero, atención más profunda a varias zonas, y un ritmo más lento de principio a fin. Ideal cuando el cuerpo necesita más de una cosa.",
+        "60": "Una sesión de cuerpo entero a un ritmo constante, o un trabajo más centrado en unas pocas zonas que necesitan atención.",
+        "90": "Una sesión de cuerpo entero con más tiempo donde lo necesitas, o una sesión centrada con margen para trabajar despacio y en profundidad zonas concretas.",
+        "120": "Una sesión pausada de cuerpo entero y zonas concretas, con tiempo para atender varias áreas.",
       },
       priceNote: "El precio indicado es el total de la sesión.",
       termsLink: "Condiciones de reserva",
@@ -708,6 +764,13 @@ export const translations = {
     about: {
       title: "Un buen masaje empieza por escuchar",
       titleHighlight: "escuchar",
+      meetTitle: "Conoce a Stephen.",
+      facts:
+        "Masajista certificado. Sesiones pausadas, uno a uno, en inglés, francés o español.",
+      adapt:
+        "Adapto la presión, el ritmo y las técnicas, y recuerdo lo que funcionó la próxima vez.",
+      seeReviews: "Ver más opiniones",
+      studioCta: "Ver el estudio",
       body: "Solo atiendo a unas pocas personas al día. No me gusta trabajar con prisas.",
       languages: "Hablo inglés, francés y español.",
       stephenPhotoAlt: "Stephen en el estudio en casa pluma",
@@ -732,7 +795,8 @@ export const translations = {
     types: {
       title: "Puedes elegir una técnica, pero no hace falta.",
       titleHighlight: "técnica",
-      description: "Cada sesión se adapta a las necesidades de tu cuerpo.",
+      description:
+        "Me adapto a cómo te encuentras hoy, recuerdo las sesiones anteriores y dejo espacio para bajar el ritmo. Puedes elegir una técnica, pero no hace falta.",
       pregnancy: "Embarazo",
       pregnancyAlt: "Dibujo lineal de una figura embarazada",
       relaxingLymphatic: "Relajante y linfático",
@@ -762,13 +826,14 @@ export const translations = {
       title: "Precios",
       description:
         "Precios por duración en el estudio en casa. Los bonos reducen el precio por sesión en las de 60 y 90 minutos.",
-      book: "Reservar sesión",
+      book: "Reservar masaje",
       durationMinutes: "{minutes} min",
-      singleTitle: "Precios de masajes sueltos",
-      inviteTitle:
-        "Algunos vienen a menudo\na ese bueeen autocuidado,\n¿te toca?",
-      inviteHighlight: "bueeen",
-      inviteCta: "Descubre los bonos",
+      singleTitle: "Precios de masaje suelto.",
+      inviteTitle: "Sigue con lo que funcionó la última vez.",
+      inviteHighlight: "funcionó",
+      inviteSupport:
+        "Elige cinco o diez sesiones cuando quieras que el masaje forme parte de tu ritmo.",
+      inviteCta: "Ver bonos.",
       voucherTitle: "Bonos",
       voucherDescription:
         "Un bono cubre varias sesiones de la misma duración a un precio por sesión más bajo.",
@@ -779,12 +844,13 @@ export const translations = {
       validity: "Validez de {months} meses desde la primera sesión",
       voucher5: {
         title: "Bono de 5 sesiones",
-        discount: "10% dto.",
+        discount: "Ahorra 10%",
       },
       voucher10: {
         title: "Bono de 10 sesiones",
-        discount: "15% dto.",
+        discount: "Ahorra 15%",
       },
+      clientFavorite: "Favorito de clientes",
       taxNote:
         "Los precios incluyen impuestos. El importe mostrado es el total que pagas.",
       bonoLink: "Ver bonos",
@@ -815,21 +881,20 @@ export const translations = {
         "Hola Stephen:%0D%0A%0D%0AMe gustaría consultar por una sesión de masaje.%0D%0A%0D%0AGracias,",
     },
     bonos: {
-      title:
-        "Estás en buenas manos.\nPlanifica esos masajes.",
-      titleHighlight: "buenas manos",
+      title: "Haz que el masaje forme parte de tu ritmo.",
+      titleHighlight: "ritmo",
       pageTitle: "Un espacio al que volver",
       pageIntro:
-        "Un bono pluma es para quien quiere que el masaje forme parte de su ritmo, y no solo de esos momentos en los que la tensión ya se ha acumulado.",
+        "Elige cinco o diez sesiones para que cada visita pueda partir de lo que funcionó la última vez.",
       optionsTitle: "Opciones de bono",
-      optionsHeading:
-        "Ahorra ahora. Sin tanto pensarlo.\nUn cuerpo y una mente sanos para los meses que vienen.",
-      optionsHeadingHighlight: "meses que vienen.",
+      optionsHeading: "Elige tu bono.",
+      optionsHeadingHighlight: "bono",
+      optionsSupport: "Ahorra un 10% con cinco sesiones o un 15% con diez.",
       pricesNote: "(1) Todos los precios mostrados son el precio total a pagar.",
       validityNote:
         "(2) Los bonos de cinco sesiones tienen una validez de tres meses. Los de diez sesiones, de seis meses. La validez empieza con la primera sesión, que debe tener lugar dentro de los 30 días posteriores a la emisión del bono.",
       interestedTitle: "¿Te interesa un bono?",
-      cta: "Escríbeme",
+      cta: "Consultar un bono.",
       enquirySubject: "Consulta sobre un bono",
       enquiryBody:
         "Hola Stephen:%0D%0A%0D%0AMe gustaría consultar por un bono.%0D%0A%0D%0AGracias,",
@@ -853,7 +918,7 @@ export const translations = {
         arrange: {
           question: "¿Cómo se formaliza un bono?",
           answer:
-            "Pulsa Escríbeme para enviarme un email.\n\nTe ayudo a elegir la duración y el número de sesiones, confirmar las condiciones y resolver cualquier duda antes de que te comprometas. Los bonos se formalizan de forma directa; en la web no hay un proceso de compra online.",
+            "Pulsa Consultar un bono para enviarme un email.\n\nTe ayudo a elegir la duración y el número de sesiones, confirmar las condiciones y resolver cualquier duda antes de que te comprometas. Los bonos se formalizan de forma directa; en la web no hay un proceso de compra online.",
         },
         after: {
           question: "¿Qué ocurre cuando se confirma el bono?",
@@ -907,7 +972,7 @@ export const translations = {
         },
       },
       returnTitle: "¿Prefieres una sesión suelta?",
-      returnCta: "Reservar un masaje",
+      returnCta: "Reservar masaje",
     },
     studio: {
       title: "Un estudio tranquilo en casa",
@@ -970,6 +1035,7 @@ export const translations = {
     safety: {
       heading: "Tú tienes el control.",
       headingHighlight: "control",
+      note: "Antes de empezar, acordamos la presión, las zonas de atención y lo que hay que evitar. Puedes pedir un ajuste o una pausa en cualquier momento.",
       points: {
         agree:
           "Antes de empezar, acordamos la presión, las zonas que quieres trabajar y cualquier cosa que prefieras evitar.",
@@ -1023,8 +1089,14 @@ export const translations = {
       length: {
         question: "¿Qué duración elijo?",
         answer:
-          "60 minutos están muy bien. Suelo recomendar 90 si hay bastantes cosas que quieres trabajar. 120 minutos son para una sesión larga, sin prisas. En todas nos damos tiempo para bajar el ritmo.",
+          "Cada sesión puede ser de cuerpo entero o centrada en zonas concretas. Elige según el tiempo y el número de zonas que quieras trabajar.\n\n60 minutos es una sesión de cuerpo entero a un ritmo constante, o un trabajo más centrado en unas pocas zonas. 90 minutos da una sesión de cuerpo entero con más tiempo donde lo necesitas, o una sesión más lenta y profunda en zonas concretas. 120 minutos es una sesión pausada de cuerpo entero y zonas concretas, con tiempo para atender varias áreas.",
       },
+    },
+    reviews: {
+      title: "Opiniones de clientes",
+      description:
+        "Palabras de quienes han reservado una sesión en el estudio pluma.",
+      featuredLabel: "Una opinión reciente",
     },
     testimonials: {
       title: "Lo que dicen los clientes",
@@ -1185,7 +1257,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "Masaje personalizado en un estudio tranquilo, por mí, Stephen, tu masajista certificado.",
+        "Masaje pausado y personalizado de Stephen en un estudio privado y tranquilo en el casco antiguo de Valencia.",
       contactTitle: "Contacto",
       legalTitle: "Información legal",
       address: "Pl. de les Escoles Pies, Ciutat Vella, 46001 València, Valencia",

@@ -73,6 +73,9 @@ export function BookingPage() {
           </div>
         </dl>
 
+        <p className="psl-copy">{t(`durations.scope.${selected}`)}</p>
+        <p className="psl-copy psl-copy--small">{t("durations.principle")}</p>
+
         <p className="psl-copy psl-copy--small">{t("booking.inPerson")}</p>
         <p className="psl-copy psl-copy--small">{t("booking.timezone")}</p>
         <p className="psl-copy psl-copy--small">{t("pricing.taxNote")}</p>

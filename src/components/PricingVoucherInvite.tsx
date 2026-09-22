@@ -58,6 +58,9 @@ export function PricingVoucherInvite() {
           text={t("pricing.inviteTitle")}
           word={t("pricing.inviteHighlight")}
         />
+        <p className="psl-copy psl-pricing-invite__support">
+          {t("pricing.inviteSupport")}
+        </p>
         <Link to="/member-card" className="psl-button">
           {t("pricing.inviteCta")}
         </Link>

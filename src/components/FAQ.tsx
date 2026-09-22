@@ -1,4 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
+import { CopyBlocks } from "./CopyBlocks";
 
 const faqIds = ["booking", "length", "location", "visit", "cancel"] as const;
 
@@ -20,7 +21,7 @@ export function FAQ() {
               {t(`faq.${id}.question`)}
               <span className="psl-faq__icon" aria-hidden="true" />
             </summary>
-            <p>{t(`faq.${id}.answer`)}</p>
+            <CopyBlocks text={t(`faq.${id}.answer`)} />
           </details>
         ))}
       </div>

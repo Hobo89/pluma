@@ -31,6 +31,14 @@ Replace every bracketed field with approved facts before publishing. Use one ver
 > [APPROVED CANCELLATION SUMMARY]  
 > Pluma booking terms: [REAL LINK] · Privacy: [REAL LINK]
 
+Use these session descriptions on every 60 / 90 / 120 event, matching the website:
+
+- **60 minutes:** A full-body session at a steady pace, or focused work on a few areas that need attention.
+- **90 minutes:** A full-body session with more time where you need it, or a focused session with room to work slowly and deeply on specific areas.
+- **120 minutes:** An unhurried full-body and focused session, with time to address several areas.
+
+Also state: Every session can be full-body or focused areas. Choose based on how much time and how many areas you want to cover.
+
 **Español**
 
 > Masaje con Stephen · [DURACIÓN] minutos  
@@ -40,6 +48,12 @@ Replace every bracketed field with approved facts before publishing. Use one ver
 > [INFORMACIÓN DE UBICACIÓN Y LLEGADA CONFIRMADA]  
 > [RESUMEN APROBADO DE CANCELACIÓN]  
 > Condiciones de reserva de Pluma: [ENLACE REAL] · Privacidad: [ENLACE REAL]
+
+Descripciones de sesión, iguales que en la web:
+
+- **60 minutos:** Una sesión de cuerpo entero a un ritmo constante, o un trabajo más centrado en unas pocas zonas que necesitan atención.
+- **90 minutos:** Una sesión de cuerpo entero con más tiempo donde lo necesitas, o una sesión centrada con margen para trabajar despacio y en profundidad zonas concretas.
+- **120 minutos:** Una sesión pausada de cuerpo entero y zonas concretas, con tiempo para atender varias áreas.
 
 Keep one consistent verified walking-time estimate. Audit: calendar said three minutes from Central Market; site said about five. Do not publish qualifications or availability unsupported by current operations.
 

@@ -22,6 +22,7 @@ export function PricingPage() {
           <h1 id="pricing-single-heading" className="psl-title">
             {t("pricing.singleTitle")}
           </h1>
+          <p className="psl-copy">{t("durations.principle")}</p>
         </div>
 
         <div className="psl-pricing-grid">

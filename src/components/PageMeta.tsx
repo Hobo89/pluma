@@ -60,8 +60,7 @@ export function PageMeta({ page, noindex = false }: PageMetaProps) {
   const description = t(`meta.pages.${page}.description`);
 
   useEffect(() => {
-    const fullTitle =
-      page === "home" ? `${site.businessName} — ${title}` : `${title}`;
+    const fullTitle = title;
     const canonical = `${site.origin}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
 
     document.title = fullTitle;
@@ -75,7 +74,7 @@ export function PageMeta({ page, noindex = false }: PageMetaProps) {
     upsertMeta("property", "og:url", canonical);
     upsertMeta("property", "og:image", `${site.origin}${site.socialImage}`);
     upsertMeta("property", "og:locale", language === "es" ? "es_ES" : "en_US");
-    upsertMeta("name", "twitter:card", "summary");
+    upsertMeta("name", "twitter:card", "summary_large_image");
     upsertMeta("name", "twitter:title", fullTitle);
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", `${site.origin}${site.socialImage}`);

@@ -1,6 +1,7 @@
 import { CopyBlocks } from "./CopyBlocks";
+import { HashLink } from "./HashLink";
+import { MeetStephen } from "./MeetStephen";
 import { Philosophy } from "./Philosophy";
-import { StudioFeature } from "./StudioFeature";
 import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
 
@@ -35,7 +36,8 @@ export function About() {
   return (
     <>
       <div className="psl-container psl-page psl-about-page">
-        <Philosophy />
+        <MeetStephen headingLevel="h1" nested />
+        <Philosophy headingLevel="h2" />
         {sections.map((section, index) => (
           <article
             key={section.id}
@@ -43,10 +45,7 @@ export function About() {
           >
             <figure className="psl-about-block__media">
               {section.placeholder ? (
-                <div
-                  className="psl-about-placeholder"
-                  aria-hidden="true"
-                >
+                <div className="psl-about-placeholder" aria-hidden="true">
                   <span className="psl-about-placeholder__mark" />
                   <span className="psl-about-placeholder__label">
                     {t(section.imageAltKey)}
@@ -73,10 +72,12 @@ export function About() {
                 <img
                   src={section.image ?? undefined}
                   alt={t(section.imageAltKey)}
-                  className={"imageClass" in section ? section.imageClass : undefined}
+                  className={
+                    "imageClass" in section ? section.imageClass : undefined
+                  }
                   width={section.id === "how" ? 768 : 1024}
                   height={section.id === "how" ? 1024 : 575}
-                  loading={index === 0 ? "eager" : "lazy"}
+                  loading="lazy"
                 />
               )}
               {section.placeholder ? (
@@ -91,9 +92,13 @@ export function About() {
             </div>
           </article>
         ))}
-      </div>
 
-      <StudioFeature />
+        <p className="psl-about-studio-link">
+          <HashLink to="/#studio" className="psl-textlink">
+            {t("about.studioCta")}
+          </HashLink>
+        </p>
+      </div>
     </>
   );
 }

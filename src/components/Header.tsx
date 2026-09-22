@@ -98,7 +98,7 @@ export function Header({ solid = false }: HeaderProps) {
       <header className={`psl-header${solidNav ? " psl-header--solid" : ""}`}>
         <NavLink to="/" className="psl-brand" aria-label="pluma home">
           <Logo
-            variant={isDark ? "fullWhite" : "fullColor"}
+            variant={!solidNav || isDark ? "fullWhite" : "fullColor"}
             className="psl-brand__logo"
             alt=""
           />

@@ -32,6 +32,8 @@ export type TestimonialRecord = {
  * Exact client wording from the trimmed testimonials sheet.
  * Quotes stay in the language they were written in.
  */
+export const featuredReviewId = "candice";
+
 export const testimonials: readonly TestimonialRecord[] = [
   {
     id: "sarah",
@@ -177,3 +179,9 @@ export const testimonials: readonly TestimonialRecord[] = [
     objectPosition: "center top",
   },
 ];
+
+export function testimonialById(id: string): TestimonialRecord {
+  const entry = testimonials.find((item) => item.id === id);
+  if (!entry) throw new Error(`No testimonial for id "${id}"`);
+  return entry;
+}
