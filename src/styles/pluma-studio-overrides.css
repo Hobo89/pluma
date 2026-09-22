@@ -1751,47 +1751,59 @@ button.psl-button {
 
 @media (max-width: 767px) {
   .psl-pricing-invite {
-    min-height: 30rem;
+    min-height: 34rem;
   }
 
   .psl-pricing-invite__copy {
     gap: var(--psl-space-12);
     max-width: min(56rem, calc(100vw - 32px));
-    padding-block: var(--psl-space-12);
+    padding-block: var(--psl-space-16) var(--psl-space-12);
     padding-inline: 28px;
   }
 
+  /* Dense canvas wash so type stays readable over nearby cards. */
   .psl-pricing-invite__copy::before {
-    inset: -28% -18%;
+    inset: -10% -6%;
+    background: radial-gradient(
+      ellipse 92% 78% at 50% 42%,
+      var(--psl-canvas) 0%,
+      var(--psl-canvas) 48%,
+      color-mix(in srgb, var(--psl-canvas) 72%, transparent) 68%,
+      transparent 86%
+    );
   }
 
   .psl-pricing-invite__title {
+    position: relative;
     padding-block: var(--psl-space-4);
     line-height: 1.28;
   }
 
+  /* Keep cards fully inside the section — no negative top that crops them. */
   .psl-pricing-invite__card--gold {
-    top: 2%;
-    left: -10%;
-    width: min(10.5rem, 48vw);
+    top: 4%;
+    left: -14%;
+    width: min(8.5rem, 38vw);
+    --tilt: -18deg;
   }
 
   .psl-pricing-invite__card--cyan {
-    top: 4%;
-    right: -12%;
-    width: min(9.5rem, 44vw);
+    top: 6%;
+    right: -16%;
+    width: min(7.5rem, 34vw);
+    --tilt: 16deg;
   }
 
   .psl-pricing-invite__card--green {
     bottom: 8%;
-    left: -6%;
-    width: min(9rem, 42vw);
+    left: -8%;
+    width: min(8.25rem, 38vw);
   }
 
   .psl-pricing-invite__card--pink {
     bottom: 6%;
-    right: -11%;
-    width: min(11rem, 50vw);
+    right: -12%;
+    width: min(9.5rem, 42vw);
   }
 }
 

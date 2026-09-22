@@ -1,6 +1,5 @@
 import { CopyBlocks } from "./CopyBlocks";
 import { HashLink } from "./HashLink";
-import { MeetStephen } from "./MeetStephen";
 import { Philosophy } from "./Philosophy";
 import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
@@ -36,8 +35,7 @@ export function About() {
   return (
     <>
       <div className="psl-container psl-page psl-about-page">
-        <MeetStephen headingLevel="h1" nested showMedia={false} />
-        <Philosophy headingLevel="h2" />
+        <Philosophy />
         {sections.map((section, index) => (
           <article
             key={section.id}
