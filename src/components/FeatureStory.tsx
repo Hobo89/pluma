@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import type { AnalyticsEvent } from "../lib/analytics";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
@@ -68,6 +69,7 @@ export function FeatureStory({
 }: FeatureStoryProps) {
   const { t } = useLanguage();
   const videoRef = useAmbientVideo({ whenVisible: true });
+  const [videoProgress, setVideoProgress] = useState(0);
   const hasCollage = Boolean(collage?.length);
   const hasVideo = Boolean(video);
   const stillsBelowVideo = hasVideo && hasCollage;
@@ -77,6 +79,34 @@ export function FeatureStory({
         .filter(Boolean)
         .join(". ")
     : "";
+
+  useEffect(() => {
+    if (!hasVideo) return;
+    const el = videoRef.current;
+    if (!el) return;
+
+    const update = () => {
+      const duration = el.duration;
+      if (!Number.isFinite(duration) || duration <= 0) {
+        setVideoProgress(0);
+        return;
+      }
+      setVideoProgress(Math.min(1, Math.max(0, el.currentTime / duration)));
+    };
+
+    update();
+    el.addEventListener("timeupdate", update);
+    el.addEventListener("seeked", update);
+    el.addEventListener("loadedmetadata", update);
+    el.addEventListener("ended", update);
+    return () => {
+      el.removeEventListener("timeupdate", update);
+      el.removeEventListener("seeked", update);
+      el.removeEventListener("loadedmetadata", update);
+      el.removeEventListener("ended", update);
+    };
+  }, [hasVideo, videoRef]);
+
   const stills = (
     <>
       {image && (
@@ -178,6 +208,12 @@ export function FeatureStory({
           >
             <source src={video} type="video/mp4" />
           </video>
+          <div className="psl-feature__video-progress" aria-hidden="true">
+            <div
+              className="psl-feature__video-progress-fill"
+              style={{ transform: `scaleX(${videoProgress})` }}
+            />
+          </div>
         </figure>
       ) : hasCollage && collage ? (
         <div className="psl-feature__media psl-feature__media--cluster">

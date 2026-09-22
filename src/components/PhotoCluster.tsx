@@ -9,11 +9,6 @@ export type PhotoClusterImage = {
 
 export const studioPhotoCluster = [
   {
-    src: "/assets/images/studio-staircase.jpg",
-    captionKey: "studio.photos.entrance",
-    position: "50% 40%",
-  },
-  {
     src: "/assets/images/studio-hallway.jpg",
     captionKey: "studio.photos.hallway",
     position: "50% 45%",

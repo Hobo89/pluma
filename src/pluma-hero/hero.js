@@ -318,7 +318,10 @@ export function initPlumaHero(root, options = {}) {
   }
 
   function setLanguage(next, notify = true) {
-    if (!translations[next]) return;
+    if (!translations[next] || next === language) {
+      if (next === language && notify) c.onLanguageChange?.(next);
+      return;
+    }
     language = next;
     root.lang = next;
     const t = copyFor(c, next);

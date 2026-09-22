@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { calConfigured, calDirectUrl, calTargetFor } from "../config/cal";
 import type { PricingDuration } from "../config/pricing";
@@ -13,26 +13,45 @@ type Status = "loading" | "ready" | "failed";
 
 export function CalEmbed({ duration }: { duration?: PricingDuration }) {
   const { t, language } = useLanguage();
-  const theme = "light";
+  const theme = "light" as const;
   const brandColor = "#FF6F0C";
 
   const [status, setStatus] = useState<Status>("loading");
   const [attempt, setAttempt] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const statusRef = useRef<Status>("loading");
 
-  const target = calTargetFor(duration);
+  const target = useMemo(() => calTargetFor(duration), [duration]);
   const locale = language === "es" ? "es" : "en";
+  const calLink = target?.link ?? "";
+  const embedKey = `${calLink}-${locale}-${attempt}`;
+
+  // Stable objects for @calcom/embed-react — a fresh `config`/`initConfig`
+  // each render re-runs its init effect and can wipe in-iframe navigation
+  // (event type → calendar back to the profile welcome).
+  const initConfig = useMemo(() => ({}), []);
+  const config = useMemo(
+    () => ({
+      ...(target?.params ?? {}),
+      layout: "month_view" as const,
+      theme,
+      locale,
+    }),
+    [target?.params, theme, locale],
+  );
 
   useEffect(() => {
-    if (!target) return;
+    if (!calLink) return;
 
     let cancelled = false;
+    statusRef.current = "loading";
     setStatus("loading");
 
     const timeout = window.setTimeout(() => {
       if (cancelled) return;
       setStatus((current) => {
         if (current === "loading") {
+          statusRef.current = "failed";
           track({ name: "booking_widget_failed", reason: "timeout" });
           return "failed";
         }
@@ -42,16 +61,22 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
 
     const onReady = () => {
       if (cancelled) return;
-      setStatus("ready");
-      track({
-        name: "booking_widget_loaded",
-        language,
-        ...(duration ? { duration } : {}),
-      });
+      // Cal also fires linkReady when navigating to an event type; keep status
+      // stable so we never reconfigure and wipe the calendar view.
+      setStatus((current) => (current === "ready" ? current : "ready"));
+      if (statusRef.current !== "ready") {
+        statusRef.current = "ready";
+        track({
+          name: "booking_widget_loaded",
+          language,
+          ...(duration ? { duration } : {}),
+        });
+      }
     };
 
     const onFailed = () => {
       if (cancelled) return;
+      statusRef.current = "failed";
       setStatus("failed");
       track({ name: "booking_widget_failed", reason: "embed_error" });
     };
@@ -87,7 +112,8 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
       api?.("off", { action: "linkFailed", callback: onFailed });
       api?.("off", { action: "bookingSuccessful", callback: onBooked });
     };
-  }, [attempt, duration, language, target, theme]);
+    // Re-bind only when the embed instance itself remounts (link / locale / retry).
+  }, [embedKey, calLink, duration, language, theme, brandColor]);
 
   useEffect(() => {
     if (status !== "ready") return;
@@ -156,15 +182,11 @@ export function CalEmbed({ duration }: { duration?: PricingDuration }) {
       {status !== "failed" ? (
         <div className="psl-embed__frame" data-status={status}>
           <Cal
-            key={`${target.link}-${locale}-${attempt}`}
-            calLink={target.link}
+            key={embedKey}
+            calLink={calLink}
             style={{ width: "100%", height: "100%", minHeight: "650px" }}
-            config={{
-              ...target.params,
-              layout: "month_view",
-              theme,
-              locale,
-            }}
+            config={config}
+            initConfig={initConfig}
           />
         </div>
       ) : null}
