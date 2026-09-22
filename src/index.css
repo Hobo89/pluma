@@ -82,9 +82,10 @@ body {
 }
 
 .testimonial-card .psl-quote__areas {
-  left: 1.2rem;
-  bottom: 0.9rem;
-  max-width: calc(100% - 2.4rem);
+  position: static;
+  justify-content: center;
+  max-width: none;
+  margin-top: 0.35rem;
 }
 
 .testimonial-name-row {

@@ -89,9 +89,9 @@ function TestimonialCard({
               <FlagMarks flags={flags} label={countriesLabel} />
             </span>
           ) : null}
+          <AreaBadges areas={areas} />
         </div>
       </figcaption>
-      <AreaBadges areas={areas} />
     </figure>
   );
 }

@@ -216,6 +216,7 @@ export function EditorialQuote() {
                 <FlagMarks flags={active.flags} label={countriesLabel} />
               </span>
             ) : null}
+            <AreaBadges areas={active.areas} />
           </figcaption>
         </div>
       </figure>
@@ -274,7 +275,6 @@ export function EditorialQuote() {
                     : undefined
                 }
               />
-              {isSpotlight ? <AreaBadges areas={item.areas} /> : null}
             </button>
           );
         })}

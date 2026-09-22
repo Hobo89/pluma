@@ -71,6 +71,11 @@
 .ph-drawer nav{gap:0;padding:20px 0 0}
 .ph-drawer nav a{display:flex;align-items:center;justify-content:center;min-height:64px;width:100%;padding:20px 26px}
 .ph-drawer nav a:hover{background:rgba(255,255,255,.28)}
+.ph-drawer nav a:focus,
+.ph-drawer nav a:focus-visible{
+  outline:none;
+  background:rgba(255,255,255,.28);
+}
 .ph-nav[data-open="true"] .ph-bar{border-top:1px solid rgba(255,255,255,.45)}
 @media(max-width:699px){
   .ph-menu{
@@ -138,6 +143,12 @@
 .ph-nav--site button:focus-visible {
   outline: 2px solid #7A3E1B;
   outline-offset: 5px;
+}
+.ph-nav--site .ph-drawer nav a:focus,
+.ph-nav--site .ph-drawer nav a:focus-visible {
+  outline: none;
+  outline-offset: 0;
+  background: rgba(255, 255, 255, 0.28);
 }
 .ph-nav--site .ph-drawer[hidden] {
   display: none !important;
