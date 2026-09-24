@@ -615,7 +615,7 @@ html.dark .psl-field input {
 .psl-feature-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--psl-space-4) var(--psl-space-6);
+  gap: var(--psl-space-6) var(--psl-space-6);
   width: 100%;
   margin: 0;
   padding: 0;
@@ -653,13 +653,6 @@ html.dark .psl-field input {
   padding-top: 0.35rem;
 }
 
-@media (max-width: 767px) {
-  .psl-feature-list {
-    grid-template-columns: 1fr;
-    gap: var(--psl-space-4);
-  }
-}
-
 .psl-feature__body {
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
@@ -671,6 +664,8 @@ html.dark .psl-field input {
   justify-self: stretch;
   text-align: left;
   min-width: 0;
+  /* Body gap is 16px; add 16px more for 32px from copy / before CTA. */
+  margin-block: var(--psl-space-4);
 }
 
 .psl-feature,
@@ -1556,10 +1551,6 @@ button.psl-button {
   .psl-safety__grid {
     grid-template-columns: 1fr;
   }
-}
-
-.psl-page.psl-about-page {
-  padding-top: var(--psl-space-8);
 }
 
 .psl-philosophy {
@@ -3265,13 +3256,20 @@ html.dark
 
 .psl-meet {
   display: grid;
-  gap: var(--psl-space-10);
+  /* Intro group → review card: 32px (supported spacing scale). */
+  gap: var(--psl-space-8);
 }
 
 /* Pull Meet Stephen closer to the hero on the homepage. */
 .ph-hero-host + .psl-meet.psl-section--roomy {
   margin-block-start: 0;
   padding-top: clamp(28px, 3vw, 48px);
+}
+
+@media (max-width: 991px) {
+  .ph-hero-host + .psl-meet.psl-section--roomy {
+    padding-top: var(--psl-space-6);
+  }
 }
 
 .psl-meet__intro {

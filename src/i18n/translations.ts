@@ -133,10 +133,10 @@ export const translations = {
     about: {
       title: "A good massage starts with listening",
       titleHighlight: "listening",
-      meetTitle: "Welcome to my home studio, I'm Stephen",
-      meetTitleHighlight: "Stephen",
+      meetTitle: "Welcome to my home studio",
+      meetTitleHighlight: "home studio",
       facts:
-        "Certified masseur. Unhurried, one-to-one sessions in English, French or Spanish.",
+        "I'm Stephen, a certified masseur, providing unhurried, one-to-one sessions in English, French or Spanish.",
       adapt:
         "I adapt the pressure, pace and techniques—and remember what worked next time.",
       seeReviews: "See more reviews",
@@ -163,8 +163,8 @@ export const translations = {
       },
     },
     types: {
-      title: "You can, but don’t need to, choose a technique.",
-      titleHighlight: "technique",
+      title: "Techniques adapt to what your body wants.",
+      titleHighlight: "adapt",
       description:
         "I adapt to how you feel today, remember previous sessions, and leave space to reset. You can choose a technique, but you don’t need to.",
       pregnancy: "Pregnancy",
@@ -346,10 +346,10 @@ export const translations = {
       returnCta: "Book massage",
     },
     studio: {
-      title: "A calm home studio",
+      title: "A calm home studio next to Central Market",
       titleHighlight: "calm",
       description:
-        "Step inside the space where sessions take place — a private, quiet room for rest.",
+        "Step inside the space where sessions take place. Private, calming and rejuvenating.",
       accessNote:
         "Access to the third floor is by stairs, without a lift, so unfortunately I cannot welcome wheelchair users or people with reduced mobility.",
       collageLabel: "Scenes from the pluma home studio",
@@ -770,10 +770,10 @@ export const translations = {
     about: {
       title: "Un buen masaje empieza por escuchar",
       titleHighlight: "escuchar",
-      meetTitle: "Bienvenido a mi estudio en casa, soy Stephen",
-      meetTitleHighlight: "Stephen",
+      meetTitle: "Bienvenido a mi estudio en casa",
+      meetTitleHighlight: "estudio en casa",
       facts:
-        "Masajista certificado. Sesiones pausadas, uno a uno, en inglés, francés o español.",
+        "Soy Stephen, masajista certificado, y ofrezco sesiones pausadas, uno a uno, en inglés, francés o español.",
       adapt:
         "Adapto la presión, el ritmo y las técnicas, y tengo en cuenta lo que funcionó en tus sesiones anteriores.",
       seeReviews: "Ver más opiniones",
@@ -800,8 +800,8 @@ export const translations = {
       },
     },
     types: {
-      title: "Puedes elegir una técnica, pero no hace falta.",
-      titleHighlight: "técnica",
+      title: "Las técnicas se adaptan a lo que tu cuerpo pide.",
+      titleHighlight: "adaptan",
       description:
         "Me adapto a cómo te encuentras hoy, recuerdo las sesiones anteriores y dejo espacio para bajar el ritmo. Puedes elegir una técnica, pero no hace falta.",
       pregnancy: "Embarazo",
@@ -986,10 +986,10 @@ export const translations = {
       returnCta: "Reservar masaje",
     },
     studio: {
-      title: "Un estudio tranquilo en casa",
+      title: "Un estudio tranquilo en casa junto al Mercado Central",
       titleHighlight: "tranquilo",
       description:
-        "Entra en el espacio donde tienen lugar las sesiones — una habitación privada y silenciosa para descansar.",
+        "Entra en el espacio donde tienen lugar las sesiones. Privado, calmado y rejuvenecedor.",
       accessNote:
         "El acceso a la tercera planta es por escaleras, sin ascensor, así que lamentablemente no puedo recibir a personas en silla de ruedas ni con movilidad reducida.",
       collageLabel: "Escenas del estudio en casa pluma",

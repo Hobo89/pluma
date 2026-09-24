@@ -168,7 +168,7 @@ export const testimonials: readonly TestimonialRecord[] = [
     id: "candice",
     name: "Candice",
     quote:
-      "Great experience—Stephen was professional, attentive, and highly skilled. He listened to my needs and focused on the areas that needed the most work. I left feeling relaxed, refreshed, and pain-free. Highly recommend!",
+      "Great experience! Stephen was professional, attentive, and highly skilled. He listened to my needs and focused on the areas that needed the most work. I left feeling relaxed, refreshed, and pain-free. Highly recommend!",
     image: "/testimonials/candice.jpg",
     flags: [
       { type: "emoji", glyph: "🇺🇸" },
