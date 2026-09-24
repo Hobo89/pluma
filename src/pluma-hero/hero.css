@@ -78,6 +78,11 @@
   background:transparent;
 }
 .ph-nav[data-open="true"] .ph-bar{border-top:1px solid rgba(255,255,255,.45)}
+/* Mobile home mark — fixed top-right; desktop keeps the bar logo. */
+.ph-home {
+  display: none;
+}
+
 @media(max-width:699px){
   .ph-menu{
     background:rgba(255,250,243,.42);
@@ -85,6 +90,54 @@
     -webkit-backdrop-filter:blur(24px) saturate(1.1);
     backdrop-filter:blur(24px) saturate(1.1);
     box-shadow:inset 1px 1px 0 rgba(255,255,255,.7);
+  }
+  .ph-home{
+    background:rgba(255,250,243,.42);
+    border-color:rgba(255,255,255,.55);
+    -webkit-backdrop-filter:blur(24px) saturate(1.1);
+    backdrop-filter:blur(24px) saturate(1.1);
+  }
+  .ph-home{
+    position:fixed;
+    top:calc(14px + env(safe-area-inset-top));
+    /* Match the hamburger’s right edge inside the centered bottom bar. */
+    right:calc((100vw - min(470px, calc(100vw - 28px))) / 2 + 9px);
+    z-index:var(--psl-z-nav,100000);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:52px;
+    min-height:48px;
+    padding:6px 7px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.55);
+    color:#595650;
+    text-decoration:none;
+    touch-action:manipulation;
+    box-shadow:
+      0 6px 16px rgba(74,53,37,.14),
+      0 2px 4px rgba(74,53,37,.08),
+      inset 1px 1px 0 rgba(255,255,255,.7);
+  }
+  .ph-home:focus-visible{
+    outline:2px solid #7A3E1B;
+    outline-offset:5px;
+  }
+  .ph-home__mark{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    width:100%;
+  }
+  .ph-home__wordmark,
+  .ph-home__feather{
+    display:block;
+    width:100%;
+    height:auto;
+    /* Warm wordmark → nav ink so the mark reads on frosted glass. */
+    filter:brightness(0) opacity(0.72);
   }
 }
 
@@ -97,10 +150,15 @@
     border-color: #d8cec0;
     box-shadow: 0 3px 8px #4a35251c, 0 1px 2px #4a352529;
   }
-  .ph-menu {
+  .ph-menu,
+  .ph-home {
     background: #fffaf3;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
+    border-color: #e5d9c9;
+  }
+  .ph-home {
+    box-shadow: 0 6px 16px rgba(74, 53, 37, 0.14), 0 2px 4px rgba(74, 53, 37, 0.08);
   }
 }
 

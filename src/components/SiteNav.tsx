@@ -78,18 +78,42 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
   const closeMenu = () => setOpen(false);
 
   const nav = (
-    <header
-      ref={setRefs}
-      className="ph-nav ph-nav--site"
-      data-ph-nav
-      data-ph-hero-navigation={heroLinked ? "" : undefined}
-      data-open={open ? "true" : "false"}
-      style={
-        {
-          "--ph-feather": `url("${asset("feather.svg")}")`,
-        } as CSSProperties
-      }
-    >
+    <>
+      <Link
+        className="ph-home"
+        to={LINKS.home}
+        aria-label={labels.home}
+        onClick={closeMenu}
+      >
+        <span className="ph-home__mark" aria-hidden="true">
+          <img
+            className="ph-home__wordmark"
+            src={asset("wordmark.svg")}
+            width="1015"
+            height="350"
+            alt=""
+          />
+          <img
+            className="ph-home__feather"
+            src={asset("feather-nav.svg")}
+            width="1253"
+            height="132"
+            alt=""
+          />
+        </span>
+      </Link>
+      <header
+        ref={setRefs}
+        className="ph-nav ph-nav--site"
+        data-ph-nav
+        data-ph-hero-navigation={heroLinked ? "" : undefined}
+        data-open={open ? "true" : "false"}
+        style={
+          {
+            "--ph-feather": `url("${asset("feather.svg")}")`,
+          } as CSSProperties
+        }
+      >
       <div className="ph-drawer" id={drawerId} hidden={!open}>
         <Link
           className="ph-drawer-logo"
@@ -179,6 +203,7 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
         </button>
       </div>
     </header>
+    </>
   );
 
   return createPortal(nav, document.body);
