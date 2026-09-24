@@ -133,7 +133,8 @@ export const translations = {
     about: {
       title: "A good massage starts with listening",
       titleHighlight: "listening",
-      meetTitle: "Welcome to my home studio",
+      meetWelcome: "Welcome",
+      meetTitle: "to my home studio",
       meetTitleHighlight: "home studio",
       facts:
         "I'm Stephen, a certified masseur, providing unhurried, one-to-one sessions in English, French or Spanish.",
@@ -346,7 +347,7 @@ export const translations = {
       returnCta: "Book massage",
     },
     studio: {
-      title: "A calm home studio to the Central Market",
+      title: "A calm home studio next to the Central Market",
       titleHighlight: "calm",
       description:
         "Step inside the space where sessions take place. Private, calming and rejuvenating.",
@@ -770,7 +771,8 @@ export const translations = {
     about: {
       title: "Un buen masaje empieza por escuchar",
       titleHighlight: "escuchar",
-      meetTitle: "Bienvenido a mi estudio en casa",
+      meetWelcome: "Bienvenido",
+      meetTitle: "a mi estudio en casa",
       meetTitleHighlight: "estudio en casa",
       facts:
         "Soy Stephen, masajista certificado, y ofrezco sesiones pausadas, uno a uno, en inglés, francés o español.",
@@ -986,7 +988,7 @@ export const translations = {
       returnCta: "Reservar masaje",
     },
     studio: {
-      title: "Un estudio tranquilo en casa al Mercado Central",
+      title: "Un estudio tranquilo en casa junto al Mercado Central",
       titleHighlight: "tranquilo",
       description:
         "Entra en el espacio donde tienen lugar las sesiones. Privado, calmado y rejuvenecedor.",

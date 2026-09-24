@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import {
   featuredReviewId,
@@ -7,6 +8,7 @@ import {
 import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import { HashLink } from "./HashLink";
 import { ReviewCard } from "./ReviewCard";
+import { Typewriter } from "./Typewriter";
 
 type MeetStephenProps = {
   headingLevel?: "h1" | "h2";
@@ -23,8 +25,18 @@ export function MeetStephen({
   showMedia = true,
   nested = false,
 }: MeetStephenProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const featured = showReview ? testimonialById(featuredReviewId) : null;
+  const HeadingTag = headingLevel;
+  const welcome = t("about.meetWelcome");
+  const rest = t("about.meetTitle");
+  const titleText = `${welcome}\n${rest}`;
+  const [typed, setTyped] = useState(false);
+  const markTyped = useCallback(() => setTyped(true), []);
+
+  useEffect(() => {
+    setTyped(false);
+  }, [language, titleText]);
 
   return (
     <section
@@ -34,13 +46,33 @@ export function MeetStephen({
     >
       <div className="psl-meet__intro">
         <div className="psl-meet__body">
-          <BrandMarkedHeading
-            as={headingLevel}
-            id="meet-stephen-heading"
-            className="psl-title"
-            text={t("about.meetTitle")}
-            word={t("about.meetTitleHighlight")}
-          />
+          {typed ? (
+            <BrandMarkedHeading
+              as={headingLevel}
+              id="meet-stephen-heading"
+              className="psl-title psl-meet__title"
+              text={titleText}
+              word={t("about.meetTitleHighlight")}
+            />
+          ) : (
+            <HeadingTag
+              key={`${language}:${titleText}`}
+              id="meet-stephen-heading"
+              className="psl-title psl-meet__title"
+            >
+              <Typewriter
+                as="span"
+                text={titleText}
+                speed={55}
+                initialDelay={200}
+                loop={false}
+                showCursor
+                cursorChar="|"
+                className="psl-meet__typewriter"
+                onComplete={markTyped}
+              />
+            </HeadingTag>
+          )}
           <p className="psl-copy psl-copy--lead">{t("about.facts")}</p>
           <p className="psl-copy">{t("about.adapt")}</p>
           {showAboutLink ? (

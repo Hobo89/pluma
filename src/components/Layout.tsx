@@ -1,9 +1,10 @@
 import { useLayoutEffect, useRef, type RefObject } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { startBreathReveal } from "../lib/breathReveal";
+import { useLanguage } from "../context/LanguageContext";
 import { BookingModalProvider } from "./BookingModal";
 import { Footer } from "./Footer";
 import { SiteNav } from "./SiteNav";
-import { useLanguage } from "../context/LanguageContext";
 
 export type LayoutOutletContext = {
   navRef: RefObject<HTMLElement | null>;
@@ -44,6 +45,10 @@ export function Layout() {
       }
     });
   }, [pathname, hash]);
+
+  useLayoutEffect(() => {
+    return startBreathReveal(document);
+  }, [pathname]);
 
   return (
     <BookingModalProvider>
