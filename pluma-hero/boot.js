@@ -1,8 +1,12 @@
-/* Homepage script-failure watchdog. Hides decorative layers until the hero
-   controller releases them. Does not skip the intro on interaction or timers. */
+/* Unused by the application entry: the first-paint guard is now inlined in
+   index.html so it cannot race the module bundle. Kept for cached HTML and
+   older deploys that still request this URL. */
 (() => {
+  const path = location.pathname.replace(/\/+$/, "") || "/";
+  if (path !== "/" && path !== "/index.html") return;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (navigator.connection?.saveData) return;
+  if (window.__plumaHeroBoot) return;
 
   const html = document.documentElement;
   let timeout;
@@ -14,12 +18,15 @@
       html.removeAttribute("data-ph-intro-pending");
       guard.status = "released";
       guard.releaseReason = reason;
+      if (reason === "watchdog") {
+        document.querySelectorAll(".ph-hero:not([data-ready])").forEach((hero) => {
+          hero.removeAttribute("data-phase");
+        });
+      }
     },
   };
 
   window.__plumaHeroBoot = guard;
   html.setAttribute("data-ph-intro-pending", "");
-
-  // Fail open if the module bundle never mounts the controller.
-  timeout = setTimeout(() => guard.release("watchdog"), 8000);
+  timeout = setTimeout(() => guard.release("watchdog"), 4000);
 })();
