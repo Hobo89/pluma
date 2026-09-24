@@ -138,7 +138,7 @@ export const translations = {
       facts:
         "I'm Stephen, a certified masseur, providing unhurried, one-to-one sessions in English, French or Spanish.",
       adapt:
-        "I adapt the pressure, pace and techniques—and remember what worked next time.",
+        "I adapt the pressure, pace and techniques, and remember what you enjoyed the most between sessions.",
       seeReviews: "See more reviews",
       studioCta: "See the home studio",
       body: "I only see a few people each day. I don’t like rushing sessions.",
@@ -346,7 +346,7 @@ export const translations = {
       returnCta: "Book massage",
     },
     studio: {
-      title: "A calm home studio next to Central Market",
+      title: "A calm home studio to the Central Market",
       titleHighlight: "calm",
       description:
         "Step inside the space where sessions take place. Private, calming and rejuvenating.",
@@ -775,7 +775,7 @@ export const translations = {
       facts:
         "Soy Stephen, masajista certificado, y ofrezco sesiones pausadas, uno a uno, en inglés, francés o español.",
       adapt:
-        "Adapto la presión, el ritmo y las técnicas, y tengo en cuenta lo que funcionó en tus sesiones anteriores.",
+        "Adapto la presión, el ritmo y las técnicas, y recuerdo lo que más te gustó entre sesiones.",
       seeReviews: "Ver más opiniones",
       studioCta: "Ver el estudio",
       body: "Solo atiendo a unas pocas personas al día. No me gusta trabajar con prisas.",
@@ -986,7 +986,7 @@ export const translations = {
       returnCta: "Reservar masaje",
     },
     studio: {
-      title: "Un estudio tranquilo en casa junto al Mercado Central",
+      title: "Un estudio tranquilo en casa al Mercado Central",
       titleHighlight: "tranquilo",
       description:
         "Entra en el espacio donde tienen lugar las sesiones. Privado, calmado y rejuvenecedor.",
