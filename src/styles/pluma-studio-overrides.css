@@ -3445,24 +3445,6 @@ html.dark
   will-change: auto;
 }
 
-.psl-typewriter {
-  display: inline;
-  white-space: pre-wrap;
-}
-
-.psl-typewriter__cursor {
-  display: inline-block;
-  margin-left: 0.05em;
-  color: var(--psl-heading);
-  animation: psl-typewriter-blink 1s step-end infinite;
-}
-
-@keyframes psl-typewriter-blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .psl-breath,
   .psl-breath.is-in {
@@ -3471,10 +3453,6 @@ html.dark
     transform: none;
     transition: none;
     will-change: auto;
-  }
-
-  .psl-typewriter__cursor {
-    animation: none;
   }
 }
 

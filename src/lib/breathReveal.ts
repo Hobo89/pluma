@@ -11,9 +11,6 @@ function prefersReducedMotion() {
 
 function shouldSkip(el: HTMLElement) {
   if (el.closest(EXCLUDE_ANCESTOR)) return true;
-  // Live typewriter: wait until BrandMarkedHeading replaces it.
-  if (el.querySelector(".psl-typewriter")) return true;
-  if (el.classList.contains("psl-typewriter")) return true;
   return false;
 }
 
@@ -24,7 +21,7 @@ function settle(el: HTMLElement) {
 
 /**
  * One-shot scroll breath for titles and copy: soft blur + drop → sharp.
- * Re-scans `#main` on DOM mutations (route content, typewriter swap).
+ * Re-scans `#main` on DOM mutations (route content swaps).
  */
 export function startBreathReveal(root: ParentNode = document): () => void {
   const reduced = prefersReducedMotion();
