@@ -119,9 +119,10 @@ html[data-ph-hero-phase="intro"] .ph-nav {
     display:flex;
     align-items:center;
     justify-content:center;
+    box-sizing:border-box;
     width:52px;
-    min-height:48px;
-    padding:6px 7px;
+    height:48px;
+    padding:5px 6px;
     border-radius:15px;
     border:1px solid rgba(255,255,255,.55);
     color:#595650;
@@ -134,19 +135,29 @@ html[data-ph-hero-phase="intro"] .ph-nav {
     outline-offset:3px;
   }
   .ph-home__mark{
-    display:flex;
-    flex-direction:column;
+    /* Same optical lockup as the hero brand: wordmark in the middle band,
+       feather full-bleed and slightly wider. */
+    display:grid;
+    grid-template-columns:14% 80% 6%;
     align-items:center;
-    justify-content:center;
-    gap:2px;
+    justify-items:stretch;
     width:100%;
+    line-height:0;
   }
-  .ph-home__wordmark,
-  .ph-home__feather{
+  .ph-home__wordmark{
+    grid-column:2;
     display:block;
     width:100%;
     height:auto;
     /* Warm wordmark → nav ink so the mark reads on frosted glass. */
+    filter:brightness(0) opacity(0.72);
+  }
+  .ph-home__feather{
+    grid-column:1 / -1;
+    display:block;
+    width:100%;
+    height:auto;
+    margin-top:-1px;
     filter:brightness(0) opacity(0.72);
   }
 }

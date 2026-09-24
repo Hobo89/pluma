@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import type { PricingDuration } from "../config/pricing";
+import { site } from "../config/site";
 import { useLanguage } from "../context/LanguageContext";
 import { registerBookingOpener } from "../lib/openCalBookingModal";
 import { CalEmbed } from "./CalEmbed";
@@ -109,10 +110,26 @@ export function BookingModalProvider({ children }: { children: ReactNode }) {
                 {t("booking.close")}
               </button>
             </div>
-            <p className="psl-copy psl-copy--small psl-booking-dialog__note">
-              {t("booking.practicalNote")}
-            </p>
-            <p className="psl-copy psl-copy--small">{t("booking.timezone")}</p>
+            <div className="psl-booking-dialog__intro">
+              <p className="psl-copy psl-copy--small psl-booking-dialog__note">
+                {t("booking.dialogWelcome")}
+              </p>
+              <p className="psl-copy psl-copy--small psl-booking-dialog__note">
+                <span aria-hidden="true">📨 </span>
+                {t("booking.dialogConfirmation")}
+              </p>
+              <div className="psl-booking-dialog__map">
+                <iframe
+                  title={t("booking.mapTitle")}
+                  src={site.mapsEmbedUrl}
+                  width="100%"
+                  height="300"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
             <div className="psl-booking-dialog__embed">
               <CalEmbed duration={request?.duration} />
             </div>

@@ -72,7 +72,7 @@ export function SessionCards({
                   label={t("durations.cta", { minutes: rate.minutes })}
                   duration={rate.minutes}
                   placement={placement}
-                  className={`psl-button${recommended ? "" : " psl-button--ghost"}`}
+                  className="psl-button psl-button--ghost"
                 />
               </div>
             </div>

@@ -77,13 +77,23 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
 
   const closeMenu = () => setOpen(false);
 
+  const onHomeClick = () => {
+    closeMenu();
+    if (location.pathname !== "/") return;
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches
+      ? "auto"
+      : "smooth";
+    window.scrollTo({ top: 0, left: 0, behavior });
+  };
+
   const nav = (
     <>
       <Link
         className="ph-home"
         to={LINKS.home}
         aria-label={labels.home}
-        onClick={closeMenu}
+        onClick={onHomeClick}
       >
         <span className="ph-home__mark" aria-hidden="true">
           <img

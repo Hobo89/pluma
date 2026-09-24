@@ -2389,12 +2389,6 @@ button.psl-button {
   }
 }
 
-.psl-session-card--recommended {
-  /* 2px border; 23px padding keeps the content box aligned with 1px neighbors. */
-  border: 2px solid var(--psl-action);
-  padding: 23px;
-}
-
 .psl-session-card__badge-row {
   display: flex;
   align-items: center;
@@ -2410,11 +2404,12 @@ button.psl-button {
   box-sizing: border-box;
   margin: 0;
   padding: 4px 12px;
-  border: 1px solid var(--psl-action-secondary-border);
+  border: 1px solid var(--psl-action);
   border-radius: 999px;
-  background: #f4efe7;
-  color: #2b2823;
+  background: transparent;
+  color: var(--psl-heading);
   font: 500 var(--psl-type-small) / var(--psl-type-small-lh) var(--psl-font-body);
+  text-transform: lowercase;
   white-space: nowrap;
 }
 
@@ -3685,6 +3680,26 @@ html.dark
 
 .psl-booking-dialog__note {
   max-width: none;
+}
+
+.psl-booking-dialog__intro {
+  display: grid;
+  gap: var(--psl-space-4);
+}
+
+.psl-booking-dialog__map {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--psl-line);
+  border-radius: var(--psl-radius-media);
+  background: var(--psl-panel);
+}
+
+.psl-booking-dialog__map iframe {
+  display: block;
+  width: 100%;
+  height: 300px;
+  border: 0;
 }
 
 .psl-booking-dialog__embed {

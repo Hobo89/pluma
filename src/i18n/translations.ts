@@ -202,7 +202,7 @@ export const translations = {
       inviteHighlight: "worked",
       inviteSupport:
         "Choose five or ten sessions when you want massage to become part of your rhythm.",
-      inviteCta: "See vouchers.",
+      inviteCta: "See vouchers",
       voucherTitle: "Vouchers",
       voucherDescription:
         "A voucher covers several sessions of the same length at a lower price per session.",
@@ -236,6 +236,11 @@ export const translations = {
       iframeTitle: "Book a massage with Stephen",
       dialogTitle: "Book a massage with Stephen",
       close: "Close booking",
+      dialogWelcome:
+        "Hello there, I'm very happy to welcome you to my home studio, just a five-minute walk from Central Market, in the Old Town.",
+      dialogConfirmation:
+        "Once you book, a confirmation email and calendar invite with the location will be sent.",
+      mapTitle: "Map of Pluma home studio near Central Market, Valencia Old Town",
       practicalNote:
         "Please use this field for practical preferences only. Do not include medical or health information.",
       loading: "Loading the calendar…",
@@ -266,7 +271,7 @@ export const translations = {
       validityNote:
         "(2) Five-session vouchers are valid for three months. Ten-session vouchers are valid for six months. The validity period begins with the first session, which must take place within 30 days after the voucher is issued.",
       interestedTitle: "Interested in a voucher?",
-      cta: "Ask about a voucher.",
+      cta: "Ask about a voucher",
       enquirySubject: "Voucher inquiry",
       enquiryBody:
         "Hello Stephen,%0D%0A%0D%0AI would like to ask about a voucher.%0D%0A%0D%0AThank you,",
@@ -771,7 +776,7 @@ export const translations = {
     about: {
       title: "Un buen masaje empieza por escuchar",
       titleHighlight: "escuchar",
-      meetWelcome: "Bienvenido",
+      meetWelcome: "Bienvenid@",
       meetTitle: "a mi estudio en casa",
       meetTitleHighlight: "estudio en casa",
       facts:
@@ -842,7 +847,7 @@ export const translations = {
       inviteHighlight: "funcionó",
       inviteSupport:
         "Elige cinco o diez sesiones cuando quieras que el masaje forme parte de tu ritmo.",
-      inviteCta: "Ver bonos.",
+      inviteCta: "Ver bonos",
       voucherTitle: "Bonos",
       voucherDescription:
         "Un bono cubre varias sesiones de la misma duración a un precio por sesión más bajo.",
@@ -877,6 +882,12 @@ export const translations = {
       iframeTitle: "Reservar un masaje con Stephen",
       dialogTitle: "Reservar un masaje con Stephen",
       close: "Cerrar reserva",
+      dialogWelcome:
+        "Hola, me alegra mucho darte la bienvenida a mi estudio en casa, a solo cinco minutos a pie del Mercado Central, en el casco antiguo.",
+      dialogConfirmation:
+        "Cuando reserves, recibirás un email de confirmación y una invitación de calendario con la ubicación.",
+      mapTitle:
+        "Mapa del estudio en casa de Pluma cerca del Mercado Central, casco antiguo de Valencia",
       practicalNote:
         "Utiliza este campo solo para preferencias prácticas. No incluyas información médica ni de salud.",
       loading: "Cargando el calendario…",
@@ -907,7 +918,7 @@ export const translations = {
       validityNote:
         "(2) Los bonos de cinco sesiones tienen una validez de tres meses. Los de diez sesiones, de seis meses. La validez empieza con la primera sesión, que debe tener lugar dentro de los 30 días posteriores a la emisión del bono.",
       interestedTitle: "¿Te interesa un bono?",
-      cta: "Consultar un bono.",
+      cta: "Consultar un bono",
       enquirySubject: "Consulta sobre un bono",
       enquiryBody:
         "Hola Stephen:%0D%0A%0D%0AMe gustaría consultar por un bono.%0D%0A%0D%0AGracias,",

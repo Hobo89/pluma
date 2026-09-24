@@ -69,7 +69,7 @@
   background-clip: border-box;
   color: var(--psl-heading);
   border: 1px solid var(--psl-action-secondary-border);
-  text-transform: none;
+  text-transform: lowercase;
 }
 .psl-button:disabled,
 .psl-button[aria-disabled="true"] {
