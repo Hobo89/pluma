@@ -1,0 +1,31 @@
+---
+description: Strict implementation rules for the Pluma homepage hero opening reliability and performance fix
+globs:
+  - "**/*hero*"
+  - "**/index.html"
+  - "**/*.{css,scss,tsx,ts,jsx,js}"
+alwaysApply: false
+---
+
+# Pluma hero opening: strict implementation rules
+
+When implementing the task in `CURSOR_IMPLEMENTATION.md`:
+
+- Read that file completely before editing.
+- Locate and modify original source. Never edit minified bundles, hashed assets, `dist`, `build`, or deployed output.
+- Preserve the current look, sequence, scene selection, responsive sources, accessibility behavior, fallback poster, navigation, localization, reduced motion, Save-Data handling, and controller/editor API.
+- Keep scope to the hero controller, deterministic head guard, directly related styles, and meaningful tests.
+- Do not add dependencies, blanket error suppression, arbitrary delay fixes, or eager loading of every video.
+- First-frame success requires a presented frame when `requestVideoFrameCallback` exists. `loadeddata` alone is insufficient.
+- The `preparing` phase owns video playback. Ordinary visibility and resize reconciliation must not pause, reload, or replace it.
+- Every readiness attempt must settle once. A stale or destroyed attempt must resolve harmlessly and must not mutate current state.
+- Decode the responsive image element's selected `currentSrc`; do not separately fetch a fixed-size duplicate for readiness.
+- During normal playback, let opacity/transform Web Animations API effects play natively. Manually seek them only for editor/preview/scrubbing behavior.
+- Preserve the SVG mask animation but avoid duplicate DOM/SVG writes. Never describe SVG clip-path updates as compositor-only.
+- Put the pending-state guard synchronously before the application module. It must be idempotent and fail open after 4000 ms.
+- Do not weaken Content Security Policy.
+- Do not change animation timing as part of this reliability patch.
+- Add state-transition tests and run the repository's lint, type-check, test, build, and browser checks when available.
+- Do not mark the task complete while content can remain hidden on timeout, playback rejection, media error, reduced motion, Save-Data, stale generation, or destruction.
+- Report exact commands and results. Never invent device testing or performance measurements.
+

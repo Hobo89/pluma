@@ -48,16 +48,31 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Parkinsans:wght@300;400&display=swap"
       rel="stylesheet"
     />
-    <!-- Homepage first-paint guard for the responsive hero intro. -->
+    <!-- Homepage first-paint guard: synchronous before the application module. -->
     <script>
-      (function () {
-        try {
-          var path = location.pathname.replace(/\/+$/, "") || "/";
-          if (path !== "/" && path !== "/index.html") return;
-          var s = document.createElement("script");
-          s.src = "/pluma-hero/boot.js";
-          document.head.appendChild(s);
-        } catch (e) {}
+      (() => {
+        const path = location.pathname.replace(/\/+$/, "") || "/";
+        if (path !== "/" && path !== "/index.html") return;
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches || navigator.connection?.saveData) return;
+        const html = document.documentElement;
+        let timer;
+        const guard = (window.__plumaHeroBoot = {
+          status: "pending",
+          release(reason = "controller") {
+            if (guard.status === "released") return;
+            clearTimeout(timer);
+            html.removeAttribute("data-ph-intro-pending");
+            guard.status = "released";
+            guard.releaseReason = reason;
+            if (reason === "watchdog") {
+              document.querySelectorAll(".ph-hero:not([data-ready])").forEach((hero) => {
+                hero.removeAttribute("data-phase");
+              });
+            }
+          },
+        });
+        html.setAttribute("data-ph-intro-pending", "");
+        timer = setTimeout(() => guard.release("watchdog"), 4000);
       })();
     </script>
     <link

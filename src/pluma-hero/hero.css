@@ -19,6 +19,24 @@
 .ph-hero[data-phase="preparing"] .ph-feather-slot{opacity:0}
 /* Navigation stays interactive during intro; only its decoration animates. */
 
+/* Freeze costly glass filtering during pending/preparing/intro. Site nav
+   mounts outside .ph-hero; data-ph-hero-phase is the primary signal. */
+html[data-ph-intro-pending] .ph-nav,
+html[data-ph-hero-phase="preparing"] .ph-nav,
+html[data-ph-hero-phase="intro"] .ph-nav {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: #fbfaf5;
+}
+@supports selector(body:has(.ph-hero)) {
+  body:has(.ph-hero[data-phase="preparing"]) .ph-nav,
+  body:has(.ph-hero[data-phase="intro"]) .ph-nav {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #fbfaf5;
+  }
+}
+
 @media(min-width:1600px){.ph-massage{width:min(100%,1120px)}.ph-nav{width:min(1280px,calc(100% - 64px))}}
 
 .ph-hero:not([data-ready]) .ph-menu,.ph-hero:not([data-ready]) .ph-languages{display:none}
@@ -217,6 +235,10 @@
 @media (max-width: 699px) {
   .ph-nav--site {
     --ph-nav-height: 68px;
+  }
+  .ph-nav,
+  .ph-nav[data-open="true"] {
+    --ph-glass-frost: 16px;
   }
 }
 

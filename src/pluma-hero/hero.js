@@ -118,42 +118,48 @@ function decodeImage(url) {
   });
 }
 
-function waitForVideoFrame(video, token, isCurrent) {
+/**
+ * Wait for a presented video frame before declaring readiness.
+ * Registers listeners before the caller invokes play(). Never treats
+ * loadeddata alone as success. Always settles exactly once.
+ */
+export function waitForFirstPresentedFrame(video, token, isCurrent) {
   return new Promise((resolve) => {
     let settled = false;
-    const done = (ok) => {
-      if (settled || !isCurrent(token)) return;
-      settled = true;
-      cleanup();
-      resolve(ok);
-    };
-
     let frameHandle = 0;
-    const onPlaying = () => {
-      if (video.readyState >= 2) done(true);
-    };
-    const onError = () => done(false);
+    let timer = 0;
+    const hasFrameCallback = typeof video.requestVideoFrameCallback === 'function';
 
-    function cleanup() {
-      video.removeEventListener('playing', onPlaying);
-      video.removeEventListener('loadeddata', onPlaying);
-      video.removeEventListener('error', onError);
+    function finish(ok) {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
       if (frameHandle && typeof video.cancelVideoFrameCallback === 'function') {
         video.cancelVideoFrameCallback(frameHandle);
       }
+      video.removeEventListener('playing', onPlaying);
+      video.removeEventListener('error', onError);
+      resolve(Boolean(ok && isCurrent(token)));
     }
 
-    if (typeof video.requestVideoFrameCallback === 'function') {
-      frameHandle = video.requestVideoFrameCallback(() => done(true));
+    function onPlaying() {
+      // Fallback only when requestVideoFrameCallback is unavailable.
+      if (!hasFrameCallback && video.readyState >= 2 && !video.paused) finish(true);
+    }
+
+    function onError() {
+      finish(false);
     }
 
     video.addEventListener('playing', onPlaying);
-    video.addEventListener('loadeddata', onPlaying);
     video.addEventListener('error', onError);
-    if (video.readyState >= 2 && !video.paused) done(true);
+    timer = globalThis.setTimeout(() => finish(false), 1500);
 
-    // Bound wait so a silent video never blocks prepare forever.
-    window.setTimeout(() => done(false), 1600);
+    if (hasFrameCallback) {
+      frameHandle = video.requestVideoFrameCallback(() => finish(true));
+    } else {
+      onPlaying();
+    }
   });
 }
 
@@ -175,7 +181,7 @@ export function heroMarkup(options = {}) {
       <h1><img src="${a('wordmark')}" alt="Pluma" width="1015" height="350"></h1>
     </div>
     <div class="ph-feather-slot" aria-hidden="true"></div>
-    <figure class="ph-massage"><img class="ph-massage-photo" src="${a('massage')}" srcset="${a('massageSmall')} 640w, ${a('massageMedium')} 1280w, ${a('massage')} 1920w" sizes="(max-width: 699px) 92vw, 72vw" width="2176" height="1014" alt="${text('photoAlt')}" decoding="async" fetchpriority="high"></figure>
+    <figure class="ph-massage"><img class="ph-massage-photo" src="${a('massage')}" srcset="${a('massageSmall')} 640w, ${a('massageMedium')} 1280w, ${a('massage')} 1920w" sizes="(max-width: 699px) 92vw, min(72vw, 980px)" width="2176" height="1014" alt="${text('photoAlt')}" decoding="async" fetchpriority="high"></figure>
   </div>
   ${c.renderNavigation === false ? '' : `<header class="ph-nav" data-ph-nav>
     <div class="ph-drawer" hidden><a class="ph-drawer-logo" href="${link('home')}" data-ph-aria="home" aria-label="${text('home')}"><img src="${a('navFeather')}" width="1253" height="132" alt="" aria-hidden="true"></a><button class="ph-close" type="button" data-ph-aria="close" aria-label="${text('close')}">×</button><nav data-ph-aria="navigation" aria-label="${text('navigation')}"><a href="${link('home')}" data-ph-label="navHome">${text('navHome')}</a>${['about', 'prices', 'vouchers'].map((k) => `<a href="${link(k)}" data-ph-label="${k}">${text(k)}</a>`).join('')}</nav></div>
@@ -248,6 +254,7 @@ export function initPlumaHero(root, options = {}) {
   let preparingVideo = false;
   let willChangeActive = false;
   let readinessTimer = 0;
+  let prepareWatchdog = 0;
   let settleTimer = 0;
   let pendingRemeasure = false;
 
@@ -315,6 +322,13 @@ export function initPlumaHero(root, options = {}) {
   function setPhase(next) {
     phase = next;
     root.dataset.phase = next;
+    // Site nav mounts outside .ph-hero; mirror preparing/intro onto <html>
+    // so glass can be disabled without relying solely on :has().
+    if (next === 'preparing' || next === 'intro') {
+      document.documentElement.setAttribute('data-ph-hero-phase', next);
+    } else {
+      document.documentElement.removeAttribute('data-ph-hero-phase');
+    }
   }
 
   function setLanguage(next, notify = true) {
@@ -369,10 +383,11 @@ export function initPlumaHero(root, options = {}) {
     const g = geometry;
     if (!g) return;
     if (p <= 0) {
-      media.style.clipPath = 'none';
+      if (media.style.clipPath !== 'none') media.style.clipPath = 'none';
       return;
     }
-    media.style.clipPath = `url("#${id}-clip")`;
+    const clip = `url("#${id}-clip")`;
+    if (media.style.clipPath !== clip) media.style.clipPath = clip;
     const initial = Math.max(g.width / 340, g.height / 24) * 1.3;
     const scale = Math.exp(mix(Math.log(initial), Math.log(g.scale), ease(p, sequences.feather.easing)));
     path.setAttribute('transform', `translate(${g.x} ${g.y}) scale(${scale}) translate(-643.5 -509)`);
@@ -380,16 +395,15 @@ export function initPlumaHero(root, options = {}) {
 
   function drawPhoto(progressValue) {
     const depth = (sequences.edge.depth / 100) * ease(progressValue, sequences.edge.easing);
-    photoPath.setAttribute(
-      'd',
-      `M.044 0 H.11 C.26 0 .355 ${depth} .5 ${depth} S.74 0 .89 0 H.956 Q1 0 1 .0785714 V.9214286 Q1 1 .956 1 H.044 Q0 1 0 .9214286 V.0785714 Q0 0 .044 0Z`,
-    );
+    const d = `M.044 0 H.11 C.26 0 .355 ${depth} .5 ${depth} S.74 0 .89 0 H.956 Q1 0 1 .0785714 V.9214286 Q1 1 .956 1 H.044 Q0 1 0 .9214286 V.0785714 Q0 0 .044 0Z`;
+    if (photoPath.getAttribute('d') !== d) photoPath.setAttribute('d', d);
   }
 
   function setWillChange(active) {
     if (willChangeActive === active) return;
     willChangeActive = active;
-    const value = active ? 'transform, opacity, clip-path' : '';
+    // clip-path is SVG-driven and not compositor-promoted by will-change.
+    const value = active ? 'transform, opacity' : '';
     media.style.willChange = value;
     photo.style.willChange = value;
   }
@@ -407,6 +421,9 @@ export function initPlumaHero(root, options = {}) {
   }
 
   function syncPlayback() {
+    // Preparation owns playback until readiness settles. Observers/resize must
+    // not pause or replace the clip whose first frame is being awaited.
+    if (phase === 'preparing') return;
     const attempt = ++playAttempt;
     if (destroyed || staticMode() || mediaFailed || document.hidden || !videoVisible || !selected || (editing && phase !== 'intro') || !usedVideo) {
       video.pause();
@@ -434,7 +451,11 @@ export function initPlumaHero(root, options = {}) {
     currentTime = total();
     cancelAnimations();
     clearTimeout(readinessTimer);
+    clearTimeout(prepareWatchdog);
     clearTimeout(settleTimer);
+    readinessTimer = 0;
+    prepareWatchdog = 0;
+    settleTimer = 0;
     setWillChange(false);
     video.playbackRate = 1;
     if (nav === c.navigationElement) nav.style.opacity = '';
@@ -492,11 +513,15 @@ export function initPlumaHero(root, options = {}) {
     if (nav) nav.style.opacity = '1';
   }
 
-  function renderAt(time) {
+  function renderAt(time, { seekReveals = editing } = {}) {
     currentTime = Math.max(0, Math.min(total(), time));
-    animations.forEach((a) => {
-      a.currentTime = currentTime;
-    });
+    // Ordinary intro lets WAAPI play opacity/transform natively; only editor
+    // scrubbing seeks those animations every frame.
+    if (seekReveals) {
+      animations.forEach((a) => {
+        a.currentTime = currentTime;
+      });
+    }
     draw(progress(currentTime, sequences.feather));
     drawPhoto(progress(currentTime, sequences.edge));
   }
@@ -561,6 +586,13 @@ export function initPlumaHero(root, options = {}) {
     }
     started = performance.now();
     const origin = currentTime;
+    if (!editing) {
+      for (const animation of animations) {
+        animation.currentTime = origin;
+        animation.playbackRate = playbackRate;
+        animation.play();
+      }
+    }
     function tick(now) {
       if (destroyed || (phase !== 'intro' && phase !== 'preview')) return;
       if (pendingRemeasure) {
@@ -623,6 +655,8 @@ export function initPlumaHero(root, options = {}) {
       resolved = true;
       clearTimeout(readinessTimer);
       clearTimeout(prepareWatchdog);
+      readinessTimer = 0;
+      prepareWatchdog = 0;
       usedVideo = withVideo;
       videoReady = withVideo;
       if (!withVideo) root.dataset.media = 'fallback';
@@ -637,7 +671,7 @@ export function initPlumaHero(root, options = {}) {
     }, deadlineMs);
 
     // Absolute fail-open: never leave the composition hidden in preparing.
-    const prepareWatchdog = window.setTimeout(() => {
+    prepareWatchdog = window.setTimeout(() => {
       if (destroyed || token !== generation || phase !== 'preparing' || resolved) return;
       assetsReady = true;
       begin(false, 'prepare-watchdog');
@@ -647,17 +681,27 @@ export function initPlumaHero(root, options = {}) {
       ? asset(mobile.matches && selected.mobilePoster ? selected.mobilePoster : selected.poster)
       : null;
 
-    // Kick the chosen clip immediately so readiness can succeed within the window.
+    // Register the first-frame wait before play() so a presented frame cannot
+    // be missed. Preparation owns playback until begin() settles.
+    const firstFrame = selected
+      ? waitForFirstPresentedFrame(video, token, (t) => !destroyed && t === generation)
+      : Promise.resolve(false);
+
     if (selected) {
       loaded = true;
+      video.preload = 'auto';
+      video.defaultMuted = true;
+      video.muted = true;
+      video.playsInline = true;
       video.src = asset(mobile.matches ? selected.mobile : selected.desktop);
       video.play()?.catch(() => {
         /* Poster fallback is decided below; do not abort prepare here. */
       });
     }
 
+    const photoEl = find('.ph-massage-photo');
     const essential = await Promise.all([
-      decodeImage(asset(c.assets.massageMedium || c.assets.massage)),
+      decodeImage(photoEl?.currentSrc || photoEl?.src || ''),
       decodeImage(asset(c.assets.wordmark)),
       posterFile ? decodeImage(posterFile) : Promise.resolve(true),
     ]);
@@ -681,11 +725,7 @@ export function initPlumaHero(root, options = {}) {
       return;
     }
 
-    const frameOk = await waitForVideoFrame(
-      video,
-      token,
-      (t) => !destroyed && t === generation,
-    );
+    const frameOk = await firstFrame;
     if (destroyed || token !== generation || resolved) return;
     if (frameOk) begin(true, 'video-frame');
     else begin(false, 'frame-unavailable');
@@ -919,9 +959,14 @@ export function initPlumaHero(root, options = {}) {
       destroyed = true;
       ++generation;
       clearTimeout(readinessTimer);
+      clearTimeout(prepareWatchdog);
       clearTimeout(settleTimer);
+      readinessTimer = 0;
+      prepareWatchdog = 0;
+      settleTimer = 0;
       cancelAnimations();
       setWillChange(false);
+      document.documentElement.removeAttribute('data-ph-hero-phase');
       closeMenu(false);
       observer?.disconnect();
       resizeObserver?.disconnect();
@@ -932,6 +977,8 @@ export function initPlumaHero(root, options = {}) {
       if (scrubVideoURL) URL.revokeObjectURL(scrubVideoURL);
       photoClip.remove();
       photo.style.removeProperty('clip-path');
+      media.style.removeProperty('will-change');
+      photo.style.removeProperty('will-change');
       root.removeAttribute('data-ready');
       root.removeAttribute('data-phase');
     },

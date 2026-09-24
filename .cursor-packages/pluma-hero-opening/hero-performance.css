@@ -1,0 +1,19 @@
+/* Append to hero styles. Freeze costly glass filtering during preparation
+   and intro, including the separately mounted site navigation. */
+html[data-ph-intro-pending] .ph-nav {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: #fbfaf5;
+}
+/* :has is progressive enhancement; unsupported browsers keep existing glass. */
+@supports selector(body:has(.ph-hero)) {
+  body:has(.ph-hero[data-phase="preparing"]) .ph-nav,
+  body:has(.ph-hero[data-phase="intro"]) .ph-nav {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #fbfaf5;
+  }
+}
+@media (max-width: 699px) {
+  .ph-nav { --ph-glass-frost: 16px; }
+}

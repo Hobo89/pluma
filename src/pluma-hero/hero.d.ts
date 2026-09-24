@@ -61,3 +61,8 @@ export const defaults: HeroOptions;
 export const translations: Record<HeroLanguage, HeroLabels>;
 export function heroMarkup(options?: HeroOptions): string;
 export function initPlumaHero(root: HTMLElement, options?: HeroOptions): HeroController;
+export function waitForFirstPresentedFrame(
+  video: HTMLVideoElement,
+  token: number,
+  isCurrent: (token: number) => boolean,
+): Promise<boolean>;
