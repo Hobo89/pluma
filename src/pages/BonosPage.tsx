@@ -52,7 +52,7 @@ export function BonosPage() {
 
       <BrandMarkedHeading
         as="h1"
-        className="psl-title"
+        className="psl-page-title"
         text={t("bonos.title")}
         word={t("bonos.titleHighlight")}
       />
@@ -81,31 +81,33 @@ export function BonosPage() {
                 className={`psl-voucher-card${favorite ? " psl-voucher-card--favorite" : ""}`}
               >
                 {favorite ? (
-                  <span className="psl-voucher-card__flag">
+                  <span className="psl-voucher-badge">
                     {t("pricing.clientFavorite")}
                   </span>
                 ) : null}
                 <p className="psl-voucher-card__title">
                   {t(`pricing.voucher${card.sessions}.title`)}
-                  <span className="psl-save-pill">
+                  <span className="psl-voucher-badge psl-voucher-badge--save">
                     {t(`pricing.voucher${card.sessions}.discount`)}
                   </span>
                 </p>
                 <p className="psl-voucher-card__duration">
                   {t("durations.cardTitle", { minutes: rate.minutes })}
                 </p>
-                <p className="psl-voucher-card__price">
-                  <strong>{formatPrice(rate.totalCents, language)}</strong>
-                  <span>
+                <div className="psl-voucher-price">
+                  <strong className="psl-voucher-price__total">
+                    {formatPrice(rate.totalCents, language)}
+                  </strong>
+                  <span className="psl-voucher-price__per">
                     {formatPrice(rate.perSessionCents, language)}{" "}
                     {t("pricing.perSession")}
                   </span>
-                </p>
-                <p className="psl-voucher-card__saving">
-                  {t("pricing.saving", {
-                    amount: formatPrice(rate.savingCents, language),
-                  })}
-                </p>
+                  <span className="psl-voucher-price__saving">
+                    {t("pricing.saving", {
+                      amount: formatPrice(rate.savingCents, language),
+                    })}
+                  </span>
+                </div>
               </li>
             );
           })}
@@ -119,7 +121,7 @@ export function BonosPage() {
                 {voucherCards.map((card) => (
                   <th key={card.sessions} scope="col">
                     {t(`pricing.voucher${card.sessions}.title`)}
-                    <span className="psl-save-pill">
+                    <span className="psl-voucher-badge psl-voucher-badge--save">
                       {t(`pricing.voucher${card.sessions}.discount`)}
                     </span>
                   </th>
@@ -153,21 +155,27 @@ export function BonosPage() {
                         key={card.sessions}
                         className={favorite ? "psl-voucher-table__favorite" : undefined}
                       >
-                        {favorite ? (
-                          <span className="psl-voucher-card__flag">
-                            {t("pricing.clientFavorite")}
+                        <div className="psl-voucher-price">
+                          <div className="psl-voucher-price__badge-row">
+                            {favorite ? (
+                              <span className="psl-voucher-badge">
+                                {t("pricing.clientFavorite")}
+                              </span>
+                            ) : null}
+                          </div>
+                          <strong className="psl-voucher-price__total">
+                            {formatPrice(rate.totalCents, language)}
+                          </strong>
+                          <span className="psl-voucher-price__per">
+                            {formatPrice(rate.perSessionCents, language)}{" "}
+                            {t("pricing.perSession")}
                           </span>
-                        ) : null}
-                        <strong>{formatPrice(rate.totalCents, language)}</strong>
-                        <span>
-                          {formatPrice(rate.perSessionCents, language)}{" "}
-                          {t("pricing.perSession")}
-                        </span>
-                        <span className="psl-voucher-table__saving">
-                          {t("pricing.saving", {
-                            amount: formatPrice(rate.savingCents, language),
-                          })}
-                        </span>
+                          <span className="psl-voucher-price__saving">
+                            {t("pricing.saving", {
+                              amount: formatPrice(rate.savingCents, language),
+                            })}
+                          </span>
+                        </div>
                       </td>
                     );
                   })}

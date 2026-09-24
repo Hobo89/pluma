@@ -28,7 +28,7 @@ export function BookingCTA() {
       >
         <source src={VIDEO} type="video/mp4" />
       </video>
-      <h2 className="psl-display">{t("cta.heading")}</h2>
+      <h2 className="psl-page-title">{t("cta.heading")}</h2>
       <p className="psl-copy">{t("cta.body")}</p>
       <BookingAction label={t("hero.book")} placement="footer_cta" />
     </section>

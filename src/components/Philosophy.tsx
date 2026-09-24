@@ -16,7 +16,7 @@ export function Philosophy({
     >
       <Heading
         id="philosophy-heading"
-        className={headingLevel === "h1" ? "psl-display" : "psl-title"}
+        className={headingLevel === "h1" ? "psl-page-title" : "psl-title"}
       >
         {t("philosophy.heading")}
       </Heading>

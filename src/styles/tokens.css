@@ -13,6 +13,43 @@
   --psl-line: #d8cec0;
   --psl-white: #fbfaf5;
   --psl-error: #a32a24;
+  /* Primary / secondary text actions. */
+  --psl-action: #e55800;
+  --psl-action-hover: #d14f00;
+  --psl-action-active: #b84400;
+  --psl-action-text: #ffffff;
+  --psl-action-secondary-border: #b8afa3;
+  --psl-action-secondary-hover: #f4efe7;
+  --psl-action-secondary-active: #eae2d6;
+  /* Primary CTA dual stroke (0.5px, center): pink bottom + overshooting yellow→orange rim. */
+  --psl-action-stroke-pink: linear-gradient(
+    to bottom,
+    rgb(208 67 112 / 0%) 0%,
+    #d04370 100%
+  );
+  --psl-action-stroke-rim: linear-gradient(
+    to bottom,
+    #ffe875 -35%,
+    #c24b00 135%
+  );
+  --psl-action-paint: linear-gradient(var(--psl-action), var(--psl-action))
+      padding-box,
+    var(--psl-action-stroke-pink) border-box,
+    var(--psl-action-stroke-rim) border-box;
+  --psl-action-paint-hover: linear-gradient(
+      var(--psl-action-hover),
+      var(--psl-action-hover)
+    )
+      padding-box,
+    var(--psl-action-stroke-pink) border-box,
+    var(--psl-action-stroke-rim) border-box;
+  --psl-action-paint-active: linear-gradient(
+      var(--psl-action-active),
+      var(--psl-action-active)
+    )
+      padding-box,
+    var(--psl-action-stroke-pink) border-box,
+    var(--psl-action-stroke-rim) border-box;
   --psl-brand-warm: #ff6f0c;
   --psl-brand-gold: #f39f28;
   --psl-brand-gradient: linear-gradient(
@@ -20,16 +57,26 @@
     var(--psl-brand-warm),
     var(--psl-brand-gold)
   );
-  --psl-focus: #7a3e1b;
+  --psl-focus: #2b2823;
   --psl-font-display: "Parkinsans", "Times New Roman", Georgia, serif;
   --psl-font-body: "Instrument Sans", Arial, Helvetica, sans-serif;
+  /* Type scale (16px root). Mobile defaults; stepped at 768px and 1200px. */
+  --psl-type-page: 2.25rem; /* 36 */
+  --psl-type-page-lh: 2.5rem; /* 40 */
+  --psl-type-section: 1.75rem; /* 28 */
+  --psl-type-section-lh: 2rem; /* 32 */
+  --psl-type-card: 1.375rem; /* 22 */
+  --psl-type-card-lh: 1.75rem; /* 28 */
+  --psl-type-lead: 1.125rem; /* 18 */
+  --psl-type-lead-lh: 1.75rem; /* 28 */
+  --psl-type-body: 1rem; /* 16 */
+  --psl-type-body-lh: 1.5625rem; /* 25 */
+  --psl-type-small: 0.875rem; /* 14 */
+  --psl-type-small-lh: 1.3125rem; /* 21 */
+  /* Preserved for quote / legacy hero surfaces outside the page type scale. */
   --psl-type-hero: clamp(2.125rem, 4vw, 4.5rem);
-  --psl-type-section: clamp(1.75rem, 2.7vw, 3rem);
   --psl-type-quote: clamp(1.625rem, 2.3vw, 2.5rem);
-  --psl-type-card: clamp(1.125rem, 1.35vw, 1.5rem);
-  --psl-type-body: 1rem;
-  --psl-type-small: .875rem;
-  --psl-type-label: .75rem;
+  --psl-type-label: 0.75rem;
   --psl-space-1: 4px;
   --psl-space-2: 8px;
   --psl-space-3: 12px;
@@ -41,7 +88,8 @@
   --psl-space-20: 80px;
   --psl-space-24: 96px;
   --psl-space-30: 120px;
-  --psl-section-space: clamp(80px, 6.5vw, 120px);
+  /* Major content-section separation: 64 mobile / 96 from 768px. */
+  --psl-section-space: 64px;
   --psl-container-max: 1240px;
   --psl-container-wide-max: 1360px;
   --psl-radius-small: 8px;
@@ -58,6 +106,27 @@
 /* Dark theme deferred for this launch; keep selectors inert if a class appears. */
 html.dark {
   color-scheme: light;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --psl-type-page: 2.75rem; /* 44 */
+    --psl-type-page-lh: 3rem; /* 48 */
+    --psl-type-section: 2rem; /* 32 */
+    --psl-type-section-lh: 2.25rem; /* 36 */
+    --psl-type-card: 1.5rem; /* 24 */
+    --psl-type-card-lh: 1.875rem; /* 30 */
+    --psl-section-space: 96px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --psl-type-page: 3.5rem; /* 56 */
+    --psl-type-page-lh: 3.75rem; /* 60 */
+    --psl-type-section: 2.5rem; /* 40 */
+    --psl-type-section-lh: 2.75rem; /* 44 */
+  }
 }
 
 @media (max-width: 699px) {

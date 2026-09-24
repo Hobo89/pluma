@@ -109,7 +109,8 @@ body {
 
 .testimonial-name {
   color: var(--psl-text);
-  font-size: 0.875rem;
+  font-size: var(--psl-type-small);
+  line-height: var(--psl-type-small-lh);
 }
 
 .testimonial-from {

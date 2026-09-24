@@ -129,7 +129,8 @@ html.dark .psl-field input {
     );
 }
 
-.psl-cta--video .psl-display {
+.psl-cta--video .psl-display,
+.psl-cta--video .psl-page-title {
   color: var(--psl-white);
   text-shadow: 0 2px 28px rgb(0 0 0 / 55%);
 }
@@ -210,16 +211,35 @@ html.dark .psl-field input {
 }
 
 .psl-product__copy {
+  min-width: 0;
+  max-width: 100%;
   color: var(--psl-muted);
   font-size: var(--psl-type-small);
   line-height: 1.35;
   text-align: center;
   text-wrap: pretty;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 767px) {
+  /* Taller drawing slot so flipped copy fits without clipping. */
+  .psl-product-grid--types .psl-product__image {
+    aspect-ratio: 0.92;
+  }
+
+  .psl-product__face--back {
+    gap: 4px;
+    padding: var(--psl-space-2);
+  }
+
+  .psl-product__back-title {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
   .psl-product__copy {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
+    line-height: 1.3;
   }
 }
 
@@ -309,7 +329,7 @@ html.dark .psl-field input {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
-  gap: var(--psl-space-3);
+  gap: var(--psl-space-4);
   text-align: center;
 }
 
@@ -535,6 +555,25 @@ html.dark .psl-field input {
   gap: var(--psl-space-12);
 }
 
+.psl-audience__quotes {
+  margin-block-start: var(--psl-section-space);
+}
+
+@media (max-width: 767px) {
+  /* Match .psl-container / gallery mobile gutters. */
+  #reviews.psl-audience__quotes {
+    padding-inline: var(--psl-space-4);
+  }
+}
+
+.psl-cta.psl-container {
+  margin-block-start: var(--psl-section-space);
+}
+
+.psl-page > .psl-faq {
+  margin-block-start: var(--psl-section-space);
+}
+
 @media (min-width: 992px) {
   .psl-audience {
     grid-template-columns: minmax(16rem, 0.42fr) minmax(0, 1fr);
@@ -650,7 +689,7 @@ html.dark .psl-field input {
   max-width: 42ch;
   color: var(--psl-muted);
   font-size: var(--psl-type-small);
-  line-height: 1.45;
+  line-height: var(--psl-type-small-lh);
   text-align: left;
 }
 
@@ -836,7 +875,7 @@ html.dark .psl-field input {
   margin-top: var(--psl-space-2);
   color: var(--psl-muted);
   font-size: var(--psl-type-small);
-  line-height: 1.3;
+  line-height: var(--psl-type-small-lh);
 }
 
 .psl-photo-lightbox {
@@ -1298,6 +1337,8 @@ button.psl-button {
 }
 
 .psl-page:not(:has(.psl-legal)) > .psl-title,
+.psl-page:not(:has(.psl-legal)) > .psl-page-title,
+.psl-page:not(:has(.psl-legal)) > .psl-display,
 .psl-page:not(:has(.psl-legal)) > .psl-copy,
 .psl-page:not(:has(.psl-legal)) > .psl-bono-intro,
 .psl-page:not(:has(.psl-legal)) .psl-section > .psl-title,
@@ -1333,7 +1374,8 @@ button.psl-button {
 .psl-faq__group-title {
   margin: 0 0 var(--psl-space-2);
   color: var(--psl-heading);
-  font: 400 var(--psl-type-small) / 1.3 var(--psl-font-display);
+  font: 400 var(--psl-type-card) / var(--psl-type-card-lh) var(--psl-font-display);
+  letter-spacing: -0.02em;
 }
 
 .psl-about-stephen {
@@ -1377,7 +1419,7 @@ button.psl-button {
 
 .psl-about-page {
   display: grid;
-  gap: var(--psl-space-20);
+  gap: var(--psl-section-space);
 }
 
 .psl-about-block {
@@ -1438,8 +1480,14 @@ button.psl-button {
   text-align: center;
 }
 
+.psl-about-block__body .psl-title {
+  text-align: center;
+}
+
 .psl-about-block__body .psl-copy {
   max-width: 52ch;
+  text-align: left;
+  justify-self: center;
 }
 
 .psl-safety__grid {
@@ -1517,17 +1565,18 @@ button.psl-button {
 .psl-philosophy {
   display: grid;
   justify-items: center;
-  gap: var(--psl-space-6);
+  gap: var(--psl-space-4);
   text-align: center;
 }
 
-.psl-philosophy .psl-display {
+.psl-philosophy .psl-display,
+.psl-philosophy .psl-page-title {
   margin-inline: auto;
 }
 
 .psl-philosophy__support {
   display: grid;
-  gap: var(--psl-space-3);
+  gap: var(--psl-space-4);
   max-width: 42ch;
 }
 
@@ -1545,7 +1594,7 @@ button.psl-button {
   display: grid;
   justify-items: center;
   gap: var(--psl-space-4);
-  margin-block: var(--psl-space-6) var(--psl-space-12);
+  margin-block: var(--psl-space-4) 0;
 }
 
 .psl-bono-inquiry {
@@ -1556,8 +1605,11 @@ button.psl-button {
 }
 
 .psl-voucher-table-wrap {
-  overflow-x: auto;
-  margin-block: var(--psl-space-6);
+  overflow: auto;
+  margin-block: var(--psl-space-8) 0;
+  border: 1px solid #d8d0c5;
+  border-radius: 24px;
+  background: var(--psl-surface);
 }
 
 .psl-voucher-notes {
@@ -1565,6 +1617,16 @@ button.psl-button {
   gap: var(--psl-space-2);
   justify-items: start;
   text-align: start;
+  margin-top: var(--psl-space-8);
+}
+
+/* Voucher options: heading → support 16px; intro group → cards/table 32px */
+.psl-section > .psl-title + .psl-copy {
+  margin-top: var(--psl-space-4);
+}
+
+.psl-section > .psl-copy + .psl-voucher-cards {
+  margin-top: var(--psl-space-8);
 }
 
 .psl-voucher-table {
@@ -1576,10 +1638,15 @@ button.psl-button {
 
 .psl-voucher-table th,
 .psl-voucher-table td {
-  padding: var(--psl-space-4);
+  padding: 24px;
   border-bottom: 1px solid var(--psl-line);
   text-align: left;
   vertical-align: top;
+}
+
+.psl-voucher-table tr:last-child th,
+.psl-voucher-table tr:last-child td {
+  border-bottom: 0;
 }
 
 .psl-voucher-table thead th {
@@ -1587,9 +1654,7 @@ button.psl-button {
   font-weight: 500;
 }
 
-.psl-voucher-table__discount,
-.psl-voucher-table__single,
-.psl-voucher-table td span:not(.psl-voucher-table__saving):not(.psl-voucher-card__flag):not(.psl-save-pill) {
+.psl-voucher-table__single {
   display: block;
   margin-top: 4px;
   color: var(--psl-muted);
@@ -1601,18 +1666,68 @@ button.psl-button {
   font-weight: 400;
 }
 
-.psl-voucher-table__saving {
+.psl-voucher-badge {
   display: inline-flex;
   align-items: center;
-  margin-top: var(--psl-space-3);
-  padding: 3px 9px;
-  border: 1px solid var(--psl-heading);
-  border-radius: var(--psl-radius-pill);
-  color: var(--psl-text);
-  font-size: var(--psl-type-label);
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 4px 12px;
+  border: 1px solid var(--psl-action-secondary-border);
+  border-radius: 999px;
+  background: #f4efe7;
+  color: #2b2823;
+  font: 500 var(--psl-type-small) / var(--psl-type-small-lh) var(--psl-font-body);
   white-space: nowrap;
+}
+
+.psl-voucher-card__title .psl-voucher-badge--save,
+.psl-voucher-table th .psl-voucher-badge--save {
+  display: flex;
+  width: fit-content;
+  margin-top: 6px;
+}
+
+.psl-voucher-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.psl-voucher-price__badge-row {
+  display: none;
+}
+
+.psl-voucher-table tbody tr:has(.psl-voucher-table__favorite) .psl-voucher-price__badge-row {
+  display: flex;
+  align-items: center;
+  /* Badge: 4+21+4 padding/line + 2px border = 31px. */
+  min-height: 31px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.psl-voucher-price__total {
+  margin: 0;
+  color: #2b2823;
+  font: 500 1.5rem / 1.875rem var(--psl-font-body);
+}
+
+.psl-voucher-price__per {
+  margin: 8px 0 0;
+  color: #595650;
+  font: 400 var(--psl-type-body) / var(--psl-type-body-lh) var(--psl-font-body);
+}
+
+.psl-voucher-price__saving {
+  margin: 8px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: #595650;
+  font: 400 var(--psl-type-small) / var(--psl-type-small-lh) var(--psl-font-body);
+  letter-spacing: normal;
+  white-space: normal;
 }
 
 @media (min-width: 768px) {
@@ -1650,6 +1765,7 @@ button.psl-button {
   width: 100vw;
   max-width: 100vw;
   min-height: clamp(28rem, 62vh, 40rem);
+  margin-block-start: var(--psl-section-space);
   margin-inline: calc(50% - 50vw);
   padding-bottom: var(--psl-invite-shadow-room);
   overflow: hidden;
@@ -1745,7 +1861,6 @@ button.psl-button {
 
 .psl-pricing-invite__title {
   max-width: none;
-  font-size: clamp(1.5rem, 2.3vw, 2.25rem);
   text-wrap: unset;
 }
 
@@ -1776,7 +1891,6 @@ button.psl-button {
   .psl-pricing-invite__title {
     position: relative;
     padding-block: var(--psl-space-4);
-    line-height: 1.28;
   }
 
   /* Keep cards fully inside the section — no negative top that crops them. */
@@ -1818,61 +1932,13 @@ button.psl-button {
 }
 
 .psl-pricing-section .psl-section-head {
-  margin-bottom: var(--psl-space-6);
+  margin-bottom: var(--psl-space-8);
 }
 
 .psl-pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--psl-space-3);
-}
-
-.psl-pricing-card {
-  appearance: none;
-  display: grid;
-  gap: var(--psl-space-3);
-  min-width: 0;
-  padding: var(--psl-space-6);
-  border: 0;
-  border-radius: var(--psl-radius-media);
-  background: var(--psl-surface);
-  color: inherit;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: transform var(--psl-duration) var(--psl-ease);
-}
-
-@media (hover: hover) {
-  .psl-pricing-card:hover {
-    transform: translateY(-2px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .psl-pricing-card {
-    transition: none;
-  }
-
-  .psl-pricing-card:hover {
-    transform: none;
-  }
-}
-
-.psl-pricing-card__duration {
-  color: var(--psl-heading);
-  font: 400 clamp(1.375rem, 1.7vw, 1.75rem) / 1.12 var(--psl-font-display);
-  letter-spacing: -0.02em;
-}
-
-.psl-pricing-card__duration span {
-  white-space: nowrap;
-}
-
-.psl-pricing-card__meta {
-  color: var(--psl-muted);
-  font-size: var(--psl-type-small);
-  line-height: 1.5;
+  gap: var(--psl-space-4);
 }
 
 .psl-pricing-vouchers {
@@ -1962,7 +2028,7 @@ button.psl-button {
   margin-top: var(--psl-space-6);
   color: var(--psl-muted);
   font-size: var(--psl-type-small);
-  line-height: 1.25;
+  line-height: var(--psl-type-small-lh);
 }
 
 .psl-quote__name {
@@ -2157,12 +2223,13 @@ button.psl-button {
 
 .psl-copy--small {
   font-size: var(--psl-type-small);
-  line-height: 1.5;
+  line-height: var(--psl-type-small-lh);
 }
 
 .psl-copy--lead {
   color: var(--psl-heading);
-  font-size: var(--psl-type-card);
+  font-size: var(--psl-type-lead);
+  line-height: var(--psl-type-lead-lh);
   max-width: 40ch;
 }
 
@@ -2214,139 +2281,105 @@ button.psl-button {
   z-index: -2;
 }
 
-/* Duration chooser */
-.psl-durations {
+/* Shared session cards (Home durations + Prices) */
+.psl-session-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--psl-space-3);
+  gap: var(--psl-space-4);
+  align-items: stretch;
   margin: 0;
-  padding: 12px 16px 28px 12px;
+  padding: 0;
   list-style: none;
 }
 
-.psl-duration {
-  /* Column flex so the action can be pushed to the bottom and line up across
-     cards of different heights. */
+.psl-session-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--psl-space-3);
+  box-sizing: border-box;
   min-width: 0;
-  padding: var(--psl-space-6);
-  border: 1px solid var(--psl-line);
-  border-radius: var(--psl-radius-media);
+  height: 100%;
+  padding: 24px;
+  border: 1px solid #d8d0c5;
+  border-radius: 32px;
   background: var(--psl-surface);
 }
 
-.psl-duration--recommended {
-  --psl-orbit-pad: 6px;
-  --psl-orbit-border: 2px;
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: visible;
-  border-width: 2px;
-  border-color: var(--psl-heading);
-  background: var(--psl-surface-sage);
+.psl-session-card--recommended {
+  /* 2px border; 23px padding keeps the content box aligned with 1px neighbors. */
+  border: 2px solid var(--psl-action);
+  padding: 23px;
 }
 
-.psl-duration--recommended.is-inview,
-.psl-duration--recommended:focus-within {
-  border-color: transparent;
-}
-
-.psl-duration__orbit {
-  position: absolute;
-  top: calc(-1 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
-  right: calc(-1 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
-  bottom: calc(-1 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
-  left: calc(-1 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
-  z-index: 0;
-  display: block;
-  width: calc(100% + 2 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
-  height: calc(100% + 2 * (var(--psl-orbit-pad) + var(--psl-orbit-border)));
-  overflow: visible;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.psl-duration--recommended.is-inview .psl-duration__orbit,
-.psl-duration--recommended:focus-within .psl-duration__orbit {
-  opacity: 1;
-}
-
-.psl-duration--recommended > *:not(.psl-duration__orbit):not(.psl-duration__flag) {
-  position: relative;
-  z-index: 1;
-}
-
-.psl-duration__head {
+.psl-session-card__badge-row {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: var(--psl-space-2);
+  /* Badge: 4+21+4 padding/line + 2px border = 31px. */
+  min-height: 31px;
+  margin-bottom: 16px;
+  width: 100%;
 }
 
-.psl-duration__title {
+.psl-session-card__badge {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 4px 12px;
+  border: 1px solid var(--psl-action-secondary-border);
+  border-radius: 999px;
+  background: #f4efe7;
+  color: #2b2823;
+  font: 500 var(--psl-type-small) / var(--psl-type-small-lh) var(--psl-font-body);
+  white-space: nowrap;
+}
+
+.psl-session-card__title {
+  margin: 0;
   color: var(--psl-heading);
-  font: 400 clamp(1.375rem, 1.7vw, 1.75rem) / 1.12 var(--psl-font-display);
+  font: 400 var(--psl-type-card) / var(--psl-type-card-lh) var(--psl-font-display);
   letter-spacing: -0.02em;
 }
 
-.psl-duration__title span {
+.psl-session-card__title span {
   white-space: nowrap;
 }
 
-.psl-duration__flag {
-  position: absolute;
-  right: -10px;
-  bottom: -12px;
-  left: auto;
-  top: auto;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  min-height: 24px;
-  margin: 0;
-  padding: 3px 9px;
-  border: 1px solid var(--psl-heading);
-  border-radius: var(--psl-radius-pill);
-  background: var(--psl-canvas);
-  color: var(--psl-text);
-  font-size: var(--psl-type-label);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-
-.psl-duration__scope,
-.psl-duration__note {
+.psl-session-card__description {
+  margin: 16px 0 0;
   color: var(--psl-muted);
-  font-size: var(--psl-type-small);
-  line-height: 1.5;
+  font-size: var(--psl-type-body);
+  line-height: var(--psl-type-body-lh);
 }
 
-.psl-duration__cta {
+.psl-session-card__action {
   margin-top: auto;
+  padding-top: 24px;
+  width: 100%;
 }
 
-.psl-duration .psl-button--ghost,
+.psl-session-card .psl-button--ghost,
 .psl-page .psl-button--ghost,
 .psl-bono-return .psl-button--ghost {
   background: transparent;
-  border-color: #f7a54e;
+  border-color: var(--psl-action-secondary-border);
   color: var(--psl-heading);
 }
 
 @media (hover: hover) {
-  .psl-duration .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover,
+  .psl-session-card .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover,
   .psl-page .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover,
   .psl-bono-return .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):hover {
-    background: color-mix(in srgb, var(--psl-brand-warm) 10%, transparent);
-    border-color: #f7a54e;
+    background: var(--psl-action-secondary-hover);
+    border-color: var(--psl-action-secondary-border);
     color: var(--psl-heading);
   }
+}
+
+.psl-session-card .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):active,
+.psl-page .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):active,
+.psl-bono-return .psl-button--ghost:not(:disabled):not([aria-disabled="true"]):active {
+  background: var(--psl-action-secondary-active);
 }
 
 .psl-durations__terms,
@@ -2363,26 +2396,19 @@ button.psl-button {
 }
 
 @media (max-width: 991px) {
-  .psl-durations {
+  .psl-session-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 767px) {
-  .psl-durations {
-    display: grid;
+  .psl-session-cards {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--psl-space-3);
-    margin-inline: 0;
-    padding: 12px 0 28px;
-    overflow: visible;
-    scroll-snap-type: none;
   }
 
-  .psl-duration {
-    flex: none;
-    width: 100%;
-    scroll-snap-align: none;
+  /* Drop reserved badge-row space when stacked; keep the real badge. */
+  .psl-session-card:not(.psl-session-card--recommended) .psl-session-card__badge-row {
+    display: none;
   }
 }
 
@@ -2525,7 +2551,7 @@ button.psl-button {
 
 .psl-bono-strip {
   overflow: hidden;
-  margin-block: var(--psl-space-8);
+  margin-block: var(--psl-section-space) 0;
 }
 
 .psl-page .psl-bono-strip {
@@ -3035,7 +3061,7 @@ button.psl-button {
   display: grid;
   gap: var(--psl-space-4);
   justify-items: start;
-  margin-top: var(--psl-space-16);
+  margin-top: var(--psl-section-space);
   padding-top: var(--psl-space-8);
   border-top: 1px solid var(--psl-line);
 }
@@ -3137,28 +3163,6 @@ button.psl-button {
   color: var(--psl-muted);
 }
 
-/* ==========================================================================
-   Pricing recommendation
-   ========================================================================== */
-
-.psl-pricing-card--recommended {
-  border: 2px solid var(--psl-heading);
-  background: var(--psl-surface-sage);
-}
-
-.psl-pricing-card__flag {
-  justify-self: start;
-  padding: 3px 9px;
-  border: 1px solid var(--psl-heading);
-  border-radius: var(--psl-radius-pill);
-  background: transparent;
-  color: var(--psl-text);
-  font-size: var(--psl-type-label);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-
 .psl-pricing-voucher__saving {
   display: block;
   color: var(--psl-muted);
@@ -3247,42 +3251,15 @@ html.dark
   }
 }
 
-/* Shared brand-gradient highlight: heading word fill and the 90-minute border. */
+/* Heading word highlight inherits heading color; orange gradient stays on decorative assets. */
 .psl-brand-mark {
   display: inline;
-  background-image:
-    linear-gradient(var(--psl-heading), var(--psl-heading)),
-    linear-gradient(90deg, var(--psl-brand-warm), var(--psl-brand-gold));
-  background-size: calc((1 - var(--psl-brand-fill, 0)) * 100%) 100%, 100% 100%;
-  background-position: 100% 0, 0 0;
-  background-repeat: no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: inherit;
 }
 
 @keyframes psl-brand-orbit {
   to {
     --psl-brand-angle: 360deg;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .psl-brand-mark {
-    --psl-brand-fill: 1;
-  }
-
-  .psl-duration--recommended {
-    border-color: transparent;
-  }
-
-  .psl-duration__orbit {
-    opacity: 1;
-  }
-
-  .psl-duration__orbit-path {
-    fill: var(--psl-brand-warm);
   }
 }
 
@@ -3293,6 +3270,7 @@ html.dark
 
 /* Pull Meet Stephen closer to the hero on the homepage. */
 .ph-hero-host + .psl-meet.psl-section--roomy {
+  margin-block-start: 0;
   padding-top: clamp(28px, 3vw, 48px);
 }
 
@@ -3390,7 +3368,7 @@ html.dark
   margin: 0;
   color: var(--psl-heading);
   font-size: var(--psl-type-small);
-  line-height: 1.25;
+  line-height: var(--psl-type-small-lh);
 }
 
 .psl-review-card__person {
@@ -3449,26 +3427,6 @@ html.dark
   background: var(--psl-surface);
 }
 
-.psl-save-pill {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 6px;
-  padding: 3px 10px;
-  border: 1px solid var(--psl-heading);
-  border-radius: var(--psl-radius-pill);
-  color: var(--psl-heading);
-  font-size: var(--psl-type-label);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-
-.psl-voucher-card__title .psl-save-pill,
-.psl-voucher-table th .psl-save-pill {
-  display: flex;
-  width: fit-content;
-}
-
 .psl-voucher-cards {
   display: none;
   margin: 0;
@@ -3480,44 +3438,23 @@ html.dark
   display: grid;
   justify-items: start;
   gap: var(--psl-space-2);
-  padding: var(--psl-space-6);
-  border: 1px solid var(--psl-line);
-  border-radius: var(--psl-radius-media);
+  padding: 24px;
+  border: 1px solid #d8d0c5;
+  border-radius: 24px;
   background: var(--psl-surface);
 }
 
+.psl-voucher-card > .psl-voucher-badge {
+  margin-bottom: calc(12px - var(--psl-space-2));
+}
+
 .psl-voucher-card__title,
-.psl-voucher-card__duration,
-.psl-voucher-card__price,
-.psl-voucher-card__saving {
+.psl-voucher-card__duration {
   margin: 0;
 }
 
-.psl-voucher-card__price {
-  display: grid;
-  gap: 4px;
-}
-
-.psl-voucher-card__price span,
-.psl-voucher-card__saving {
-  color: var(--psl-muted);
-  font-size: var(--psl-type-small);
-}
-
-.psl-voucher-card__flag {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  padding: 3px 10px;
-  border-radius: var(--psl-radius-pill);
-  background: var(--psl-lime);
-  color: var(--psl-heading);
-  font-size: var(--psl-type-label);
-  font-weight: 500;
-}
-
-.psl-voucher-table__favorite .psl-voucher-card__flag {
-  margin-bottom: var(--psl-space-2);
+.psl-voucher-card .psl-voucher-price {
+  margin-top: 0;
 }
 
 .psl-pricing-invite__support {
@@ -3552,8 +3489,8 @@ html.dark
 @media (max-width: 767px) {
   .psl-voucher-cards {
     display: grid;
-    gap: var(--psl-space-3);
-    margin-block: var(--psl-space-6);
+    gap: 16px;
+    margin-block: var(--psl-space-8) 0;
   }
 
   .psl-voucher-table-wrap {
