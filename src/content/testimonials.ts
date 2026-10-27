@@ -17,6 +17,11 @@ export type TestimonialFlag =
   | { type: "emoji"; glyph: string }
   | { type: "image"; src: string };
 
+export type TestimonialFocalPoint = {
+  x: number;
+  y: number;
+};
+
 export type TestimonialRecord = {
   id: string;
   name: string;
@@ -26,6 +31,9 @@ export type TestimonialRecord = {
   areas: readonly AreaId[];
   countriesKey?: string;
   objectPosition?: string;
+  quoteFontSize?: number;
+  focalPoint?: TestimonialFocalPoint;
+  stackedFocalPoint?: TestimonialFocalPoint;
 };
 
 /**
@@ -177,6 +185,7 @@ export const testimonials: readonly TestimonialRecord[] = [
     countriesKey: "unitedStatesIndia",
     areas: ["face", "head", "neck", "upperBack"],
     objectPosition: "center top",
+    stackedFocalPoint: { x: 50, y: 22 },
   },
 ];
 

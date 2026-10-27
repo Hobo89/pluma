@@ -3,7 +3,7 @@ import { MeetStephen } from "../components/MeetStephen";
 import { DurationChoice } from "../components/DurationChoice";
 import { MassageTypes } from "../components/MassageTypes";
 import { SafetyControl } from "../components/SafetyControl";
-import { EditorialQuote } from "../components/EditorialQuote";
+import { Testimonials } from "../components/Testimonials";
 import { FAQ } from "../components/FAQ";
 import { BookingCTA } from "../components/BookingCTA";
 import { PageMeta } from "../components/PageMeta";
@@ -16,7 +16,7 @@ export function HomePage() {
       <Hero />
       <MeetStephen showReview showAboutLink />
       <StudioFeature highlightTitle />
-      <EditorialQuote />
+      <Testimonials />
       <DurationChoice />
       <MassageTypes />
       <SafetyControl />

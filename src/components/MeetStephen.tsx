@@ -83,7 +83,7 @@ export function MeetStephen({
 
       {featured ? (
         <aside className="psl-meet__review" aria-label={t("reviews.featuredLabel")}>
-          <ReviewCard {...featured} />
+          <ReviewCard {...featured} variant="strip" />
           <HashLink to="/#reviews" className="psl-button psl-button--ghost">
             {t("about.seeReviews")}
           </HashLink>
