@@ -9,6 +9,7 @@ import {
   quoteFontSizePx,
   quoteLineHeight,
 } from "../lib/quoteSize";
+import { BlurUpImage } from "./BlurUpImage";
 
 export function FlagMarks({
   flags,
@@ -104,12 +105,12 @@ export function TestimonialCard({
         {isStrip ? null : (
           <div className="psl-testimonial-card__portrait">
             {image ? (
-              <img
+              <BlurUpImage
                 src={image}
                 alt=""
                 width={141}
                 height={205}
-                loading="lazy"
+                fill
               />
             ) : null}
           </div>
@@ -122,12 +123,12 @@ export function TestimonialCard({
           <blockquote className="psl-testimonial-card__quote">{quote}</blockquote>
           <footer className="psl-testimonial-card__footer">
             {isStrip && image ? (
-              <img
+              <BlurUpImage
                 src={image}
                 alt=""
                 width={56}
                 height={56}
-                loading="lazy"
+                fill
                 className="psl-testimonial-card__avatar"
               />
             ) : null}

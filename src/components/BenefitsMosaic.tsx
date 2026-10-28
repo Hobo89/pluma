@@ -1,4 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
+import { BlurUpImage } from "./BlurUpImage";
 import { BrandMarkedHeading } from "./BrandMarkedHeading";
 
 type BenefitCard = {
@@ -54,10 +55,10 @@ export function BenefitsMosaic() {
       <div className="psl-bento psl-bento--benefits">
         {cards.map(({ id, image }) => (
           <article key={id} className={`psl-tile psl-tile--${id}`}>
-            <img
+            <BlurUpImage
               src={image}
               alt=""
-              loading="lazy"
+              fill
               sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 991px) 45vw, 22vw"
             />
             <div className="psl-tile__copy">

@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { BlurUpImage } from "./BlurUpImage";
 
 export type PhotoClusterImage = {
   src: string;
@@ -133,11 +134,11 @@ export function PhotoCluster({ images, label }: PhotoClusterProps) {
                       caption: photoCaption,
                     })}
                   >
-                    <img
+                    <BlurUpImage
                       className="psl-photo-cluster__item"
                       src={image.src}
                       alt=""
-                      loading="lazy"
+                      fill
                       sizes="(max-width: 767px) 78vw, 18rem"
                       style={
                         image.position

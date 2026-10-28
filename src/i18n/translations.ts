@@ -488,6 +488,7 @@ export const translations = {
         argentina: "Argentina",
         france: "France",
         morocco: "Morocco",
+        unitedStates: "United States",
         unitedStatesIndia: "United States and India",
       },
       areas: {
@@ -1135,6 +1136,7 @@ export const translations = {
         argentina: "Argentina",
         france: "Francia",
         morocco: "Marruecos",
+        unitedStates: "Estados Unidos",
         unitedStatesIndia: "Estados Unidos e India",
       },
       areas: {

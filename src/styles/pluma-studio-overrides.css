@@ -748,7 +748,8 @@ html.dark .psl-field input {
   border-radius: inherit;
 }
 
-.psl-feature__media-link img:not(.psl-feature__portrait) {
+.psl-feature__media-link img:not(.psl-feature__portrait),
+.psl-feature__media-link .psl-blur-up:not(.psl-feature__portrait) {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -3387,7 +3388,8 @@ html.dark
   outline-offset: 3px;
 }
 
-.psl-meet__media > img:not(.psl-feature__portrait) {
+.psl-meet__media > img:not(.psl-feature__portrait),
+.psl-meet__media > .psl-blur-up:not(.psl-feature__portrait) {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -3712,7 +3714,7 @@ html.dark
   isolation: isolate;
   width: min(94%, 1180px);
   margin-inline: auto;
-  margin-block-start: var(--psl-space-8);
+  margin-block-start: var(--psl-section-space);
 }
 
 .psl-testimonial-wall::before,
@@ -3722,7 +3724,7 @@ html.dark
   left: 0;
   right: 0;
   z-index: 2;
-  height: clamp(4.5rem, 16vh, 8.5rem);
+  height: clamp(1.75rem, 4vh, 3rem);
   pointer-events: none;
 }
 
@@ -3831,12 +3833,17 @@ html.dark
   background: var(--psl-surface);
 }
 
-.psl-testimonial-card__portrait > img {
+.psl-testimonial-card__portrait > img,
+.psl-testimonial-card__portrait > .psl-blur-up {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--testimonial-focal-point, 50% 35%);
+}
+
+.psl-testimonial-card__portrait img {
   object-position: var(--testimonial-focal-point, 50% 35%);
 }
 
@@ -3930,8 +3937,14 @@ html.dark
   width: 3.5rem;
   height: 3.5rem;
   flex-shrink: 0;
+  overflow: hidden;
   border: 1.5px solid #fe6f0c;
   border-radius: 9999px;
+  object-fit: cover;
+  object-position: var(--testimonial-focal-point, 50% 35%);
+}
+
+.psl-testimonial-card--strip .psl-testimonial-card__avatar img {
   object-fit: cover;
   object-position: var(--testimonial-focal-point, 50% 35%);
 }
@@ -3960,7 +3973,9 @@ html.dark
     border-radius: 20px 20px 40px 40px;
   }
 
-  .psl-testimonial-card__portrait > img {
+  .psl-testimonial-card__portrait > img,
+  .psl-testimonial-card__portrait > .psl-blur-up,
+  .psl-testimonial-card__portrait img {
     object-position: var(
       --testimonial-stacked-focal-point,
       var(--testimonial-focal-point, 50% 35%)
@@ -4031,4 +4046,100 @@ html.dark
   .psl-testimonial-wall::after {
     display: none;
   }
+}
+
+/* Blur-up photographs: tiny ffmpeg LQIP, full image on scroll */
+.psl-blur-up {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: var(--psl-surface);
+}
+
+.psl-blur-up__lqip,
+.psl-blur-up__full {
+  display: block;
+}
+
+.psl-blur-up__lqip {
+  filter: blur(18px);
+  transform: scale(1.12);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.psl-blur-up__full {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.psl-blur-up.is-loaded .psl-blur-up__full {
+  opacity: 1;
+}
+
+.psl-blur-up.is-loaded .psl-blur-up__lqip {
+  opacity: 0;
+}
+
+.psl-blur-up--fill {
+  display: block;
+}
+
+.psl-blur-up--fill .psl-blur-up__lqip,
+.psl-blur-up--fill .psl-blur-up__full {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: inherit;
+}
+
+.psl-blur-up--natural .psl-blur-up__lqip {
+  width: 100%;
+  height: auto;
+}
+
+.psl-blur-up--natural .psl-blur-up__full {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psl-blur-up__full {
+    transition: none;
+  }
+}
+
+.psl-tile > .psl-blur-up {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+}
+
+.psl-meet__media > .psl-blur-up:not(.psl-feature__portrait) {
+  width: 100%;
+  height: 100%;
+}
+
+.psl-feature__media > .psl-blur-up:not(.psl-feature__portrait),
+.psl-feature__media-link > .psl-blur-up:not(.psl-feature__portrait) {
+  width: 100%;
+  height: 100%;
+}
+
+.psl-about-block__media .psl-blur-up {
+  width: 100%;
+  border-radius: inherit;
+  background: transparent;
+}
+
+.psl-about-block__media .psl-blur-up__lqip,
+.psl-about-block__media .psl-blur-up__full {
+  object-fit: contain;
 }

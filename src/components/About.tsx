@@ -3,6 +3,7 @@ import { HashLink } from "./HashLink";
 import { Philosophy } from "./Philosophy";
 import { useLanguage } from "../context/LanguageContext";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
+import { BlurUpImage } from "./BlurUpImage";
 
 const sections = [
   {
@@ -66,18 +67,14 @@ export function About() {
                 >
                   <source src={section.video} type="video/mp4" />
                 </video>
-              ) : (
-                <img
-                  src={section.image ?? undefined}
+              ) : section.image ? (
+                <BlurUpImage
+                  src={section.image}
                   alt={t(section.imageAltKey)}
-                  className={
-                    "imageClass" in section ? section.imageClass : undefined
-                  }
                   width={section.id === "how" ? 768 : 1024}
                   height={section.id === "how" ? 1024 : 575}
-                  loading="lazy"
                 />
-              )}
+              ) : null}
               {section.placeholder ? (
                 <figcaption className="psl-sr-only">
                   {t(section.imageAltKey)}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import type { AnalyticsEvent } from "../lib/analytics";
 import { useAmbientVideo } from "../lib/useAmbientVideo";
+import { BlurUpImage } from "./BlurUpImage";
 import { BookingAction } from "./BookingAction";
 import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import {
@@ -110,10 +111,10 @@ export function FeatureStory({
   const stills = (
     <>
       {image && (
-        <img
+        <BlurUpImage
           src={image}
           alt={stillAlts ? imageAlt : ""}
-          loading="lazy"
+          fill
           sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
           style={
             imagePosition ? { objectPosition: imagePosition } : undefined
@@ -121,11 +122,11 @@ export function FeatureStory({
         />
       )}
       {portrait && (
-        <img
+        <BlurUpImage
           className="psl-feature__portrait"
           src={portrait}
           alt={stillAlts ? portraitAlt : ""}
-          loading="lazy"
+          fill
           sizes="(max-width: 767px) 40vw, 12vw"
         />
       )}

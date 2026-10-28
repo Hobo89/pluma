@@ -57,7 +57,7 @@ export const testimonials: readonly TestimonialRecord[] = [
   {
     id: "allison",
     name: "Allison",
-    quote: "Had a great time, felt listened to and safe 🫶",
+    quote: "度过了一段美好的时光，感觉被倾听，很安全 🫶",
     image: "/testimonials/allison.jpg",
     flags: [{ type: "emoji", glyph: "🇨🇳" }],
     countriesKey: "china",
@@ -68,7 +68,7 @@ export const testimonials: readonly TestimonialRecord[] = [
     id: "jordi",
     name: "Jordi",
     quote:
-      "Vaig tenir una sessió increïble després d’un projecte de feina dur… vaig quedar-me adormit durant molta estona després de la sessió, es nota molt la diferència quan fas una migdiada.",
+      "Després d'un projecte de feina exigent, vaig gaudir d'una sessió de massatge fantàstica amb l'Stephen. Aquella nit, vaig dormir com un nen petit i vaig poder recuperar forces!",
     image: "/testimonials/jordi.jpg",
     flags: [{ type: "image", src: "/assets/flags/catalonia.svg" }],
     countriesKey: "catalonia",
@@ -171,6 +171,18 @@ export const testimonials: readonly TestimonialRecord[] = [
     countriesKey: "spain",
     areas: ["fullBody"],
     objectPosition: "center top",
+  },
+  {
+    id: "jed",
+    name: "Jed",
+    quote:
+      "I came to Stephen with a neck that had been stiff for weeks, and this massage helped so much. I really appreciate how he focuses on the parts of my body that I need help with, and will go as light or deep as I need. I'll be back!",
+    image: "/testimonials/jed.jpg",
+    flags: [{ type: "emoji", glyph: "🇺🇸" }],
+    countriesKey: "unitedStates",
+    areas: ["neck"],
+    objectPosition: "center 22%",
+    stackedFocalPoint: { x: 50, y: 40 },
   },
   {
     id: "candice",

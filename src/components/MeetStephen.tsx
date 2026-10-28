@@ -4,6 +4,7 @@ import {
   featuredReviewId,
   testimonialById,
 } from "../content/testimonials";
+import { BlurUpImage } from "./BlurUpImage";
 import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import { HashLink } from "./HashLink";
 import { ReviewCard } from "./ReviewCard";
@@ -58,22 +59,24 @@ export function MeetStephen({
             aria-label={t("about.stephenPhotoAlt")}
           >
             <figure className="psl-meet__media">
-              <img
+              <BlurUpImage
                 src="/assets/images/stephen.jpg"
                 alt=""
                 width={1024}
                 height={576}
-                loading={headingLevel === "h1" ? "eager" : "lazy"}
+                fill
+                eager={headingLevel === "h1"}
                 sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
                 style={{ objectPosition: "64% 32%" }}
               />
-              <img
+              <BlurUpImage
                 className="psl-feature__portrait"
                 src="/assets/images/stephen-portrait.jpg"
                 alt=""
                 width={763}
                 height={1024}
-                loading="lazy"
+                fill
+                eager={headingLevel === "h1"}
                 sizes="(max-width: 767px) 40vw, 12vw"
               />
             </figure>
