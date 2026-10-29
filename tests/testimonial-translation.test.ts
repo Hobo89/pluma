@@ -31,8 +31,19 @@ describe("testimonial reader language", () => {
   });
 
   it("leaves an English quote alone for an English reader", () => {
-    assert.equal(quoteTranslation(byId("sarah"), "en"), null);
     assert.equal(quoteTranslation(byId("candice"), "en"), null);
+    assert.equal(quoteTranslation(byId("jed"), "en"), null);
+  });
+
+  it("keeps Sarah’s quote in French until the reader asks", () => {
+    const sarah = byId("sarah");
+    assert.equal(sarah.locale, "fr");
+    assert.equal(
+      sarah.quote,
+      "Je viens régulièrement me faire masser ici et j’apprécie beaucoup la technique, l’ambiance et la pression exercée pendant le massage.",
+    );
+    assert.equal(typeof quoteTranslation(sarah, "en"), "string");
+    assert.equal(typeof quoteTranslation(sarah, "es"), "string");
   });
 
   it("translates every quote that is not already in the reader language", () => {

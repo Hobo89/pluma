@@ -54,10 +54,11 @@ export const testimonials: readonly TestimonialRecord[] = [
     id: "sarah",
     name: "Sarah",
     quote:
-      "Regularly get massaged here and really enjoy the technique, atmosphere and strength.",
-    locale: "en",
+      "Je viens régulièrement me faire masser ici et j’apprécie beaucoup la technique, l’ambiance et la pression exercée pendant le massage.",
+    locale: "fr",
     translations: {
-      es: "Vengo a recibir masajes con regularidad y disfruto de verdad la técnica, el ambiente y la fuerza.",
+      en: "I come regularly to get massages here and I really appreciate the technique, the atmosphere, and the pressure applied during the massage.",
+      es: "Vengo con regularidad a recibir masajes aquí y aprecio mucho la técnica, el ambiente y la presión ejercida durante el masaje.",
     },
     image: "/testimonials/sarah.jpg",
     flags: [{ type: "emoji", glyph: "🇫🇷" }],
