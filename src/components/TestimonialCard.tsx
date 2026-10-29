@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useEffect, type CSSProperties } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import {
   type TestimonialFlag,
@@ -9,7 +9,11 @@ import {
   quoteFontSizePx,
   quoteLineHeight,
 } from "../lib/quoteSize";
+import { holdTestimonialCard } from "../lib/testimonialWallScroll";
+import { quoteTranslation } from "../lib/testimonialTranslation";
+import { useTestimonialReveal } from "../lib/useTestimonialReveal";
 import { BlurUpImage } from "./BlurUpImage";
+import { TestimonialQuote } from "./TestimonialQuote";
 
 export function FlagMarks({
   flags,
@@ -50,6 +54,8 @@ type TestimonialCardProps = TestimonialRecord & {
 export function TestimonialCard({
   name,
   quote,
+  locale,
+  translations,
   image,
   flags,
   countriesKey,
@@ -59,7 +65,18 @@ export function TestimonialCard({
   stackedFocalPoint,
   variant = "card",
 }: TestimonialCardProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const translation = quoteTranslation({ locale, translations }, language);
+  const { rootRef, lit, pulsing, handlers } = useTestimonialReveal(
+    translation != null,
+  );
+  const translating = lit && translation != null;
+
+  useEffect(() => {
+    const card = rootRef.current;
+    if (!lit || !card) return;
+    return holdTestimonialCard(card);
+  }, [lit, rootRef]);
   const countriesLabel = countriesKey
     ? t(`testimonials.countries.${countriesKey}`)
     : undefined;
@@ -86,11 +103,17 @@ export function TestimonialCard({
 
   return (
     <article
-      className={
-        isStrip
-          ? "psl-testimonial-card psl-testimonial-card--strip"
-          : "psl-testimonial-card"
-      }
+      ref={rootRef}
+      {...handlers}
+      className={[
+        "psl-testimonial-card",
+        isStrip ? "psl-testimonial-card--strip" : "",
+        lit ? "is-lit" : "",
+        pulsing ? "is-pulse" : "",
+        translating ? "is-translating" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={
         {
           "--testimonial-quote-size": `${sizePx / 16}rem`,
@@ -101,6 +124,7 @@ export function TestimonialCard({
         } as CSSProperties
       }
     >
+      <span className="psl-testimonial-card__shine" aria-hidden="true" />
       <div className="psl-testimonial-card__inner">
         {isStrip ? null : (
           <div className="psl-testimonial-card__portrait">
@@ -120,7 +144,12 @@ export function TestimonialCard({
           <span className="psl-testimonial-card__mark" aria-hidden="true">
             &ldquo;
           </span>
-          <blockquote className="psl-testimonial-card__quote">{quote}</blockquote>
+          <TestimonialQuote
+            quote={quote}
+            translation={translation}
+            translating={translating}
+            lang={translating ? language : locale}
+          />
           <footer className="psl-testimonial-card__footer">
             {isStrip && image ? (
               <BlurUpImage
