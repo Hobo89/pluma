@@ -45,53 +45,75 @@ export function MeetStephen({
           />
           <p className="psl-copy psl-copy--lead">{t("about.facts")}</p>
           <p className="psl-copy">{t("about.adapt")}</p>
-          {showAboutLink ? (
-            <Link to="/about" className="psl-button psl-button--ghost">
-              {t("hero.learnMore")}
-            </Link>
+          {showAboutLink || featured ? (
+            <div className="psl-actions psl-meet__actions">
+              {showAboutLink ? (
+                <Link
+                  to="/about"
+                  className="psl-button psl-button--ghost psl-meet__learn"
+                >
+                  {t("hero.learnMore")}
+                </Link>
+              ) : null}
+              {featured ? (
+                <HashLink
+                  to="/#reviews"
+                  className="psl-button psl-button--ghost psl-meet__reviews"
+                >
+                  {t("about.seeReviews")}
+                </HashLink>
+              ) : null}
+            </div>
           ) : null}
         </div>
 
         {showMedia ? (
-          <Link
-            to="/about"
-            className="psl-meet__media-link"
-            aria-label={t("about.stephenPhotoAlt")}
-          >
-            <figure className="psl-meet__media">
+          <div className="psl-meet__stage">
+            <Link
+              to="/about"
+              className="psl-meet__media-link"
+              aria-label={t("about.stephenPhotoAlt")}
+            >
+              <figure className="psl-meet__media">
+                <BlurUpImage
+                  src="/assets/images/stephen.jpg"
+                  alt=""
+                  width={1024}
+                  height={576}
+                  fill
+                  eager={headingLevel === "h1"}
+                  sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
+                  style={{ objectPosition: "64% 18%" }}
+                />
+              </figure>
               <BlurUpImage
-                src="/assets/images/stephen.jpg"
-                alt=""
-                width={1024}
-                height={576}
-                fill
-                eager={headingLevel === "h1"}
-                sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
-                style={{ objectPosition: "64% 32%" }}
-              />
-              <BlurUpImage
-                className="psl-feature__portrait"
+                className="psl-meet__portrait"
                 src="/assets/images/stephen-portrait.jpg"
                 alt=""
                 width={763}
                 height={1024}
                 fill
-                eager={headingLevel === "h1"}
-                sizes="(max-width: 767px) 40vw, 12vw"
+                sizes="180px"
               />
-            </figure>
-          </Link>
+            </Link>
+            {featured ? (
+              <aside
+                className="psl-meet__review"
+                aria-label={t("reviews.featuredLabel")}
+              >
+                <ReviewCard {...featured} variant="strip" />
+              </aside>
+            ) : null}
+          </div>
+        ) : featured ? (
+          <aside
+            className="psl-meet__review"
+            aria-label={t("reviews.featuredLabel")}
+          >
+            <ReviewCard {...featured} variant="strip" />
+          </aside>
         ) : null}
       </div>
-
-      {featured ? (
-        <aside className="psl-meet__review" aria-label={t("reviews.featuredLabel")}>
-          <ReviewCard {...featured} variant="strip" />
-          <HashLink to="/#reviews" className="psl-button psl-button--ghost">
-            {t("about.seeReviews")}
-          </HashLink>
-        </aside>
-      ) : null}
     </section>
   );
 }

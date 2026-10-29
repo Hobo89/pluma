@@ -3463,20 +3463,29 @@ html.dark
 .psl-meet__intro {
   display: grid;
   gap: var(--psl-space-8);
-  align-items: center;
+  align-items: start;
+}
+
+.psl-meet__stage {
+  position: relative;
 }
 
 .psl-meet__media {
   position: relative;
   margin: 0;
-  aspect-ratio: 0.97;
+  aspect-ratio: 0.92;
   overflow: hidden;
   border-radius: var(--psl-radius-media);
   background: var(--psl-surface-sage);
 }
 
+.psl-meet--with-review .psl-meet__media {
+  width: 100%;
+}
+
 .psl-meet__media-link {
   display: block;
+  position: relative;
   color: inherit;
   text-decoration: none;
   border-radius: var(--psl-radius-media);
@@ -3494,29 +3503,50 @@ html.dark
   object-fit: cover;
 }
 
-.psl-meet__media .psl-feature__portrait {
-  position: absolute;
-  z-index: 1;
-  left: var(--psl-space-4);
-  bottom: var(--psl-space-4);
-  width: min(42%, 11.5rem);
-  height: auto;
-  aspect-ratio: 1;
-  border-radius: var(--psl-radius-media);
-  object-fit: cover;
-  object-position: 50% 42%;
-  box-shadow: 0 10px 28px rgb(0 0 0 / 28%);
-  outline: 3px solid var(--psl-canvas);
+.psl-meet__actions {
+  margin-top: var(--psl-space-2);
 }
 
 .psl-meet__body {
   display: grid;
   justify-items: start;
   gap: var(--psl-space-4);
+  text-align: left;
+}
+
+/* The portrait hangs into the text column. Keep the copy clear of it. */
+@media (min-width: 768px) {
+  .psl-meet--with-review .psl-meet__body .psl-copy {
+    padding-right: max(
+      0px,
+      calc(min(42%, 11rem) - var(--psl-meet-overlap) - var(--psl-space-12) + 1.25rem)
+    );
+  }
+}
+
+.psl-meet--with-review {
+  --psl-meet-overlap: 2.75rem;
 }
 
 .psl-meet__title {
   white-space: pre-line;
+}
+
+/* Same overlap as the review uses on the photo's bottom edge.
+   The blur-up wrapper is position: relative later in this file. */
+.psl-meet__portrait.psl-blur-up {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: clamp(7.5rem, 42%, 11rem);
+  aspect-ratio: 1;
+  border-radius: var(--psl-radius-media);
+  object-position: 50% 38%;
+  box-shadow:
+    0 0 0 4px #fff,
+    0 10px 24px rgb(43 40 35 / 0.16);
+  transform: translateX(calc(-100% + var(--psl-meet-overlap)));
 }
 
 /* Scroll breath: soft drop-in → sharp focus (one-shot). */
@@ -3552,22 +3582,75 @@ html.dark
   }
 }
 
-@media (max-width: 991px) {
-  .psl-meet__body {
-    justify-items: center;
-    text-align: center;
+@media (max-width: 767px) {
+  .psl-meet--with-review .psl-meet__media {
+    aspect-ratio: 0.7;
+  }
+
+  .psl-meet--with-review .psl-meet__intro {
+    gap: var(--psl-space-4);
+    justify-items: start;
+    text-align: left;
+  }
+
+  .psl-meet--with-review .psl-meet__body,
+  .psl-meet--with-review .psl-meet__actions {
+    display: contents;
+  }
+
+  .psl-meet--with-review .psl-meet__learn {
+    order: 2;
+  }
+
+  .psl-meet--with-review .psl-meet__stage {
+    order: 3;
+    justify-self: stretch;
+    width: 100%;
+    margin-top: var(--psl-space-2);
+  }
+
+  .psl-meet--with-review .psl-meet__reviews {
+    order: 4;
+    margin-top: var(--psl-space-4);
+  }
+
+  .psl-meet__portrait.psl-blur-up {
+    left: 50%;
+    bottom: auto;
+    top: calc(100% - var(--psl-meet-overlap));
+    z-index: 3;
+    width: clamp(6.25rem, 38vw, 8rem);
+    transform: translate(-50%, calc(-100% + 0.85rem));
   }
 }
 
-.psl-meet__review {
-  display: grid;
-  justify-items: stretch;
-  gap: var(--psl-space-4);
-  width: 100%;
+/* The review sits on the photo's bottom edge, 24px inside each side, and hangs below it. */
+.psl-meet__stage .psl-meet__review {
+  position: relative;
+  z-index: 2;
+  width: calc(100% - 48px);
+  margin-inline: auto;
+  margin-top: calc(-1 * var(--psl-meet-overlap));
+  text-align: left;
 }
 
-.psl-meet__review .psl-button {
-  justify-self: start;
+.psl-meet__stage .psl-meet__review .psl-testimonial-card__copy,
+.psl-meet__stage .psl-meet__review .psl-testimonial-card__person {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.psl-meet__stage .psl-meet__review .psl-testimonial-card__footer {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.psl-meet__review .psl-testimonial-card {
+  box-shadow: 0 16px 36px rgb(31 44 34 / 0.2);
+}
+
+.psl-meet__review .psl-testimonial-card--strip .psl-testimonial-card__copy {
+  padding: 20px 22px;
 }
 
 .psl-review-card {
