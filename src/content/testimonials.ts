@@ -57,7 +57,8 @@ export const testimonials: readonly TestimonialRecord[] = [
   {
     id: "allison",
     name: "Allison",
-    quote: "度过了一段美好的时光，感觉被倾听，很安全 🫶",
+    quote:
+      "孕中期的按摩体验，缓解双腿疲劳与精神疲惫，度过了一段非常美好的时光！Stephen提供的环境令人安心，更棒的是他擅于倾听",
     image: "/testimonials/allison.jpg",
     flags: [{ type: "emoji", glyph: "🇨🇳" }],
     countriesKey: "china",
