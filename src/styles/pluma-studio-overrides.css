@@ -3731,7 +3731,8 @@ html.dark
   right: 0;
   z-index: 2;
   height: clamp(1.75rem, 4vh, 3rem);
-  pointer-events: none;
+  /* A cursor resting in the fade should not hover the card sliding underneath. */
+  pointer-events: auto;
 }
 
 .psl-testimonial-wall::before {

@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
+  hoverPointerParked,
   loopProgress,
+  pointerInWallFade,
   trackNudgeY,
 } from "../src/lib/testimonialWallScroll.ts";
 
@@ -23,6 +25,22 @@ describe("testimonial wall nudge", () => {
 
   it("pins a card taller than the opening to the top", () => {
     assert.equal(trackNudgeY(80, 900, safeTop, safeBottom), 20);
+  });
+});
+
+describe("edge hover guards", () => {
+  it("treats the top and bottom fades as a dead zone", () => {
+    assert.equal(pointerInWallFade(110, 100, 800, 40), true);
+    assert.equal(pointerInWallFade(770, 100, 800, 40), true);
+    assert.equal(pointerInWallFade(140, 100, 800, 40), true);
+    assert.equal(pointerInWallFade(200, 100, 800, 40), false);
+    assert.equal(pointerInWallFade(400, 100, 800, 0), false);
+  });
+
+  it("treats a pointer that has not moved as parked", () => {
+    assert.equal(hoverPointerParked(100, 500, 100, 500), true);
+    assert.equal(hoverPointerParked(104, 503, 100, 500), true);
+    assert.equal(hoverPointerParked(112, 500, 100, 500), false);
   });
 });
 

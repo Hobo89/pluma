@@ -19,6 +19,35 @@ export function trackNudgeY(
   return 0;
 }
 
+/**
+ * Movement small enough to treat the pointer as still. A card that slides
+ * under a parked cursor must not count as a new hover.
+ */
+export const HOVER_PARK_SLOP_PX = 8;
+
+export function hoverPointerParked(
+  x: number,
+  y: number,
+  anchorX: number,
+  anchorY: number,
+  slop = HOVER_PARK_SLOP_PX,
+): boolean {
+  return Math.hypot(x - anchorX, y - anchorY) <= slop;
+}
+
+/** True when the pointer is inside the wall's top or bottom fade. */
+export function pointerInWallFade(
+  pointerY: number,
+  wallTop: number,
+  wallBottom: number,
+  fadeHeight: number,
+): boolean {
+  if (!(fadeHeight > 0) || !(wallBottom > wallTop)) return false;
+  return (
+    pointerY <= wallTop + fadeHeight || pointerY >= wallBottom - fadeHeight
+  );
+}
+
 /** Loop progress for a track whose animation runs from 0 to `-distance`. */
 export function loopProgress(translateY: number, distance: number): number {
   if (!(distance > 0) || !Number.isFinite(translateY)) return 0;

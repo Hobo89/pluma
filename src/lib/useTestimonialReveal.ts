@@ -5,12 +5,20 @@ import {
   useState,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import {
+  hoverPointerParked,
+  pointerInWallFade,
+} from "./testimonialWallScroll";
 
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
 const PULSE_MS = 900;
 const REVEAL_EVENT = "pluma:testimonial-reveal";
 
 type RevealMode = "hover" | "touch" | null;
+type Point = { x: number; y: number };
+
+/** Where the pointer was when the current card took hover. Shared so a card sliding underneath cannot steal it. */
+let hoverAnchor: Point | null = null;
 
 function canHover() {
   return window.matchMedia(HOVER_QUERY).matches;
@@ -20,6 +28,26 @@ function isHoverPointer(pointerType: string) {
   return pointerType === "mouse" || pointerType === "pen";
 }
 
+function pointerParked(x: number, y: number) {
+  return (
+    hoverAnchor !== null &&
+    hoverPointerParked(x, y, hoverAnchor.x, hoverAnchor.y)
+  );
+}
+
+function pointerRestsInFade(card: HTMLElement, pointerY: number) {
+  const wall = card.closest(".psl-testimonial-wall");
+  if (!(wall instanceof HTMLElement)) return false;
+  const rect = wall.getBoundingClientRect();
+  const fade = Number.parseFloat(getComputedStyle(wall, "::before").height);
+  return pointerInWallFade(
+    pointerY,
+    rect.top,
+    rect.bottom,
+    Number.isFinite(fade) ? fade : 0,
+  );
+}
+
 /**
  * Desktop hover holds the card. Touch toggles a translation, or plays a
  * short lift-and-shine when the quote is already in the reader's language.
@@ -27,7 +55,8 @@ function isHoverPointer(pointerType: string) {
 export function useTestimonialReveal(canTranslate: boolean) {
   const rootRef = useRef<HTMLElement>(null);
   const instanceId = useId();
-  const pointerStart = useRef<{ x: number; y: number } | null>(null);
+  const pointerStart = useRef<Point | null>(null);
+  const ownAnchor = useRef<Point | null>(null);
   const pulseTimer = useRef(0);
   const leaveWatch = useRef<((event: PointerEvent) => void) | null>(null);
   const [mode, setMode] = useState<RevealMode>(null);
@@ -97,35 +126,62 @@ export function useTestimonialReveal(canTranslate: boolean) {
     pulseTimer.current = window.setTimeout(() => setPulsing(false), PULSE_MS);
   }
 
-  function onPointerEnter(event: ReactPointerEvent<HTMLElement>) {
-    if (!isHoverPointer(event.pointerType) || !canHover()) return;
+  function beginHover(x: number, y: number) {
     clearLeaveWatch();
+    const point = { x, y };
+    hoverAnchor = point;
+    ownAnchor.current = point;
     stopPulse();
     announce();
     setMode("hover");
   }
 
+  function onPointerEnter(event: ReactPointerEvent<HTMLElement>) {
+    if (!isHoverPointer(event.pointerType) || !canHover()) return;
+    if (pointerParked(event.clientX, event.clientY)) return;
+    const card = rootRef.current;
+    if (card && pointerRestsInFade(card, event.clientY)) return;
+    beginHover(event.clientX, event.clientY);
+  }
+
+  function onPointerMove(event: ReactPointerEvent<HTMLElement>) {
+    if (!isHoverPointer(event.pointerType) || !canHover()) return;
+    if (mode !== null) return;
+    if (pointerParked(event.clientX, event.clientY)) return;
+    const card = rootRef.current;
+    if (!card || pointerRestsInFade(card, event.clientY)) return;
+    beginHover(event.clientX, event.clientY);
+  }
+
+  function releaseHover() {
+    ownAnchor.current = null;
+    setMode((current) => (current === "hover" ? null : current));
+  }
+
   function onPointerLeave(event: ReactPointerEvent<HTMLElement>) {
     if (!isHoverPointer(event.pointerType)) return;
     const card = rootRef.current;
-    const track = card?.closest(".psl-testimonial-wall__track");
+    const mine = ownAnchor.current;
     if (
       card &&
-      track instanceof HTMLElement &&
-      track.dataset.wallNudge === "1"
+      mine &&
+      hoverPointerParked(event.clientX, event.clientY, mine.x, mine.y)
     ) {
       clearLeaveWatch();
       const onMove = (move: PointerEvent) => {
+        if (hoverPointerParked(move.clientX, move.clientY, mine.x, mine.y)) {
+          return;
+        }
         const hit = document.elementFromPoint(move.clientX, move.clientY);
         if (hit && card.contains(hit)) return;
         clearLeaveWatch();
-        setMode((current) => (current === "hover" ? null : current));
+        releaseHover();
       };
       leaveWatch.current = onMove;
       window.addEventListener("pointermove", onMove);
       return;
     }
-    setMode((current) => (current === "hover" ? null : current));
+    releaseHover();
   }
 
   function onPointerDown(event: ReactPointerEvent<HTMLElement>) {
@@ -169,6 +225,7 @@ export function useTestimonialReveal(canTranslate: boolean) {
     pulsing,
     handlers: {
       onPointerEnter,
+      onPointerMove,
       onPointerLeave,
       onPointerDown,
       onPointerUp,
