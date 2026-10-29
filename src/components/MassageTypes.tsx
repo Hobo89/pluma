@@ -136,22 +136,25 @@ export function MassageTypes() {
               onPointerEnter={(event) => onPointerEnter(id, event)}
               onPointerLeave={() => onPointerLeave(id)}
             >
-              <span className="psl-product__flip">
-                <span
-                  className="psl-product__face psl-product__face--front psl-product__image psl-product__image--illustration psl-product__image--drawing"
-                  aria-hidden="true"
-                >
-                  <Illustration />
-                </span>
-                <span
-                  className="psl-product__face psl-product__face--back"
-                  aria-hidden={!flipped}
-                >
-                  <span className="psl-product__back-title">{title}</span>
-                  <span id={copyId} className="psl-product__copy">
-                    {copy}
+              <span className="psl-product__stage">
+                <span className="psl-product__flip">
+                  <span
+                    className="psl-product__face psl-product__face--front psl-product__image psl-product__image--illustration psl-product__image--drawing"
+                    aria-hidden="true"
+                  >
+                    <Illustration />
+                  </span>
+                  <span
+                    className="psl-product__face psl-product__face--back"
+                    aria-hidden={!flipped}
+                  >
+                    <span className="psl-product__back-title">{title}</span>
+                    <span id={copyId} className="psl-product__copy">
+                      {copy}
+                    </span>
                   </span>
                 </span>
+                <span className="psl-product__shine" aria-hidden="true" />
               </span>
               <span className="psl-product__meta">
                 <span className="psl-product__name">{title}</span>

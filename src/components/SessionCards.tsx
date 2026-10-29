@@ -47,6 +47,7 @@ export function SessionCards({
               />
             </span>
 
+            <span className="psl-session-card__shine" aria-hidden="true" />
             <div className="psl-session-card__content">
               <div className="psl-session-card__badge-row">
                 {recommended ? (
