@@ -25,6 +25,7 @@ export type AnalyticsEvent =
         | "studio"
         | "sticky"
         | "footer_cta"
+        | "meet"
         | "footer_nav"
         | "pricing"
         | "bono_return";

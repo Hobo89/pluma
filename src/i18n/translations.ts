@@ -141,6 +141,7 @@ export const translations = {
       adapt:
         "I adapt the pressure, pace and techniques, and remember what you enjoyed the most between sessions.",
       seeReviews: "See more reviews",
+      bookMassage: "Book a massage",
       studioCta: "See the home studio",
       body: "I only see a few people each day. I don’t like rushing sessions.",
       languages: "I speak English, French and Spanish.",
@@ -785,6 +786,7 @@ export const translations = {
       adapt:
         "Adapto la presión, el ritmo y las técnicas, y recuerdo lo que más te gustó entre sesiones.",
       seeReviews: "Ver más opiniones",
+      bookMassage: "Reservar un masaje",
       studioCta: "Ver el estudio",
       body: "Solo atiendo a unas pocas personas al día. No me gusta trabajar con prisas.",
       languages: "Hablo inglés, francés y español.",

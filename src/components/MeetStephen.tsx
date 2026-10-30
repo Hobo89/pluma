@@ -3,11 +3,29 @@ import { useLanguage } from "../context/LanguageContext";
 import {
   featuredReviewId,
   testimonialById,
+  type TestimonialRecord,
 } from "../content/testimonials";
 import { BlurUpImage } from "./BlurUpImage";
+import { BookingAction } from "./BookingAction";
 import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import { HashLink } from "./HashLink";
 import { ReviewCard } from "./ReviewCard";
+
+function FeaturedReview({ review }: { review: TestimonialRecord }) {
+  const { t } = useLanguage();
+
+  return (
+    <aside className="psl-meet__review" aria-label={t("reviews.featuredLabel")}>
+      <ReviewCard {...review} variant="strip" />
+      <HashLink
+        to="/#reviews"
+        className="psl-button psl-button--ghost psl-meet__reviews"
+      >
+        {t("about.seeReviews")}
+      </HashLink>
+    </aside>
+  );
+}
 
 type MeetStephenProps = {
   headingLevel?: "h1" | "h2";
@@ -47,6 +65,11 @@ export function MeetStephen({
           <p className="psl-copy">{t("about.adapt")}</p>
           {showAboutLink || featured ? (
             <div className="psl-actions psl-meet__actions">
+              <BookingAction
+                label={t("about.bookMassage")}
+                placement="meet"
+                className="psl-button psl-meet__book"
+              />
               {showAboutLink ? (
                 <Link
                   to="/about"
@@ -54,14 +77,6 @@ export function MeetStephen({
                 >
                   {t("hero.learnMore")}
                 </Link>
-              ) : null}
-              {featured ? (
-                <HashLink
-                  to="/#reviews"
-                  className="psl-button psl-button--ghost psl-meet__reviews"
-                >
-                  {t("about.seeReviews")}
-                </HashLink>
               ) : null}
             </div>
           ) : null}
@@ -96,22 +111,10 @@ export function MeetStephen({
                 sizes="180px"
               />
             </Link>
-            {featured ? (
-              <aside
-                className="psl-meet__review"
-                aria-label={t("reviews.featuredLabel")}
-              >
-                <ReviewCard {...featured} variant="strip" />
-              </aside>
-            ) : null}
+            {featured ? <FeaturedReview review={featured} /> : null}
           </div>
         ) : featured ? (
-          <aside
-            className="psl-meet__review"
-            aria-label={t("reviews.featuredLabel")}
-          >
-            <ReviewCard {...featured} variant="strip" />
-          </aside>
+          <FeaturedReview review={featured} />
         ) : null}
       </div>
     </section>

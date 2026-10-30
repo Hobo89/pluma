@@ -3604,6 +3604,7 @@ html.dark
     display: contents;
   }
 
+  .psl-meet--with-review .psl-meet__book,
   .psl-meet--with-review .psl-meet__learn {
     order: 2;
   }
@@ -3613,11 +3614,6 @@ html.dark
     justify-self: stretch;
     width: 100%;
     margin-top: var(--psl-space-2);
-  }
-
-  .psl-meet--with-review .psl-meet__reviews {
-    order: 4;
-    margin-top: var(--psl-space-4);
   }
 
   .psl-meet__portrait.psl-blur-up {
@@ -3634,10 +3630,21 @@ html.dark
 .psl-meet__stage .psl-meet__review {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: calc(100% - 48px);
   margin-inline: auto;
   margin-top: calc(-1 * var(--psl-meet-overlap));
   text-align: left;
+}
+
+.psl-meet__review .psl-testimonial-card {
+  align-self: stretch;
+}
+
+.psl-meet__reviews {
+  margin-top: var(--psl-space-4);
 }
 
 .psl-meet__stage .psl-meet__review .psl-testimonial-card__copy,
@@ -3652,7 +3659,7 @@ html.dark
 }
 
 .psl-meet__review .psl-testimonial-card {
-  box-shadow: 0 16px 36px rgb(31 44 34 / 0.2);
+  box-shadow: 0 6px 12px rgb(31 44 34 / 0.1);
 }
 
 .psl-meet__review .psl-testimonial-card--strip .psl-testimonial-card__copy {
