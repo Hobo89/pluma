@@ -22,8 +22,8 @@ export type TestimonialFocalPoint = {
   y: number;
 };
 
-/** Language the client wrote in. Catalan and French are not Spanish or English. */
-export type QuoteLocale = "en" | "es" | "ca" | "fr" | "zh";
+/** Language the client wrote in. Catalan, French, Chinese, and Croatian are not Spanish or English. */
+export type QuoteLocale = "en" | "es" | "ca" | "fr" | "zh" | "hr";
 
 export type TestimonialRecord = {
   id: string;
@@ -131,10 +131,11 @@ export const testimonials: readonly TestimonialRecord[] = [
     id: "tanja",
     name: "Tanja",
     quote:
-      "He disfrutado muchísimo, me ha encantado la combinación de técnicas de masaje descontracturante y relajante al mismo tiempo. Stephen es muy atento y me he sentido muy cómoda y cuidada.",
-    locale: "es",
+      "Uživala sam na masaži! Oduševila me kombinacija tehnika, istovremeno je duboka i opuštajuća masaža. Stephan je vrlo pažljiv i tijekom cijelog tretmana sam se osjećala jako ugodno.",
+    locale: "hr",
     translations: {
-      en: "I enjoyed it so much. I loved the combination of muscle-release and relaxing techniques at the same time. Stephen is very attentive, and I felt very comfortable and cared for.",
+      en: "I enjoyed the massage! I loved the combination of techniques — a deep and relaxing massage at the same time. Stephen is very attentive, and I felt very comfortable throughout the whole treatment.",
+      es: "¡He disfrutado del masaje! Me ha encantado la combinación de técnicas: es un masaje profundo y relajante a la vez. Stephen es muy atento y durante todo el tratamiento me he sentido muy a gusto.",
     },
     image: "/testimonials/tanja.jpg",
     flags: [{ type: "emoji", glyph: "🇭🇷" }],
