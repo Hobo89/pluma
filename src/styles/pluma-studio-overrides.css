@@ -3516,11 +3516,17 @@ html.dark
 
 /* The portrait hangs into the text column. Keep the copy clear of it. */
 @media (min-width: 768px) {
-  .psl-meet--with-review .psl-meet__body .psl-copy {
+  .psl-meet--with-review .psl-meet__body .psl-copy,
+  .psl-meet--with-review .psl-meet__actions {
     padding-right: max(
       0px,
       calc(min(42%, 11rem) - var(--psl-meet-overlap) - var(--psl-space-12) + 1.25rem)
     );
+  }
+
+  .psl-meet--with-review .psl-meet__actions {
+    justify-self: stretch;
+    width: 100%;
   }
 }
 
@@ -3789,6 +3795,43 @@ html.dark
   .psl-meet__intro {
     grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 1fr);
     gap: var(--psl-space-12);
+  }
+
+  /* Size the massage photo to the copy beside it. The review stays on the next row. */
+  .psl-meet--with-review .psl-meet__intro {
+    grid-template-rows: auto auto;
+    row-gap: 0;
+  }
+
+  .psl-meet--with-review .psl-meet__body {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .psl-meet--with-review .psl-meet__stage {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: stretch;
+    display: grid;
+    grid-template-rows: subgrid;
+    min-height: 0;
+  }
+
+  .psl-meet--with-review .psl-meet__media-link {
+    grid-row: 1;
+    min-height: 0;
+    height: 100%;
+  }
+
+  .psl-meet--with-review .psl-meet__media {
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .psl-meet__stage .psl-meet__review {
+    grid-row: 2;
+    align-self: start;
   }
 
   .psl-meet--text-only .psl-meet__intro {
