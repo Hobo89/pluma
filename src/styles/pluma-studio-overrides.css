@@ -3843,6 +3843,23 @@ html.dark
   }
 }
 
+/* Tablet columns are narrow, so matching the photo to the wrapped copy makes it huge. */
+@media (min-width: 768px) and (max-width: 991px) {
+  .psl-meet--with-review .psl-meet__stage {
+    align-self: start;
+    display: block;
+  }
+
+  .psl-meet--with-review .psl-meet__media-link {
+    height: auto;
+  }
+
+  .psl-meet--with-review .psl-meet__media {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
 @media (max-width: 767px) {
   .psl-voucher-cards {
     display: grid;
