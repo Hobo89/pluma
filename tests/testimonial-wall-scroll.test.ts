@@ -4,9 +4,11 @@ import {
   hoverPointerParked,
   loopProgress,
   pointerInWallFade,
+  trackCenterDelta,
   trackNudgeY,
   wheelScrollDelta,
   wrapLoopOffset,
+  loopedShift,
 } from "../src/lib/testimonialWallScroll.ts";
 
 describe("testimonial wall nudge", () => {
@@ -27,6 +29,39 @@ describe("testimonial wall nudge", () => {
 
   it("pins a card taller than the opening to the top", () => {
     assert.equal(trackNudgeY(80, 900, safeTop, safeBottom), 20);
+  });
+});
+
+describe("horizontal strip centering", () => {
+  it("leaves a card whose midpoint already matches the viewport", () => {
+    assert.equal(trackCenterDelta(100, 300, 0, 400), 0);
+  });
+
+  it("moves a card that sits to the right back to the middle", () => {
+    assert.equal(trackCenterDelta(250, 450, 0, 400), -150);
+  });
+
+  it("moves a card that sits to the left toward the middle", () => {
+    assert.equal(trackCenterDelta(-50, 150, 0, 400), 150);
+  });
+});
+
+describe("looped shift", () => {
+  it("keeps a short move inside one cycle", () => {
+    assert.deepEqual(loopedShift(-100, -20, 400), { from: -100, to: -120 });
+    assert.deepEqual(loopedShift(-30, 50, 400), { from: -430, to: -380 });
+    assert.deepEqual(loopedShift(-390, -30, 400), { from: 10, to: -20 });
+  });
+
+  it("preserves the distance the card travels", () => {
+    for (const [current, delta] of [
+      [-30, 50],
+      [-390, -30],
+      [-100, -20],
+    ] as const) {
+      const { from, to } = loopedShift(current, delta, 400);
+      assert.equal(to - from, delta);
+    }
   });
 });
 

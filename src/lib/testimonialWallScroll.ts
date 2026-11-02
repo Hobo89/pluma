@@ -20,6 +20,22 @@ export function trackNudgeY(
 }
 
 /**
+ * How far to shift a strip so the card sits in the middle of the viewport.
+ * Positive values move the card to the right.
+ */
+export function trackCenterDelta(
+  cardStart: number,
+  cardEnd: number,
+  viewStart: number,
+  viewEnd: number,
+): number {
+  const cardSize = cardEnd - cardStart;
+  const viewSize = viewEnd - viewStart;
+  if (!(cardSize > 0) || !(viewSize > 0)) return 0;
+  return (viewStart + viewEnd) / 2 - (cardStart + cardEnd) / 2;
+}
+
+/**
  * Movement small enough to treat the pointer as still. A card that slides
  * under a parked cursor must not count as a new hover.
  */
@@ -69,6 +85,23 @@ export function wrapLoopOffset(offset: number, distance: number): number {
   if (wrapped > 0) wrapped -= distance;
   if (Object.is(wrapped, -0) || wrapped === -distance) return 0;
   return wrapped;
+}
+
+/**
+ * Apply `delta` without leaving the marquee's one-cycle range.
+ * `to - from` stays equal to `delta`, so the card still moves the short way.
+ */
+export function loopedShift(
+  current: number,
+  delta: number,
+  distance: number,
+): { from: number; to: number } {
+  const toRaw = current + delta;
+  if (!(distance > 0) || !Number.isFinite(toRaw)) {
+    return { from: current, to: toRaw };
+  }
+  const to = wrapLoopOffset(toRaw, distance);
+  return { from: current + (to - toRaw), to };
 }
 
 /**
@@ -171,8 +204,40 @@ function visitorOwnsScroll(track: HTMLElement): boolean {
   );
 }
 
+function gestureInProgress(track: HTMLElement): boolean {
+  const wall = track.closest(".psl-testimonial-wall");
+  return wall instanceof HTMLElement && wall.hasAttribute("data-user-scroll");
+}
+
+function nudgeForCard(
+  card: HTMLElement,
+  viewport: HTMLElement,
+  axis: ScrollAxis,
+): number {
+  const rect = card.getBoundingClientRect();
+  if (axis === "x") {
+    const view = viewport.getBoundingClientRect();
+    return trackCenterDelta(rect.left, rect.right, view.left, view.right);
+  }
+  const bounds = safeVerticalBounds(viewport);
+  return trackNudgeY(rect.top, rect.bottom, bounds.top, bounds.bottom);
+}
+
+function centerCardInScroller(card: HTMLElement, scroller: HTMLElement): void {
+  const view = scroller.getBoundingClientRect();
+  const rect = card.getBoundingClientRect();
+  const delta = trackCenterDelta(rect.left, rect.right, view.left, view.right);
+  if (Math.abs(delta) < 1) return;
+  scroller.scrollTo({
+    left: scroller.scrollLeft - delta,
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
+  });
+}
+
 /**
- * Pause the column and ease the card fully inside the visible wall.
+ * Pause the column and ease the card into place.
+ * Vertical columns bring the card fully inside the wall.
+ * A horizontal strip centers the card in the viewport.
  * Returns a release function that continues the marquee from the settled spot.
  */
 export function holdTestimonialCard(card: HTMLElement): () => void {
@@ -182,13 +247,18 @@ export function holdTestimonialCard(card: HTMLElement): () => void {
     return () => {};
   }
   if (viewport.classList.contains("psl-testimonial-wall__viewport--static")) {
+    if (viewport.scrollWidth > viewport.clientWidth + 1) {
+      centerCardInScroller(card, viewport);
+    }
     return () => {};
   }
-  if (
-    track.classList.contains("psl-testimonial-wall__track--horizontal") ||
-    visitorOwnsScroll(track)
-  ) {
+
+  const axis = trackAxis(track);
+  if (axis === "x" ? gestureInProgress(track) : visitorOwnsScroll(track)) {
     return () => {};
+  }
+  if (axis === "x") {
+    track.closest(".psl-testimonial-wall")?.removeAttribute("data-scroll-free");
   }
 
   const generation = (generations.get(track) ?? 0) + 1;
@@ -200,18 +270,16 @@ export function holdTestimonialCard(card: HTMLElement): () => void {
 
   const apply = () => {
     if (!stillOwned()) return;
-    const bounds = safeVerticalBounds(viewport);
-    const rect = card.getBoundingClientRect();
-    const delta = trackNudgeY(rect.top, rect.bottom, bounds.top, bounds.bottom);
+    const delta = nudgeForCard(card, viewport, axis);
     if (!takenOver) {
       if (Math.abs(delta) < 1) return;
-      const frozen = readTranslate(track, "y");
+      const frozen = readTranslate(track, axis);
       track.style.animationName = "none";
       track.style.transition = "none";
-      writeTranslate(track, frozen, "y");
+      writeTranslate(track, frozen, axis);
       takenOver = true;
     }
-    moveTrack(track, delta, stillOwned);
+    moveTrack(track, delta, axis, stillOwned);
   };
 
   frame = window.requestAnimationFrame(apply);
@@ -222,31 +290,36 @@ export function holdTestimonialCard(card: HTMLElement): () => void {
     window.cancelAnimationFrame(frame);
     observer.disconnect();
     if (!stillOwned()) return;
+    if (takenOver) releaseTrack(track, axis);
     generations.delete(track);
-    if (takenOver) releaseTrack(track);
   };
 }
 
 function moveTrack(
   track: HTMLElement,
   delta: number,
+  axis: ScrollAxis,
   stillOwned: () => boolean,
 ): void {
   if (Math.abs(delta) < 1) return;
-  const next = readTranslate(track, "y") + delta;
+  const { from, to } = loopedShift(
+    readTranslate(track, axis),
+    delta,
+    loopDistance(track, axis),
+  );
   if (prefersReducedMotion()) {
     track.style.transition = "none";
-    writeTranslate(track, next, "y");
+    writeTranslate(track, to, axis);
     delete track.dataset.wallNudge;
     return;
   }
 
   track.dataset.wallNudge = "1";
   track.style.transition = "none";
-  writeTranslate(track, readTranslate(track, "y"), "y");
+  writeTranslate(track, from, axis);
   track.getBoundingClientRect();
   track.style.transition = NUDGE_EASE;
-  writeTranslate(track, next, "y");
+  writeTranslate(track, to, axis);
 
   const onEnd = (event: TransitionEvent) => {
     if (event.target !== track || event.propertyName !== "transform") return;
@@ -257,8 +330,8 @@ function moveTrack(
   track.addEventListener("transitionend", onEnd);
 }
 
-function releaseTrack(track: HTMLElement): void {
-  resumeTrack(track, "y");
+function releaseTrack(track: HTMLElement, axis: ScrollAxis): void {
+  resumeTrack(track, axis);
 }
 
 /**
@@ -266,15 +339,17 @@ function releaseTrack(track: HTMLElement): void {
  * wheel gesture can move it. Bumps the hold generation so a hovered card
  * cannot ease the column back.
  */
-function seizeTrack(track: HTMLElement, axis: ScrollAxis): void {
-  generations.set(track, (generations.get(track) ?? 0) + 1);
-  if (track.dataset.wallDrag === "1") return;
+function seizeTrack(track: HTMLElement, axis: ScrollAxis): number {
+  const generation = (generations.get(track) ?? 0) + 1;
+  generations.set(track, generation);
+  if (track.dataset.wallDrag === "1") return generation;
   const current = readTranslate(track, axis);
   track.style.animationName = "none";
   track.style.transition = "none";
   writeTranslate(track, current, axis);
   track.dataset.wallDrag = "1";
   delete track.dataset.wallNudge;
+  return generation;
 }
 
 function shiftTrack(
@@ -370,8 +445,10 @@ export function bindTestimonialWallScroll(viewport: HTMLElement): () => void {
     originY: number;
     last: number;
     seized: boolean;
+    generation: number;
   } | null = null;
   let wheelTrack: HTMLElement | null = null;
+  let wheelGeneration = 0;
   let wheelTimer = 0;
   let releaseX = 0;
   let releaseY = 0;
@@ -379,7 +456,12 @@ export function bindTestimonialWallScroll(viewport: HTMLElement): () => void {
 
   const wall = () => wallOf(viewport);
 
-  const handBack = (track: HTMLElement, axis: ScrollAxis) => {
+  const handBack = (
+    track: HTMLElement,
+    axis: ScrollAxis,
+    generation: number,
+  ) => {
+    if (generations.get(track) !== generation) return;
     wall()?.removeAttribute("data-user-scroll");
     wall()?.setAttribute("data-scroll-free", "");
     resumeTrack(track, axis);
@@ -399,6 +481,7 @@ export function bindTestimonialWallScroll(viewport: HTMLElement): () => void {
       originY: event.clientY,
       last: origin,
       seized: false,
+      generation: 0,
     };
   };
 
@@ -417,13 +500,17 @@ export function bindTestimonialWallScroll(viewport: HTMLElement): () => void {
           return;
         }
         window.clearTimeout(wheelTimer);
-        if (wheelTrack && wheelTrack !== drag.track) {
+        if (
+          wheelTrack &&
+          wheelTrack !== drag.track &&
+          generations.get(wheelTrack) === wheelGeneration
+        ) {
           resumeTrack(wheelTrack, trackAxis(wheelTrack));
         }
         wheelTrack = null;
         drag.seized = true;
         drag.last = drag.axis === "x" ? drag.originX : drag.originY;
-        seizeTrack(drag.track, drag.axis);
+        drag.generation = seizeTrack(drag.track, drag.axis);
         wall()?.setAttribute("data-user-scroll", "");
         wall()?.removeAttribute("data-scroll-free");
         watchingRelease = false;
@@ -469,7 +556,7 @@ export function bindTestimonialWallScroll(viewport: HTMLElement): () => void {
     releaseX = event.clientX;
     releaseY = event.clientY;
     watchingRelease = true;
-    handBack(current.track, current.axis);
+    handBack(current.track, current.axis, current.generation);
   };
 
   const onLeave = () => {
@@ -496,9 +583,15 @@ export function bindTestimonialWallScroll(viewport: HTMLElement): () => void {
     );
     if (delta === 0) return;
     event.preventDefault();
-    if (wheelTrack !== track) {
-      if (wheelTrack) resumeTrack(wheelTrack, trackAxis(wheelTrack));
-      seizeTrack(track, axis);
+    if (wheelTrack !== track || generations.get(track) !== wheelGeneration) {
+      if (
+        wheelTrack &&
+        wheelTrack !== track &&
+        generations.get(wheelTrack) === wheelGeneration
+      ) {
+        resumeTrack(wheelTrack, trackAxis(wheelTrack));
+      }
+      wheelGeneration = seizeTrack(track, axis);
       wheelTrack = track;
       wall()?.setAttribute("data-user-scroll", "");
       wall()?.removeAttribute("data-scroll-free");
@@ -513,12 +606,13 @@ export function bindTestimonialWallScroll(viewport: HTMLElement): () => void {
     window.clearTimeout(wheelTimer);
     wheelTimer = window.setTimeout(() => {
       const active = wheelTrack;
+      const generation = wheelGeneration;
       wheelTrack = null;
       if (!active || drag?.seized) return;
       releaseX = event.clientX;
       releaseY = event.clientY;
       watchingRelease = true;
-      handBack(active, trackAxis(active));
+      handBack(active, trackAxis(active), generation);
     }, WHEEL_RELEASE_MS);
   };
 

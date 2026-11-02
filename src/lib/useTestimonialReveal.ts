@@ -238,6 +238,8 @@ export function useTestimonialReveal(canTranslate: boolean) {
     }
     if (moved > 12) return;
 
+    releaseScrollHold();
+
     if (!canTranslate) {
       announce();
       pulse();

@@ -75,9 +75,15 @@ export function TestimonialCard({
 
   useEffect(() => {
     const card = rootRef.current;
-    if (!lit || !card) return;
+    if (!card) return;
+    const viewport = card.closest(".psl-testimonial-wall__viewport");
+    const strip =
+      viewport instanceof HTMLElement &&
+      (viewport.classList.contains("psl-testimonial-wall__viewport--horizontal") ||
+        viewport.classList.contains("psl-testimonial-wall__viewport--static"));
+    if (!lit && !(pulsing && strip)) return;
     return holdTestimonialCard(card);
-  }, [lit, holdGeneration, rootRef]);
+  }, [lit, pulsing, holdGeneration, rootRef]);
   const countriesLabel = countriesKey
     ? t(`testimonials.countries.${countriesKey}`)
     : undefined;
