@@ -8,6 +8,7 @@ import {
 import {
   hoverPointerParked,
   pointerInWallFade,
+  WALL_SCROLL_EVENT,
 } from "./testimonialWallScroll";
 
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
@@ -61,6 +62,7 @@ export function useTestimonialReveal(canTranslate: boolean) {
   const leaveWatch = useRef<((event: PointerEvent) => void) | null>(null);
   const [mode, setMode] = useState<RevealMode>(null);
   const [pulsing, setPulsing] = useState(false);
+  const [holdGeneration, setHoldGeneration] = useState(0);
 
   function clearLeaveWatch() {
     if (!leaveWatch.current) return;
@@ -75,6 +77,27 @@ export function useTestimonialReveal(canTranslate: boolean) {
     },
     [],
   );
+
+  useEffect(() => {
+    const onWallScroll = (event: Event) => {
+      const detail = (event as CustomEvent<Point>).detail;
+      if (
+        detail &&
+        Number.isFinite(detail.x) &&
+        Number.isFinite(detail.y)
+      ) {
+        hoverAnchor = detail;
+      }
+      ownAnchor.current = null;
+      clearLeaveWatch();
+      window.clearTimeout(pulseTimer.current);
+      setPulsing(false);
+      setMode(null);
+    };
+
+    window.addEventListener(WALL_SCROLL_EVENT, onWallScroll);
+    return () => window.removeEventListener(WALL_SCROLL_EVENT, onWallScroll);
+  }, []);
 
   useEffect(() => {
     const onOpen = (event: Event) => {
@@ -126,14 +149,22 @@ export function useTestimonialReveal(canTranslate: boolean) {
     pulseTimer.current = window.setTimeout(() => setPulsing(false), PULSE_MS);
   }
 
+  function releaseScrollHold() {
+    rootRef.current
+      ?.closest(".psl-testimonial-wall")
+      ?.removeAttribute("data-scroll-free");
+  }
+
   function beginHover(x: number, y: number) {
     clearLeaveWatch();
+    releaseScrollHold();
     const point = { x, y };
     hoverAnchor = point;
     ownAnchor.current = point;
     stopPulse();
     announce();
     setMode("hover");
+    setHoldGeneration((generation) => generation + 1);
   }
 
   function onPointerEnter(event: ReactPointerEvent<HTMLElement>) {
@@ -185,18 +216,27 @@ export function useTestimonialReveal(canTranslate: boolean) {
   }
 
   function onPointerDown(event: ReactPointerEvent<HTMLElement>) {
-    if (isHoverPointer(event.pointerType)) return;
     pointerStart.current = { x: event.clientX, y: event.clientY };
+    if (isHoverPointer(event.pointerType)) return;
   }
 
   function onPointerUp(event: ReactPointerEvent<HTMLElement>) {
-    if (isHoverPointer(event.pointerType)) return;
     const start = pointerStart.current;
     pointerStart.current = null;
     if (!start) return;
-    if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 12) {
+    const moved = Math.hypot(event.clientX - start.x, event.clientY - start.y);
+    if (isHoverPointer(event.pointerType)) {
+      if (!canHover() || moved > 8) return;
+      const card = rootRef.current;
+      if (card && pointerRestsInFade(card, event.clientY)) return;
+      const blocked = card
+        ?.closest(".psl-testimonial-wall")
+        ?.hasAttribute("data-scroll-free");
+      if (mode === "hover" && !blocked) return;
+      beginHover(event.clientX, event.clientY);
       return;
     }
+    if (moved > 12) return;
 
     if (!canTranslate) {
       announce();
@@ -223,6 +263,7 @@ export function useTestimonialReveal(canTranslate: boolean) {
     rootRef,
     lit,
     pulsing,
+    holdGeneration,
     handlers: {
       onPointerEnter,
       onPointerMove,

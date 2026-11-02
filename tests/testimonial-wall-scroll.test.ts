@@ -5,6 +5,8 @@ import {
   loopProgress,
   pointerInWallFade,
   trackNudgeY,
+  wheelScrollDelta,
+  wrapLoopOffset,
 } from "../src/lib/testimonialWallScroll.ts";
 
 describe("testimonial wall nudge", () => {
@@ -54,5 +56,34 @@ describe("marquee loop progress", () => {
   it("wraps a nudge that passes the loop seam", () => {
     assert.ok(Math.abs(loopProgress(40, 400) - 0.9) < 1e-10);
     assert.ok(Math.abs(loopProgress(-440, 400) - 0.1) < 1e-10);
+  });
+});
+
+describe("free scroll wrapping", () => {
+  it("keeps a drag inside one marquee cycle", () => {
+    assert.equal(wrapLoopOffset(0, 400), 0);
+    assert.equal(wrapLoopOffset(-400, 400), 0);
+    assert.equal(wrapLoopOffset(-100, 400), -100);
+    assert.equal(wrapLoopOffset(40, 400), -360);
+    assert.equal(wrapLoopOffset(-440, 400), -40);
+  });
+
+  it("matches loop progress before and after wrapping", () => {
+    const wrapped = (offset: number) =>
+      loopProgress(wrapLoopOffset(offset, 400), 400);
+    assert.ok(Math.abs(wrapped(40) - loopProgress(40, 400)) < 1e-10);
+    assert.ok(Math.abs(wrapped(-440) - loopProgress(-440, 400)) < 1e-10);
+  });
+});
+
+describe("wheel scroll direction", () => {
+  it("moves a vertical column against the wheel", () => {
+    assert.equal(wheelScrollDelta("y", 0, 120), -120);
+    assert.equal(wheelScrollDelta("y", 40, -30), 30);
+  });
+
+  it("lets a horizontal strip follow the stronger delta", () => {
+    assert.equal(wheelScrollDelta("x", 0, 80), -80);
+    assert.equal(wheelScrollDelta("x", 50, 10), -50);
   });
 });

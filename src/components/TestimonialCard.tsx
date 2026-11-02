@@ -63,20 +63,21 @@ export function TestimonialCard({
   quoteFontSize,
   focalPoint,
   stackedFocalPoint,
+  portraitZoom,
+  portraitShift,
   variant = "card",
 }: TestimonialCardProps) {
   const { t, language } = useLanguage();
   const translation = quoteTranslation({ locale, translations }, language);
-  const { rootRef, lit, pulsing, handlers } = useTestimonialReveal(
-    translation != null,
-  );
+  const { rootRef, lit, pulsing, holdGeneration, handlers } =
+    useTestimonialReveal(translation != null);
   const translating = lit && translation != null;
 
   useEffect(() => {
     const card = rootRef.current;
     if (!lit || !card) return;
     return holdTestimonialCard(card);
-  }, [lit, rootRef]);
+  }, [lit, holdGeneration, rootRef]);
   const countriesLabel = countriesKey
     ? t(`testimonials.countries.${countriesKey}`)
     : undefined;
@@ -107,6 +108,7 @@ export function TestimonialCard({
       {...handlers}
       className={[
         "psl-testimonial-card",
+        portraitZoom ? "psl-testimonial-card--framed" : "",
         isStrip ? "psl-testimonial-card--strip" : "",
         lit ? "is-lit" : "",
         pulsing ? "is-pulse" : "",
@@ -121,6 +123,10 @@ export function TestimonialCard({
           "--testimonial-attr-gap": `${quoteAttributionGapRem(sizePx)}rem`,
           "--testimonial-focal-point": focal,
           "--testimonial-stacked-focal-point": stackedFocal,
+          "--testimonial-portrait-zoom": portraitZoom
+            ? String(portraitZoom)
+            : undefined,
+          "--testimonial-portrait-shift": portraitShift,
         } as CSSProperties
       }
     >

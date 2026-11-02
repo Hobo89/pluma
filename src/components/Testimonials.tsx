@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import {
   testimonials,
   type TestimonialRecord,
 } from "../content/testimonials";
+import { bindTestimonialWallScroll } from "../lib/testimonialWallScroll";
 import { TestimonialCard } from "./TestimonialCard";
 
 const COLUMN_DURATIONS = [42, 56, 48] as const;
@@ -67,6 +68,14 @@ export function Testimonials() {
     () => splitColumns(testimonials, columnCount),
     [columnCount],
   );
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const horizontal = columnCount === 1 && !reducedMotion;
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport || reducedMotion) return;
+    return bindTestimonialWallScroll(viewport);
+  }, [reducedMotion, columnCount]);
 
   return (
     <section
@@ -79,9 +88,14 @@ export function Testimonials() {
       </h2>
 
       <div
-        className={`psl-testimonial-wall__viewport${
-          reducedMotion ? " psl-testimonial-wall__viewport--static" : ""
-        }`}
+        ref={viewportRef}
+        className={[
+          "psl-testimonial-wall__viewport",
+          reducedMotion ? "psl-testimonial-wall__viewport--static" : "",
+          horizontal ? "psl-testimonial-wall__viewport--horizontal" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         {columns.map((column, columnIndex) => {
           const loop = reducedMotion ? column : [...column, ...column];
@@ -96,6 +110,7 @@ export function Testimonials() {
                 className={[
                   "psl-testimonial-wall__track",
                   reverse ? "psl-testimonial-wall__track--reverse" : "",
+                  horizontal ? "psl-testimonial-wall__track--horizontal" : "",
                 ]
                   .filter(Boolean)
                   .join(" ")}

@@ -38,6 +38,9 @@ export type TestimonialRecord = {
   countriesKey?: string;
   objectPosition?: string;
   quoteFontSize?: number;
+  /** Extra zoom so a face can sit in the middle of the tall portrait. */
+  portraitZoom?: number;
+  portraitShift?: string;
   focalPoint?: TestimonialFocalPoint;
   stackedFocalPoint?: TestimonialFocalPoint;
 };
@@ -64,7 +67,9 @@ export const testimonials: readonly TestimonialRecord[] = [
     flags: [{ type: "emoji", glyph: "🇫🇷" }],
     countriesKey: "france",
     areas: ["fullBody"],
-    objectPosition: "center 18%",
+    objectPosition: "center 30%",
+    portraitZoom: 1.45,
+    portraitShift: "14%",
   },
   {
     id: "allison",
