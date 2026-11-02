@@ -380,6 +380,14 @@ export const translations = {
         privateRoom: "Private changing room and bathroom",
         masseur: "Certified masseur",
       },
+      map: {
+        open: "Open map of the studio area",
+        close: "Close map",
+        title: "Where you’ll be",
+        place: "Old Town, Valencia, Spain",
+        exact: "Exact location will be provided after booking.",
+        frameTitle: "Map of the studio area in Valencia Old Town",
+      },
     },
     benefits: {
       title: "Massage shaped around you",
@@ -1028,6 +1036,15 @@ export const translations = {
         noWait: "Sin tiempo de espera",
         privateRoom: "Vestuario y baño privados",
         masseur: "Masajista certificado",
+      },
+      map: {
+        open: "Abrir el mapa de la zona del estudio",
+        close: "Cerrar mapa",
+        title: "Dónde estarás",
+        place: "Casco antiguo, Valencia, España",
+        exact: "La ubicación exacta se facilitará después de reservar.",
+        frameTitle:
+          "Mapa de la zona del estudio en el casco antiguo de Valencia",
       },
     },
     benefits: {

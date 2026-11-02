@@ -762,11 +762,22 @@ html.dark .psl-field input {
   align-items: start;
 }
 
-.psl-feature__media--video {
+.psl-feature__media.psl-feature__media--video {
+  display: grid;
   justify-self: center;
   width: min(100%, 28rem);
   aspect-ratio: 9 / 16;
   max-height: min(70vh, 40rem);
+  overflow: visible;
+}
+
+.psl-feature__video-frame {
+  grid-area: 1 / 1;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--psl-surface-sage);
 }
 
 .psl-feature__media--video video,
@@ -774,6 +785,182 @@ html.dark .psl-field input {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Map preview centered on the studio tour’s bottom-right corner. */
+.psl-studio-map {
+  --psl-studio-map-lift: 0px;
+  position: absolute;
+  z-index: 3;
+  top: auto;
+  right: 0;
+  bottom: calc(var(--psl-studio-map-lift) * -1);
+  left: auto;
+  width: clamp(6.5rem, 34%, 8.25rem);
+  aspect-ratio: 1;
+  border: 3px solid var(--psl-canvas);
+  border-radius: 1.15rem;
+  background: #d7d2c8;
+  box-shadow: 0 10px 24px rgb(43 40 35 / 18%);
+  /* The tour’s bottom and right edges pass through the middle of the card. */
+  translate: 50% 50%;
+  transition:
+    bottom 0.32s var(--psl-ease),
+    box-shadow 0.32s var(--psl-ease);
+}
+
+.psl-studio-map:has(.psl-studio-map__open:hover),
+.psl-studio-map:has(.psl-studio-map__open:focus-visible) {
+  --psl-studio-map-lift: -10px;
+  box-shadow: 0 18px 36px rgb(43 40 35 / 26%);
+}
+
+.psl-studio-map__canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.psl-studio-map__canvas iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 640px;
+  border: 0;
+  /* Crop toward the map tiles so the embed footer stays outside the card. */
+  transform: translate(-50%, -46%) scale(0.32);
+  transform-origin: center;
+}
+
+.psl-studio-map__open {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.psl-studio-map__expand {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  display: grid;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 0.45rem;
+  background: rgb(255 255 255 / 94%);
+  color: #1c1c1c;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 18%);
+  transform: scale(1);
+  transition: transform 0.32s var(--psl-ease);
+}
+
+.psl-studio-map:has(.psl-studio-map__open:hover) .psl-studio-map__expand,
+.psl-studio-map:has(.psl-studio-map__open:focus-visible) .psl-studio-map__expand {
+  transform: scale(1.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psl-studio-map,
+  .psl-studio-map__expand {
+    transition: none;
+  }
+
+  .psl-studio-map:has(.psl-studio-map__open:hover),
+  .psl-studio-map:has(.psl-studio-map__open:focus-visible) {
+    --psl-studio-map-lift: 0px;
+  }
+
+  .psl-studio-map:has(.psl-studio-map__open:hover) .psl-studio-map__expand,
+  .psl-studio-map:has(.psl-studio-map__open:focus-visible) .psl-studio-map__expand {
+    transform: none;
+  }
+}
+
+.psl-studio-map-dialog {
+  width: min(56rem, calc(100vw - 2rem));
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 1.25rem;
+  background: var(--psl-canvas);
+  color: var(--psl-text);
+  font: 400 1rem / 1.5 var(--psl-font-body);
+  box-shadow: 0 24px 80px rgb(43 40 35 / 28%);
+}
+
+.psl-studio-map-dialog::backdrop {
+  background: rgb(43 40 35 / 46%);
+}
+
+.psl-studio-map-dialog__panel {
+  display: grid;
+  justify-items: start;
+  max-height: calc(100dvh - 2rem);
+  padding: 1.25rem 1.5rem 1.5rem;
+  overflow: auto;
+}
+
+.psl-studio-map-dialog__close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 0 0.85rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--psl-radius-pill);
+  background: transparent;
+  color: var(--psl-heading);
+  cursor: pointer;
+}
+
+.psl-studio-map-dialog__close:hover {
+  background: var(--psl-panel);
+}
+
+.psl-studio-map-dialog__title {
+  margin: 0;
+  font: 400 clamp(1.65rem, 2.5vw, 2rem) / 1.15 var(--psl-font-display);
+  color: var(--psl-heading);
+  letter-spacing: -0.02em;
+}
+
+.psl-studio-map-dialog__place {
+  margin: 0.4rem 0 0;
+  color: var(--psl-text);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.psl-studio-map-dialog__map {
+  width: 100%;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 0.85rem;
+  background: #e7e2d8;
+}
+
+.psl-studio-map-dialog__map iframe {
+  display: block;
+  width: 100%;
+  height: min(58vh, 28rem);
+  border: 0;
+}
+
+.psl-studio-map-dialog__note {
+  margin: 0.9rem 0 0;
+  color: var(--psl-text);
+  font-size: 0.95rem;
+  line-height: 1.45;
 }
 
 /* Short-form style progress track along the top edge of the studio clip. */
@@ -1027,6 +1214,28 @@ html.dark .psl-field input {
 
   .psl-feature__media--video {
     max-height: min(70vh, 32rem);
+  }
+
+  .psl-studio-map {
+    top: auto;
+    left: 50%;
+    bottom: calc(var(--psl-studio-map-lift) * -1);
+    width: 6.25rem;
+    /* The tour’s bottom edge passes through the middle of the card. */
+    translate: -50% 50%;
+  }
+
+  .psl-studio-map-dialog {
+    width: calc(100vw - 1rem);
+    border-radius: 1rem;
+  }
+
+  .psl-studio-map-dialog__panel {
+    padding: 1rem 1rem 1.15rem;
+  }
+
+  .psl-studio-map-dialog__map iframe {
+    height: min(52vh, 22rem);
   }
 
   .psl-photo-lightbox {

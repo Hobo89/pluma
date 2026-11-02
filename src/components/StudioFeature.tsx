@@ -26,6 +26,7 @@ export function StudioFeature({
       reverse
       highlights="studio"
       noteKey="studio.accessNote"
+      studioMap
     />
   );
 }

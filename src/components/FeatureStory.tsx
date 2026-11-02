@@ -11,6 +11,7 @@ import {
   studioHighlightIds,
 } from "./FeatureHighlights";
 import { PhotoCluster, type PhotoClusterImage } from "./PhotoCluster";
+import { StudioMapPreview } from "./StudioMapPreview";
 
 type FeatureStoryProps = {
   id?: string;
@@ -40,6 +41,7 @@ type FeatureStoryProps = {
   badge?: string;
   highlights?: "studio";
   noteKey?: string;
+  studioMap?: boolean;
 };
 
 export function FeatureStory({
@@ -67,6 +69,7 @@ export function FeatureStory({
   badge,
   highlights,
   noteKey,
+  studioMap = false,
 }: FeatureStoryProps) {
   const { t } = useLanguage();
   const videoRef = useAmbientVideo({ whenVisible: true });
@@ -195,26 +198,31 @@ export function FeatureStory({
       </div>
       {video ? (
         <figure className="psl-feature__media psl-feature__media--video">
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster={videoPoster}
-            aria-label={
-              videoLabelKey ? t(videoLabelKey) : t(collageLabelKey ?? titleKey)
-            }
-          >
-            <source src={video} type="video/mp4" />
-          </video>
-          <div className="psl-feature__video-progress" aria-hidden="true">
-            <div
-              className="psl-feature__video-progress-fill"
-              style={{ transform: `scaleX(${videoProgress})` }}
-            />
+          <div className="psl-feature__video-frame">
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster={videoPoster}
+              aria-label={
+                videoLabelKey
+                  ? t(videoLabelKey)
+                  : t(collageLabelKey ?? titleKey)
+              }
+            >
+              <source src={video} type="video/mp4" />
+            </video>
+            <div className="psl-feature__video-progress" aria-hidden="true">
+              <div
+                className="psl-feature__video-progress-fill"
+                style={{ transform: `scaleX(${videoProgress})` }}
+              />
+            </div>
           </div>
+          {studioMap ? <StudioMapPreview /> : null}
         </figure>
       ) : hasCollage && collage ? (
         <div className="psl-feature__media psl-feature__media--cluster">
