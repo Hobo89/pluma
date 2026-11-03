@@ -10,6 +10,7 @@ import {
   quoteLineHeight,
 } from "../lib/quoteSize";
 import { holdTestimonialCard } from "../lib/testimonialWallScroll";
+import { portraitCrop } from "../lib/portraitCrop";
 import { quoteTranslation } from "../lib/testimonialTranslation";
 import { useTestimonialReveal } from "../lib/useTestimonialReveal";
 import { BlurUpImage } from "./BlurUpImage";
@@ -57,14 +58,13 @@ export function TestimonialCard({
   locale,
   translations,
   image,
+  imageSize,
+  face,
   flags,
   countriesKey,
   objectPosition,
   quoteFontSize,
   focalPoint,
-  stackedFocalPoint,
-  portraitZoom,
-  portraitShift,
   variant = "card",
 }: TestimonialCardProps) {
   const { t, language } = useLanguage();
@@ -89,7 +89,7 @@ export function TestimonialCard({
     : undefined;
   const sizePx = quoteFontSizePx(quote, quoteFontSize);
   const focal = focalCss(focalPoint, objectPosition);
-  const stackedFocal = focalCss(stackedFocalPoint, focal);
+  const portrait = portraitCrop(imageSize, face);
   const isStrip = variant === "strip";
 
   const attribution = (
@@ -114,7 +114,6 @@ export function TestimonialCard({
       {...handlers}
       className={[
         "psl-testimonial-card",
-        portraitZoom ? "psl-testimonial-card--framed" : "",
         isStrip ? "psl-testimonial-card--strip" : "",
         lit ? "is-lit" : "",
         pulsing ? "is-pulse" : "",
@@ -128,11 +127,8 @@ export function TestimonialCard({
           "--testimonial-quote-lh": String(quoteLineHeight(sizePx)),
           "--testimonial-attr-gap": `${quoteAttributionGapRem(sizePx)}rem`,
           "--testimonial-focal-point": focal,
-          "--testimonial-stacked-focal-point": stackedFocal,
-          "--testimonial-portrait-zoom": portraitZoom
-            ? String(portraitZoom)
-            : undefined,
-          "--testimonial-portrait-shift": portraitShift,
+          "--testimonial-stacked-focal-point": portrait.objectPosition,
+          "--testimonial-portrait-ratio": String(portrait.aspectRatio),
         } as CSSProperties
       }
     >

@@ -22,6 +22,13 @@ export type TestimonialFocalPoint = {
   y: number;
 };
 
+export type TestimonialFace = {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+};
+
 /** Language the client wrote in. Catalan, French, Chinese, and Croatian are not Spanish or English. */
 export type QuoteLocale = "en" | "es" | "ca" | "fr" | "zh" | "hr";
 
@@ -33,16 +40,15 @@ export type TestimonialRecord = {
   /** Site-language versions, omitted when the original is already that language. */
   translations?: Partial<Record<"en" | "es", string>>;
   image: string;
+  imageSize: { width: number; height: number };
+  /** Face rectangle in the source photo, fractions from the top-left. */
+  face: TestimonialFace;
   flags: readonly TestimonialFlag[];
   areas: readonly AreaId[];
   countriesKey?: string;
   objectPosition?: string;
   quoteFontSize?: number;
-  /** Extra zoom so a face can sit in the middle of the tall portrait. */
-  portraitZoom?: number;
-  portraitShift?: string;
   focalPoint?: TestimonialFocalPoint;
-  stackedFocalPoint?: TestimonialFocalPoint;
 };
 
 /**
@@ -64,12 +70,12 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "Vengo con regularidad a recibir masajes aquí y aprecio mucho la técnica, el ambiente y la presión ejercida durante el masaje.",
     },
     image: "/testimonials/sarah.jpg",
+    imageSize: { width: 1024, height: 1001 },
+    face: { left: 0.228, top: 0.169, right: 0.575, bottom: 0.525 },
     flags: [{ type: "emoji", glyph: "🇫🇷" }],
     countriesKey: "france",
     areas: ["fullBody"],
     objectPosition: "center 30%",
-    portraitZoom: 1.45,
-    portraitShift: "14%",
   },
   {
     id: "allison",
@@ -82,6 +88,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "Un masaje en el segundo trimestre que alivió el cansancio de las piernas y la fatiga mental. Pasé un rato precioso. El ambiente que ofrece Stephen transmite tranquilidad y, mejor aún, sabe escuchar.",
     },
     image: "/testimonials/allison.jpg",
+    imageSize: { width: 816, height: 1024 },
+    face: { left: 0.219, top: 0.265, right: 0.827, bottom: 0.749 },
     flags: [{ type: "emoji", glyph: "🇨🇳" }],
     countriesKey: "china",
     areas: ["pregnancy"],
@@ -98,6 +106,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "Después de un proyecto de trabajo exigente, disfruté de una sesión de masaje fantástica con Stephen. Esa noche dormí como un niño y pude recuperar las fuerzas.",
     },
     image: "/testimonials/jordi.jpg",
+    imageSize: { width: 1024, height: 977 },
+    face: { left: 0.258, top: 0.226, right: 0.624, bottom: 0.609 },
     flags: [{ type: "image", src: "/assets/flags/catalonia.svg" }],
     countriesKey: "catalonia",
     areas: ["fullBody"],
@@ -112,6 +122,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       en: "I slept wonderfully after the session.",
     },
     image: "/testimonials/jesus.jpg",
+    imageSize: { width: 745, height: 1024 },
+    face: { left: 0.204, top: 0.252, right: 0.913, bottom: 0.768 },
     flags: [{ type: "emoji", glyph: "🇪🇸" }],
     countriesKey: "spain",
     areas: ["fullBody"],
@@ -127,6 +139,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       en: "The massage Stephen gave me was an incredibly comforting experience. From the first moment he conveyed professionalism and calm, and as the session went on I felt all the tension leave my body, leaving a lightness and a sense of physical and mental well-being I had not felt in a long time.",
     },
     image: "/testimonials/dana.jpg",
+    imageSize: { width: 945, height: 1024 },
+    face: { left: 0.226, top: 0.248, right: 0.736, bottom: 0.718 },
     flags: [{ type: "emoji", glyph: "🇦🇷" }],
     countriesKey: "argentina",
     areas: ["back", "neck", "upperBack"],
@@ -143,6 +157,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "¡He disfrutado del masaje! Me ha encantado la combinación de técnicas: es un masaje profundo y relajante a la vez. Stephen es muy atento y durante todo el tratamiento me he sentido muy a gusto.",
     },
     image: "/testimonials/tanja.jpg",
+    imageSize: { width: 829, height: 1024 },
+    face: { left: 0.195, top: 0.318, right: 0.804, bottom: 0.81 },
     flags: [{ type: "emoji", glyph: "🇭🇷" }],
     countriesKey: "croatia",
     areas: ["fullBody"],
@@ -159,6 +175,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "El masaje que recibí se hizo con mucha profesionalidad, con energía y a la vez con suavidad. Cuando vuelva a Valencia repetiré.",
     },
     image: "/testimonials/beatrice.jpg",
+    imageSize: { width: 1024, height: 1024 },
+    face: { left: 0.224, top: 0.236, right: 0.801, bottom: 0.812 },
     flags: [{ type: "emoji", glyph: "🇧🇪" }],
     countriesKey: "belgium",
     areas: ["feet", "legs", "lowerBack", "upperBack"],
@@ -171,10 +189,12 @@ export const testimonials: readonly TestimonialRecord[] = [
       "Un massage sur mesure pour près de 2h dans une atmosphère calme et feutrée. Je suis resté suspendu entre et la torpeur et la relaxation de chaque membre de mon corps, à travers un subtil équilibre entre tonus et delicatesse. Trés bonne connexion avec Stephen, avant comme après le massage. J'ai flotté pour le restant de la journée.",
     locale: "fr",
     translations: {
-      en: "A made-to-measure massage of nearly two hours in a calm, hushed atmosphere. I stayed suspended between drowsiness and the relaxation of every part of my body, through a subtle balance of tone and delicacy. A very good connection with Stephen, before as well as after the massage. I floated for the rest of the day.",
+      en: "A 2 hour personalized massage in a calm, hushed atmosphere. I stayed suspended between drowsiness and the relaxation of every part of my body, through a subtle balance of tone and delicacy. A very good connection with Stephen, before as well as after the massage. I floated for the rest of the day.",
       es: "Un masaje a medida de casi dos horas en un ambiente tranquilo y recogido. Me quedé suspendido entre el sopor y la relajación de cada parte del cuerpo, en un equilibrio sutil entre tono y delicadeza. Muy buena conexión con Stephen, antes y después del masaje. Floté el resto del día.",
     },
     image: "/testimonials/charles.jpg",
+    imageSize: { width: 867, height: 1024 },
+    face: { left: 0.417, top: 0.247, right: 0.722, bottom: 0.505 },
     flags: [{ type: "emoji", glyph: "🇫🇷" }],
     countriesKey: "france",
     areas: ["fullBody"],
@@ -189,6 +209,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       en: "I had a massage with Stephen and it was incredible. I will definitely come back.",
     },
     image: "/testimonials/juanma.jpg",
+    imageSize: { width: 897, height: 1024 },
+    face: { left: 0.175, top: 0.263, right: 0.793, bottom: 0.804 },
     flags: [{ type: "emoji", glyph: "🇪🇸" }],
     countriesKey: "spain",
     areas: ["fullBody"],
@@ -204,6 +226,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "Es muy poco habitual tener un masaje de hora y media o dos horas, y eso marca la diferencia. La primera hora es solo el calentamiento para por fin relajarse. Después, es puro disfrute. Y Stephen lo hace maravillosamente bien, adaptando el masaje a lo que necesitas. En mi caso fue casi por completo la parte alta de la espalda. ¿Te imaginas tanto tiempo en una zona tan pequeña? ❤️",
     },
     image: "/testimonials/ruben.jpg",
+    imageSize: { width: 900, height: 1024 },
+    face: { left: 0.21, top: 0.338, right: 0.739, bottom: 0.803 },
     flags: [{ type: "emoji", glyph: "🇧🇪" }],
     countriesKey: "belgium",
     areas: ["back", "face", "head"],
@@ -219,6 +243,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "Me he hecho dos masajes con Stephen y, de verdad, han sido de los mejores que he recibido. Se nota que está del todo presente y que disfruta con lo que hace, algo menos habitual de lo que parece. Pone mucho cuidado y atención en su trabajo, y se nota. Cada sesión se sintió pensada y personal, no un masaje estándar. Salí sintiéndome profundamente cuidada cada vez. Lo recomiendo sin dudarlo.",
     },
     image: "/testimonials/sara.jpg",
+    imageSize: { width: 950, height: 1024 },
+    face: { left: 0.4, top: 0.149, right: 0.656, bottom: 0.387 },
     flags: [{ type: "emoji", glyph: "🇲🇦" }],
     countriesKey: "morocco",
     areas: ["fullBody", "neck", "upperBack"],
@@ -234,6 +260,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       en: "A phenomenal 90-minute massage, therapeutic and relaxing, which considerably improved my back pain. I felt much lighter. A good therapist: professional and empathetic.",
     },
     image: "/testimonials/carla.jpg",
+    imageSize: { width: 1024, height: 1024 },
+    face: { left: 0.291, top: 0.291, right: 0.635, bottom: 0.635 },
     flags: [{ type: "emoji", glyph: "🇪🇸" }],
     countriesKey: "spain",
     areas: ["fullBody"],
@@ -249,11 +277,12 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "Llegué a Stephen con el cuello rígido desde hacía semanas, y este masaje me ayudó muchísimo. Valoro de verdad que se centre en las zonas que necesito y que vaya tan suave o tan profundo como haga falta. Volveré.",
     },
     image: "/testimonials/jed.jpg",
+    imageSize: { width: 921, height: 1024 },
+    face: { left: 0.314, top: 0.259, right: 0.795, bottom: 0.691 },
     flags: [{ type: "emoji", glyph: "🇺🇸" }],
     countriesKey: "unitedStates",
     areas: ["neck"],
     objectPosition: "center 22%",
-    stackedFocalPoint: { x: 50, y: 40 },
   },
   {
     id: "candice",
@@ -265,6 +294,8 @@ export const testimonials: readonly TestimonialRecord[] = [
       es: "Una experiencia estupenda. Stephen fue profesional, atento y muy hábil. Escuchó lo que necesitaba y se centró en las zonas que más trabajo pedían. Salí relajada, renovada y sin dolor. Lo recomiendo mucho.",
     },
     image: "/testimonials/candice.jpg",
+    imageSize: { width: 600, height: 800 },
+    face: { left: 0.225, top: 0.226, right: 0.625, bottom: 0.526 },
     flags: [
       { type: "emoji", glyph: "🇺🇸" },
       { type: "emoji", glyph: "🇮🇳" },
@@ -272,7 +303,6 @@ export const testimonials: readonly TestimonialRecord[] = [
     countriesKey: "unitedStatesIndia",
     areas: ["face", "head", "neck", "upperBack"],
     objectPosition: "center top",
-    stackedFocalPoint: { x: 50, y: 22 },
   },
 ];
 

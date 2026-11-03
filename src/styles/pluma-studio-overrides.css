@@ -763,12 +763,22 @@ html.dark .psl-field input {
 }
 
 .psl-feature__media.psl-feature__media--video {
+  --psl-studio-map-size: clamp(6.5rem, 34%, 8.25rem);
+  --psl-studio-map-gap: clamp(32px, 4vw, 72px);
   display: grid;
   justify-self: center;
   width: min(100%, 28rem);
   aspect-ratio: 9 / 16;
   max-height: min(70vh, 40rem);
   overflow: visible;
+}
+
+.psl-feature__media--video:has(.psl-studio-map) {
+  /* Half the map hangs below the tour. Add whatever the row gap does not already cover. */
+  margin-bottom: max(
+    0px,
+    calc(var(--psl-studio-map-size) / 2 + 0.75rem - var(--psl-studio-map-gap))
+  );
 }
 
 .psl-feature__video-frame {
@@ -796,7 +806,7 @@ html.dark .psl-field input {
   right: 0;
   bottom: calc(var(--psl-studio-map-lift) * -1);
   left: auto;
-  width: clamp(6.5rem, 34%, 8.25rem);
+  width: var(--psl-studio-map-size, clamp(6.5rem, 34%, 8.25rem));
   aspect-ratio: 1;
   border: 3px solid var(--psl-canvas);
   border-radius: 1.15rem;
@@ -1207,6 +1217,12 @@ html.dark .psl-field input {
   right: 0;
 }
 
+@media (max-width: 991px) {
+  .psl-feature__media--video:has(.psl-studio-map) {
+    --psl-studio-map-gap: var(--psl-space-8);
+  }
+}
+
 @media (max-width: 767px) {
   .psl-feature .psl-feature__stills {
     grid-row: 3;
@@ -1216,11 +1232,15 @@ html.dark .psl-field input {
     max-height: min(70vh, 32rem);
   }
 
+  .psl-feature__media--video:has(.psl-studio-map) {
+    --psl-studio-map-size: 6.25rem;
+  }
+
   .psl-studio-map {
     top: auto;
     left: 50%;
     bottom: calc(var(--psl-studio-map-lift) * -1);
-    width: 6.25rem;
+    width: var(--psl-studio-map-size);
     /* The tour’s bottom edge passes through the middle of the card. */
     translate: -50% 50%;
   }
@@ -4429,7 +4449,7 @@ html.dark
   width: 100%;
   height: auto;
   min-width: 0;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--testimonial-portrait-ratio, 4 / 3);
   overflow: hidden;
   border-radius: 20px 20px 40px 40px;
   background: var(--psl-surface);
@@ -4446,15 +4466,6 @@ html.dark
     --testimonial-stacked-focal-point,
     var(--testimonial-focal-point, 50% 35%)
   );
-}
-
-.psl-testimonial-card--framed .psl-testimonial-card__portrait .psl-blur-up__lqip {
-  transform: scale(1.12);
-  transform-origin: center;
-}
-
-.psl-testimonial-card--framed .psl-testimonial-card__portrait .psl-blur-up__full {
-  transform: none;
 }
 
 .psl-testimonial-card__portrait img {
