@@ -64,8 +64,8 @@ describe("gift card catalogue", () => {
 
 describe("gift card english copy", () => {
   it("uses the exact navigation label", () => {
-    assert.equal(translations.en.nav.bonos, "gift card and passes");
-    assert.equal(heroCopy.en.vouchers, "gift card and passes");
+    assert.equal(translations.en.nav.bonos, "gift card & passes");
+    assert.equal(heroCopy.en.vouchers, "gift card & passes");
   });
 
   it("does not end headings with a period", () => {

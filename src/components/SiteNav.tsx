@@ -78,8 +78,13 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
 
   const closeMenu = () => setOpen(false);
 
-  const current = (path: string) =>
-    location.pathname === path ? ("page" as const) : undefined;
+  const current = (path: string) => {
+    const here =
+      location.pathname.length > 1
+        ? location.pathname.replace(/\/+$/, "")
+        : location.pathname;
+    return here === path ? ("page" as const) : undefined;
+  };
 
   const onHomeClick = () => {
     closeMenu();

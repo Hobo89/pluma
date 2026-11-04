@@ -32,12 +32,12 @@ export const translations = {
             "Choose a 60-, 90-, or 120-minute massage and find a time with Stephen in Valencia.",
         },
         bonos: {
-          title: "Gift card and passes · pluma",
+          title: "Gift card & passes · pluma",
           description:
             "Choose one massage or a five- or ten-session pass, for yourself or as a gift. Payment is arranged after the request.",
         },
         events: {
-          title: "Retreats and private villa massage · pluma",
+          title: "Retreats · pluma",
           description:
             "Private massage for art and well-being retreats and villa stays across the Valencian region. Request a proposal from Stephen.",
         },
@@ -73,10 +73,10 @@ export const translations = {
     },
     nav: {
       about: "About",
-      events: "Retreats & events",
+      events: "retreats",
       reviews: "Reviews",
       pricing: "Prices",
-      bonos: "gift card and passes",
+      bonos: "gift card & passes",
       book: "Book",
       main: "Main",
       openMenu: "Open menu",
@@ -869,7 +869,7 @@ export const translations = {
             "Elige un masaje o un bono de cinco o diez sesiones, para ti o para regalar. El pago se organiza después de la solicitud.",
         },
         events: {
-          title: "Masaje para retiros y villas privadas · pluma",
+          title: "Retiros · pluma",
           description:
             "Masaje privado para retiros de arte y bienestar y estancias en villa por la Comunitat Valenciana. Pide una propuesta a Stephen.",
         },
@@ -905,7 +905,7 @@ export const translations = {
     },
     nav: {
       about: "Sobre mí",
-      events: "Retiros y eventos",
+      events: "retiros",
       reviews: "Opiniones",
       pricing: "Precios",
       bonos: "tarjeta regalo y bonos",
