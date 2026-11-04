@@ -5,6 +5,7 @@ export interface HeroLabels {
   eyebrow: string;
   navHome: string;
   about: string;
+  events: string;
   prices: string;
   vouchers: string;
   book: string;

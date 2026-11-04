@@ -1,0 +1,17 @@
+{
+  "formId": "rD529L",
+  "updates": [
+    {
+      "blockUuid": "a8520b5e-cc09-412f-a814-18b54d060cdf",
+      "html": "Personalize your card"
+    },
+    {
+      "blockUuid": "24598de6-64cf-4715-824d-0dc71fa5c01e",
+      "html": "<b>A little time, just for them</b><br>Add their name and a personal note."
+    },
+    {
+      "blockUuid": "9e6be4e0-940b-4619-ba15-29fe80c2b7f6",
+      "html": "<b>Your voucher request is in</b><br><br>{{e2c73397-a759-4eb6-b415-1c7e6ed0b9ed}} · <b>€</b><b>{{54be09c0-07b6-4c8d-a086-cf1c705b8895}}</b><br>Design: {{ce7962f6-392c-45ea-a7bc-536166b8d8a0}}<br><br>I’ll email you at {{e5475fa8-8b4f-4ecc-8c96-15abdd994f26}} to confirm the details and arrange payment. Your card will be prepared after payment and review.<br><br>Request reference: {{id}}<br><br>Got a question, or need to change something? <a href=\"mailto:stephen@pluma.life\" target=\"_blank\" rel=\"noopener noreferrer\">Reach out to me</a> with your reference."
+    }
+  ]
+}

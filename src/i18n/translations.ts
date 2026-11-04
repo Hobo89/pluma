@@ -32,9 +32,14 @@ export const translations = {
             "Choose a 60-, 90-, or 120-minute massage and find a time with Stephen in Valencia.",
         },
         bonos: {
-          title: "Massage vouchers in Valencia · pluma",
+          title: "Gift card and passes · pluma",
           description:
-            "Choose a five- or ten-session Pluma voucher for 60- or 90-minute massages and ask about it through the booking calendar.",
+            "Choose one massage or a five- or ten-session pass, for yourself or as a gift. Payment is arranged after the request.",
+        },
+        events: {
+          title: "Retreats and private villa massage · pluma",
+          description:
+            "Private massage for art and well-being retreats and villa stays across the Valencian region. Request a proposal from Stephen.",
         },
         notice: {
           title: "Legal notice · pluma",
@@ -68,9 +73,10 @@ export const translations = {
     },
     nav: {
       about: "About",
+      events: "Retreats & events",
       reviews: "Reviews",
       pricing: "Prices",
-      bonos: "vouchers",
+      bonos: "gift card and passes",
       book: "Book",
       main: "Main",
       openMenu: "Open menu",
@@ -352,6 +358,82 @@ export const translations = {
       returnTitle: "Prefer one session?",
       returnCta: "Book massage",
     },
+    gift: {
+      heroTitle: "Regular touch heals",
+      heroLine1: "Make self-care part of your rhythm.",
+      heroLine2: "Each session built on the last.",
+      heroCta: "Choose your card",
+      heroOffer: "For you or a gift · From €45 · Save with 5 or 10 sessions",
+      cardAlt: "{design} Pluma card",
+      benefitsLabel: "Benefits",
+      benefits: {
+        rhythm: {
+          title: "Make care part of your rhythm",
+          body: "Save 10-15% with session passes. Save headspace, before tension builds.",
+        },
+        unwind: {
+          title: "Room to unwind",
+          body: "Time to let go of tension, quiet your mind, and settle into your body.",
+        },
+        care: {
+          title: "Care that knows you",
+          body: "I get to know what helps you, and adapt each visit around it.",
+        },
+      },
+      personalizeTitle: "Personalize your card",
+      designCaption: "Your design, whether it’s for you or a gift.",
+      designLegend: "Choose a card design",
+      formSteps: "Choose your voucher → Choose your design → Add your details",
+      continueDesign: "Continue with this design",
+      designLocked:
+        "To change the design, use the design question in the form. Choosing again here would reload it and clear your answers.",
+      formWaiting: "Continue with a design and the request form opens here.",
+      formFrameTitle: "Send voucher request",
+      formLoading: "Loading the form…",
+      formError: "The form didn’t load.",
+      formOpen: "Open the form in a new tab",
+      formLanguage:
+        "This request form is in English. A Spanish form is not available.",
+      unpublishedTitle: "The request form isn’t available yet",
+      unpublishedBody:
+        "The voucher form is still an unpublished draft, so a request cannot be sent from this page. Nothing here is a confirmed order.",
+      payment: "I’ll email you to arrange payment, then prepare your card.",
+      processTitle: "A digital card, always with you",
+      process: {
+        receive: {
+          title: "Receive card",
+          body: "Whether it’s for you or as a gift, receive it now or at a scheduled time.",
+        },
+        phone: {
+          title: "On your phone",
+          body: "Add it to Apple or Google Wallet.",
+        },
+        track: {
+          title: "Stay on track",
+          body: "Updated on your phone after each visit.",
+        },
+      },
+      faqTitle: "Good to know",
+      faq: {
+        receive: {
+          question: "How do I get my card?",
+          answer:
+            "Send me your request. I’ll confirm the details and arrange payment with you, then email the card to you or directly to them. If you have a date in mind, let me know.",
+        },
+        validity: {
+          question: "How long is it valid?",
+          answer:
+            "Five sessions: three months from your first visit. Ten sessions: six months. Start within 30 days of issue. I’ll confirm the validity of a single-session gift before payment.",
+        },
+        where: {
+          question: "Where do I come for my massage?",
+          answer:
+            "I’ll welcome you at my home studio in Valencia’s Old Town, near the Central Market. It’s on the third floor, with stair access.",
+        },
+      },
+      contactLead: "Got a question?",
+      contactLink: "Reach out to me",
+    },
     studio: {
       title: "A calm home studio next to the Central Market",
       titleHighlight: "calm",
@@ -438,6 +520,104 @@ export const translations = {
     cta: {
       heading: "Ready when your body is",
       body: "Don’t overthink it.",
+    },
+    events: {
+      hero: {
+        eyebrow: "A little something for your guests",
+        title: "Make room for a little Pluma.",
+        support: "Private massage for retreats and villa stays.",
+        caption: "The care of Pluma, wherever you gather.",
+        roomAlt:
+          "The massage room at Pluma, with the treatment table, towels and candlelight",
+        poolAlt: "Stephen arriving with a massage table beside a pool",
+        handsAlt: "A head resting in Stephen’s hands during a massage",
+      },
+      words: {
+        title: "In their words.",
+      },
+      organiser: {
+        kind: "From the organiser",
+        placeholder: "Testimonial placeholder",
+        pending: "An organiser quotation hasn’t been added yet.",
+      },
+      clients: {
+        label: "Pluma studio clients",
+        note: "Studio-client reviews. These visits were at the studio, not at a retreat or villa.",
+      },
+      carousel: {
+        count: "{current} / {total}",
+        announced: "{name}, client testimonial {current} of {total}",
+      },
+      host: {
+        name: "With Stephen",
+        meta: "3+ guests · 60 or 90 minutes each",
+        photoAlt: "Stephen",
+      },
+      answers: {
+        experience: {
+          title: "What will our guests experience?",
+          body: "Time to unwind with Stephen. Individual massages, arranged around your group and programme.",
+        },
+        arrange: {
+          title: "What do we need to arrange?",
+          body: "Just a private, ventilated indoor room, at least 1.5 × 2.8 m. I bring the table, linens, oils and the rest.",
+        },
+        cost: {
+          title: "What will it cost?",
+          body: "One proposal for your group, including travel. A deposit reserves your date; the balance is due seven days before.",
+        },
+      },
+      request: {
+        title: "Bring Pluma to your stay.",
+        body: "Tell me your plans. I’ll take care of the details.",
+        button: "Request a proposal",
+        micro: "No commitment to enquire.",
+        region: "Available across the Valencian region.",
+      },
+      form: {
+        title: "Tell me about your stay.",
+        intro: "A few details to shape your proposal.",
+        close: "Close enquiry form",
+        name: "Your name",
+        namePlaceholder: "First and last name",
+        email: "Email",
+        emailPlaceholder: "you@example.com",
+        where: "Where?",
+        wherePlaceholder: "Venue, town or area",
+        when: "When?",
+        whenPlaceholder: "Dates or ‘not sure yet’",
+        guests: "How many guests?",
+        guestsPlaceholder: "Three or more",
+        gathering: "Type of gathering",
+        optional: "Optional",
+        gatheringEmpty: "Choose if you know",
+        gatherings: {
+          retreat: "Art or well-being retreat",
+          villa: "Private villa stay",
+          office: "Office event — coming soon",
+          other: "Other gathering",
+        },
+        plans: "A little about your plans",
+        plansPlaceholder:
+          "What are you bringing people together for? Tell me how you’d like massage to fit in.",
+        submit: "Request my proposal",
+        deposit: "A deposit secures your date once the proposal is agreed.",
+        preview: "Preview only — enquiries aren’t sent yet",
+        notSent: "Nothing was sent. This form is still a preview.",
+        errors: {
+          name: "Enter your name.",
+          email: "Enter a valid email address.",
+          location: "Say where you’ll be.",
+          when: "Add dates, or write “not sure yet”.",
+          guests: "Enter at least 3 guests.",
+          plans: "Tell me a little about your plans.",
+        },
+      },
+      home: {
+        title: "Pluma, brought to your retreat",
+        body: "A complete massage experience for art and well-being retreats and private villa stays across the Valencian region. Attentive treatments for your guests, with the setup taken care of.",
+        link: "Explore retreats & events",
+      },
     },
     quote: {
       title: "What clients say",
@@ -684,9 +864,14 @@ export const translations = {
             "Elige un masaje de 60, 90 o 120 minutos y encuentra una hora con Stephen en Valencia.",
         },
         bonos: {
-          title: "Bonos de masaje en Valencia · pluma",
+          title: "Tarjeta regalo y bonos · pluma",
           description:
-            "Elige un bono Pluma de cinco o diez sesiones de 60 o 90 minutos y solicita información desde el calendario.",
+            "Elige un masaje o un bono de cinco o diez sesiones, para ti o para regalar. El pago se organiza después de la solicitud.",
+        },
+        events: {
+          title: "Masaje para retiros y villas privadas · pluma",
+          description:
+            "Masaje privado para retiros de arte y bienestar y estancias en villa por la Comunitat Valenciana. Pide una propuesta a Stephen.",
         },
         notice: {
           title: "Aviso legal · pluma",
@@ -720,9 +905,10 @@ export const translations = {
     },
     nav: {
       about: "Sobre mí",
+      events: "Retiros y eventos",
       reviews: "Opiniones",
       pricing: "Precios",
-      bonos: "bonos",
+      bonos: "tarjeta regalo y bonos",
       book: "Reservar",
       main: "Principal",
       openMenu: "Abrir menú",
@@ -1009,6 +1195,82 @@ export const translations = {
       returnTitle: "¿Prefieres una sesión suelta?",
       returnCta: "Reservar masaje",
     },
+    gift: {
+      heroTitle: "El tacto regular sana",
+      heroLine1: "Haz del cuidado personal parte de tu ritmo.",
+      heroLine2: "Cada sesión parte de la anterior.",
+      heroCta: "Elige tu tarjeta",
+      heroOffer: "Para ti o para regalar · Desde 45 € · Ahorra con 5 o 10 sesiones",
+      cardAlt: "Tarjeta Pluma {design}",
+      benefitsLabel: "Beneficios",
+      benefits: {
+        rhythm: {
+          title: "Haz del cuidado parte de tu ritmo",
+          body: "Ahorra un 10-15% con bonos de sesiones. Ahorra espacio mental, antes de que crezca la tensión.",
+        },
+        unwind: {
+          title: "Espacio para soltar",
+          body: "Tiempo para soltar la tensión, aquietar la mente y asentarte en el cuerpo.",
+        },
+        care: {
+          title: "Un cuidado que te conoce",
+          body: "Voy conociendo lo que te ayuda, y adapto cada visita a eso.",
+        },
+      },
+      personalizeTitle: "Personaliza tu tarjeta",
+      designCaption: "Tu diseño, tanto si es para ti como si es un regalo.",
+      designLegend: "Elige un diseño de tarjeta",
+      formSteps: "Elige tu bono → Elige tu diseño → Añade tus datos",
+      continueDesign: "Continuar con este diseño",
+      designLocked:
+        "Para cambiar el diseño, usa la pregunta del formulario. Elegir otro aquí lo recargaría y borraría tus respuestas.",
+      formWaiting: "Continúa con un diseño y el formulario de solicitud se abre aquí.",
+      formFrameTitle: "Enviar solicitud de bono",
+      formLoading: "Cargando el formulario…",
+      formError: "El formulario no se ha cargado.",
+      formOpen: "Abrir el formulario en una pestaña nueva",
+      formLanguage:
+        "Este formulario de solicitud está en inglés. No hay un formulario en español.",
+      unpublishedTitle: "El formulario de solicitud aún no está disponible",
+      unpublishedBody:
+        "El formulario del bono sigue siendo un borrador sin publicar, así que desde esta página no se puede enviar una solicitud. Nada de lo que ves aquí es un pedido confirmado.",
+      payment: "Te escribiré para organizar el pago y después prepararé tu tarjeta.",
+      processTitle: "Una tarjeta digital, siempre contigo",
+      process: {
+        receive: {
+          title: "Recibe la tarjeta",
+          body: "Tanto si es para ti como para regalar, recíbela ahora o en una fecha prevista.",
+        },
+        phone: {
+          title: "En tu teléfono",
+          body: "Añádela a Apple o Google Wallet.",
+        },
+        track: {
+          title: "Sigue el ritmo",
+          body: "Se actualiza en tu teléfono después de cada visita.",
+        },
+      },
+      faqTitle: "Conviene saber",
+      faq: {
+        receive: {
+          question: "¿Cómo recibo mi tarjeta?",
+          answer:
+            "Envíame tu solicitud. Confirmaré los datos y organizaré el pago contigo, y después enviaré la tarjeta por email a ti o directamente a esa persona. Si tienes una fecha en mente, dímelo.",
+        },
+        validity: {
+          question: "¿Cuánto tiempo es válida?",
+          answer:
+            "Cinco sesiones: tres meses desde tu primera visita. Diez sesiones: seis meses. Empieza dentro de los 30 días posteriores a la emisión. Confirmaré la validez de un regalo de una sola sesión antes del pago.",
+        },
+        where: {
+          question: "¿Dónde es el masaje?",
+          answer:
+            "Te recibo en mi estudio en casa, en el casco antiguo de Valencia, cerca del Mercado Central. Está en la tercera planta, con acceso por escaleras.",
+        },
+      },
+      contactLead: "¿Tienes una pregunta?",
+      contactLink: "Escríbeme",
+    },
     studio: {
       title: "Un estudio tranquilo en casa junto al Mercado Central",
       titleHighlight: "tranquilo",
@@ -1096,6 +1358,104 @@ export const translations = {
     cta: {
       heading: "Cuando tu cuerpo esté listo",
       body: "No le des tantas vueltas.",
+    },
+    events: {
+      hero: {
+        eyebrow: "Un pequeño detalle para tus invitados",
+        title: "Haz sitio para un poco de Pluma.",
+        support: "Masaje privado para retiros y estancias en villa.",
+        caption: "El cuidado de Pluma, allí donde os reunís.",
+        roomAlt:
+          "La sala de masaje de Pluma, con la camilla, las toallas y la luz de las velas",
+        poolAlt: "Stephen llega con una camilla de masaje junto a una piscina",
+        handsAlt: "Una cabeza descansa entre las manos de Stephen durante un masaje",
+      },
+      words: {
+        title: "En sus palabras.",
+      },
+      organiser: {
+        kind: "De quien organiza",
+        placeholder: "Testimonio provisional",
+        pending: "Todavía no hay una cita de quien organiza.",
+      },
+      clients: {
+        label: "Clientes del estudio Pluma",
+        note: "Reseñas de clientes del estudio. Estas visitas fueron en el estudio, no en un retiro ni en una villa.",
+      },
+      carousel: {
+        count: "{current} / {total}",
+        announced: "{name}, testimonio de cliente {current} de {total}",
+      },
+      host: {
+        name: "Con Stephen",
+        meta: "3 o más invitados · 60 o 90 minutos cada uno",
+        photoAlt: "Stephen",
+      },
+      answers: {
+        experience: {
+          title: "¿Qué van a vivir los invitados?",
+          body: "Un tiempo para soltar con Stephen. Masajes individuales, organizados alrededor del grupo y del programa.",
+        },
+        arrange: {
+          title: "¿Qué tenéis que preparar?",
+          body: "Solo una sala interior, privada y ventilada, de al menos 1,5 × 2,8 m. Yo llevo la camilla, la ropa de camilla, los aceites y lo demás.",
+        },
+        cost: {
+          title: "¿Cuánto cuesta?",
+          body: "Una propuesta para el grupo, desplazamiento incluido. Una señal reserva la fecha; el resto se paga siete días antes.",
+        },
+      },
+      request: {
+        title: "Lleva Pluma a vuestra estancia.",
+        body: "Cuéntame los planes. Yo me ocupo de los detalles.",
+        button: "Pedir una propuesta",
+        micro: "Consultar no compromete a nada.",
+        region: "Disponible en la Comunitat Valenciana.",
+      },
+      form: {
+        title: "Cuéntame vuestra estancia.",
+        intro: "Unos datos para preparar la propuesta.",
+        close: "Cerrar el formulario",
+        name: "Tu nombre",
+        namePlaceholder: "Nombre y apellidos",
+        email: "Email",
+        emailPlaceholder: "tu@ejemplo.com",
+        where: "¿Dónde?",
+        wherePlaceholder: "Lugar, pueblo o zona",
+        when: "¿Cuándo?",
+        whenPlaceholder: "Fechas o «aún no lo sé»",
+        guests: "¿Cuántos invitados?",
+        guestsPlaceholder: "Tres o más",
+        gathering: "Tipo de encuentro",
+        optional: "Opcional",
+        gatheringEmpty: "Elige si ya lo sabes",
+        gatherings: {
+          retreat: "Retiro de arte o bienestar",
+          villa: "Estancia en villa privada",
+          office: "Evento de oficina — próximamente",
+          other: "Otro encuentro",
+        },
+        plans: "Un poco sobre los planes",
+        plansPlaceholder:
+          "¿Para qué estáis reuniendo a la gente? Cuéntame cómo te gustaría que encajara el masaje.",
+        submit: "Pedir mi propuesta",
+        deposit: "Una señal asegura la fecha cuando la propuesta está acordada.",
+        preview: "Solo vista previa — las consultas todavía no se envían",
+        notSent: "No se ha enviado nada. Este formulario sigue en vista previa.",
+        errors: {
+          name: "Escribe tu nombre.",
+          email: "Escribe un email válido.",
+          location: "Indica dónde estaréis.",
+          when: "Añade fechas, o escribe «aún no lo sé».",
+          guests: "Indica al menos 3 invitados.",
+          plans: "Cuéntame un poco los planes.",
+        },
+      },
+      home: {
+        title: "Pluma, en tu retiro",
+        body: "Una experiencia de masaje completa para retiros de arte y bienestar y estancias privadas en villa por la Comunitat Valenciana. Tratamientos atentos para tus invitados, con el montaje resuelto.",
+        link: "Ver retiros y eventos",
+      },
     },
     quote: {
       title: "Lo que dicen los clientes",

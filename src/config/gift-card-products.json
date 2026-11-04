@@ -1,0 +1,58 @@
+[
+  {
+    "code": "PLM-1x60",
+    "sessions": 1,
+    "session_minutes": 60,
+    "total_eur": 45,
+    "total_cents": 4500,
+    "discount_percent": 0
+  },
+  {
+    "code": "PLM-1x90",
+    "sessions": 1,
+    "session_minutes": 90,
+    "total_eur": 65,
+    "total_cents": 6500,
+    "discount_percent": 0
+  },
+  {
+    "code": "PLM-1x120",
+    "sessions": 1,
+    "session_minutes": 120,
+    "total_eur": 85,
+    "total_cents": 8500,
+    "discount_percent": 0
+  },
+  {
+    "code": "PLM-5x60",
+    "sessions": 5,
+    "session_minutes": 60,
+    "total_eur": 202.5,
+    "total_cents": 20250,
+    "discount_percent": 10
+  },
+  {
+    "code": "PLM-5x90",
+    "sessions": 5,
+    "session_minutes": 90,
+    "total_eur": 292.5,
+    "total_cents": 29250,
+    "discount_percent": 10
+  },
+  {
+    "code": "PLM-10x60",
+    "sessions": 10,
+    "session_minutes": 60,
+    "total_eur": 382.5,
+    "total_cents": 38250,
+    "discount_percent": 15
+  },
+  {
+    "code": "PLM-10x90",
+    "sessions": 10,
+    "session_minutes": 90,
+    "total_eur": 552.5,
+    "total_cents": 55250,
+    "discount_percent": 15
+  }
+]

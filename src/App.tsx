@@ -6,6 +6,7 @@ import { BookingPage } from "./pages/BookingPage";
 import { BonosPage } from "./pages/BonosPage";
 import { LegalPage } from "./pages/LegalPage";
 import { PricingPage } from "./pages/PricingPage";
+import { EventsPage } from "./pages/EventsPage";
 import { ReviewsPage } from "./pages/ReviewsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
@@ -15,6 +16,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="retreats" element={<EventsPage />} />
         <Route path="reviews" element={<ReviewsPage />} />
         <Route path="pricing" element={<PricingPage />} />
         <Route path="book" element={<BookingPage />} />

@@ -1,4 +1,13 @@
-import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
 import { useLanguage } from "../context/LanguageContext";
 import {
   testimonials,
@@ -6,6 +15,14 @@ import {
   type TestimonialFlag,
   type TestimonialRecord,
 } from "../content/testimonials";
+import {
+  carouselActiveIndex,
+  carouselRadius,
+  carouselRotationDegrees,
+  EVENT_CAROUSEL_INTERVAL_MS,
+  EVENT_CAROUSEL_TRANSITION_MS,
+} from "../lib/testimonialCarousel";
+import { TestimonialCard } from "./TestimonialCard";
 
 export const QUOTE_TESTIMONIALS = testimonials;
 
@@ -76,7 +93,314 @@ function AreaBadges({ areas }: { areas: readonly AreaId[] }) {
   );
 }
 
-export function EditorialQuote() {
+type EditorialQuoteProps = {
+  /** `cards` is the events-page opt-in. The default collage is unchanged. */
+  presentation?: "collage" | "cards";
+  items?: readonly TestimonialRecord[];
+  label?: string;
+  labelledBy?: string;
+};
+
+type MotionChoice = "auto" | "paused" | "playing";
+
+function EditorialQuoteCards({
+  items,
+  label,
+  labelledBy,
+}: {
+  items: readonly TestimonialRecord[];
+  label?: string;
+  labelledBy?: string;
+}) {
+  const { t } = useLanguage();
+  const count = items.length;
+  const [step, setStep] = useState(0);
+  const [motionChoice, setMotionChoice] = useState<MotionChoice>("auto");
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [interacting, setInteracting] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [pageHidden, setPageHidden] = useState(false);
+  const [announcement, setAnnouncement] = useState("");
+  const rootRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const swipeRef = useRef<{ x: number; y: number; moved: boolean } | null>(null);
+  const manualStep = useRef(false);
+
+  const activeIndex = carouselActiveIndex(step, count);
+  const playing =
+    motionChoice === "playing" || (motionChoice === "auto" && !reducedMotion);
+  const rotating =
+    playing && !interacting && inView && !pageHidden && count > 1;
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    const update = () => setPageHidden(document.hidden);
+    update();
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
+
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setInView(
+          Boolean(entry?.isIntersecting && entry.intersectionRatio >= 0.35),
+        );
+      },
+      { threshold: [0, 0.35] },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!rotating) return;
+    const timer = window.setTimeout(() => {
+      setStep((current) => current + 1);
+    }, EVENT_CAROUSEL_INTERVAL_MS);
+    return () => window.clearTimeout(timer);
+  }, [rotating, step]);
+
+  useEffect(() => {
+    if (!manualStep.current) return;
+    manualStep.current = false;
+    const item = items[activeIndex];
+    if (!item) return;
+    setAnnouncement(
+      t("events.carousel.announced", {
+        name: item.name,
+        current: activeIndex + 1,
+        total: count,
+      }),
+    );
+  }, [activeIndex, count, items, t]);
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    const ring = ringRef.current;
+    if (!stage || !ring) return;
+
+    if (reducedMotion) {
+      stage.style.height = "";
+      return;
+    }
+
+    const measure = () => {
+      const cards = [
+        ...stage.querySelectorAll<HTMLElement>(".psl-testimonial-card"),
+      ];
+      if (cards.length === 0) return;
+      const width = cards[0].getBoundingClientRect().width;
+      const height = Math.max(
+        ...cards.map((card) => card.getBoundingClientRect().height),
+      );
+      stage.style.setProperty(
+        "--events-radius",
+        `${carouselRadius(width, cards.length)}px`,
+      );
+      stage.style.height = `${Math.ceil(height + 48)}px`;
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(stage);
+    stage
+      .querySelectorAll(".psl-testimonial-card")
+      .forEach((card) => observer.observe(card));
+    const frame = window.requestAnimationFrame(() => {
+      ring.classList.add("is-ready");
+    });
+    return () => {
+      window.cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [reducedMotion, count, items]);
+
+  const advance = useCallback((delta: number, manual: boolean) => {
+    if (manual) manualStep.current = true;
+    setStep((current) => current + delta);
+  }, []);
+
+  const onPointerDown = useCallback((event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "touch") return;
+    swipeRef.current = { x: event.clientX, y: event.clientY, moved: false };
+    setInteracting(true);
+  }, []);
+
+  const onPointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
+    const start = swipeRef.current;
+    if (!start || event.pointerType !== "touch") return;
+    const dx = event.clientX - start.x;
+    const dy = event.clientY - start.y;
+    if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) start.moved = true;
+  }, []);
+
+  const finishSwipe = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      const start = swipeRef.current;
+      swipeRef.current = null;
+      if (!start || event.pointerType !== "touch") return;
+      const dx = event.clientX - start.x;
+      const dy = event.clientY - start.y;
+      const swiped =
+        start.moved &&
+        Math.abs(dx) >= SWIPE_THRESHOLD_PX &&
+        Math.abs(dx) > Math.abs(dy) * 1.25;
+      if (swiped) advance(dx < 0 ? 1 : -1, true);
+      window.setTimeout(() => setInteracting(false), swiped ? 1200 : 0);
+    },
+    [advance],
+  );
+
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    event.preventDefault();
+    advance(event.key === "ArrowRight" ? 1 : -1, true);
+  };
+
+  return (
+    <div
+      ref={rootRef}
+      className="psl-events-carousel"
+      data-reduced={reducedMotion ? "true" : "false"}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={labelledBy ? undefined : label}
+      aria-labelledby={labelledBy}
+      style={
+        {
+          "--events-turn": `${carouselRotationDegrees(step, count)}deg`,
+          "--events-transition": `${EVENT_CAROUSEL_TRANSITION_MS}ms`,
+        } as CSSProperties
+      }
+      onMouseEnter={() => setInteracting(true)}
+      onMouseLeave={() => setInteracting(false)}
+      onFocus={() => setInteracting(true)}
+      onBlur={(event) => {
+        if (!rootRef.current?.contains(event.relatedTarget as Node)) {
+          setInteracting(false);
+        }
+      }}
+      onKeyDown={onKeyDown}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={finishSwipe}
+      onPointerCancel={finishSwipe}
+    >
+      <div className="psl-events-carousel__clip">
+        <div ref={stageRef} className="psl-events-carousel__stage">
+          <div ref={ringRef} className="psl-events-carousel__ring">
+            {items.map((item, index) => {
+              const active = index === activeIndex;
+              return (
+                <div
+                  key={item.id}
+                  className={[
+                    "psl-events-carousel__face",
+                    active ? "is-active" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  style={
+                    {
+                      "--events-face-angle": `${carouselRotationDegrees(index, count)}deg`,
+                    } as CSSProperties
+                  }
+                  aria-hidden={active ? undefined : true}
+                  inert={active ? undefined : true}
+                >
+                  <TestimonialCard {...item} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <div className="psl-quote__controls">
+        <button
+          type="button"
+          className="psl-quote__control"
+          onClick={() => advance(-1, true)}
+          aria-label={t("quote.previous")}
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
+        <span className="psl-events-carousel__count" aria-hidden="true">
+          {t("events.carousel.count", {
+            current: count === 0 ? 0 : activeIndex + 1,
+            total: count,
+          })}
+        </span>
+        <button
+          type="button"
+          className="psl-quote__control"
+          onClick={() => advance(1, true)}
+          aria-label={t("quote.next")}
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="m9 6 6 6-6 6" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          className="psl-quote__control"
+          onClick={() =>
+            setMotionChoice((current) =>
+              current === "paused" || (current === "auto" && reducedMotion)
+                ? "playing"
+                : "paused",
+            )
+          }
+        >
+          {playing ? <PauseIcon /> : <PlayIcon />}
+          {playing ? t("quote.pause") : t("quote.play")}
+        </button>
+      </div>
+      <p className="psl-sr-only" aria-live="polite" aria-atomic="true">
+        {announcement}
+      </p>
+    </div>
+  );
+}
+
+export function EditorialQuote({
+  presentation = "collage",
+  items,
+  label,
+  labelledBy,
+}: EditorialQuoteProps = {}) {
+  if (presentation === "cards") {
+    return (
+      <EditorialQuoteCards
+        items={items ?? []}
+        label={label}
+        labelledBy={labelledBy}
+      />
+    );
+  }
+
+  return <EditorialQuoteCollage />;
+}
+
+function EditorialQuoteCollage() {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [compact, setCompact] = useState(false);

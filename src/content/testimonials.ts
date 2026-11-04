@@ -311,3 +311,19 @@ export function testimonialById(id: string): TestimonialRecord {
   if (!entry) throw new Error(`No testimonial for id "${id}"`);
   return entry;
 }
+
+/**
+ * Studio-client reviews for the retreats page. These are not event attendance.
+ * Jesus is the shortest approved quote; Sara is the longest.
+ */
+export const eventClientTestimonialIds = [
+  "sarah",
+  "jesus",
+  "jordi",
+  "dana",
+  "sara",
+] as const;
+
+export function eventClientTestimonials(): TestimonialRecord[] {
+  return eventClientTestimonialIds.map((id) => testimonialById(id));
+}

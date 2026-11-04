@@ -25,6 +25,7 @@ const DEFAULT_LANGUAGE = "en";
 const ROUTES = [
   { path: "/", meta: "home", priority: "1.0" },
   { path: "/about", meta: "about", priority: "0.8" },
+  { path: "/retreats", meta: "events", priority: "0.6" },
   { path: "/pricing", meta: "pricing", priority: "0.9" },
   { path: "/book", meta: "book", priority: "0.9" },
   { path: "/member-card", meta: "bonos", priority: "0.7" },

@@ -17,6 +17,7 @@ const ASSET_BASE = "/pluma-hero/assets/";
 const LINKS = {
   home: "/",
   about: "/about",
+  events: "/retreats",
   prices: "/pricing",
   vouchers: "/member-card",
 } as const;
@@ -76,6 +77,9 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
   };
 
   const closeMenu = () => setOpen(false);
+
+  const current = (path: string) =>
+    location.pathname === path ? ("page" as const) : undefined;
 
   const onHomeClick = () => {
     closeMenu();
@@ -140,16 +144,40 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
           />
         </Link>
         <nav aria-label={labels.navigation}>
-          <Link ref={firstLinkRef} to={LINKS.home} onClick={closeMenu}>
+          <Link
+            ref={firstLinkRef}
+            to={LINKS.home}
+            aria-current={current(LINKS.home)}
+            onClick={closeMenu}
+          >
             {labels.navHome}
           </Link>
-          <Link to={LINKS.about} onClick={closeMenu}>
+          <Link
+            to={LINKS.about}
+            aria-current={current(LINKS.about)}
+            onClick={closeMenu}
+          >
             {labels.about}
           </Link>
-          <Link to={LINKS.prices} onClick={closeMenu}>
+          <Link
+            to={LINKS.events}
+            aria-current={current(LINKS.events)}
+            onClick={closeMenu}
+          >
+            {labels.events}
+          </Link>
+          <Link
+            to={LINKS.prices}
+            aria-current={current(LINKS.prices)}
+            onClick={closeMenu}
+          >
             {labels.prices}
           </Link>
-          <Link to={LINKS.vouchers} onClick={closeMenu}>
+          <Link
+            to={LINKS.vouchers}
+            aria-current={current(LINKS.vouchers)}
+            onClick={closeMenu}
+          >
             {labels.vouchers}
           </Link>
         </nav>
@@ -170,10 +198,21 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
           />
         </Link>
         <nav className="ph-desktop-links" aria-label={labels.navigation}>
-          <Link to={LINKS.home}>{labels.navHome}</Link>
-          <Link to={LINKS.about}>{labels.about}</Link>
-          <Link to={LINKS.prices}>{labels.prices}</Link>
-          <Link to={LINKS.vouchers}>{labels.vouchers}</Link>
+          <Link to={LINKS.home} aria-current={current(LINKS.home)}>
+            {labels.navHome}
+          </Link>
+          <Link to={LINKS.about} aria-current={current(LINKS.about)}>
+            {labels.about}
+          </Link>
+          <Link to={LINKS.events} aria-current={current(LINKS.events)}>
+            {labels.events}
+          </Link>
+          <Link to={LINKS.prices} aria-current={current(LINKS.prices)}>
+            {labels.prices}
+          </Link>
+          <Link to={LINKS.vouchers} aria-current={current(LINKS.vouchers)}>
+            {labels.vouchers}
+          </Link>
         </nav>
         <div
           className="ph-languages"

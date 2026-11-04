@@ -18,3 +18,18 @@ interface HTMLVideoElement {
   requestVideoFrameCallback?: (callback: (now: number, metadata: unknown) => void) => number;
   cancelVideoFrameCallback?: (handle: number) => void;
 }
+
+declare module "*.svg?raw" {
+  const src: string;
+  export default src;
+}
+
+declare module "*.css?raw" {
+  const src: string;
+  export default src;
+}
+
+declare module "*.js?url" {
+  const src: string;
+  export default src;
+}

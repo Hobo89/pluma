@@ -1,0 +1,7 @@
+/* Geometry is reserved before enhancement; all visibility defaults live in SVG. */
+svg[data-pluma-benefit] {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 360 / 260;
+}

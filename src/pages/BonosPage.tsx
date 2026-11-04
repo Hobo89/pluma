@@ -1,257 +1,101 @@
-import { Link } from "react-router-dom";
-import { BonoCardStrip } from "../components/BonoCardStrip";
-import { BrandMarkedHeading } from "../components/BrandMarkedHeading";
 import { PageContainer } from "../components/PageContainer";
 import { PageMeta } from "../components/PageMeta";
-import { CopyBlocks } from "../components/CopyBlocks";
-import { BookingAction } from "../components/BookingAction";
-import { mailto } from "../lib/contact";
+import { GiftBenefits } from "../components/gift/GiftBenefits";
+import { GiftPersonalize } from "../components/gift/GiftPersonalize";
+import { GiftProcess } from "../components/gift/GiftProcess";
 import {
-  sessionRates,
-  voucherCards,
-  type VoucherDuration,
-} from "../config/pricing";
+  giftCardImage,
+  giftDesignById,
+  type GiftDesignId,
+} from "../config/giftCards";
 import { useLanguage } from "../context/LanguageContext";
-import { formatPrice } from "../lib/money";
 
-const faqGroups = [
-  {
-    id: "buying",
-    items: ["include", "arrange", "share", "prices"],
-  },
-  {
-    id: "using",
-    items: ["after", "book"],
-  },
-  {
-    id: "validity",
-    items: ["valid", "expire"],
-  },
-  {
-    id: "changes",
-    items: ["change", "plumaCancel", "extend", "refund"],
-  },
-] as const;
+const FAQ = ["receive", "validity", "where"] as const;
 
-function isClientFavorite(sessions: number, minutes: number) {
-  return sessions === 5 && minutes === 60;
+const HERO_CARDS: { id: GiftDesignId; place: "left" | "front" | "right" }[] = [
+  { id: "Sand", place: "left" },
+  { id: "Forest", place: "front" },
+  { id: "Aqua", place: "right" },
+];
+
+function scrollToPersonalize() {
+  const target = document.getElementById("personalize");
+  if (!target) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  target.scrollIntoView({
+    behavior: reduce ? "auto" : "smooth",
+    block: "start",
+  });
+  target.focus({ preventScroll: true });
 }
 
 export function BonosPage() {
-  const { t, language } = useLanguage();
-  const voucherDurations = sessionRates
-    .map((rate) => rate.minutes)
-    .filter((minutes): minutes is VoucherDuration => minutes === 60 || minutes === 90);
-  const voucherCombos = voucherCards.flatMap((card) =>
-    card.rates.map((rate) => ({ card, rate })),
-  );
+  const { t } = useLanguage();
 
   return (
     <PageContainer>
       <PageMeta page="bonos" />
+      <div className="psl-gift">
+        <section className="psl-gift-hero" aria-labelledby="gift-hero-heading">
+          <h1 id="gift-hero-heading" className="psl-page-title">
+            {t("gift.heroTitle")}
+          </h1>
+          <p className="psl-copy psl-gift-hero__support">
+            {t("gift.heroLine1")}
+            <br />
+            {t("gift.heroLine2")}
+          </p>
+          <div className="psl-gift-hero__stack">
+            {HERO_CARDS.map((card) => {
+              const design = giftDesignById(card.id);
+              const image = giftCardImage(design.file);
+              return (
+                <img
+                  key={card.id}
+                  className={`psl-gift-hero__card psl-gift-hero__card--${card.place}`}
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  alt={
+                    card.place === "front"
+                      ? t("gift.cardAlt", { design: design.label })
+                      : ""
+                  }
+                />
+              );
+            })}
+          </div>
+          <button type="button" className="psl-button" onClick={scrollToPersonalize}>
+            {t("gift.heroCta")}
+          </button>
+          <p className="psl-copy psl-copy--small">{t("gift.heroOffer")}</p>
+        </section>
 
-      <BrandMarkedHeading
-        as="h1"
-        className="psl-page-title"
-        text={t("bonos.title")}
-        word={t("bonos.titleHighlight")}
-      />
-      <div className="psl-bono-intro">
-        <CopyBlocks text={t("bonos.pageIntro")} />
-      </div>
+        <GiftBenefits />
+        <GiftPersonalize />
+        <GiftProcess />
 
-      <section
-        className="psl-section"
-        aria-labelledby="voucher-options-heading"
-      >
-        <BrandMarkedHeading
-          id="voucher-options-heading"
-          className="psl-title"
-          text={t("bonos.optionsHeading")}
-          word={t("bonos.optionsHeadingHighlight")}
-        />
-        <p className="psl-copy">{t("bonos.optionsSupport")}</p>
-
-        <ul className="psl-voucher-cards">
-          {voucherCombos.map(({ card, rate }) => {
-            const favorite = isClientFavorite(card.sessions, rate.minutes);
-            return (
-              <li
-                key={`${card.sessions}-${rate.minutes}`}
-                className={`psl-voucher-card${favorite ? " psl-voucher-card--favorite" : ""}`}
-              >
-                {favorite ? (
-                  <span className="psl-voucher-badge">
-                    {t("pricing.clientFavorite")}
-                  </span>
-                ) : null}
-                <p className="psl-voucher-card__title">
-                  {t(`pricing.voucher${card.sessions}.title`)}
-                  <span className="psl-voucher-badge psl-voucher-badge--save">
-                    {t(`pricing.voucher${card.sessions}.discount`)}
-                  </span>
-                </p>
-                <p className="psl-voucher-card__duration">
-                  {t("durations.cardTitle", { minutes: rate.minutes })}
-                </p>
-                <div className="psl-voucher-price">
-                  <strong className="psl-voucher-price__total">
-                    {formatPrice(rate.totalCents, language)}
-                  </strong>
-                  <span className="psl-voucher-price__per">
-                    {formatPrice(rate.perSessionCents, language)}{" "}
-                    {t("pricing.perSession")}
-                  </span>
-                  <span className="psl-voucher-price__saving">
-                    {t("pricing.saving", {
-                      amount: formatPrice(rate.savingCents, language),
-                    })}
-                  </span>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-
-        <div className="psl-voucher-table-wrap">
-          <table className="psl-voucher-table">
-            <thead>
-              <tr>
-                <th scope="col">{t("bonos.optionsTitle")}</th>
-                {voucherCards.map((card) => (
-                  <th key={card.sessions} scope="col">
-                    {t(`pricing.voucher${card.sessions}.title`)}
-                    <span className="psl-voucher-badge psl-voucher-badge--save">
-                      {t(`pricing.voucher${card.sessions}.discount`)}
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {voucherDurations.map((minutes) => (
-                <tr key={minutes}>
-                  <th scope="row">
-                    {t("pricing.durationMinutes", { minutes })}
-                    <span className="psl-voucher-table__single">
-                      {formatPrice(
-                        sessionRates.find((rate) => rate.minutes === minutes)
-                          ?.cents ?? 0,
-                        language,
-                      )}{" "}
-                      <span className="psl-voucher-table__single-label">
-                        {t("pricing.singleSessionPrice")}
-                      </span>
-                    </span>
-                  </th>
-                  {voucherCards.map((card) => {
-                    const rate = card.rates.find(
-                      (entry) => entry.minutes === minutes,
-                    );
-                    if (!rate) return <td key={card.sessions} />;
-                    const favorite = isClientFavorite(card.sessions, minutes);
-                    return (
-                      <td
-                        key={card.sessions}
-                        className={favorite ? "psl-voucher-table__favorite" : undefined}
-                      >
-                        <div className="psl-voucher-price">
-                          <div className="psl-voucher-price__badge-row">
-                            {favorite ? (
-                              <span className="psl-voucher-badge">
-                                {t("pricing.clientFavorite")}
-                              </span>
-                            ) : null}
-                          </div>
-                          <strong className="psl-voucher-price__total">
-                            {formatPrice(rate.totalCents, language)}
-                          </strong>
-                          <span className="psl-voucher-price__per">
-                            {formatPrice(rate.perSessionCents, language)}{" "}
-                            {t("pricing.perSession")}
-                          </span>
-                          <span className="psl-voucher-price__saving">
-                            {t("pricing.saving", {
-                              amount: formatPrice(rate.savingCents, language),
-                            })}
-                          </span>
-                        </div>
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="psl-voucher-notes">
-          <p className="psl-copy psl-copy--small">{t("bonos.pricesNote")}</p>
-          <p className="psl-copy psl-copy--small">{t("bonos.validityNote")}</p>
-        </div>
-      </section>
-
-      <BonoCardStrip />
-
-      <section
-        className="psl-section psl-bono-inquiry"
-        aria-labelledby="voucher-inquiry-heading"
-      >
-        <h2 id="voucher-inquiry-heading" className="psl-title">
-          {t("bonos.interestedTitle")}
-        </h2>
-        <a
-          href={mailto(t("bonos.enquirySubject"), t("bonos.enquiryBody"))}
-          className="psl-button psl-button--dark"
-        >
-          {t("bonos.cta")}
-        </a>
-        <p className="psl-copy psl-copy--small">
-          {t("bonos.termsAgree")}{" "}
-          <Link to="/condiciones-bonos" className="psl-textlink">
-            {t("bonos.termsLink")}
-          </Link>
-        </p>
-      </section>
-
-      <section className="psl-faq" aria-labelledby="voucher-faq-heading">
-        <BrandMarkedHeading
-          id="voucher-faq-heading"
-          className="psl-title"
-          text={t("bonos.faqTitle")}
-          word={t("bonos.faqTitleHighlight")}
-        />
-        {faqGroups.map((group) => (
-          <div key={group.id} className="psl-faq__group">
-            <h3 className="psl-faq__group-title">
-              {t(`bonos.faqGroups.${group.id}`)}
-            </h3>
-            {group.items.map((id) => (
+        <section className="psl-faq psl-gift-faq" aria-labelledby="gift-faq-heading">
+          <h2 id="gift-faq-heading" className="psl-title">
+            {t("gift.faqTitle")}
+          </h2>
+          <div>
+            {FAQ.map((id) => (
               <details key={id}>
                 <summary>
-                  {t(`bonos.faq.${id}.question`)}
+                  {t(`gift.faq.${id}.question`)}
                   <span className="psl-faq__icon" aria-hidden="true" />
                 </summary>
-                {t(`bonos.faq.${id}.answer`)
-                  .split("\n\n")
-                  .map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
+                <p>{t(`gift.faq.${id}.answer`)}</p>
               </details>
             ))}
           </div>
-        ))}
-      </section>
-
-      <section className="psl-bono-return" aria-labelledby="bono-return-heading">
-        <h2 id="bono-return-heading" className="psl-bono-return__title">
-          {t("bonos.returnTitle")}
-        </h2>
-        <BookingAction
-          label={t("bonos.returnCta")}
-          placement="bono_return"
-          className="psl-button psl-button--ghost"
-        />
-      </section>
+          <p className="psl-copy psl-gift-contact">
+            {t("gift.contactLead")}{" "}
+            <a className="psl-textlink" href="mailto:stephen@pluma.life">{t("gift.contactLink")}</a>.
+          </p>
+        </section>
+      </div>
     </PageContainer>
   );
 }

@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Forest",
+    "design_id": "Forest",
+    "file": "branded_bonocard_tree.png"
+  },
+  {
+    "label": "Sand",
+    "design_id": "Sand",
+    "file": "branded_bonocard_sand.png"
+  },
+  {
+    "label": "Coral",
+    "design_id": "Coral",
+    "file": "branded_bonocard_tree-1.png"
+  },
+  {
+    "label": "Aqua",
+    "design_id": "Aqua",
+    "file": "branded_bonocard_aqua.png"
+  }
+]
