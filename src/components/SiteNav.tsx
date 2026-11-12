@@ -11,6 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { translations, type HeroLanguage } from "../pluma-hero/hero.js";
 import { BookingAction } from "./BookingAction";
+import { retreatsReady } from "../config/readiness";
 
 const ASSET_BASE = "/pluma-hero/assets/";
 
@@ -164,13 +165,15 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
           >
             {labels.about}
           </Link>
-          <Link
-            to={LINKS.events}
-            aria-current={current(LINKS.events)}
-            onClick={closeMenu}
-          >
-            {labels.events}
-          </Link>
+          {retreatsReady ? (
+            <Link
+              to={LINKS.events}
+              aria-current={current(LINKS.events)}
+              onClick={closeMenu}
+            >
+              {labels.events}
+            </Link>
+          ) : null}
           <Link
             to={LINKS.prices}
             aria-current={current(LINKS.prices)}
@@ -209,9 +212,11 @@ export const SiteNav = forwardRef<HTMLElement, SiteNavProps>(function SiteNav(
           <Link to={LINKS.about} aria-current={current(LINKS.about)}>
             {labels.about}
           </Link>
-          <Link to={LINKS.events} aria-current={current(LINKS.events)}>
-            {labels.events}
-          </Link>
+          {retreatsReady ? (
+            <Link to={LINKS.events} aria-current={current(LINKS.events)}>
+              {labels.events}
+            </Link>
+          ) : null}
           <Link to={LINKS.prices} aria-current={current(LINKS.prices)}>
             {labels.prices}
           </Link>

@@ -9,6 +9,7 @@ import { PricingPage } from "./pages/PricingPage";
 import { EventsPage } from "./pages/EventsPage";
 import { ReviewsPage } from "./pages/ReviewsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { retreatsReady } from "./config/readiness";
 
 export default function App() {
   return (
@@ -16,7 +17,9 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
-        <Route path="retreats" element={<EventsPage />} />
+        {retreatsReady ? (
+          <Route path="retreats" element={<EventsPage />} />
+        ) : null}
         <Route path="reviews" element={<ReviewsPage />} />
         <Route path="pricing" element={<PricingPage />} />
         <Route path="book" element={<BookingPage />} />

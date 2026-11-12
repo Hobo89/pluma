@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { site } from "../config/site";
 import { useLanguage } from "../context/LanguageContext";
 import { BookingAction } from "./BookingAction";
+import { retreatsReady } from "../config/readiness";
 import { Logo } from "./Logo";
 
 const legalLinks = [
@@ -50,7 +51,9 @@ export function Footer() {
 
         <nav className="psl-footer__links" aria-label={t("footer.legalTitle")}>
           <Link to="/about">{t("nav.about")}</Link>
-          <Link to="/retreats">{t("nav.events")}</Link>
+          {retreatsReady ? (
+            <Link to="/retreats">{t("nav.events")}</Link>
+          ) : null}
           <Link to="/reviews">{t("nav.reviews")}</Link>
           <Link to="/pricing">{t("nav.pricing")}</Link>
           <Link to="/member-card">{t("nav.bonos")}</Link>

@@ -67,6 +67,13 @@ export const readinessBlockers: Record<ReadinessFlag, string> = {
     "Measured pass-refresh behaviour, including offline and delayed-update cases.",
 };
 
+/**
+ * The retreats page is still being written. The dev server shows it.
+ * A production build publishes it only when `VITE_READY_RETREATS` is true.
+ */
+export const retreatsReady =
+  import.meta.env.DEV || envFlag("VITE_READY_RETREATS");
+
 /** Any public state that takes money or confirms an appointment. */
 export const transactionalReady =
   readiness.businessReady && readiness.bookingReady;

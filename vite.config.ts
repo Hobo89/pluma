@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig, loadEnv, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { translations } from "./src/i18n/translations";
@@ -18,9 +18,11 @@ const DEFAULT_LANGUAGE = "en";
  * `meta` is the key under `meta.pages` in the translations.
  *
  * Excluded on purpose: the 404 route, and anything that would later hold a
- * checkout, an order or a personal pass link. While `site.searchIndexing` is
- * false these URLs are still built as 200s, but they are noindex and omitted
- * from the sitemap.
+ * checkout, an order or a personal pass link. `/retreats` stays in this list
+ * so it can return, but a production build omits it unless
+ * `VITE_READY_RETREATS` is true. While `site.searchIndexing` is false these
+ * URLs are still built as 200s, but they are noindex and omitted from the
+ * sitemap.
  */
 const ROUTES = [
   { path: "/", meta: "home", priority: "1.0" },
@@ -114,9 +116,9 @@ function htmlForRoute(
     );
 }
 
-function sitemapXml(): string {
+function sitemapXml(routes: readonly (typeof ROUTES)[number][]): string {
   const today = new Date().toISOString().slice(0, 10);
-  const entries = ROUTES.map(
+  const entries = routes.map(
     ({ path, priority }) =>
       `  <url>\n    <loc>${ORIGIN}${path}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`,
   ).join("\n");
@@ -124,14 +126,22 @@ function sitemapXml(): string {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
 }
 
-function siteFiles(): Plugin {
+function publishedRoutes(mode: string) {
+  const env = loadEnv(mode, process.cwd(), "VITE_");
+  const retreats =
+    env.VITE_READY_RETREATS === "true" || env.VITE_READY_RETREATS === "1";
+  return ROUTES.filter((route) => route.path !== "/retreats" || retreats);
+}
+
+function siteFiles(mode: string): Plugin {
+  const routes = publishedRoutes(mode);
   return {
     name: "pluma-site-files",
     closeBundle() {
       const dist = resolve(__dirname, "dist");
       const shell = readFileSync(resolve(dist, "index.html"), "utf8");
 
-      for (const route of ROUTES) {
+      for (const route of routes) {
         const html = htmlForRoute(shell, route);
 
         if (route.path === "/") {
@@ -151,18 +161,18 @@ function siteFiles(): Plugin {
         "utf8",
       );
       if (site.searchIndexing) {
-        writeFileSync(resolve(dist, "sitemap.xml"), sitemapXml(), "utf8");
+        writeFileSync(resolve(dist, "sitemap.xml"), sitemapXml(routes), "utf8");
       }
     },
   };
 }
 
-export default defineConfig({
-  plugins: [react(), tailwindcss(), siteFiles()],
+export default defineConfig(({ mode }) => ({
+  plugins: [react(), tailwindcss(), siteFiles(mode)],
   base: "/",
   server: {
     // The project lives on a Google Drive mount, which emits no filesystem
     // events. Without polling the dev server keeps serving stale modules.
     watch: { usePolling: true, interval: 300 },
   },
-});
+}));

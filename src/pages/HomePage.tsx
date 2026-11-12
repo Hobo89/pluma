@@ -10,6 +10,7 @@ import { FeatureStory } from "../components/FeatureStory";
 import { PageMeta } from "../components/PageMeta";
 import { StudioFeature } from "../components/StudioFeature";
 import { useLanguage } from "../context/LanguageContext";
+import { retreatsReady } from "../config/readiness";
 
 function RetreatsEntry() {
   const { t } = useLanguage();
@@ -41,7 +42,7 @@ export function HomePage() {
       <MassageTypes />
       <SafetyControl />
       <FAQ />
-      <RetreatsEntry />
+      {retreatsReady ? <RetreatsEntry /> : null}
       <BookingCTA />
     </>
   );
