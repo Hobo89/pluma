@@ -4659,6 +4659,74 @@ html.dark
   gap: 2px;
 }
 
+.psl-testimonial-card--hero .psl-testimonial-card__portrait {
+  aspect-ratio: 4 / 3;
+}
+
+.psl-testimonial-card--hero .psl-testimonial-card__portrait > img,
+.psl-testimonial-card--hero .psl-testimonial-card__portrait > .psl-blur-up,
+.psl-testimonial-card--hero .psl-testimonial-card__portrait img {
+  object-position: var(--testimonial-focal-point, center 52%);
+}
+
+.psl-testimonial-card__business {
+  color: var(--psl-muted);
+  font: 400 var(--psl-type-small) / var(--psl-type-small-lh) var(--psl-font-body);
+}
+
+.psl-testimonial-card__role {
+  margin: 0;
+  color: var(--psl-muted);
+  font: 400 0.875rem / 1.35 var(--psl-font-body);
+}
+
+.psl-testimonial-card__role .psl-testimonial-card__name,
+.psl-testimonial-card__role .psl-testimonial-card__business {
+  color: var(--psl-heading);
+  font: inherit;
+}
+
+.psl-testimonial-card--organizer .psl-testimonial-card__footer {
+  gap: 0.2rem;
+}
+
+.psl-testimonial-card--organizer .psl-testimonial-card__socials {
+  margin-top: 0.05rem;
+}
+
+.psl-testimonial-card--organizer .psl-testimonial-card__socials a {
+  min-height: 1.7rem;
+}
+
+.psl-testimonial-card__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psl-testimonial-card__socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  color: var(--psl-heading);
+  font: 400 var(--psl-type-small) / 1 var(--psl-font-body);
+  text-decoration: none;
+}
+
+.psl-testimonial-card__socials svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 @media (max-width: 767px) {
   .psl-testimonial-card--strip .psl-testimonial-card__copy {
     padding: 24px;
@@ -4890,6 +4958,32 @@ html.dark
   height: 100%;
   object-fit: cover;
   object-position: inherit;
+}
+
+.psl-meet__motion {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  object-position: inherit;
+  transition: opacity 0.45s ease;
+}
+
+.psl-meet__motion.is-ready {
+  opacity: 1;
+}
+
+.psl-meet__motion img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psl-meet__motion {
+    transition: none;
+  }
 }
 
 .psl-blur-up--natural .psl-blur-up__lqip {

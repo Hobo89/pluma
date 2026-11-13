@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import {
@@ -10,6 +11,96 @@ import { BookingAction } from "./BookingAction";
 import { BrandMarkedHeading } from "./BrandMarkedHeading";
 import { HashLink } from "./HashLink";
 import { ReviewCard } from "./ReviewCard";
+import { useNearViewport } from "../lib/useNearViewport";
+
+const MEET_MOTION = {
+  poster: "/assets/images/stephen-massage-smile-pluma-poster.webp",
+  mobile: "/assets/images/stephen-massage-smile-pluma-mobile.webp",
+  desktop: "/assets/images/stephen-massage-smile-pluma-desktop.webp",
+  width: 1024,
+  height: 576,
+} as const;
+
+function prefersStillMedia() {
+  if (typeof window === "undefined") return true;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return reduce || navigator.connection?.saveData === true;
+}
+
+function useStillMedia() {
+  const [still, setStill] = useState(prefersStillMedia);
+
+  useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setStill(prefersStillMedia());
+    update();
+    motion.addEventListener("change", update);
+    navigator.connection?.addEventListener?.("change", update);
+    return () => {
+      motion.removeEventListener("change", update);
+      navigator.connection?.removeEventListener?.("change", update);
+    };
+  }, []);
+
+  return still;
+}
+
+/** Portrait crop of the graded smile loop. Phones get the 640 frame; wider
+ * screens get the 1024 frame. Reduced motion and data saver stay on the still. */
+function MeetMotionPhoto({ eager }: { eager: boolean }) {
+  const still = useStillMedia();
+  const { ref, near } = useNearViewport<HTMLSpanElement>({ eager });
+  const fullRef = useRef<HTMLImageElement>(null);
+  const [loaded, setLoaded] = useState(false);
+  const play = near && !still;
+  const [playing, setPlaying] = useState(play);
+  if (play !== playing) {
+    setPlaying(play);
+    setLoaded(false);
+  }
+
+  useEffect(() => {
+    const image = fullRef.current;
+    if (play && image?.complete && image.naturalWidth > 0) setLoaded(true);
+  }, [play]);
+
+  return (
+    <span
+      ref={ref}
+      className="psl-blur-up psl-blur-up--fill is-loaded"
+      style={{ objectPosition: "64% 18%" }}
+    >
+      <img
+        className="psl-blur-up__full"
+        src={MEET_MOTION.poster}
+        alt=""
+        width={MEET_MOTION.width}
+        height={MEET_MOTION.height}
+        decoding="async"
+        draggable={false}
+      />
+      {play ? (
+        <picture className={`psl-meet__motion${loaded ? " is-ready" : ""}`}>
+          <source
+            media="(max-width: 767px)"
+            srcSet={MEET_MOTION.mobile}
+            type="image/webp"
+          />
+          <source srcSet={MEET_MOTION.desktop} type="image/webp" />
+          <img
+            ref={fullRef}
+            src={MEET_MOTION.desktop}
+            alt=""
+            width={MEET_MOTION.width}
+            height={MEET_MOTION.height}
+            decoding="async"
+            onLoad={() => setLoaded(true)}
+          />
+        </picture>
+      ) : null}
+    </span>
+  );
+}
 
 function FeaturedReview({ review }: { review: TestimonialRecord }) {
   const { t } = useLanguage();
@@ -90,16 +181,7 @@ export function MeetStephen({
               aria-label={t("about.stephenPhotoAlt")}
             >
               <figure className="psl-meet__media">
-                <BlurUpImage
-                  src="/assets/images/stephen.jpg"
-                  alt=""
-                  width={1024}
-                  height={576}
-                  fill
-                  eager={headingLevel === "h1"}
-                  sizes="(max-width: 767px) calc(100vw - 40px), 40vw"
-                  style={{ objectPosition: "64% 18%" }}
-                />
+                <MeetMotionPhoto eager={headingLevel === "h1"} />
               </figure>
               <BlurUpImage
                 className="psl-meet__portrait"

@@ -3,7 +3,7 @@ import {
   type AreaId,
   type TestimonialRecord,
 } from "../content/testimonials";
-import { TestimonialCard } from "./TestimonialCard";
+import { TestimonialCard, type TestimonialCardVariant } from "./TestimonialCard";
 
 export { FlagMarks } from "./TestimonialCard";
 
@@ -24,6 +24,6 @@ export function AreaBadges({ areas }: { areas: readonly AreaId[] }) {
 export function ReviewCard({
   variant,
   ...item
-}: TestimonialRecord & { variant?: "card" | "strip" }) {
+}: TestimonialRecord & { variant?: TestimonialCardVariant }) {
   return <TestimonialCard {...item} variant={variant} />;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 type FillConfig = {
   property: string;
@@ -85,7 +85,7 @@ export function useScrollFill<T extends HTMLElement>(
   const start = config.start ?? defaultConfig.start;
   const end = config.end ?? defaultConfig.end;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = ref.current;
     if (!node) return;
 

@@ -3,6 +3,7 @@ import { useLanguage } from "../context/LanguageContext";
 import {
   type TestimonialFlag,
   type TestimonialRecord,
+  type TestimonialSocial,
 } from "../content/testimonials";
 import {
   quoteAttributionGapRem,
@@ -48,8 +49,16 @@ function focalCss(point?: { x: number; y: number }, fallback?: string) {
   return fallback ?? "50% 35%";
 }
 
+export type TestimonialCardVariant = "card" | "strip" | "hero";
+
+/** Client cards name the person. Organiser cards name the event and studio. */
+export type TestimonialAttribution = "client" | "organizer";
+
 type TestimonialCardProps = TestimonialRecord & {
-  variant?: "card" | "strip";
+  variant?: TestimonialCardVariant;
+  attribution?: TestimonialAttribution;
+  /** Words between the name and the organisation, for an organiser card. */
+  roleLabel?: string;
 };
 
 export function TestimonialCard({
@@ -65,7 +74,11 @@ export function TestimonialCard({
   objectPosition,
   quoteFontSize,
   focalPoint,
+  business,
+  socials,
   variant = "card",
+  attribution = "client",
+  roleLabel,
 }: TestimonialCardProps) {
   const { t, language } = useLanguage();
   const translation = quoteTranslation({ locale, translations }, language);
@@ -91,20 +104,51 @@ export function TestimonialCard({
   const focal = focalCss(focalPoint, objectPosition);
   const portrait = portraitCrop(imageSize, face);
   const isStrip = variant === "strip";
+  const isHero = variant === "hero";
+  const isOrganizer = attribution === "organizer";
 
-  const attribution = (
+  const location =
+    countriesLabel || flags.length > 0 ? (
+      <span className="psl-testimonial-card__from">
+        {flags.length > 0 ? (
+          <span aria-hidden={countriesLabel ? true : undefined}>
+            <FlagMarks flags={flags} />
+          </span>
+        ) : null}
+        {countriesLabel ? (
+          <span className="psl-testimonial-card__origin">{countriesLabel}</span>
+        ) : null}
+      </span>
+    ) : null;
+
+  const credit = isOrganizer ? (
+    <>
+      <p className="psl-testimonial-card__role">
+        <span className="psl-testimonial-card__name">{name}</span>
+        {roleLabel ? (
+          <>
+            {" "}
+            <span className="psl-testimonial-card__role-label">{roleLabel}</span>
+          </>
+        ) : null}
+        {business ? (
+          <>
+            {" "}
+            <span className="psl-testimonial-card__business">{business}</span>
+          </>
+        ) : null}
+      </p>
+      {location}
+      <SocialLinks socials={socials} />
+    </>
+  ) : (
     <>
       <span className="psl-testimonial-card__name">{name}</span>
-      {countriesLabel ? (
-        <span className="psl-testimonial-card__from">
-          {flags.length > 0 ? (
-            <span aria-hidden="true">
-              <FlagMarks flags={flags} />
-            </span>
-          ) : null}
-          <span className="psl-testimonial-card__origin">{countriesLabel}</span>
-        </span>
+      {business ? (
+        <span className="psl-testimonial-card__business">{business}</span>
       ) : null}
+      {location}
+      <SocialLinks socials={socials} />
     </>
   );
 
@@ -115,6 +159,8 @@ export function TestimonialCard({
       className={[
         "psl-testimonial-card",
         isStrip ? "psl-testimonial-card--strip" : "",
+        isHero ? "psl-testimonial-card--hero" : "",
+        isOrganizer ? "psl-testimonial-card--organizer" : "",
         lit ? "is-lit" : "",
         pulsing ? "is-pulse" : "",
         translating ? "is-translating" : "",
@@ -170,13 +216,49 @@ export function TestimonialCard({
               />
             ) : null}
             {isStrip ? (
-              <div className="psl-testimonial-card__person">{attribution}</div>
+              <div className="psl-testimonial-card__person">{credit}</div>
             ) : (
-              attribution
+              credit
             )}
           </footer>
         </div>
       </div>
     </article>
+  );
+}
+
+function SocialLinks({ socials }: { socials?: readonly TestimonialSocial[] }) {
+  if (!socials || socials.length === 0) return null;
+
+  return (
+    <ul className="psl-testimonial-card__socials">
+      {socials.map((social) => (
+        <li key={social.href}>
+          <a href={social.href} target="_blank" rel="noopener noreferrer">
+            <SocialIcon href={social.href} />
+            <span>{social.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function SocialIcon({ href }: { href: string }) {
+  let host = "";
+  try {
+    host = new URL(href).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+
+  if (host !== "instagram.com") return null;
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.25" cy="6.75" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
   );
 }

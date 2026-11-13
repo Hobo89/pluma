@@ -17,12 +17,16 @@ import {
 import { translate } from "../src/i18n/translations.ts";
 
 const copyKeys = [
-  "events.hero.eyebrow",
   "events.hero.title",
   "events.hero.support",
-  "events.hero.caption",
+  "events.benefits.atmosphere.title",
+  "events.benefits.atmosphere.body",
+  "events.benefits.touch.title",
+  "events.benefits.touch.body",
+  "events.benefits.personal.title",
+  "events.benefits.personal.body",
   "events.words.title",
-  "events.organiser.placeholder",
+  "events.organiser.quote",
   "events.clients.note",
   "events.answers.cost.body",
   "events.request.button",
@@ -39,7 +43,11 @@ describe("retreats page copy", () => {
   it("keeps the supplied English lines and a Spanish equivalent", () => {
     assert.equal(
       translate("en", "events.hero.title"),
-      "Make room for a little Pluma.",
+      "Great events made even greater with Pluma.",
+    );
+    assert.equal(
+      translate("en", "events.hero.support"),
+      "A private massage experience, planned easily for your guests.",
     );
     assert.equal(
       translate("en", "events.form.preview"),
@@ -50,8 +58,8 @@ describe("retreats page copy", () => {
       /seven days before/,
     );
     assert.equal(
-      translate("en", "events.organiser.placeholder"),
-      "Testimonial placeholder",
+      translate("en", "events.organiser.quote"),
+      "I organised an international art and wellbeing retreat in Valencia. Stephen provided holistic massage treatments for some of the retreat participants, which were greatly appreciated. His contribution complemented the retreat's focus on wellbeing and self-care, enhancing the holistic and restorative atmosphere I sought to cultivate.",
     );
 
     for (const key of copyKeys) {

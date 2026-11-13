@@ -22,6 +22,11 @@ export type TestimonialFocalPoint = {
   y: number;
 };
 
+export type TestimonialSocial = {
+  href: string;
+  label: string;
+};
+
 export type TestimonialFace = {
   left: number;
   top: number;
@@ -49,6 +54,9 @@ export type TestimonialRecord = {
   objectPosition?: string;
   quoteFontSize?: number;
   focalPoint?: TestimonialFocalPoint;
+  /** Business or studio name shown under the person's name. */
+  business?: string;
+  socials?: readonly TestimonialSocial[];
 };
 
 /**
@@ -323,6 +331,9 @@ export const eventClientTestimonialIds = [
   "dana",
   "sara",
 ] as const;
+
+/** Three studio clients shown beside the organiser in the retreats bento. */
+export const eventBentoTestimonialIds = ["jesus", "sarah", "sara"] as const;
 
 export function eventClientTestimonials(): TestimonialRecord[] {
   return eventClientTestimonialIds.map((id) => testimonialById(id));

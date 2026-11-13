@@ -523,22 +523,37 @@ export const translations = {
     },
     events: {
       hero: {
-        eyebrow: "A little something for your guests",
-        title: "Make room for a little Pluma.",
-        support: "Private massage for retreats and villa stays.",
-        caption: "The care of Pluma, wherever you gather.",
+        title: "Great events made even greater with Pluma.",
+        support:
+          "A private massage experience, planned easily for your guests.",
         roomAlt:
           "The massage room at Pluma, with the treatment table, towels and candlelight",
         poolAlt: "Stephen arriving with a massage table beside a pool",
         handsAlt: "A head resting in Stephen’s hands during a massage",
+      },
+      benefits: {
+        label: "For your guests",
+        atmosphere: {
+          title: "Studio atmosphere",
+          body: "The quiet of the studio, brought to your room.",
+        },
+        touch: {
+          title: "Engaging",
+          body: "My touch does wonders for clients' wellbeing. I also particularly care about engaging with individual attendees and the wider group, making me seamlessly part of your atmosphere.",
+        },
+        personal: {
+          title: "Personalized massages",
+          body: "Each guest, in their own time, around your plans.",
+        },
       },
       words: {
         title: "In their words.",
       },
       organiser: {
         kind: "From the organiser",
-        placeholder: "Testimonial placeholder",
-        pending: "An organiser quotation hasn’t been added yet.",
+        role: "event organizer for",
+        quote:
+          "I organised an international art and wellbeing retreat in Valencia. Stephen provided holistic massage treatments for some of the retreat participants, which were greatly appreciated. His contribution complemented the retreat's focus on wellbeing and self-care, enhancing the holistic and restorative atmosphere I sought to cultivate.",
       },
       clients: {
         label: "Pluma studio clients",
@@ -1361,22 +1376,37 @@ export const translations = {
     },
     events: {
       hero: {
-        eyebrow: "Un pequeño detalle para tus invitados",
-        title: "Haz sitio para un poco de Pluma.",
-        support: "Masaje privado para retiros y estancias en villa.",
-        caption: "El cuidado de Pluma, allí donde os reunís.",
+        title: "Grandes eventos, aún mejores con Pluma.",
+        support:
+          "Una experiencia de masaje privado, fácil de organizar para tus invitados.",
         roomAlt:
           "La sala de masaje de Pluma, con la camilla, las toallas y la luz de las velas",
         poolAlt: "Stephen llega con una camilla de masaje junto a una piscina",
         handsAlt: "Una cabeza descansa entre las manos de Stephen durante un masaje",
+      },
+      benefits: {
+        label: "Para tus invitados",
+        atmosphere: {
+          title: "Ambiente de estudio",
+          body: "La calma del estudio, llevada a vuestra sala.",
+        },
+        touch: {
+          title: "Cercanía",
+          body: "Mi tacto hace maravillas por el bienestar de quienes asisten. También me importa especialmente conectar con cada persona y con el grupo, para integrarme con naturalidad en vuestra atmósfera.",
+        },
+        personal: {
+          title: "Masajes personalizados",
+          body: "Cada invitado, a su tiempo, alrededor de vuestros planes.",
+        },
       },
       words: {
         title: "En sus palabras.",
       },
       organiser: {
         kind: "De quien organiza",
-        placeholder: "Testimonio provisional",
-        pending: "Todavía no hay una cita de quien organiza.",
+        role: "organizadora del evento para",
+        quote:
+          "Organicé un retiro internacional de arte y bienestar en Valencia. Stephen ofreció tratamientos de masaje holístico a algunos participantes, que fueron muy apreciados. Su contribución complementó el enfoque del retiro en el bienestar y el autocuidado, y realzó el ambiente holístico y reparador que buscaba cultivar.",
       },
       clients: {
         label: "Clientes del estudio Pluma",

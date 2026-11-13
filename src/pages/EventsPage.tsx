@@ -1,8 +1,13 @@
 import { useId, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { EditorialQuote } from "../components/EditorialQuote";
+import { TestimonialCard } from "../components/TestimonialCard";
+import { TestimonialStrip } from "../components/Testimonials";
 import { BlurUpImage } from "../components/BlurUpImage";
 import { PageMeta } from "../components/PageMeta";
-import { eventClientTestimonials } from "../content/testimonials";
+import {
+  eventBentoTestimonialIds,
+  eventClientTestimonials,
+  testimonialById,
+} from "../content/testimonials";
 import { useLanguage } from "../context/LanguageContext";
 import {
   eventEnquiryErrors,
@@ -10,6 +15,7 @@ import {
   type EventEnquiryField,
   type EventEnquiryInput,
 } from "../lib/eventEnquiry";
+import { useScrollFill } from "../lib/useScrollFill";
 
 const EMPTY: EventEnquiryInput = {
   name: "",
@@ -44,9 +50,24 @@ const HERO = {
 
 const GATHERINGS = ["retreat", "villa", "office", "other"] as const;
 
+const BENEFITS = [
+  { id: "atmosphere", Icon: StudioIcon },
+  { id: "touch", Icon: TouchIcon },
+  { id: "personal", Icon: PersonalIcon },
+] as const;
+
 export function EventsPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const clients = useMemo(() => eventClientTestimonials(), []);
+  const featured = useMemo(
+    () => eventBentoTestimonialIds.map((id) => testimonialById(id)),
+    [],
+  );
+  const galleryRef = useScrollFill<HTMLDivElement>({
+    property: "--psl-events-arrive",
+    start: 0.5,
+    end: 0.14,
+  });
   const formId = useId();
   const nameRef = useRef<HTMLInputElement>(null);
   const openRef = useRef<HTMLButtonElement>(null);
@@ -111,13 +132,12 @@ export function EventsPage() {
       <PageMeta page="events" />
 
       <header className="psl-events__intro">
-        <p className="psl-events__eyebrow">{t("events.hero.eyebrow")}</p>
         <h1 className="psl-display psl-events__title">{t("events.hero.title")}</h1>
         <p className="psl-copy psl-events__support">{t("events.hero.support")}</p>
       </header>
 
       <figure className="psl-events__hero">
-        <div className="psl-events__gallery">
+        <div ref={galleryRef} className="psl-events__gallery">
           {(
             [
               ["room", "psl-events__shot--room"],
@@ -141,28 +161,61 @@ export function EventsPage() {
             );
           })}
         </div>
-        <figcaption className="psl-events__caption">
-          {t("events.hero.caption")}
-        </figcaption>
       </figure>
+
+      <section className="psl-events__benefits" aria-label={t("events.benefits.label")}>
+        {BENEFITS.map(({ id, Icon }) => (
+          <article key={id} className="psl-events__benefit">
+            <span className="psl-events__benefit-icon">
+              <Icon />
+            </span>
+            <h2>{t(`events.benefits.${id}.title`)}</h2>
+            <p>{t(`events.benefits.${id}.body`)}</p>
+          </article>
+        ))}
+      </section>
 
       <section className="psl-events__words" aria-labelledby="events-words">
         <div>
           <h2 id="events-words" className="psl-title psl-events__section-title">
             {t("events.words.title")}
           </h2>
-          <p className="psl-events__kind">{t("events.organiser.kind")}</p>
-          <article className="psl-testimonial-card psl-testimonial-card--strip psl-events__organiser">
-            <span className="psl-testimonial-card__shine" aria-hidden="true" />
-            <div className="psl-testimonial-card__inner">
-              <div className="psl-testimonial-card__copy">
-                <p className="psl-events__placeholder">
-                  {t("events.organiser.placeholder")}
-                </p>
-                <p className="psl-events__pending">{t("events.organiser.pending")}</p>
-              </div>
+          <div className="psl-events__bento">
+            <div className="psl-events__bento-organiser">
+              <TestimonialCard
+                variant="hero"
+                attribution="organizer"
+                roleLabel={t("events.organiser.role")}
+                id="anna-michalska"
+                name="Anna"
+                quote={t("events.organiser.quote")}
+                locale={language}
+                image="/testimonials/organiser.jpg"
+                imageSize={{ width: 1028, height: 1216 }}
+                face={{ left: 0.36, top: 0.16, right: 0.74, bottom: 0.5 }}
+                flags={[{ type: "emoji", glyph: "🇬🇧" }]}
+                countriesKey="uk"
+                areas={[]}
+                objectPosition="center 8%"
+                quoteFontSize={19}
+                business="Anna Michalska art"
+                socials={[
+                  {
+                    href: "https://www.instagram.com/annamichalskaart/",
+                    label: "Instagram",
+                  },
+                ]}
+              />
             </div>
-          </article>
+            {featured.map((item) => (
+              <div
+                key={item.id}
+                className={`psl-events__bento-client psl-events__bento-client--${item.id}`}
+              >
+                <TestimonialCard {...item} />
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="psl-events__clients">
@@ -170,8 +223,7 @@ export function EventsPage() {
             {t("events.clients.label")}
           </h3>
           <p className="psl-events__note">{t("events.clients.note")}</p>
-          <EditorialQuote
-            presentation="cards"
+          <TestimonialStrip
             items={clients}
             labelledBy="events-studio-clients"
           />
@@ -400,6 +452,38 @@ export function EventsPage() {
         </form>
       </section>
     </div>
+  );
+}
+
+function StudioIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 20V9.5A2.5 2.5 0 0 1 6.5 7h11A2.5 2.5 0 0 1 20 9.5V20" />
+      <path d="M4 20h16" />
+      <path d="M12 7v13" />
+      <path d="M4 13.5h16" />
+    </svg>
+  );
+}
+
+function TouchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18 11V6a2 2 0 0 0-4 0" />
+      <path d="M14 10V4a2 2 0 0 0-4 0v2" />
+      <path d="M10 10.5V6a2 2 0 0 0-4 0v8" />
+      <path d="M18 8a2 2 0 0 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15" />
+    </svg>
+  );
+}
+
+function PersonalIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="8.25" />
+      <circle cx="12" cy="10" r="2.15" />
+      <path d="M7.6 16.8c.75-2.05 2.35-3.15 4.4-3.15s3.65 1.1 4.4 3.15" />
+    </svg>
   );
 }
 

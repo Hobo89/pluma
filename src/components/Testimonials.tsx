@@ -136,3 +136,51 @@ export function Testimonials() {
     </section>
   );
 }
+
+/** One horizontal row, the same treatment as the mobile client wall. */
+export function TestimonialStrip({
+  items,
+  labelledBy,
+}: {
+  items: readonly TestimonialRecord[];
+  labelledBy?: string;
+}) {
+  const reducedMotion = usePrefersReducedMotion();
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const loop = reducedMotion ? items : [...items, ...items];
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport || reducedMotion) return;
+    return bindTestimonialWallScroll(viewport);
+  }, [reducedMotion, items]);
+
+  return (
+    <div
+      className="psl-testimonial-wall psl-events__strip"
+      aria-labelledby={labelledBy}
+    >
+      <div
+        ref={viewportRef}
+        className={[
+          "psl-testimonial-wall__viewport",
+          "psl-testimonial-wall__viewport--horizontal",
+          reducedMotion ? "psl-testimonial-wall__viewport--static" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        <div className="psl-testimonial-wall__column">
+          <div
+            className="psl-testimonial-wall__track psl-testimonial-wall__track--horizontal"
+            style={{ animationDuration: `${MOBILE_DURATION}s` }}
+          >
+            {loop.map((item, index) => (
+              <TestimonialCard key={`${item.id}-${index}`} {...item} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
